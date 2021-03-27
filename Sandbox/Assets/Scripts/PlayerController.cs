@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public Transform Sword;
     public Transform BackSwordHolderBone;
 
+    public bool AI_controlled;
+
     // Start is called before the first frame update
     void Start()
     {

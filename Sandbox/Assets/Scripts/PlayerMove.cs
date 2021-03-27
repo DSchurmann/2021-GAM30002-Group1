@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 public class PlayerMove : MonoBehaviour
 {
 
-    [SerializeField] private bool IsWalking = false;
+    [SerializeField] private bool IsWalking = true;
     [SerializeField] private float WalkSpeed = 2;
     [SerializeField] private float RunSpeed = 5;
     [SerializeField] private float JumpSpeed = 5;
@@ -28,6 +28,8 @@ public class PlayerMove : MonoBehaviour
     private float NextStep;
     private bool Jumping;
 
+    public bool canJump;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +41,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         // the jump state needs to read here to make sure it is not missed
-        if (!Jump)
+        if (!Jump && canJump)
         {
             Jump = UnityEngine.Input.GetButtonDown("Jump");
         }
