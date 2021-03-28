@@ -5,10 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public abstract class Controller : MonoBehaviour
 {
-    [SerializeField] private CharacterController cc;
+    [SerializeField] protected CharacterController cc;
 
-    [SerializeField] private float maxMoveSpeed;
-    private float moveSpeed;
+    [SerializeField] protected float maxMoveSpeed;
 
     protected bool canControl;
 
@@ -16,7 +15,7 @@ public abstract class Controller : MonoBehaviour
     {
         if (canControl)
         {
-            moveSpeed = Input.GetAxis("Horizontal") * Time.deltaTime * maxMoveSpeed;
+            float moveSpeed = Input.GetAxis("Horizontal") * Time.deltaTime * maxMoveSpeed;
 
             cc.Move(new Vector3(moveSpeed, 0, 0));
         }

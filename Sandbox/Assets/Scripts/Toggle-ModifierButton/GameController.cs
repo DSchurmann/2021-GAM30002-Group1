@@ -6,6 +6,7 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] private GameObject child;
     [SerializeField] private GameObject golem;
+    [SerializeField] private CameraControl cam;
     private GameObject currentCharacter;
 
     private bool toggle = true;
@@ -47,10 +48,15 @@ public class GameController : MonoBehaviour
         }
 
         currentCharacter.GetComponent<Controller>().CanControl(true);
+        cam.SetTarget(currentCharacter.transform);
     }
 
     public void ToggleControlType()
     {
-            toggle = !toggle;
+        toggle = !toggle;
+        if (currentCharacter != golem)
+        {
+            golem.GetComponent<GolemController>().SetToggleState(toggle);
+        }
     }
 }
