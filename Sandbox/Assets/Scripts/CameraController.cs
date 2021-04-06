@@ -19,16 +19,19 @@ public class CameraController : MonoBehaviour
     {
         //transform.LookAt(lookTarget);
 
-        transform.DOLookAt(lookTarget.position, 0.5f);
+        Vector3 target = lookTarget.position;
+        target.y += 2;
 
-        float dist = Vector3.Distance(lookTarget.position, transform.position);
+        transform.DOLookAt(target, 0.5f);
 
-        if ((lookTarget.position.x - transform.position.x) > maxDistance)
+        float dist = Vector3.Distance(target, transform.position);
+
+        if ((target.x - transform.position.x) > maxDistance)
         {
             transform.DOMoveX(lookTarget.position.x, 2f);
         }
 
-        if ((lookTarget.position.x - transform.position.x) < -maxDistance)
+        if ((target.x - transform.position.x) < -maxDistance)
         {
             transform.DOMoveX(lookTarget.position.x, 2f);
         }
