@@ -52,10 +52,11 @@ public class PlayerCommander : MonoBehaviour
         if(!riding)
         {
             // disable and move player character
+            GetComponent<PlayerAnimationController>().SetJumping(false);
             GetComponent<CharacterController>().enabled = false;
             GetComponent<PlayerController>().enabled = false;
             GetComponent<PlayerMove>().enabled = false;
-            transform.GetChild(0).GetComponent<Animator>().enabled = false;
+            transform.GetComponent<Animator>().enabled = false;
             transform.position = golem.Shoulder.position;
             transform.parent = golem.Shoulder;
             transform.forward = golem.transform.forward;
@@ -75,7 +76,7 @@ public class PlayerCommander : MonoBehaviour
             GetComponent<CharacterController>().enabled = true;
             GetComponent<PlayerController>().enabled = true;
             GetComponent<PlayerMove>().enabled = true;
-            transform.GetChild(0).GetComponent<Animator>().enabled = true;
+            transform.GetComponent<Animator>().enabled = true;
             //transform.position = golem.Shoulder.forward * 2;
             transform.parent = null;
           

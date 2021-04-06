@@ -8,6 +8,8 @@ public class PlayerMove : MonoBehaviour
 {
 
     [SerializeField] private bool IsWalking = true;
+    [SerializeField] private float CarrySpeed = 1;
+    [SerializeField] private float CrawlSpeed = 2;
     [SerializeField] private float WalkSpeed = 2;
     [SerializeField] private float RunSpeed = 5;
     [SerializeField] private float JumpSpeed = 5;
@@ -43,13 +45,15 @@ public class PlayerMove : MonoBehaviour
         // the jump state needs to read here to make sure it is not missed
         if (!Jump && canJump)
         {
-            Jump = UnityEngine.Input.GetButtonDown("Jump");
+            Jump = UnityEngine.Input.GetButtonDown("Jump");           
         }
 
         if (!PreviouslyGrounded && CharacterController.isGrounded)
         {
             MoveDir.y = 0f;
             Jumping = false;
+            if(GetComponent<Animator>() != null)
+                GetComponent<PlayerAnimationController>().SetJumping(false);
         }
         if (!CharacterController.isGrounded && !Jumping && PreviouslyGrounded)
         {
@@ -68,6 +72,8 @@ public class PlayerMove : MonoBehaviour
             newRotation.z = 0;
             transform.rotation = newRotation;
         }
+
+      
 
     }
     private void FixedUpdate()
@@ -94,7 +100,7 @@ public class PlayerMove : MonoBehaviour
             if (Jump)
             {
                 MoveDir.y = JumpSpeed;
-
+                GetComponent<PlayerAnimationController>().SetJumping(true);
                 Jump = false;
                 Jumping = true;
             }
@@ -104,7 +110,8 @@ public class PlayerMove : MonoBehaviour
             MoveDir += Physics.gravity * GravityMultiplier * Time.fixedDeltaTime;
         }
 
-        CollisionFlags = CharacterController.Move(MoveDir * Time.fixedDeltaTime);
+
+            CollisionFlags = CharacterController.Move(MoveDir * Time.fixedDeltaTime);
     }
 
     private void GetInput(out float speed)
@@ -112,10 +119,24 @@ public class PlayerMove : MonoBehaviour
         // Read input
         float horizontal = UnityEngine.Input.GetAxis("Horizontal");
         float vertical = UnityEngine.Input.GetAxis("Vertical");
-        bool wasWalking = IsWalking;
+        bool IsWalkingMod = UnityEngine.Input.GetButton("WalkToggle");
+        IsWalking = IsWalkingMod;
+
+        bool isCarrying = GetComponent<PlayerInteractions>().carrying;
+        // change walkspeed if carrying
 
         // set the desired speed to be walking or running
-        speed = IsWalking ? WalkSpeed : RunSpeed;
+        if (isCarrying) 
+        {
+            canJump = false;
+            speed = CarrySpeed;
+        }
+        else
+        {
+            canJump = true;
+            speed = IsWalking ? WalkSpeed : RunSpeed;
+        }
+       
         Input = new Vector2(horizontal, vertical);
 
         // normalize input if it exceeds 1 in combined length:
