@@ -4,13 +4,19 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 [RequireComponent(typeof(CharacterController))]
 
+
+// climbing based off tutorial https://www.youtube.com/watch?v=_pOJipOVTfg
+
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] public bool IsWalking = true;
     [SerializeField] public bool IsRunning = false;
     [SerializeField] public bool IsCrawling = false;
+    [SerializeField] public bool IsClimbing = false;
     [SerializeField] private float CarrySpeed = 1;
     [SerializeField] private float CrawlSpeed = 2;
+    [SerializeField] private float ClimbSpeed = 2;
+    [SerializeField] private float ClimbRotSpeed = 2;
     [SerializeField] private float WalkSpeed = 2;
     [SerializeField] private float RunSpeed = 5;
     [SerializeField] private float JumpSpeed = 5;
@@ -37,9 +43,23 @@ public class PlayerMove : MonoBehaviour
 
     private float CharControllerHeighCopy;
 
+    private RaycastHit wallRayHit;
+    private Transform climbingHelper;
+    private Vector3 climbingStartPos;
+    private Vector3 climbingTargetPos;
+    private Quaternion climbingStartRot;
+    private Quaternion climbingTargetRot;
+    private bool climbingInPosition;
+    public float climbingPositionOffset = 0.5f;
+    public float climbingOffsetFromWall = 0.3f;
+    private bool climbingIsLerping;
+    private float climbingT;
+
     // Start is called before the first frame update
     void Start()
     {
+        climbingHelper = new GameObject().transform;
+        climbingHelper.name = "climb helper";
         CharacterController = GetComponent<CharacterController>();
         Jumping = false;
         CharControllerHeighCopy = CharacterController.height;
@@ -49,35 +69,36 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         OnPlatform();
-
-        // the jump state needs to read here to make sure it is not missed
-        if (!Jump)
+        if (!IsClimbing)
         {
-            Jump = UnityEngine.Input.GetButtonDown("Jump");           
-        }
-        JumpPressed = Jump;
+            // the jump state needs to read here to make sure it is not missed
+            if (!Jump)
+            {
+                Jump = UnityEngine.Input.GetButtonDown("Jump");
+            }
+            JumpPressed = Jump;
 
-        if (!PreviouslyGrounded && CharacterController.isGrounded)
-        {
-            MoveDir.y = 0f;
-            Jumping = false;
-        }
-        if (!CharacterController.isGrounded && !Jumping && PreviouslyGrounded)
-        {
-            MoveDir.y = 0f;
-        }
+            if (!PreviouslyGrounded && CharacterController.isGrounded)
+            {
+                MoveDir.y = 0f;
+                Jumping = false;
+            }
+            if (!CharacterController.isGrounded && !Jumping && PreviouslyGrounded)
+            {
+                MoveDir.y = 0f;
+            }
 
-        PreviouslyGrounded = CharacterController.isGrounded;
+            PreviouslyGrounded = CharacterController.isGrounded;
 
-        Vector3 moveDirection = new Vector3(Input.x, 0, Input.y);
-        Vector3 direction = Camera.main.transform.TransformDirection(moveDirection);
+            Vector3 moveDirection = new Vector3(Input.x, 0, Input.y);
+            Vector3 direction = Camera.main.transform.TransformDirection(moveDirection);
 
-        if (moveDirection != Vector3.zero && movementEnabled)
-        {
-            Quaternion newRotation = Quaternion.LookRotation(direction);
-            newRotation.x = 0;
-            newRotation.z = 0;
-            transform.rotation = newRotation;
+            if (moveDirection != Vector3.zero && movementEnabled)
+                Quaternion newRotation = Quaternion.LookRotation(direction);
+                newRotation.x = 0;
+                newRotation.z = 0;
+                transform.rotation = newRotation;
+            }
         }
     }
 
@@ -86,38 +107,158 @@ public class PlayerMove : MonoBehaviour
         float speed;
         GetInput(out speed);
 
-        Vector3 desiredMove = transform.forward * Input.magnitude;
-        
-        // get a normal for the surface that is being touched to move along it
-        RaycastHit hitInfo;
-        Physics.SphereCast(transform.position, CharacterController.radius, Vector3.down, out hitInfo,
-                           CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
-        
-        desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
-
-        MoveDir.x = desiredMove.x * speed;
-        MoveDir.z = desiredMove.z * speed;
-
-
-        if (CharacterController.isGrounded)
+        if (!IsClimbing)
         {
-            MoveDir.y = -StickToGroundForce;
+            Vector3 desiredMove = transform.forward * Input.magnitude;
 
-            if (Jump && canJump)
+            // get a normal for the surface that is being touched to move along it
+            RaycastHit hitInfo;
+            Physics.SphereCast(transform.position, CharacterController.radius, Vector3.down, out hitInfo,
+                               CharacterController.height / 2f, Physics.AllLayers, QueryTriggerInteraction.Ignore);
+
+            desiredMove = Vector3.ProjectOnPlane(desiredMove, hitInfo.normal).normalized;
+
+            MoveDir.x = desiredMove.x * speed;
+            MoveDir.z = desiredMove.z * speed;
+
+
+            if (CharacterController.isGrounded)
             {
-                MoveDir.y = JumpSpeed;
-                Jump = false;
-                Jumping = true;
+                MoveDir.y = -StickToGroundForce;
+
+                if (Jump && canJump)
+                {
+                    MoveDir.y = JumpSpeed;
+                    Jump = false;
+                    Jumping = true;
+                }
             }
+            else
+            {
+                if (EnableGravity)
+                    MoveDir += Physics.gravity * GravityMultiplier * Time.fixedDeltaTime;
+            }
+
+            if (movementEnabled)
+                CollisionFlags = CharacterController.Move(MoveDir * Time.fixedDeltaTime);
         }
         else
         {
-            if (EnableGravity)
-                MoveDir += Physics.gravity * GravityMultiplier * Time.fixedDeltaTime;
+            ClimbUpdate();
+        }
+        
+    }
+
+    private void ClimbUpdate()
+    {
+        if (!climbingInPosition)
+        {
+            ClimbingGetInPosition();
+            return;
+        }
+        if (!climbingIsLerping)
+        {
+            Vector3 h = climbingHelper.right * Input.x;
+            Vector3 v = climbingHelper.up * Input.y;
+            Vector3 moveDir = (h + v).normalized;
+
+            if (moveDir == Vector3.zero)
+                return;
+
+            IsClimbing = ClimbingCanMove(moveDir);
+            if (!IsClimbing)
+                return;
+
+            climbingT = 0;
+            climbingIsLerping = true;
+            climbingStartPos = transform.position;
+            //Vector3 tp = climbingHelper.position - transform.position;
+
+            climbingTargetPos = climbingHelper.position;
+        }
+        else
+        {
+            float delta = Time.deltaTime;
+            climbingT += delta * ClimbSpeed;
+            if (climbingT > 1)
+            {
+                climbingT = 1;
+                climbingIsLerping = false;
+            }
+
+            Vector3 cp = Vector3.Lerp(climbingStartPos, climbingTargetPos, climbingT);
+            transform.position = cp;
+            transform.rotation = Quaternion.Slerp(transform.rotation, climbingHelper.rotation, delta * ClimbRotSpeed);
         }
 
-        if(movementEnabled)    
-            CollisionFlags = CharacterController.Move(MoveDir * Time.fixedDeltaTime);
+    }
+
+    private bool ClimbingCanMove(Vector3 moveDir)
+    {
+        Vector3 origin = transform.position;
+        float dis = climbingPositionOffset;
+        Vector3 dir = moveDir;
+        Debug.DrawRay(origin, dir * dis, Color.red);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(origin, dir, out hit, dis))
+        {
+            return false;
+        }
+
+        origin += moveDir * dis;
+        dir = climbingHelper.forward;
+        float dis2 = 0.5f;
+
+        Debug.DrawRay(origin, dir * dis2, Color.blue);
+        if (Physics.Raycast(origin, dir, out hit, dis2))
+        {
+            climbingHelper.position = PosWithOffset(origin, hit.point);
+            climbingHelper.rotation = Quaternion.LookRotation(-hit.normal);
+            return true;
+        }
+
+        origin += dir * dis2;
+        dir = -Vector3.up;
+        Debug.DrawRay(origin, dir, Color.yellow);
+
+        if (Physics.Raycast(origin, dir, out hit, dis2))
+        {
+            float angle = Vector3.Angle(climbingHelper.up, hit.normal);
+            if (angle < 40)
+            {
+                climbingHelper.position = PosWithOffset(origin, hit.point);
+                climbingHelper.rotation = Quaternion.LookRotation(-hit.normal);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    private void ClimbingGetInPosition()
+    {
+        float delta = Time.deltaTime;
+        climbingT += delta;
+
+        if (climbingT > 1)
+        {
+            climbingT = 1;
+            climbingInPosition = true;
+        }
+
+        Vector3 tp = Vector3.Lerp(climbingStartPos, climbingTargetPos, climbingT);
+        transform.position = tp;
+        transform.rotation = Quaternion.Slerp(transform.rotation, climbingHelper.rotation, delta * ClimbRotSpeed);
+    }
+
+    private Vector3 PosWithOffset(Vector3 origin, Vector3 target)
+    {
+        Vector3 direction = origin - target;
+        direction.Normalize();
+        Vector3 offset = direction * climbingOffsetFromWall;
+        return target + offset;
     }
 
     private void GetInput(out float speed)
@@ -125,10 +266,40 @@ public class PlayerMove : MonoBehaviour
         // Read input
         float horizontal = UnityEngine.Input.GetAxis("Horizontal");
         float vertical = UnityEngine.Input.GetAxis("Vertical");
-        bool IsWalkingMod = UnityEngine.Input.GetButton("Fire3");
+        bool IsWalkingMod = UnityEngine.Input.GetButton("Fire2");
         IsCrawling = UnityEngine.Input.GetKey(KeyCode.LeftControl);
+        bool IsClimbingMod = UnityEngine.Input.GetButton("Fire3");
 
-        if(!Jumping)
+        Input = new Vector2(horizontal, vertical);
+        // normalize input if it exceeds 1 in combined length:
+        if (Input.sqrMagnitude > 1)
+        {
+            Input.Normalize();
+        }
+
+        if (IsClimbingMod && (IsClimbing || CheckForClimb()))
+        {
+            IsRunning = false;
+            IsWalking = false;
+            IsCrawling = false;
+            speed = ClimbSpeed;
+            CharacterController.height = CharControllerHeighCopy;
+            CharacterController.center = new Vector3(0, CharacterController.height / 2, 0);
+
+
+            if (!IsClimbing)
+            {
+                IsClimbing = true;
+                climbingHelper.transform.rotation = Quaternion.LookRotation(-wallRayHit.normal);
+                climbingStartPos = transform.position;
+                climbingTargetPos = wallRayHit.point + (wallRayHit.normal * climbingOffsetFromWall);
+                climbingT = 0;
+                climbingInPosition = false;
+            }
+            return;
+        }
+
+        if (!Jumping)
             IsWalking = IsWalkingMod;
 
         if(-CharacterController.velocity.y>0.1f)
@@ -144,12 +315,14 @@ public class PlayerMove : MonoBehaviour
         {
             IsRunning = false;
             IsWalking = false;
+            IsClimbing = false;
             speed = CrawlSpeed;
             CharacterController.height = 1;
             CharacterController.center = new Vector3(0, 0.5f, 0);
         }
         else
         {
+            IsClimbing = false;
             speed = IsWalking ? WalkSpeed : RunSpeed;
             if(speed == RunSpeed && Input.sqrMagnitude > 0.01f && CharacterController.isGrounded)
             {
@@ -162,16 +335,22 @@ public class PlayerMove : MonoBehaviour
             CharacterController.height = CharControllerHeighCopy;
             CharacterController.center = new Vector3(0, CharacterController.height / 2, 0);
         }
-       
-
-        Input = new Vector2(horizontal, vertical);
-
-        // normalize input if it exceeds 1 in combined length:
-        if (Input.sqrMagnitude > 1)
-        {
-            Input.Normalize();
-        }
     }
+
+    // check if the player can climb from current position
+    public bool CheckForClimb()
+    {
+        Vector3 origin = transform.position;
+        origin.y += 0.5f;
+        Vector3 dir = transform.forward;
+        if( Physics.Raycast(origin, dir, out wallRayHit, 1))
+        {
+            climbingHelper.position = PosWithOffset(origin, wallRayHit.point);
+            return true;
+        }
+        return false;
+    }
+
 
     public Vector3 Velocity()
     {

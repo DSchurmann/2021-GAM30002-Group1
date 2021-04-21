@@ -20,11 +20,13 @@ public class PlayerAnimationController : MonoBehaviour
     const string ATTACK = "Attack";
     const string GRABLEDGE = "LedgeHang";
     const string CLIMBLEDGE = "LedgeHangClimb";
+    const string CLIMB = "Climb";
 
 
     private bool grabLedge;
     private bool hangingOntoLedge;
     private bool climbingLedge;
+    private bool climbingWall;
 
     private Vector3 ledgePoint;
     private Vector3 ledgeForwardNormal;
