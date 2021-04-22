@@ -94,6 +94,7 @@ public class PlayerMove : MonoBehaviour
             Vector3 direction = Camera.main.transform.TransformDirection(moveDirection);
 
             if (moveDirection != Vector3.zero && movementEnabled)
+            {
                 Quaternion newRotation = Quaternion.LookRotation(direction);
                 newRotation.x = 0;
                 newRotation.z = 0;
@@ -240,7 +241,7 @@ public class PlayerMove : MonoBehaviour
     private void ClimbingGetInPosition()
     {
         float delta = Time.deltaTime;
-        climbingT += delta;
+        climbingT += delta * ClimbSpeed;
 
         if (climbingT > 1)
         {
