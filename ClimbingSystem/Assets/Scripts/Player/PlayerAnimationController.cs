@@ -9,6 +9,8 @@ public class PlayerAnimationController : MonoBehaviour
     PlayerMove moveController;
     LedgeDetector ledgeDetector;
 
+    public CapsuleCollider ExtraCollider;
+
     private string currentState;
 
     //Animation States
@@ -36,6 +38,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     private bool performingAction;
 
+    Vector3 CharControllerPos;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +46,8 @@ public class PlayerAnimationController : MonoBehaviour
         animator = GetComponent<Animator>();
         moveController = GetComponent<PlayerMove>();
         ledgeDetector = GetComponent<LedgeDetector>();
+
+        CharControllerPos = moveController.CharacterController.center;
     }
 
     // Update is called once per frame
@@ -50,6 +55,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if(hangingOntoLedge)
         {
+
             if(Input.GetKeyDown(KeyCode.S))
             {
                 DropFromLedge();
@@ -106,12 +112,14 @@ public class PlayerAnimationController : MonoBehaviour
                     Debug.Log("SHORT LEDGE AHEAD: Climb up or vault");
                     if (moveController.JumpPressed && moveController.CharacterController.isGrounded)
                     {
-                       
+                        
                     }
+                    // allow vaulting ledges if not grounded [?]
                     if (!vaultLedge)
                     {
                         vaultLedge = true;
                     }
+
                     break;
 
                 case 2: // climbup medium ledges
@@ -149,20 +157,17 @@ public class PlayerAnimationController : MonoBehaviour
                     break;
 
             }
-
-            //doVault = true;
         }
         else
         {
             moveController.canJump = true;
-            //doVault = false;
         }
 
-        // vault short ledges (needs to check if cler first)
+        // vault and climb mini ledges 
         VaultLedges();
         // climb medium ledges
         ClimbUpShortLedges();
-
+        // grap onto and climb up higher ledges
         GrabLedges();
         ClimbUpLedges();
      
@@ -192,34 +197,53 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (climbShortLedge)
         {
-            StartClimbingAction();
+            if (ledgeDetector.EdgeFound)
+            {
+                ledgeDetector.EdgeFound = false;
+                StartClimbingAction();
 
-            grabLedge = false;
-            hangingOntoLedge = false;
-            ChangeState(CLIMBUP);
-            /*Vector3 targetPos = transform.position + transform.forward*1;
-            targetPos.y += 0.5f;*/
+                grabLedge = false;
+                hangingOntoLedge = false;
+                ChangeState(CLIMBUP);
+                /*Vector3 targetPos = transform.position + transform.forward*1;
+                targetPos.y += 0.5f;*/
 
-            Vector3 targetPos = transform.position + transform.forward * 0.1f;
-            targetPos.y += 0.5f;
+                /* Vector3 targetPos = transform.position + transform.forward * 0.1f;
+                 targetPos.y += 0.5f;
 
-            transform.DOMove(targetPos, 0.5f).OnComplete(FinishClimbLedge);
+                 transform.DOMove(targetPos, 0.5f).OnComplete(FinishClimbLedge);*/
+                Vector3 landingPos = ledgeDetector.TargetPosition;
+                transform.DOJump(landingPos, 0.15f, 1, 0.5f).OnComplete(FinishClimbLedge);
+            }
         }
     }
     public void VaultLedges()
     {
         if(vaultLedge)
         {
-            StartClimbingAction();
+            if (ledgeDetector.EdgeFound)
+            {
 
-            grabLedge = false;
-            hangingOntoLedge = false;
-         
-            ChangeState(CLIMBUP);
+                ledgeDetector.EdgeFound = false;
+                StartClimbingAction();
 
-            Vector3 landingPos = transform.position + transform.forward * 0.4f;
+                grabLedge = false;
+                hangingOntoLedge = false;
 
-            transform.DOJump(landingPos, 0.1f, 1, 0.5f).OnComplete(FinishVaultLedge);
+                ChangeState(CLIMBUP);
+
+                Vector3 landingPos;
+                if(ledgeDetector.Vaultable)
+                {
+                    landingPos = transform.position + transform.forward * 2f;
+                    transform.DOJump(landingPos, 0.5f, 1, 0.5f).OnComplete(FinishVaultLedge);
+                }
+                else
+                {
+                    landingPos = ledgeDetector.TargetPosition;
+                    transform.DOJump(landingPos, 0.15f, 1, 0.5f).OnComplete(FinishVaultLedge);
+                }
+            }
         }
     }
 
@@ -228,6 +252,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         if (climbingLedge)
         {
+            Debug.Log("CLIMBING LEDGE");
             grabLedge = false;
             hangingOntoLedge = false;
 
@@ -235,10 +260,15 @@ public class PlayerAnimationController : MonoBehaviour
 
             Vector3 targetPos = transform.localPosition;
             targetPos.y += 3;
-            targetPos.z += 0.5f;
-            transform.DOLocalMoveY((targetPos.y), 0.5f);
-            transform.DOLocalMoveZ((transform.position + transform.TransformDirection(Vector3.forward)).z, 0.25f).OnComplete(FinishClimbUpLedge);
-            //transform.DOLocalMove(targetPos + transform.TransformDirection(Vector3.forward) * 0.001f, 1.3f).OnComplete(FinishClimbUpLedge);
+
+            //float upPos = 3;
+            //float forwardPos = 0.25f;
+            //transform.DOLocalMoveY((targetPos.y), 0.5f);
+
+            transform.DOLocalMoveY(targetPos.y, 0.5f).OnComplete(() => transform.DOLocalMove(transform.position + transform.TransformDirection(Vector3.forward) * 0.25f, 0.2f).OnComplete(FinishClimbUpLedge));
+            
+            //transform.DOLocalMoveZ(targetPos.z, 1f).OnComplete(FinishClimbUpLedge);
+            //transform.DOLocalMove(targetPos + transform.TransformDirection(Vector3.forward) * 1f, 1.3f).OnComplete(FinishClimbUpLedge);
             climbingLedge = false;
         }
     }
@@ -289,29 +319,33 @@ public class PlayerAnimationController : MonoBehaviour
     {
         Debug.Log("CLIMBING ACTION STARTED");
         performingAction = true;
-        ledgePoint = ledgeDetector.EdgePoint;
         moveController.canJump = false;
-        ledgeDetector.detectLedges = false;
         moveController.CharacterController.enabled = false;
         moveController.movementEnabled = false;
         moveController.EnableGravity = false;
+
+        ledgePoint = ledgeDetector.EdgePoint;
+        ledgeDetector.detectLedges = false;
     }
 
     public void EndClimbingAction()
     {
         Debug.Log("CLIMBING ACTION ENDED");
-        ledgeDetector.detectLedges = true;
+        
         performingAction = false;
         doVault = false;
         vaultLedge = false;
         climbingLedge = false;
         climbShortLedge = false;
         grabLedge = false;
+        hangingOntoLedge = false;
 
         moveController.CharacterController.enabled = true;
         moveController.movementEnabled = true;
         moveController.EnableGravity = true;
         moveController.canJump = true;
+
+        ledgeDetector.detectLedges = true;
 
         if (currentState != IDLE)
             ChangeState(IDLE);
@@ -324,7 +358,16 @@ public class PlayerAnimationController : MonoBehaviour
         if (currentState == newState) return;
 
         // play animation state
-        animator.Play(newState);
+        if(newState == IDLE)
+        {
+            animator.CrossFade(newState, 0.5f);
+        }
+        else
+        {
+            animator.Play(newState);
+        }
+       
+      
 
         // set new current state
         currentState = newState;

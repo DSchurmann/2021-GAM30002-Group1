@@ -133,8 +133,8 @@ public class PlayerMove : MonoBehaviour
                 MoveDir += Physics.gravity * GravityMultiplier * Time.fixedDeltaTime;
         }
 
-         
-        CollisionFlags = CharacterController.Move(MoveDir * Time.fixedDeltaTime);
+         if(movementEnabled)
+            CollisionFlags = CharacterController.Move(MoveDir * Time.fixedDeltaTime);
     }
 
     private void GetInput(out float speed)

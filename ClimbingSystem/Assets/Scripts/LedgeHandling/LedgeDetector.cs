@@ -9,10 +9,14 @@ public class LedgeDetector : MonoBehaviour
     public bool EdgeFound;
 
     public Vector3 EdgePoint;
-    public Vector3 AheadPoint;
 
-    public Vector3 leftHandEdge;
-    public Vector3 rightHandEdge;
+    public Vector3 TargetPosition;
+
+    public bool Vaultable;
+    public float vaultDistance;
+
+    /*public Vector3 leftHandEdge;
+    public Vector3 rightHandEdge;*/
 
     public Collider characterCollider;
 
@@ -59,11 +63,13 @@ public class LedgeDetector : MonoBehaviour
 
             RaycastHit hitForward;
             RaycastHit hitDown;
+            RaycastHit hitDownVaultCheck;
 
 
             if (Physics.Raycast(originForward, dirForward, out hitForward, lengthForward))
             {
                 Vector3 originDown = transform.position + transform.TransformDirection(new Vector3(0.0f, characterCollider.bounds.size.y + 0.25f, lengthForward));
+                Vector3 originDown2 = transform.position + transform.TransformDirection(new Vector3(0.0f, characterCollider.bounds.size.y + 0.25f, vaultDistance));
                 forwardHit = hitForward;
 
 
@@ -74,6 +80,8 @@ public class LedgeDetector : MonoBehaviour
 
                     Vector3 pos1 = hitForward.point;
                     Vector3 pos2 = hitDown.point;
+                    TargetPosition = hitDown.point;
+
                     pos1.y = pos2.y;
 
                     EdgePoint = new Vector3(pos1.x, pos2.y, pos1.z);
@@ -81,6 +89,24 @@ public class LedgeDetector : MonoBehaviour
                     
                     Debug.DrawLine(EdgePoint, hitDown.point, Color.red);
                     Debug.DrawLine(hitForward.point, EdgePoint, Color.red);
+
+                    if (Physics.Raycast(originDown2, dirDown, out hitDownVaultCheck, lengthDown))
+                    {
+                        if ((hitDown.point.y - hitDownVaultCheck.point.y) <0.5f)
+                        {
+                            Debug.DrawLine(originDown2, hitDownVaultCheck.point, Color.red);
+                            Vaultable = false;
+                        }
+                        else
+                        {
+                            Debug.DrawLine(originDown2, hitDownVaultCheck.point, Color.green);
+                            Vaultable = true;
+                        }
+                    }
+                    else
+                    {
+                        Vaultable = false;
+                    }
                 }
                 else
                 {
