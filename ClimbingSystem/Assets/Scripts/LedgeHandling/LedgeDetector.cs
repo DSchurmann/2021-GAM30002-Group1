@@ -1,30 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
-
+[ExecuteInEditMode]
 public class LedgeDetector : MonoBehaviour
 {
     public bool detectLedges;
     public bool EdgeFound;
 
     public Vector3 EdgePoint;
-
     public Vector3 TargetPosition;
 
     public bool Vaultable;
     public float vaultDistance;
-
-    /*public Vector3 leftHandEdge;
-    public Vector3 rightHandEdge;*/
-
     public Collider characterCollider;
-
     public float forwardCastLength;
     public float downwardCastLength;
-
     public RaycastHit forwardHit;
     public RaycastHit downHit;
+
+    private List<Ray> raycasts = new List<Ray>();
+
 
     // Start is called before the first frame update
     void Start()
@@ -33,23 +30,79 @@ public class LedgeDetector : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+   /* void Update()
     {
        
-    }
+    }*/
 
-    void FixedUpdate()
+    void Update()
     {
-        DetectLedges();
-
-        /*if(edgeFound)
-        {
-            Debug.DrawLine(transform.position + transform.TransformDirection(new Vector3(0.0f, 1.5f, 0.0f)), EdgePoint, Color.cyan);
-        } */
+        //DetectLedges();
+        DetectLedges2();
     }
 
 
-    private void DetectLedges()
+    private void DetectLedges2()
+    {
+        float lengthForward = forwardCastLength;
+        float lengthUp = characterCollider.bounds.size.y;
+        float height = 0.2f;
+
+        Vector3 origin1 = transform.position + transform.TransformDirection(new Vector3(0.0f, height, 0.0f));
+        Ray ray1 = new Ray(origin1, transform.forward);
+
+        Vector3 origin2 = ray1.origin + ray1.direction;
+        Ray ray2 = new Ray(ray1.origin + (ray1.direction * lengthForward), transform.up);
+
+
+
+        // a cast
+        RaycastHit aHit;
+        RaycastHit bHit;
+
+        bool a = Physics.Raycast(ray2, out aHit, lengthUp);
+
+        Debug.DrawLine(ray2.origin, ray2.origin + ray2.direction * lengthUp, Color.cyan);
+
+        if (a)
+        {
+            Debug.DrawLine(ray1.origin, ray1.origin + ray1.direction * lengthForward, Color.blue);
+           /* bool b = Physics.Raycast(ray2, out bHit, lengthUp);
+
+            if(b)
+            {
+                Debug.DrawLine(ray2.origin, ray2.origin + ray2.direction * lengthUp, Color.blue);
+            }*/
+        }
+            
+
+
+
+
+       
+        /* if (*//* you want to find the top of the wall *//*)
+         {
+             rayStart = hit1 + transform.forward * 0.1; // Arbitrary number that will be "into" the wall
+             rayStart.y += 10.0f; // Arbitrary number high enough to be above the wall
+             if (Physics.Raycast(rayStart, Vector3.down, out hit2, ...)
+             {
+                 Edge = new Vector3(hit1.x, hit2.y, hit1.z);
+                 if (*//* you can reach the top of the ledge *//*)
+                 {
+                     // Grab the ledge and calculate other handhold points here
+                 }
+             }
+         }*/
+
+    }
+    public void DrawRays(Ray ray, float length, Color colour)
+    {
+        Debug.DrawLine(ray.origin, ray.origin + ray.direction * length);
+    }
+
+
+
+   /* private void DetectLedges()
     {
         if (detectLedges)
         {
@@ -120,5 +173,5 @@ public class LedgeDetector : MonoBehaviour
                 EdgeFound = false;
             }
         }
-    }
+    }*/
 }

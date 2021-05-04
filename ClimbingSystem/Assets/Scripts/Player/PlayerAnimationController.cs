@@ -102,7 +102,8 @@ public class PlayerAnimationController : MonoBehaviour
             }
         }
 
-        if (DetectLedges() != -1)
+        //if (DetectLedges() != -1)
+        if (DetectLedges() == -2)
         {
             moveController.canJump = false;
             
@@ -205,15 +206,9 @@ public class PlayerAnimationController : MonoBehaviour
                 grabLedge = false;
                 hangingOntoLedge = false;
                 ChangeState(CLIMBUP);
-                /*Vector3 targetPos = transform.position + transform.forward*1;
-                targetPos.y += 0.5f;*/
 
-                /* Vector3 targetPos = transform.position + transform.forward * 0.1f;
-                 targetPos.y += 0.5f;
-
-                 transform.DOMove(targetPos, 0.5f).OnComplete(FinishClimbLedge);*/
-                Vector3 landingPos = ledgeDetector.TargetPosition;
-                transform.DOJump(landingPos, 0.15f, 1, 0.5f).OnComplete(FinishClimbLedge);
+               /* Vector3 landingPos = ledgeDetector.TargetPosition;
+                transform.DOJump(landingPos, 0.15f, 1, 0.5f).OnComplete(FinishClimbLedge);*/
             }
         }
     }
