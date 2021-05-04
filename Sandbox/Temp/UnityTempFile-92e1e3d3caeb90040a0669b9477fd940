@@ -1,0 +1,609 @@
+/target:library
+/out:Temp/Unity.InputSystem.dll
+/nowarn:0169
+/nowarn:0649
+/refout:Temp/Unity.InputSystem.dll.ref
+/unsafe
+/deterministic
+/debug:portable
+/optimize+
+/nostdlib+
+/preferreduilang:en-US
+/langversion:8.0
+/reference:Library/ScriptAssemblies/UnityEditor.UI.dll
+/reference:Library/ScriptAssemblies/UnityEngine.UI.dll
+/reference:Assets/DOTween/DOTween.dll
+/reference:Assets/DOTween/Editor/DOTweenEditor.dll
+/reference:"C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/16.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEditor.Graphs.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.CoreModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.GraphViewModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.PackageManagerUIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.SceneTemplateModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIElementsSamplesModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UIServiceModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ARModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AndroidJNIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AssetBundleModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.AudioModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClothModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.DSPGraphModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.GIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.GridModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputLegacyModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.InputModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ProfilerModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.RuntimeInitializeOnLoadManagerInitializerModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.StreamingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubstanceModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.SubsystemsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TLSModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextCoreModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.TilemapModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIElementsNativeModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UIModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UNETModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UmbraModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityCurlModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VFXModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VRModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VehiclesModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VideoModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.VirtualTexturingModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.WindModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Numerics.Vectors.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/Extensions/2.0.0/System.Runtime.InteropServices.WindowsRuntime.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.ComponentModel.Composition.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Core.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Data.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Drawing.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.IO.Compression.FileSystem.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Net.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Numerics.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Runtime.Serialization.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.ServiceModel.Web.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Transactions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Web.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Windows.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Linq.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/mscorlib.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/Microsoft.Win32.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.AppContext.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.Concurrent.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.NonGeneric.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.Specialized.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Collections.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.EventBasedAsync.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.TypeConverter.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ComponentModel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Console.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Data.Common.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Contracts.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Debug.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.FileVersionInfo.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Process.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.StackTrace.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.TextWriterTraceListener.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Tools.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.TraceSource.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Diagnostics.Tracing.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Drawing.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Dynamic.Runtime.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.Calendars.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Globalization.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Compression.ZipFile.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Compression.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.DriveInfo.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.Watcher.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.FileSystem.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.IsolatedStorage.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.MemoryMappedFiles.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.Pipes.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.UnmanagedMemoryStream.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.IO.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Expressions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Parallel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.Queryable.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Linq.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Http.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.NameResolution.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.NetworkInformation.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Ping.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Requests.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Security.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.Sockets.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebHeaderCollection.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebSockets.Client.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Net.WebSockets.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ObjectModel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Reflection.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.Reader.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.ResourceManager.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Resources.Writer.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.CompilerServices.VisualC.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Handles.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.InteropServices.RuntimeInformation.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.InteropServices.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Numerics.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Formatters.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Json.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.Serialization.Xml.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Runtime.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Claims.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Algorithms.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Csp.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Encoding.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.Primitives.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Cryptography.X509Certificates.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.Principal.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Security.SecureString.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.Encoding.Extensions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.Encoding.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Text.RegularExpressions.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Overlapped.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.Parallel.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Tasks.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Thread.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.ThreadPool.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.Timer.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Threading.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.ValueTuple.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.ReaderWriter.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XDocument.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.XDocument.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XPath.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XmlDocument.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/compat/2.0.0/shims/netstandard/System.Xml.XmlSerializer.dll"
+/reference:"C:/Program Files/Unity/Hub/Editor/2020.2.2f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll"
+/define:CSHARP_7_3_OR_NEWER
+/define:CSHARP_7_OR_LATER
+/define:DEBUG
+/define:ENABLE_AR
+/define:ENABLE_AUDIO
+/define:ENABLE_BURST_AOT
+/define:ENABLE_CACHING
+/define:ENABLE_CLOTH
+/define:ENABLE_CLOUD_LICENSE
+/define:ENABLE_CLOUD_SERVICES
+/define:ENABLE_CLOUD_SERVICES_ADS
+/define:ENABLE_CLOUD_SERVICES_ANALYTICS
+/define:ENABLE_CLOUD_SERVICES_BUILD
+/define:ENABLE_CLOUD_SERVICES_COLLAB
+/define:ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
+/define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+/define:ENABLE_CLOUD_SERVICES_PURCHASING
+/define:ENABLE_CLOUD_SERVICES_UNET
+/define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+/define:ENABLE_CLUSTERINPUT
+/define:ENABLE_CLUSTER_SYNC
+/define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+/define:ENABLE_CUSTOM_RENDER_TEXTURE
+/define:ENABLE_DIRECTOR
+/define:ENABLE_DIRECTOR_AUDIO
+/define:ENABLE_DIRECTOR_TEXTURE
+/define:ENABLE_EDITOR_HUB_LICENSE
+/define:ENABLE_EVENT_QUEUE
+/define:ENABLE_INPUT_SYSTEM
+/define:ENABLE_LOCALIZATION
+/define:ENABLE_LZMA
+/define:ENABLE_MANAGED_ANIMATION_JOBS
+/define:ENABLE_MANAGED_AUDIO_JOBS
+/define:ENABLE_MANAGED_JOBS
+/define:ENABLE_MANAGED_TRANSFORM_JOBS
+/define:ENABLE_MICROPHONE
+/define:ENABLE_MONO
+/define:ENABLE_MONO_BDWGC
+/define:ENABLE_MOVIES
+/define:ENABLE_MULTIPLE_DISPLAYS
+/define:ENABLE_NETWORK
+/define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+/define:ENABLE_PHYSICS
+/define:ENABLE_PROFILER
+/define:ENABLE_RUNTIME_GI
+/define:ENABLE_SCRIPTING_GC_WBARRIERS
+/define:ENABLE_SPRITES
+/define:ENABLE_TERRAIN
+/define:ENABLE_TEXTURE_STREAMING
+/define:ENABLE_TILEMAP
+/define:ENABLE_TIMELINE
+/define:ENABLE_UNET
+/define:ENABLE_UNITYEVENTS
+/define:ENABLE_UNITYWEBREQUEST
+/define:ENABLE_UNITY_COLLECTIONS_CHECKS
+/define:ENABLE_VIDEO
+/define:ENABLE_VIRTUALTEXTURING
+/define:ENABLE_VR
+/define:ENABLE_WEBCAM
+/define:ENABLE_WEBSOCKET_CLIENT
+/define:ENABLE_WEBSOCKET_HOST
+/define:ENABLE_WWW
+/define:GFXDEVICE_WAITFOREVENT_MESSAGEPUMP
+/define:INCLUDE_DYNAMIC_GI
+/define:NET_STANDARD_2_0
+/define:PLATFORM_ARCH_64
+/define:PLATFORM_STANDALONE
+/define:PLATFORM_STANDALONE_WIN
+/define:PLATFORM_SUPPORTS_MONO
+/define:PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP
+/define:RENDER_SOFTWARE_CURSOR
+/define:SCENE_TEMPLATE_MODULE
+/define:TRACE
+/define:UNITY_2017_1_OR_NEWER
+/define:UNITY_2017_2_OR_NEWER
+/define:UNITY_2017_3_OR_NEWER
+/define:UNITY_2017_4_OR_NEWER
+/define:UNITY_2018_1_OR_NEWER
+/define:UNITY_2018_2_OR_NEWER
+/define:UNITY_2018_3_OR_NEWER
+/define:UNITY_2018_4_OR_NEWER
+/define:UNITY_2019_1_OR_NEWER
+/define:UNITY_2019_2_OR_NEWER
+/define:UNITY_2019_3_OR_NEWER
+/define:UNITY_2019_4_OR_NEWER
+/define:UNITY_2020
+/define:UNITY_2020_1_OR_NEWER
+/define:UNITY_2020_2
+/define:UNITY_2020_2_2
+/define:UNITY_2020_2_OR_NEWER
+/define:UNITY_5_3_OR_NEWER
+/define:UNITY_5_4_OR_NEWER
+/define:UNITY_5_5_OR_NEWER
+/define:UNITY_5_6_OR_NEWER
+/define:UNITY_64
+/define:UNITY_ASSERTIONS
+/define:UNITY_EDITOR
+/define:UNITY_EDITOR_64
+/define:UNITY_EDITOR_WIN
+/define:UNITY_INCLUDE_TESTS
+/define:UNITY_INPUT_SYSTEM_ENABLE_PHYSICS
+/define:UNITY_INPUT_SYSTEM_ENABLE_PHYSICS2D
+/define:UNITY_INPUT_SYSTEM_ENABLE_UI
+/define:UNITY_INPUT_SYSTEM_ENABLE_VR
+/define:UNITY_INPUT_SYSTEM_ENABLE_XR
+/define:UNITY_STANDALONE
+/define:UNITY_STANDALONE_WIN
+/define:UNITY_TEAM_LICENSE
+/define:USE_SEARCH_ENGINE_API
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Composites\AxisComposite.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Composites\ButtonWithOneModifier.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Composites\ButtonWithTwoModifiers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Composites\Vector2Composite.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\IInputActionCollection.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\IInputInteraction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputAction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionAsset.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionChange.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionMap.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionPhase.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionProperty.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionRebindingExtensions.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionReference.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionSetupExtensions.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionState.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionTrace.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputActionType.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputBinding.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputBindingComposite.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputBindingCompositeContext.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputBindingResolver.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputControlScheme.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\InputInteractionContext.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Interactions\HoldInteraction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Interactions\MultiTapInteraction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Interactions\PressInteraction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Interactions\SlowTapInteraction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Actions\Interactions\TapInteraction.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\AssemblyInfo.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\AnyKeyControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\AxisControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\ButtonControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\CommonUsages.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\DiscreteButtonControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\DoubleControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\DpadControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlAttribute.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlExtensions.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlLayout.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlLayoutAttribute.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlLayoutChange.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlList.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputControlPath.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\InputProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\IntegerControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\KeyControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\AxisDeadzoneProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\ClampProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\CompensateDirectionProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\CompensateRotationProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\EditorWindowSpaceProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\InvertProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\InvertVector2Processor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\InvertVector3Processor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\NormalizeProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\NormalizeVector2Processor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\NormalizeVector3Processor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\ScaleProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\ScaleVector2Processor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\ScaleVector3Processor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Processors\StickDeadzoneProcessor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\QuaternionControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\StickControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\TouchControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\TouchPhaseControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\TouchPressControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Vector2Control.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Controls\Vector3Control.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\DisableDeviceCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\EnableDeviceCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\EnableIMECompositionCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\IInputDeviceCommandInfo.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\InitiateUserAccountPairingCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\InputDeviceCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryCanRunInBackground.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryDimensionsCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryEditorWindowCoordinatesCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryEnabledStateCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryKeyNameCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryKeyboardLayoutCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryPairedUserAccountCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QuerySamplingFrequencyCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\QueryUserIdCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\RequestResetCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\RequestSyncCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\SetIMECursorPositionCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\SetSamplingFrequencyCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Commands\WarpMousePositionCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Gamepad.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Haptics\DualMotorRumble.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Haptics\DualMotorRumbleCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Haptics\IDualMotorRumble.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Haptics\IHaptics.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\IInputUpdateCallbackReceiver.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\ITextInputReceiver.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\InputDevice.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\InputDeviceBuilder.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\InputDeviceChange.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\InputDeviceDescription.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\InputDeviceMatcher.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Joystick.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Keyboard.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Mouse.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Pen.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Pointer.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Remote\InputRemoting.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Remote\RemoteInputPlayerConnection.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Sensor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\Touchscreen.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Devices\TrackedDevice.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputActionAssetManager.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputActionEditorToolbar.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputActionEditorWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputActionPropertiesView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputActionTreeView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputActionTreeViewItems.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\InputBindingPropertiesView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\NameAndParameterListView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\ParameterListView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetEditor\PropertiesViewBase.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetImporter\InputActionAssetEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetImporter\InputActionCodeGenerator.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetImporter\InputActionImporter.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\AssetImporter\InputActionImporterEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\ControlPicker\InputControlDropdownItem.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\ControlPicker\InputControlPathEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\ControlPicker\InputControlPicker.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\ControlPicker\InputControlPickerDropdown.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\ControlPicker\InputControlPickerState.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Debugger\InputActionDebuggerWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Debugger\InputDebuggerWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Debugger\InputDeviceDebuggerWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\DownloadableSample.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\EditorInputControlLayoutCache.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\InputDiagnostics.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\InputParameterEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdown.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdownDataSource.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdownGUI.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdownItem.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdownState.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\AdvancedDropdownWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\CallbackDataSource.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\AdvancedDropdown\MultiLevelDataSource.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\EditorHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\GUIHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\InputActionSerializationHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\InputControlTreeView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\InputEventTreeView.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\InputStateWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\SerializedPropertyHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Internal\TreeViewHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\PropertyDrawers\InputActionDrawer.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\PropertyDrawers\InputActionDrawerBase.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\PropertyDrawers\InputActionMapDrawer.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\PropertyDrawers\InputActionPropertyDrawer.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\PropertyDrawers\InputControlPathDrawer.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Settings\EditorPlayerSettingHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Settings\InputEditorUserSettings.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Settings\InputSettingsBuildProvider.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Editor\Settings\InputSettingsProvider.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\ActionEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\DeltaStateEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\DeviceConfigurationEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\DeviceRemoveEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\IInputEventTypeInfo.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\IMECompositionEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\InputEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\InputEventBuffer.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\InputEventPtr.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\InputEventTrace.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\StateEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Events\TextEvent.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\IInputDiagnostics.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\IInputRuntime.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputAnalytics.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputExtensions.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputManager.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputMetrics.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputSettings.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputSystem.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputSystemObject.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\InputUpdateType.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\NativeInputRuntime.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Android\AndroidAxis.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Android\AndroidGameController.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Android\AndroidKeyCode.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Android\AndroidSensors.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Android\AndroidSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\DualShock\DualShockGamepad.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\DualShock\DualShockGamepadHID.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\DualShock\DualShockSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\DualShock\IDualShockHaptics.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\EnhancedTouch\EnhancedTouchSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\EnhancedTouch\Finger.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\EnhancedTouch\Touch.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\EnhancedTouch\TouchHistory.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\EnhancedTouch\TouchSimulation.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\HID\HID.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\HID\HIDDescriptorWindow.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\HID\HIDParser.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\HID\HIDSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Linux\LinuxSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Linux\SDLDeviceBuilder.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\OnScreen\OnScreenButton.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\OnScreen\OnScreenControl.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\OnScreen\OnScreenStick.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\OnScreen\OnScreenSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\InputValue.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\PlayerInput.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\PlayerInputEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\PlayerInputManager.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\PlayerInputManagerEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\PlayerJoinBehavior.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\PlayerInput\PlayerNotifications.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Steam\IStreamControllerAPI.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Steam\SteamController.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Steam\SteamControllerType.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Steam\SteamHandle.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Steam\SteamIGAConverter.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Steam\SteamSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Switch\SwitchProControllerHID.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Switch\SwitchSupportHID.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\BaseInputOverride.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\ExtendedPointerEventData.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\InputSystemUIInputModule.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\InputSystemUIInputModuleEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\MultiplayerEventSystem.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\NavigationModel.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\PointerModel.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\StandaloneInputModuleEditor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\TrackedDeviceRaycaster.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\UI\UISupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Users\InputUser.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Users\InputUserAccountHandle.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Users\InputUserChange.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Users\InputUserPairingOptions.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\Users\InputUserSettings.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\WebGL\WebGLGamepad.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\WebGL\WebGLJoystick.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\WebGL\WebGLSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XInput\IXboxOneRumble.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XInput\XInputController.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XInput\XInputControllerWindows.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XInput\XInputSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XInput\XboxGamepadMacOS.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Devices\GoogleVR.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Devices\Oculus.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Devices\OpenVR.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Devices\WindowsMR.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\GenericXRDevice.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Haptics\BufferedRumble.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Haptics\GetCurrentHapticStateCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Haptics\GetHapticCapabilitiesCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Haptics\SendBufferedHapticsCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\Haptics\SendHapticImpulseCommand.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\TrackedPoseDriver.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\XRLayoutBuilder.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\XR\XRSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\iOS\IOSGameController.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Plugins\iOS\iOSSupport.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\IInputStateCallbackReceiver.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\IInputStateChangeMonitor.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\IInputStateTypeInfo.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\InputState.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\InputStateBlock.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\InputStateBuffers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\State\InputStateHistory.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\ArrayHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\CSharpCodeHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\Comparers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\DelegateHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\DisplayStringFormatAttribute.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\DynamicBitfield.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\ExceptionHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\FourCC.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\InlinedArray.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\InternedString.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\JsonParser.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\MemoryHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\NameAndParameters.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\NamedValue.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\NumberHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\OneOrMore.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\PrimitiveValue.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\ReadOnlyArray.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\StringHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\Substring.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\TypeHelpers.cs"
+"D:\_Swinburne\_2021\SEM1\SEPA\files\Unity\Prototypes\Capstone+FMod Imp\Capstone+FMod Imp\Sandbox\Library\PackageCache\com.unity.inputsystem@1.0.2\InputSystem\Utilities\TypeTable.cs"
