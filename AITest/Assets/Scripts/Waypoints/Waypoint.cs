@@ -4,6 +4,12 @@ public class Waypoint : MonoBehaviour
 {
     [SerializeField] private Waypoint left;
     [SerializeField] private Waypoint right;
+    [SerializeField] private CameraWaypoint camWaypoint;
+
+    private void Start()
+    {
+        GetComponent<MeshRenderer>().enabled = false;
+    }
 
     public Waypoint Left
     {
@@ -14,4 +20,10 @@ public class Waypoint : MonoBehaviour
     {
         get { return right; }
     }
+
+    public CameraWaypoint CameraWaypoint
+    {
+        get { return camWaypoint; }
+    }
+
 }
