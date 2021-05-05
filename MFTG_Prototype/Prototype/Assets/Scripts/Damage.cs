@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Health : StatComponent
+public class Damage : StatComponent
 {
 
 }

@@ -28,4 +28,9 @@ public class StatManager : MonoBehaviour
         }
         return result;
     }
+
+    public List<Stat> GetStats
+    {
+        get { return stats; }
+    }
 }

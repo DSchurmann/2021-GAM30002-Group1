@@ -1,24 +1,12 @@
-﻿using System;
+using System;
 using UnityEngine;
 
 [Serializable]
-public class Stat
+public class StatComponent : MonoBehaviour
 {
     [SerializeField] private StatType type;
     private float currentValue;
     [SerializeField] private float maxValue;
-
-    public Stat()
-    {
-
-    }
-
-    public Stat(StatType t, float m)
-    {
-        type = t;
-        maxValue = m;
-        currentValue = m;
-    }
 
     public void Start()
     {
@@ -54,16 +42,10 @@ public class Stat
         }
         return result;
     }
+}
 
-    public StatType Type
-    {
-        get { return type; }
-        set { type = value; }
-    }
-
-    public float Max
-    {
-        get { return maxValue; }
-        set { maxValue = value; }
-    }
+public enum StatType 
+{ 
+    health,
+    damage,
 }
