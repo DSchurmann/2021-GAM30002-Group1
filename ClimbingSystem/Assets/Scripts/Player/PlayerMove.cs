@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] private float JumpSpeed = 5;
     [SerializeField] private float StickToGroundForce = 10;
     [SerializeField] private float GravityMultiplier = 2;
-
+    
     public Camera Camera;
 
     private Vector2 Input;
@@ -344,7 +344,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 origin = transform.position;
         origin.y += 0.5f;
         Vector3 dir = transform.forward;
-        if( Physics.Raycast(origin, dir, out wallRayHit, 1))
+        if( Physics.Raycast(origin, dir, out wallRayHit, 1, 1 << 6))
         {
             climbingHelper.position = PosWithOffset(origin, wallRayHit.point);
             return true;

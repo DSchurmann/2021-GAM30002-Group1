@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class PlayerCheckPoint : MonoBehaviour
 {
+    private GameManager gameManager;
     private Vector3 spawnPosition;
     private GameObject curCheckPoint;
 
     void Start()
     {
+        gameManager = GameObject.Find("GameManager").GetComponent(typeof(GameManager)) as GameManager;
         spawnPosition = transform.position;
     }
 
@@ -23,6 +25,7 @@ public class PlayerCheckPoint : MonoBehaviour
     void respawn()
     {
         transform.position = spawnPosition;
+        gameManager.Load();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,6 +36,8 @@ public class PlayerCheckPoint : MonoBehaviour
             {
                 spawnPosition = other.transform.position;
                 //curCheckPoint = other.transform.parent.gameObject;
+
+                gameManager.Save();
             }
         }
     }
