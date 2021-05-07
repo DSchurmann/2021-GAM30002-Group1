@@ -11,7 +11,7 @@ public class Rail : MonoBehaviour
         nodes = Array.FindAll(GetComponentsInChildren<Transform>(), NotThis);
     }
 
-    public Vector3 Move(Vector3 pos, int seg, int dir, float speed)
+    public Vector3 Move(int seg, float speed)
     {
         Vector3 v1 = nodes[seg].position;
         Vector3 v2 = nodes[seg + 1].position;
