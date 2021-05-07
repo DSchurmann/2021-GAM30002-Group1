@@ -2,8 +2,7 @@
 
 public class Train : MonoBehaviour
 {
-    private float moveSpeed = 5f;
-    private int dir;
+    [SerializeField] private float moveSpeed = 2.5f;
     private int segment = 0;
     private float d;
     [SerializeField] private Rail rail;
@@ -20,8 +19,7 @@ public class Train : MonoBehaviour
 
     private void Move()
     {
-        d += Time.deltaTime * 1 / 2.5f;
-        Debug.Log(segment);
+        d += Time.deltaTime * (Input.GetAxis("Horizontal") / moveSpeed);
         if(d < 0)
         {
             dir = 1;
@@ -33,6 +31,6 @@ public class Train : MonoBehaviour
             segment++;
         }
 
-        transform.position = rail.Move(transform.position, segment, dir, d);
+        transform.position = rail.Move(segment, d);
     }
 }
