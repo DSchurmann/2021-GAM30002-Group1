@@ -32,6 +32,7 @@ public class ChildHandler : MonoBehaviour
     public List<GameObject> leftSide;
     public List<GameObject> rightSide;
 
+
     // Start is called before the first frame update
     void Start()
     {
