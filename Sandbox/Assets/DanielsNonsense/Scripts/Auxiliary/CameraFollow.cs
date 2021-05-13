@@ -29,7 +29,7 @@ public class CameraFollow : MonoBehaviour
             //Go go go
             transform.position = Vector3.MoveTowards(transform.position, targObj.transform.position, ((movSpeed / 2) * Time.deltaTime));
         }
-        else if (Vector3.Distance(transform.position, targObj.transform.position) > 3f)
+        else if (Vector3.Distance(transform.position, targObj.transform.position) > 1.6f)
         {
             //Go go go
             transform.position = Vector3.MoveTowards(transform.position, targObj.transform.position, ((movSpeed) * Time.deltaTime));
