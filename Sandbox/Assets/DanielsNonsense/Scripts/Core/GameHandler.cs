@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 public class GameHandler : MonoBehaviour
 {
@@ -15,6 +19,7 @@ public class GameHandler : MonoBehaviour
     public bool waitMode; //Is Wait Mode on?
     public GameObject childObj;
     public GameObject golemObj;
+    private string SAVE_FOLDER;
 
     //Parameters -- UI
     //UI Objects to be set Here -- CODE
@@ -54,6 +59,8 @@ public class GameHandler : MonoBehaviour
     {
         //Set base runes for prototyping purposes
         InitializeRunes();
+        // set the file save path
+        SAVE_FOLDER = Application.dataPath + "/save.sav";
     }
 
     // Update is called once per frame
@@ -144,5 +151,52 @@ public class GameHandler : MonoBehaviour
 
         //Debug
         Debug.Log("Setting SwitchMode to " + set.ToString());
+    }
+
+    public void Save()
+    {
+        Save save = new Save();
+
+
+        ISave[] saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISave>().ToArray();
+        foreach (ISave savable in saveables)
+        {
+            // put all the json files into a json file
+            save.saves.Add(savable.Save());
+        }
+        Debug.Log(SAVE_FOLDER);
+        //Debug.Log(JsonUtility.ToJson(save));
+        //File.WriteAllText(SAVE_FOLDER, JsonUtility.ToJson(save));
+
+
+        BinaryFormatter bf = new BinaryFormatter();
+        FileStream file = File.Create(SAVE_FOLDER);
+        bf.Serialize(file, save);
+        file.Close();
+    }
+
+    public void Load()
+    {
+        if (File.Exists(SAVE_FOLDER))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(SAVE_FOLDER, FileMode.Open);
+            Save save = (Save)bf.Deserialize(file);
+            file.Close();
+
+            ISave[] saveables = FindObjectsOfType<MonoBehaviour>().OfType<ISave>().ToArray();
+            foreach (ISave savable in saveables)
+            {
+
+                foreach (SerializablePlayerSave savedObject in save.saves)
+                {
+
+                    // TODO some sort of search to ensure the correct object is saved
+                    savable.Load(savedObject);
+                }
+            }
+
+
+        }
     }
 }
