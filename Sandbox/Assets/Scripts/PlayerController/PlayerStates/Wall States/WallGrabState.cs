@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallGrabState : WallState
 {
-    private Vector3 holdPosition;
+    
 
     public WallGrabState(PlayerControllerRB player, string animation) : base(player, animation)
     {
@@ -19,19 +19,15 @@ public class WallGrabState : WallState
     public override void Enter()
     {
         base.Enter();
-        holdPosition = player.transform.position;
-
-        HoldPosition();
+        HoldPosition(true, true);
     }
 
     public override void Exit()
     {
         base.Exit();
-    }
-
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
+        holdPosition.x -= player.wallClimbDistance;
+        holdPosition.y -= player.wallClimbOffsetPosition;
+        HoldPosition(true, true);
     }
 
     public override void Perform()
@@ -44,7 +40,7 @@ public class WallGrabState : WallState
         base.Update();
 
         // call hold position to keep player held to wall
-        HoldPosition();
+        HoldPosition(true, true);
 
         if(!isExitingState)
         {
@@ -56,7 +52,7 @@ public class WallGrabState : WallState
             else if (!inputGrab)
             {
                 // change player to wall slide state if down input detected ot grab input is released
-                //player.ChangeState(player.WallSlideState);
+                player.ChangeState(player.WallSlideState);
             }
             else if (inputJump)
             {
@@ -66,14 +62,5 @@ public class WallGrabState : WallState
                 player.ChangeState(player.WallJumpState);
             }
         }
-    }
-      
-
-    private void HoldPosition()
-    {
-        player.transform.position = holdPosition;
-        // set velocity for wall grab
-        player.SetVelocityX(0);
-        player.SetVelocityY(0);
     }
 }

@@ -11,6 +11,8 @@ public class WallState : State
     protected int inputX;
     protected int inputY;
 
+    protected Vector3 holdPosition;
+
     public WallState(PlayerControllerRB player, string animation) : base(player, animation)
     {
     }
@@ -20,11 +22,21 @@ public class WallState : State
     public override void Enter()
     {
         base.Enter();
+        holdPosition = player.transform.position;
+        holdPosition.x += player.wallClimbDistance;
+        holdPosition.y += player.wallClimbOffsetPosition;
+        HoldPosition(true,true);
     }
 
     public override void Exit()
     {
         base.Exit();
+        //holdPosition.x -= player.transform.position.x;
+        //holdPosition.y -= player.transform.position.y;
+
+        /*holdPosition.x -= player.wallClimbDistance;
+        holdPosition.y -= player.wallClimbOffsetPosition;
+        player.transform.position = holdPosition;*/
     }
     public override void Update()
     {
@@ -65,5 +77,25 @@ public class WallState : State
     public override bool AnimationComplete()
     {
         return base.AnimationComplete();
+    }
+
+    public void HoldPosition(bool x, bool y)
+    {
+        Vector3 pos = player.transform.position;
+       
+        // set velocity for wall grab
+        if(x)
+        {
+            pos.x = holdPosition.x;
+            player.transform.position = pos;
+            player.SetVelocityX(0);
+        }
+           
+        if(y)
+        {
+            pos.y = holdPosition.y;
+            player.transform.position = pos;
+            player.SetVelocityY(0);
+        }
     }
 }

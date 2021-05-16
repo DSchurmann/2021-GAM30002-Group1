@@ -22,6 +22,7 @@ public class InAirState: State
     public override void Enter()
     {
         base.Enter();
+        StartJumpTimeBuff();
     }
 
     public override void Update()
@@ -34,7 +35,7 @@ public class InAirState: State
         inputJumpStopped = player.InputHandler.InputJumpStopped;
         inputGrab = player.InputHandler.InputInteract;
 
-        // check if jump input released and shorted jump height
+        // check if jump input released and shorten jump height
         CheckJumpReleased();
 
         // check for ground
@@ -65,14 +66,14 @@ public class InAirState: State
         else if(isTouchingWall && inputX == player.FacingDirection && player.CurrentVelocity.y <= 0)
         {
             // check if touch wall in air
-            //player.ChangeState(player.WallSlideState);
+            player.ChangeState(player.WallSlideState);
         }
         else
         {
             // check for direction change
             player.CheckForFlip(inputX);
             // set in air movement
-            player.SetVelocityX(player.MovementSpeed * inputX);
+            player.SetVelocityX(player.MovementSpeed * inputX * player.inAirMovementSpeed);
         }
     }
 
@@ -94,10 +95,11 @@ public class InAirState: State
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckTouchingWall();
         isTouchingWallBehind = player.CheckTouchingWallBehind();
-
+        //Debug.Log("Grounded: " + isGrounded);
         // apply jump buff to allow jump for short time after a ledge fall
-        if (jumpTimeBuff && Time.time > startTime + player.jumpTimeBuff)
+        if (jumpTimeBuff && Time.time > (startTime + player.jumpTimeBuff))
         {
+            //Debug.Log("FALL-TO-JUMP TIME PASSED");
             jumpTimeBuff = false;
             player.JumpState.DecreaseJumpsLeft();
         }
@@ -112,7 +114,7 @@ public class InAirState: State
             // check if jump released and reduce height with jump multiplier
             if (inputJumpStopped)
             {
-                player.SetVelocityY(player.CurrentVelocity.y * player.jumpMultiplier);
+                player.SetVelocityY(player.CurrentVelocity.y * player.jumpInputMultiplier);
                 isJumping = false;
             }
             else if (player.CurrentVelocity.y <= 0f)

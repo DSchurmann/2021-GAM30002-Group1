@@ -23,7 +23,7 @@ public class WallJumpState : AbilityState
     public override void Update()
     {
         base.Update();
-
+        // how long to stay in jump state after wall jump
         if(!isExitingState)
         {
             if (Time.time >= startTime + player.wallJumpTime)

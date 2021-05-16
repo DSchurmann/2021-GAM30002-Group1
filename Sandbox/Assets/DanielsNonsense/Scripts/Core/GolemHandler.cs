@@ -253,7 +253,7 @@ public class GolemHandler : MonoBehaviour
         //Get Our Position, Position of Child
         Vector3 pos = transform.position;
         Vector3 targPos = GameHandler.GH.childObj.transform.position;
-
+        targPos.z += 1f;
         //Check Distance
         if (Vector3.Distance(pos, targPos) > followDist)
         {

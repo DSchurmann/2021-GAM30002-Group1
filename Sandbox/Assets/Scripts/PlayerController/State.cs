@@ -40,16 +40,16 @@ public abstract class State
         isAnimationComplete = AnimationComplete();
 
         // get input for interact
-      /*  inputInteract = player.InputHandler.InputInteract;
+        inputInteract = player.InputHandler.InputInteract;
 
         // check for interact input while grounded
-        if (inputInteract)
+        if (inputInteract && !player.CheckTouchingWall())
         {
             // set interact false
-            player.InputHandler.SetInteractFalse();
+            //player.InputHandler.SetInteractFalse();
             // change player to  state
-            //player.ChangeState(player.AttackState);
-        }*/
+            player.ChangeState(player.AttackState);
+        }
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
 

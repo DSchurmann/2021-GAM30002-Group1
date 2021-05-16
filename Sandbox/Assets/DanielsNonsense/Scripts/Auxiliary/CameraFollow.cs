@@ -8,6 +8,8 @@ public class CameraFollow : MonoBehaviour
     public GameObject targObj;
     public float movSpeed;
 
+    public float distance;
+
     //Start
     private void Start()
     {
@@ -24,12 +26,13 @@ public class CameraFollow : MonoBehaviour
             targObj = GameHandler.GH.childObj;
 
         //If Distance
-        if (Vector3.Distance(transform.position, targObj.transform.position) > 0.1f && Vector3.Distance(transform.position, targObj.transform.position) < 3f)
+       /* if (Vector3.Distance(transform.position, targObj.transform.position) > 0.1f && Vector3.Distance(transform.position, targObj.transform.position) < 3f)
         {
             //Go go go
             transform.position = Vector3.MoveTowards(transform.position, targObj.transform.position, ((movSpeed / 2) * Time.deltaTime));
         }
-        else if (Vector3.Distance(transform.position, targObj.transform.position) > 1.6f)
+        else */
+        if (Vector3.Distance(transform.position, targObj.transform.position) > 1.6f)
         {
             //Go go go
             transform.position = Vector3.MoveTowards(transform.position, targObj.transform.position, ((movSpeed) * Time.deltaTime));
