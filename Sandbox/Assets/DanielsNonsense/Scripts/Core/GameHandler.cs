@@ -62,32 +62,32 @@ public class GameHandler : MonoBehaviour
         //Do Shit about Updating the UI to display runes, wait mode, etc here
         //CODE
 
-        //Controlling Golem?
-        if (!switchMode)
-        {
-            //Get all UI Elements 
-            Image[] images = runeUIParent.GetComponentsInChildren<Image>();
+        /* //Controlling Golem?
+         if (!switchMode)
+         {
+             //Get all UI Elements 
+             Image[] images = runeUIParent.GetComponentsInChildren<Image>();
 
-            //Go Through
-            foreach (Image i in images)
-            {
-                i.color = new Color(1f, 1f, 1f, .5f);
-            }
-        }
-        else
-        {
-            //Get all UI Elements 
-            Image[] images = runeUIParent.GetComponentsInChildren<Image>();
+             //Go Through
+             foreach (Image i in images)
+             {
+                 i.color = new Color(1f, 1f, 1f, .5f);
+             }
+         }
+         else
+         {
+             //Get all UI Elements 
+             Image[] images = runeUIParent.GetComponentsInChildren<Image>();
 
-            //Go Through
-            foreach (Image i in images)
-            {
-                i.color = new Color(1f, 1f, 1f, 1f);
-            }
-        }
+             //Go Through
+             foreach (Image i in images)
+             {
+                 i.color = new Color(1f, 1f, 1f, 1f);
+             }
+         }*/
 
         //WAIT MODE
-        waitObj.SetActive(waitMode);
+        /*waitObj.SetActive(waitMode);
 
         //Display Runes
         for (int i = 0; i < 4; i++)
@@ -104,7 +104,7 @@ public class GameHandler : MonoBehaviour
             {
                 runeObjects[i].GetComponent<Image>().enabled = (false);
             }
-        }
+        }*/
     }
 
     //Initialize Rune List

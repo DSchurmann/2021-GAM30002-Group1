@@ -5,9 +5,12 @@ using UnityEngine.InputSystem;
 
 public class PlayerControllerRB : StateMachine
 {
-    // player state variables
-    #region Player State Variables
-    [Header("Movement State")]
+    // other character reference
+    public PlayerControllerRB Other;
+    // player variables
+    #region Player Variables
+    public List<string> Inventory;
+    [Header("Movement")]
     [Range(0.0f, 10.0f)]
     public float MovementSpeed = 4f;
     [Header("Jump State")]
@@ -15,13 +18,12 @@ public class PlayerControllerRB : StateMachine
     public float JumpSpeed = 10f;
     public int jumpsAllowed = 1;
     [Header("In Air State")]
-    [Range(0.0f, 1.0f)]
+    [Range(0.0f, 10.0f)]
     public float inAirMovementSpeed = 0.2f;
     [Range(0.0f, 1.0f)]
     public float jumpInputMultiplier = 0.5f;
     [Range(0.0f, 1.0f)]
     public float jumpTimeBuff = 0.5f;
-    // enable wall slide code in wall state
     [Header("Wall Slide State")]
     [Range(0.0f, 10.0f)]
     public float wallSlideSpeed = 1.5f;
@@ -38,28 +40,11 @@ public class PlayerControllerRB : StateMachine
     [Range(0.0f, 1.0f)]
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
-    [Header("Inventory Items")]
-    public List<string> Inventory; 
-    #endregion
-    // components
-    #region Components
-    public PlayerInputHandler InputHandler { get; private set; }
-    public Rigidbody RB { get; private set; }
-    public Collider Collider { get; private set; }
-    public Animator Anim { get; private set; }
-    #endregion
     // states
+    #endregion
+    // player states
     #region States
-    public IdleState IdleState { get; private set; }
-    public MoveState MoveState { get; private set; }
-    public JumpState JumpState { get; private set; }
-    public InAirState InAirState { get; private set; }
-    public LandState LandState { get; private set; }
-    public AttackState AttackState { get; private set; }
-    public WallSlideState WallSlideState { get; private set; }
-    public WallGrabState WallGrabState { get; private set; }
-    public WallClimbState WallClimbState { get; private set; }
-    public WallJumpState WallJumpState { get; private set; }
+
     #endregion
     // checks variables
     #region Check Variables
@@ -69,62 +54,68 @@ public class PlayerControllerRB : StateMachine
     //public float groundCheckRadius = 0.3f;
     //public LayerMask groundLayer;
     #endregion
+    // components
+    #region Components
+    public PlayerInputHandler InputHandler { get; protected set; }
+    public Rigidbody RB { get; protected set; }
+    public Collider Collider { get; protected set; }
+    public Animator Anim { get; protected set; }
+    #endregion
     // other variables
     #region Other Variables
+    // player controlled
+    public bool ControllerEnabled { get; set; }
     // current vecocity
-    public Vector2 CurrentVelocity { get; private set; }
+    public Vector2 CurrentVelocity { get; protected set; }
     // facing direcion
-    public int FacingDirection { get; private set; }
+    public int FacingDirection { get; protected set; }
     // work vector for calculation
     private Vector2 workVector;
     #endregion
     // Awake and Start functions
     #region Start Functions
-    private void Awake()
+    public virtual void Awake()
     {
-        IdleState = new IdleState(this, "Idle");
-        MoveState = new MoveState(this, "Movement");
-        JumpState = new JumpState(this, "Jump");
-        InAirState = new InAirState(this, "Jump");
-        LandState = new LandState(this, "Idle");
-        AttackState = new AttackState(this, "Attack");
-        WallSlideState = new WallSlideState(this, "WallSlide");
-        WallGrabState = new WallGrabState(this, "WallGrab");
-        WallClimbState = new WallClimbState(this, "WallClimb");
-        WallJumpState = new WallJumpState(this, "Jump");
+        // initialise states with player and animation name
+        // eg. IdleState = new IdleState(this, "Idle");
     }
 
     // Start is called before the first frame update
-    void Start()
+    public virtual void Start()
     {
+        // set components
         Anim = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
+        // set facing direction
         FacingDirection = 1;
-        InitialState(IdleState);
+
+        // set initial state
+        //eg. InitialState(IdleState);
     }
     #endregion
     // Update and FixedUpdate function
     #region Update Functions
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
         // keep record of current velocity
         CurrentVelocity = RB.velocity;
         // update current state
-        CurrentState.Update();
+        if(CurrentState!=null)
+            CurrentState.Update();
     }
 
-    private void FixedUpdate()
+    public virtual void FixedUpdate()
     {
         // fixed update current state
-        CurrentState.FixedUpdate();
+        if (CurrentState != null)
+            CurrentState.FixedUpdate();
     }
     #endregion
     // functions that set
     #region Set Functions
-
     // set velocity 
     public void SetVelocity(float velocity, Vector2 angle, int direction)
     {
@@ -151,6 +142,7 @@ public class PlayerControllerRB : StateMachine
     #endregion
     // functions that check
     #region Check Functions
+
     // check if grounded
     public bool CheckIfGrounded()
     {

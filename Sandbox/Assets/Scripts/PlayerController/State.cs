@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class State
 {
     protected PlayerControllerRB player;
-    private string animation;
+    protected string animation;
     protected bool isAnimationComplete;
     protected bool isExitingState;
     
@@ -18,7 +18,6 @@ public abstract class State
         this.player = player;
         this.animation = animation;
     }
-
 
     // called when entering state
     public virtual void Enter()
@@ -39,17 +38,6 @@ public abstract class State
     {
         isAnimationComplete = AnimationComplete();
 
-        // get input for interact
-        inputInteract = player.InputHandler.InputInteract;
-
-        // check for interact input while grounded
-        if (inputInteract && !player.CheckTouchingWall())
-        {
-            // set interact false
-            //player.InputHandler.SetInteractFalse();
-            // change player to  state
-            player.ChangeState(player.AttackState);
-        }
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
 
