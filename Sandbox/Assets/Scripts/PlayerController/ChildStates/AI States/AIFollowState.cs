@@ -28,8 +28,8 @@ public class AIFollowState: AIState
 
         if (!isExitingState)
         {
-            // change state if close to stop following
-            if (Vector2.Distance(player.transform.position, player.Other.transform.position) < 3)
+            // change state to wait if close
+            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) < 3)
             {
                 player.ChangeState(player.AIWaitState);
             }
