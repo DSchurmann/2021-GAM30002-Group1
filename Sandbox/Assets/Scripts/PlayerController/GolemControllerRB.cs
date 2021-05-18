@@ -9,16 +9,20 @@ public class GolemControllerRB : PlayerControllerRB
     // states
     #region States
     public GolemIdleState IdleState { get; private set; }
+    public GolemMoveState MoveState { get; private set; }
     public GolemIdleState RaiseAbility { get; private set; }
-    public GolemFollowState FollowState { get; private set; }
+    public GolemWaitState AIWaitState { get; private set; }
+    public GolemFollowState AIFollowState { get; private set; }
     #endregion
     // Awake and Start functions
     #region Start Functions
     public override void Awake()
     {
         IdleState = new GolemIdleState(this, "Idle");
+        MoveState = new GolemMoveState(this, "Movement");
         RaiseAbility = new GolemIdleState(this, "Raise");
-        FollowState = new GolemFollowState(this, "Movement");
+        AIFollowState = new GolemFollowState(this, "Movement");
+        AIWaitState = new GolemWaitState(this, "Idle");
     }
 
     // Start is called before the first frame update
@@ -31,13 +35,17 @@ public class GolemControllerRB : PlayerControllerRB
         FacingDirection = 1;
 
         // set initial controlled state
+        ControllerEnabled = false;
+        CanSwitch = false;
         if (ControllerEnabled)
         {
+            //CanSwitch = true;
             InitialState(IdleState);
         }
         else
         {
-            InitialState(FollowState);
+            //CanSwitch = false;
+           InitialState(AIFollowState);
         }
     }
     #endregion

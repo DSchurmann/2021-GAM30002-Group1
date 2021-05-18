@@ -5,6 +5,9 @@ using UnityEngine;
 public abstract class ChildState:State
 {
     protected new ChildControllerRB player;
+    protected bool InputSwitchPlayer;
+    protected bool switchedPlayer;
+
     protected ChildState(ChildControllerRB player, string animation) : base(player, animation)
     {
         this.player = player;
@@ -30,17 +33,24 @@ public abstract class ChildState:State
     {
         isAnimationComplete = AnimationComplete();
 
-        // get input for interact
-        inputInteract = player.InputHandler.InputInteract;
+        //get input
+        InputSwitchPlayer = player.InputHandler.InputSwitch;
 
-        // check for interact input while grounded
-        if (inputInteract && !player.CheckTouchingWall())
+        // switch players
+        if (InputSwitchPlayer && player.ControllerEnabled)
         {
-            // set interact false
-            //player.InputHandler.SetInteractFalse();
-            // change player to  state
-            player.ChangeState(player.AttackState);
+            player.InputHandler.SetSwitchFalse();
+            if (player.CanSwitch)
+            {
+                player.CanSwitch = false;
+                Debug.Log("CONTROL GIVEN TO GOLEM");
+                player.ControllerEnabled = false;
+                player.Other.ControllerEnabled = true;
+                player.ChangeState(player.AIWaitState);
+            }
         }
+        // reset can switch player
+
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
 

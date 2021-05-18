@@ -14,7 +14,6 @@ public class GolemFollowState:GolemAIState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("FOLLOWING PLAYER");
     }
 
     public override void Exit()
@@ -32,7 +31,7 @@ public class GolemFollowState:GolemAIState
         // change state if close to stop following
         if (Vector2.Distance(player.transform.position, player.Other.transform.position) < 3)
         {
-            player.ChangeState(player.IdleState);
+            player.ChangeState(player.AIWaitState);
         }
 
     }
@@ -52,7 +51,7 @@ public class GolemFollowState:GolemAIState
 
     public void FollowProcedure()
     {
-        //Get Our Position, Position of Child
+        //Get Our Position, Position of Golem
         Vector3 pos = player.transform.position;
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
@@ -64,6 +63,7 @@ public class GolemFollowState:GolemAIState
 
             //Set Mov
             player.SetVelocity(player.MovementSpeed, angle, player.FacingDirection);
+            player.SetVelocityY(0);
         }
     }
 

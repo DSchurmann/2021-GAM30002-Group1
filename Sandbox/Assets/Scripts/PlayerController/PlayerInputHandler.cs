@@ -6,26 +6,45 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
-    // movement direction input
+    // Movement input
     public Vector2 RawMovementInput { get; private set; }
     public int InputXNormal { get; private set; }
     public int InputYNormal { get; private set; }
-    // abilities input
+    // Jump input
     public bool InputJump { get; private set; }
-    public bool InputJumpStopped { get; private set; }
+    // Interact input
     public bool InputInteract { get; private set; }
+    // Wait input
+    public bool InputWait { get; private set; }
+    // Switch player input
+    public bool InputSwitch { get; private set; }
+    // Ability A input
+    public bool InputNorth{ get; private set; }
+    // Ability B input
+    public bool InputSouth { get; private set; }
+    // Ability C input
+    public bool InputEast { get; private set; }
+    // Ability D input
+    public bool InputWest { get; private set; }
+
     // input varialbles
+    public bool InputInteractStopped { get; private set; }
+    public bool InputJumpStopped { get; private set; }
+
+    [SerializeField]
+    private float inputDelay = 1f;
     [SerializeField]
     private float inputHoldTime = 0.1f;
     private float jumpTimer;
-    [SerializeField]
-    private float interactDelay = 1f;
     private float interactTimer;
+    private float switchTimer;
+    private float interactDelayTimer;
 
     private void Update()
     {
-        CheckJumpDelay();
-        //CheckInteractDelay();
+        CheckJumpHold();
+        //CheckInteractHold();
+        //CheckSwitchHold();
     }
 
     //Get Movement Input
@@ -56,7 +75,7 @@ public class PlayerInputHandler : MonoBehaviour
     // Set jump to false
     public void SetJumpFalse() => InputJump = false;
     // Check jump delay
-    private void CheckJumpDelay()
+    private void CheckJumpHold()
     {
         if(Time.time >= jumpTimer + inputHoldTime)
         {
@@ -74,16 +93,16 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (ctx.canceled)
         {
-            InputInteract = false;
+           InputInteract = false;
         }
-
     }
     // Set interact to false
-    //public void SetInteractFalse() => InputInteract = false;
-    // Check interact delay
-    private void CheckInteractDelay()
+    public void SetInteractFalse() => InputInteract = false;
+    
+    // Check input hold
+    private void CheckInteractHold()
     {
-        if (Time.time >= interactTimer + interactDelay)
+        if (Time.time >= interactTimer + inputHoldTime)
         {
             InputInteract = false;
         }
@@ -92,30 +111,95 @@ public class PlayerInputHandler : MonoBehaviour
     //Get Wait Input
     public void GetWaitInput(InputAction.CallbackContext ctx)
     {
-
+        // Input pressed
+        if (ctx.started)
+        {
+            InputWait = true;
+        }
+        // Input released
+        if (ctx.canceled)
+        {
+            InputWait= false;
+        }
     }
 
     // Get Switch Input
     public void GetSwitchInput(InputAction.CallbackContext ctx)
     {
+        // Switch player pressed
+        if (ctx.started)
+        {
+            InputSwitch = true;
+        }
+        // Switch player released
+        if (ctx.canceled)
+        {
+            InputSwitch = false;
+        }
+    }
+    // Set switch to false
+    public void SetSwitchFalse() => InputSwitch = false;
 
+    // Check input hold
+    private void CheckSwitchHold()
+    {
+        if (Time.time >= interactTimer + inputHoldTime)
+        {
+            InputInteract = false;
+        }
     }
 
-    // Get Moveset Inputs
+    // Get Ability Inputs
     public void GetNorthInput(InputAction.CallbackContext ctx)
     {
-
+        // Input pressed
+        if (ctx.started)
+        {
+            InputNorth = true;
+        }
+        // Input released
+        if (ctx.canceled)
+        {
+            InputNorth = false;
+        }
     }
     public void GetSouthInput(InputAction.CallbackContext ctx)
     {
-
+        // Input pressed
+        if (ctx.started)
+        {
+            InputSouth = true;
+        }
+        // Input released
+        if (ctx.canceled)
+        {
+            InputSouth = false;
+        }
     }
     public void GetEastRune(InputAction.CallbackContext ctx)
     {
-
+        // Input pressed
+        if (ctx.started)
+        {
+            InputEast = true;
+        }
+        // Input released
+        if (ctx.canceled)
+        {
+            InputEast = false;
+        }
     }
     public void GetWestInput(InputAction.CallbackContext ctx)
-    { 
-
+    {
+        // Input pressed
+        if (ctx.started)
+        {
+            InputWest = true;
+        }
+        // Input released
+        if (ctx.canceled)
+        {
+            InputWest = false;
+        }
     }
 }

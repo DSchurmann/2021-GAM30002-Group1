@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class GolemAIState:GolemState
 {
-    protected bool isAbilityFinished;
     protected bool isGrounded;
     protected bool isTouchingWall;
 
@@ -18,8 +17,7 @@ public class GolemAIState:GolemState
     public override void Enter()
     {
         base.Enter();
-        // reset check for if ability is finished
-        isAbilityFinished = false;
+
     }
 
     public override void Exit()
@@ -30,10 +28,13 @@ public class GolemAIState:GolemState
     public override void Update()
     {
         base.Update();
-
-        if (isAbilityFinished)
+        if (!isExitingState)
         {
-            player.ChangeState(player.IdleState);
+            //check for input
+            if (player.ControllerEnabled)
+            {
+                player.ChangeState(player.IdleState);
+            }
         }
     }
 

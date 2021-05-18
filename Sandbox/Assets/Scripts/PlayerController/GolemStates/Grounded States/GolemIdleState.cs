@@ -25,9 +25,20 @@ public class GolemIdleState:GolemGroundedState
     {
         base.Update();
 
-        if (Vector2.Distance(player.transform.position, player.Other.transform.position) > 3)
+        // get input for interact
+        inputInteract = player.InputHandler.InputInteract;
+
+        // check for interact input while in grounded and in idle state
+        if (inputInteract)
         {
-            player.ChangeState(player.FollowState);
+            player.ChangeState(player.RaiseAbility);
+        }
+
+        // movement input
+        if (inputX != 0 && !isExitingState)
+        {
+            if (player.ControllerEnabled)
+                player.ChangeState(player.MoveState);
         }
     }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class GolemState:State
 {
     protected new GolemControllerRB player;
+    protected bool InputSwitchPlayer;
 
     protected GolemState(GolemControllerRB player, string animation) : base(player, animation)
     {
@@ -31,14 +32,23 @@ public abstract class GolemState:State
     {
         isAnimationComplete = AnimationComplete();
 
-        // get input for interact
-        inputInteract = player.InputHandler.InputInteract;
+        //get input
+        InputSwitchPlayer = player.InputHandler.InputSwitch;
 
-        // check for interact input while grounded
-        if (inputInteract)
+        // switch players
+        if(InputSwitchPlayer && player.ControllerEnabled)
         {
-           player.ChangeState(player.RaiseAbility);
+            player.InputHandler.SetSwitchFalse();
+            if (player.CanSwitch)
+            {
+                player.CanSwitch = false;
+                Debug.Log("CONTROL GIVEN TO CHILD");
+                player.ControllerEnabled = false;
+                player.Other.ControllerEnabled = true;
+                player.ChangeState(player.AIWaitState);
+            }
         }
+
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
 

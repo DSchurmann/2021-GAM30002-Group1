@@ -8,6 +8,7 @@ public class ChildControllerRB : PlayerControllerRB
 
     // states
     #region States
+    // player controlled states
     public IdleState IdleState { get; private set; }
     public MoveState MoveState { get; private set; }
     public JumpState JumpState { get; private set; }
@@ -18,6 +19,9 @@ public class ChildControllerRB : PlayerControllerRB
     public WallGrabState WallGrabState { get; private set; }
     public WallClimbState WallClimbState { get; private set; }
     public WallJumpState WallJumpState { get; private set; }
+    // player AI states
+    public AIFollowState AIFollowState { get; private set; }
+    public AIWaitState AIWaitState { get; private set; }
     #endregion
     // Awake and Start functions
     #region Start Functions
@@ -33,6 +37,8 @@ public class ChildControllerRB : PlayerControllerRB
         WallGrabState = new WallGrabState(this, "WallGrab");
         WallClimbState = new WallClimbState(this, "WallClimb");
         WallJumpState = new WallJumpState(this, "Jump");
+        AIWaitState = new AIWaitState(this, "Idle");
+        AIFollowState = new AIFollowState(this, "Movement");
        
     }
 
@@ -47,13 +53,17 @@ public class ChildControllerRB : PlayerControllerRB
 
         // set initial controlled state
         ControllerEnabled = true;
-        if(ControllerEnabled)
+        CanSwitch = false;
+        if (ControllerEnabled)
         {
+           //CanSwitch = true;
             InitialState(IdleState);
+            
         }
         else
         {
-            //InitialState(AIState);
+            //CanSwitch = false;
+            InitialState(AIFollowState);
         }
         
         

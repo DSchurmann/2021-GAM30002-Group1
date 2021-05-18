@@ -7,6 +7,9 @@ public class PlayerControllerRB : StateMachine
 {
     // other character reference
     public PlayerControllerRB Other;
+   /* [Header("Movement")]
+    [Range(0.1f, 10.0f)]
+    public float SwitchPlayerDelay = 1f;*/
     // player variables
     #region Player Variables
     public List<string> Inventory;
@@ -65,6 +68,8 @@ public class PlayerControllerRB : StateMachine
     #region Other Variables
     // player controlled
     public bool ControllerEnabled { get; set; }
+    // player controlled
+    public bool CanSwitch { get; set; }
     // current vecocity
     public Vector2 CurrentVelocity { get; protected set; }
     // facing direcion

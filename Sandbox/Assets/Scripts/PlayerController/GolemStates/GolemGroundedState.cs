@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GolemGroundedState:GolemState
 {
+    protected int inputX;
     protected bool isGrounded;
     protected bool isTouchingWall;
 
@@ -12,13 +13,12 @@ public class GolemGroundedState:GolemState
 
     }
 
-
     // called when entering state
     public override void Enter()
     {
         base.Enter();
     }
-
+    // called when exiting state
     public override void Exit()
     {
         base.Exit();
@@ -27,6 +27,12 @@ public class GolemGroundedState:GolemState
     public override void Update()
     {
         base.Update();
+
+        if (!isExitingState)
+        {
+            // get input for x 
+            inputX = player.InputHandler.InputXNormal;
+        }
     }
 
     public override void FixedUpdate()
