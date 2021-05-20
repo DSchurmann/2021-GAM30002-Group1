@@ -4,26 +4,90 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    //Target Object
-    public GameObject targObj;
-    public float movSpeed;
+    [Header("Camera Target")]
+    public Transform target;
+    [Header("Camera Target Offset")]
+    public Vector3 targetOffset;
+    [Header("Follow Properties")]
+    [Range(0.0f, 10.0f)]
+    public float followSpeed = 4;
+    public Vector3 minFollowDistance;
 
-    public float distance;
+    public enum FollowMode { FOLLOWTARGET, CURRENTPLAYER, LOOKATPAN, LOOKATROTATE}
+    private FollowMode followMode;
 
     //Start
     private void Start()
     {
-        movSpeed = (7f);
-        //targObj = GameHandler.GH.childObj;
+        followMode = FollowMode.CURRENTPLAYER;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, targObj.transform.position) > 1.6f)
+       
+        switch(followMode)
+        {
+            case FollowMode.CURRENTPLAYER:
+                FollowCurrentPlayer();
+                break;
+            
+            case FollowMode.FOLLOWTARGET:
+                if(target)
+                    FollowTarget(target);
+                break;
+
+            case FollowMode.LOOKATPAN:
+
+                break;
+            case FollowMode.LOOKATROTATE:
+
+                break;
+        }
+        
+    }
+
+    // follow currently controlled player
+    private void FollowCurrentPlayer()
+    {
+        if(GameController.GH.CurrentPlayer() != null)
+            FollowTarget(GameController.GH.CurrentPlayer().transform);
+    }
+
+    // follow currently controlled player
+    private void FollowPlayer(Transform targetPlayer)
+    {
+        FollowTarget(targetPlayer);
+    }
+
+    // follow target;
+    private void FollowTarget(Transform targetPlayer)
+    {
+        Vector3 angle =  target.position - transform.position;
+        float distX = Mathf.Abs(angle.x);
+        float distY = Mathf.Abs(angle.y);
+        float distZ = Mathf.Abs(angle.z);
+        //Debug.Log("angle x" + distX);
+        Debug.Log("angle y" + distY);
+        if (distX <= minFollowDistance.x && distX >= 0.1f)
         {
             //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targObj.transform.position, ((movSpeed) * Time.deltaTime));
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, (followSpeed/2) * Time.deltaTime);
+        }
+        else if (distX > minFollowDistance.x)
+        {
+            //Go go go
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, followSpeed * Time.deltaTime);
+        }
+        if (distY <= minFollowDistance.y && distY >= 0.1f)
+        {
+            //Go go go
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, (followSpeed / 4) * Time.deltaTime);
+        }
+        else if (distY > minFollowDistance.y)
+        {
+            //Go go go
+            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, followSpeed * Time.deltaTime);
         }
     }
 }

@@ -10,7 +10,10 @@ public class GolemControllerRB : PlayerControllerRB
     #region States
     public GolemIdleState IdleState { get; private set; }
     public GolemMoveState MoveState { get; private set; }
-    public GolemIdleState RaiseAbility { get; private set; }
+    // pose states
+    public GolemRaiseState RaiseAbility { get; private set; }
+    public GolemIdleState StepAbility { get; private set; }
+    // ai states
     public GolemWaitState AIWaitState { get; private set; }
     public GolemFollowState AIFollowState { get; private set; }
     #endregion
@@ -18,9 +21,11 @@ public class GolemControllerRB : PlayerControllerRB
     #region Start Functions
     public override void Awake()
     {
+        base.Awake();
         IdleState = new GolemIdleState(this, "Idle");
         MoveState = new GolemMoveState(this, "Movement");
-        RaiseAbility = new GolemIdleState(this, "Raise");
+        RaiseAbility = new GolemRaiseState(this, "Raise");
+        StepAbility = new GolemIdleState(this, "Step");
         AIFollowState = new GolemFollowState(this, "Movement");
         AIWaitState = new GolemWaitState(this, "Idle");
     }
@@ -28,23 +33,17 @@ public class GolemControllerRB : PlayerControllerRB
     // Start is called before the first frame update
     public override void Start()
     {
-        Anim = GetComponent<Animator>();
-        InputHandler = GetComponent<PlayerInputHandler>();
-        RB = GetComponent<Rigidbody>();
-        Collider = GetComponent<Collider>();
-        FacingDirection = 1;
+        base.Start();
 
         // set initial controlled state
         ControllerEnabled = false;
-        CanSwitch = false;
         if (ControllerEnabled)
         {
-            //CanSwitch = true;
+            CanSwitch = true;
             InitialState(IdleState);
         }
         else
-        {
-            //CanSwitch = false;
+        {   // set initial AI state
            InitialState(AIFollowState);
         }
     }
@@ -54,19 +53,29 @@ public class GolemControllerRB : PlayerControllerRB
     // Update is called once per frame
     public override void Update()
     {
-        // keep record of current velocity
-        CurrentVelocity = RB.velocity;
-        // update current state
-        CurrentState.Update();
+        base.Update();
     }
 
     public override void FixedUpdate()
     {
-        // fixed update current state
-        CurrentState.FixedUpdate();
+        base.FixedUpdate();
     }
     #endregion
 
+    public override void EnableControls()
+    {
+        base.EnableControls();
+        //ChangeState(IdleState);
+    }
+    public override void DisableControls()
+    {
+        base.DisableControls();
+    }
+    // change facing direction
+    public override void Flip()
+    {
+        base.Flip();
+    }
 }
 
 

@@ -44,7 +44,10 @@ public class WallGrabState : WallState
 
         if(!isExitingState)
         {
-            if (inputY > 0 || inputY < 0)
+            if(!isWallClimbable)
+            {
+                player.ChangeState(player.WallSlideState);
+            }else if (inputY > 0 || inputY < 0)
             {
                 // change player to wall climb state if up input detected
                 player.ChangeState(player.WallClimbState);

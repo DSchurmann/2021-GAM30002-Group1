@@ -5,7 +5,11 @@ using UnityEngine;
 public abstract class GolemState:State
 {
     protected new GolemControllerRB player;
-    protected bool InputSwitchPlayer;
+
+    protected bool isPosing;
+    // controller input for poses
+    protected bool inputPoseRaise;
+    protected bool inputPoseStep;
 
     protected GolemState(GolemControllerRB player, string animation) : base(player, animation)
     {
@@ -16,53 +20,46 @@ public abstract class GolemState:State
     // called when entering state
     public override void Enter()
     {
-        // perform 
-        Perform();
-        // set animation on
-        player.Anim.Play(animation);
-        // set start time
-        startTime = Time.time;
-        isExitingState = false;
-        //Debug.Log(animation);
-        //Debug.Log(this.GetType().Name + " state entered");
+        base.Enter();
     }
 
     // update state
     public override void Update()
     {
-        isAnimationComplete = AnimationComplete();
+        base.Update();
 
-        //get input
-        InputSwitchPlayer = player.InputHandler.InputSwitch;
+        // change to pose on input
+        inputPoseRaise = player.InputHandler.InputNorth;
+        inputPoseStep = player.InputHandler.InputWest;
 
-        // switch players
-        if(InputSwitchPlayer && player.ControllerEnabled)
+        // player controled input
+        if(player.ControllerEnabled)
         {
-            player.InputHandler.SetSwitchFalse();
-            if (player.CanSwitch)
+            if (inputPoseRaise)
             {
-                player.CanSwitch = false;
-                Debug.Log("CONTROL GIVEN TO CHILD");
-                player.ControllerEnabled = false;
-                player.Other.ControllerEnabled = true;
-                player.ChangeState(player.AIWaitState);
+                player.ChangeState(player.RaiseAbility);
+            }
+            if (inputPoseStep)
+            {
+                player.ChangeState(player.StepAbility);
             }
         }
 
+        Perform();
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
 
     // fixed update state
     public override void FixedUpdate()
     {
-        Perform();
+        base.FixedUpdate();
         //Debug.Log(this.GetType().Name + " state updating by fixed time");
     }
 
     // called on exiting state
     public override void Exit()
     {
-        isExitingState = true;
+        base.Exit();
         //Debug.Log(this.GetType().Name + " state exited");
     }
     
@@ -70,11 +67,6 @@ public abstract class GolemState:State
     public override void Perform()
     {
 
-    }
-
-    public virtual bool AnimationComplete()
-    {
-        return (player.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !player.Anim.IsInTransition(0));
     }
 }
 

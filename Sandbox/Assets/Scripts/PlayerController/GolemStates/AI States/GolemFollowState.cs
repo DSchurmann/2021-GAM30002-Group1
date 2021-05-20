@@ -25,15 +25,18 @@ public class GolemFollowState:GolemAIState
     {
         base.Update();
 
-        // change state to wait if close
-        if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) < 3)
+        if(isAnimationComplete)
         {
-            player.ChangeState(player.AIWaitState);
-        }
-        else
-        {
-            // follow other player
-            FollowProcedure();
+            // change state to wait if close
+            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) < 3)
+            {
+                player.ChangeState(player.AIWaitState);
+            }
+            else
+            {
+                // follow other player
+                FollowProcedure();
+            }
         }
     }
 
@@ -57,13 +60,20 @@ public class GolemFollowState:GolemAIState
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
         //Check Distance
-        if (Vector3.Distance(pos, targPos) > 3)
+        if (Mathf.Abs((pos - targPos).x) > 3)
         {
             //Move Towards
             Vector3 angle = (targPos - pos).normalized;
 
             //Set Mov
-            player.SetVelocity(player.MovementSpeed, angle, player.FacingDirection);
+            if(angle.x >0)
+            {
+                player.SetVelocityX(player.MovementSpeed  * angle.x);
+            }else if (angle.x < 0)
+            {
+                player.SetVelocityX(player.MovementSpeed * angle.x);
+            }
+                
             player.SetVelocityY(0);
         }
     }

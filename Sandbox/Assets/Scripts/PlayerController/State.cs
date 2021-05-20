@@ -7,11 +7,10 @@ public abstract class State
     protected PlayerControllerRB player;
     protected string animation;
     protected bool isAnimationComplete;
-    protected bool isExitingState;
-    
+    protected bool isExitingState;    
     protected float startTime;
-
-    protected bool inputInteract;
+    protected bool InputSwitchPlayer;
+    protected bool SwitchPressed;
 
     public State(PlayerControllerRB player, string animation)
     {
@@ -38,6 +37,21 @@ public abstract class State
     {
         isAnimationComplete = AnimationComplete();
 
+        //get input
+        InputSwitchPlayer = player.InputHandler.InputSwitch;
+
+        // switch players
+        if (InputSwitchPlayer && player.ControllerEnabled)
+        {
+            InputSwitchPlayer = false;
+            player.InputHandler.SetSwitchFalse();
+            player.Other.InputHandler.SetSwitchFalse();
+            if (player.CanSwitch)
+            {
+                player.DisableControls();
+                player.Other.EnableControls();
+            }
+        }
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
 

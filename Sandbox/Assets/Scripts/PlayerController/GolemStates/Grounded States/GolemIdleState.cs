@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GolemIdleState:GolemGroundedState
 {
+    
+
     public GolemIdleState(GolemControllerRB player, string animation) : base(player, animation)
     {
 
@@ -24,15 +26,6 @@ public class GolemIdleState:GolemGroundedState
     public override void Update()
     {
         base.Update();
-
-        // get input for interact
-        inputInteract = player.InputHandler.InputInteract;
-
-        // check for interact input while in grounded and in idle state
-        if (inputInteract)
-        {
-            player.ChangeState(player.RaiseAbility);
-        }
 
         // movement input
         if (inputX != 0 && !isExitingState)

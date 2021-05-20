@@ -14,6 +14,7 @@ public class GolemRaiseState : GolemAbilityState
     public override void Enter()
     {
         base.Enter();
+        isPosing = true;
     }
 
     public override void Exit()
@@ -34,9 +35,9 @@ public class GolemRaiseState : GolemAbilityState
 
     public override void Perform()
     {
-        base.Perform();
+        //base.Perform();
         // set ability to finished when animation is complete;
-        isAbilityFinished = isAnimationComplete ? true : false;
+        //isAbilityFinished = isAnimationComplete ? true : false;
     }
 }
 

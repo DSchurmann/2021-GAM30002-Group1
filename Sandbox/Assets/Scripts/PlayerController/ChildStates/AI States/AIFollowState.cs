@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AIFollowState: AIState
+public class AIFollowState : AIState
 {
 
     public AIFollowState(ChildControllerRB player, string animation) : base(player, animation)
@@ -58,18 +58,31 @@ public class AIFollowState: AIState
 
     public void FollowProcedure()
     {
-        //Get Our Position, Position of Child
+        //Get Our Position, Position of Golem
         Vector3 pos = player.transform.position;
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
         //Check Distance
-        if (Vector3.Distance(pos, targPos) > 3)
+        if (Mathf.Abs((pos - targPos).x) > 3)
         {
             //Move Towards
             Vector3 angle = (targPos - pos).normalized;
 
             //Set Mov
-            player.SetVelocity(player.MovementSpeed, angle, player.FacingDirection);
+            if (angle.x > 0)
+            {
+                // flip player and change direction
+                if(player.FacingDirection!= 1) {player.Flip();}
+                player.SetVelocityX(player.MovementSpeed * angle.x);
+                
+            }
+            else if (angle.x < 0)
+            {
+                // flip playe rand change direction
+                if (player.FacingDirection != -1) { player.Flip(); }
+                player.SetVelocityX(player.MovementSpeed * angle.x);
+            }
+
             player.SetVelocityY(0);
         }
     }

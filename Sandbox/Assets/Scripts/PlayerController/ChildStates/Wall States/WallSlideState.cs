@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class WallSlideState : WallState
 {
-
     public WallSlideState(ChildControllerRB player, string animation) : base(player, animation)
     {
 
@@ -19,12 +18,13 @@ public class WallSlideState : WallState
         // change to wall grab state if grab wall while sliding
         if (!isExitingState)
         {
-            if (inputY > 0 || inputY < 0)
-            {
-                // change player to wall climb state if up input detected
-                player.ChangeState(player.WallClimbState);
-            }
-            else if (inputGrab)
+            // enable wall climb from slide state with up or down input
+            /* if (inputY > 0 || inputY < 0 && isWallClimbable)
+             {
+                 // change player to wall climb state if up input detected
+                 player.ChangeState(player.WallClimbState);
+             }else */
+            if (inputGrab && isWallClimbable)
             {
                 // change player to wall slide state if down input detected ot grab input is released
                 player.ChangeState(player.WallGrabState);
@@ -37,8 +37,6 @@ public class WallSlideState : WallState
                 player.ChangeState(player.WallJumpState);
             }
         }
-
         player.SetVelocityY(-player.wallSlideSpeed);
     }
-
 }

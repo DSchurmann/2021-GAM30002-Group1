@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class ChildControllerRB : PlayerControllerRB
 {
-
     // states
     #region States
     // player controlled states
@@ -27,6 +26,7 @@ public class ChildControllerRB : PlayerControllerRB
     #region Start Functions
     public override void Awake()
     {
+        base.Awake();
         IdleState = new IdleState(this, "Idle");
         MoveState = new MoveState(this, "Movement");
         JumpState = new JumpState(this, "Jump");
@@ -45,28 +45,20 @@ public class ChildControllerRB : PlayerControllerRB
     // Start is called before the first frame update
     public override void Start()
     {
-        Anim = GetComponent<Animator>();
-        InputHandler = GetComponent<PlayerInputHandler>();
-        RB = GetComponent<Rigidbody>();
-        Collider = GetComponent<Collider>();
-        FacingDirection = 1;
-
+        base.Start();
+       
         // set initial controlled state
         ControllerEnabled = true;
-        CanSwitch = false;
         if (ControllerEnabled)
         {
-           //CanSwitch = true;
+            CanSwitch = true;
             InitialState(IdleState);
-            
         }
         else
         {
-            //CanSwitch = false;
+            // set initial AI state
             InitialState(AIFollowState);
         }
-        
-        
     }
     #endregion
     // Update and FixedUpdate function
@@ -74,22 +66,30 @@ public class ChildControllerRB : PlayerControllerRB
     // Update is called once per frame
     public override void Update()
     {
-        
-        // keep record of current velocity
-        CurrentVelocity = RB.velocity;
-        // update current state
-        CurrentState.Update();
+        base.Update();
     }
 
     public override void FixedUpdate()
     {
-        // fixed update current state
-        CurrentState.FixedUpdate();
+        base.FixedUpdate();
+    }
+
+    public override void EnableControls()
+    {
+        base.EnableControls();
+        ChangeState(IdleState);
+    }
+    public override void DisableControls()
+    {
+        base.DisableControls();
+        ChangeState(AIWaitState);
+    }
+    // change facing direction 
+    public override void Flip()
+    {
+        base.Flip();
+        //flip sprite
+        transform.Rotate(0.0f, 180.0f, 0, 0f);
     }
     #endregion
-
 }
-
-
-
-

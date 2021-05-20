@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Parameterss
+    //Parameters -- Core
     public static GameController GH;
     
 
+    public bool switchMode; //Is the Golem controlled?
+    public bool waitMode; //Is Wait Mode on?
     public PlayerControllerRB childObj;
     public PlayerControllerRB golemObj;
-    public enum CurrentPlayer { Child, Golem }
-    public CurrentPlayer currentPlayer;
 
-    
-    // Set Singleton
+
+    //Parameters -- UI
+    //UI Objects to be set Here -- CODE
+    public GameObject waitObj;
+    public List<GameObject> runeObjects = new List<GameObject>(); //Inspector
+    public GameObject runeUIParent; //Inspector
+
+    //AWAKE: Set Singleton
     private void Awake()
     {
         //Set Singleton
@@ -32,25 +38,26 @@ public class GameController : MonoBehaviour
     void Start()
     {
 
-
     }
 
     // Update is called once per frame
     void Update()
     {
 
+
     }
 
-    void SwapPlayer()
+    // Get current player
+    public PlayerControllerRB CurrentPlayer()
     {
-        if(currentPlayer == CurrentPlayer.Child)
+        if (golemObj.ControllerEnabled) { return golemObj; }
+        else
+        if (childObj.ControllerEnabled) { return childObj; }
+        else
         {
-            currentPlayer = CurrentPlayer.Golem;
+            Debug.LogError("NO CURRENT PLAYER");
+            return null;
         }
-        else if (currentPlayer == CurrentPlayer.Golem)
-        {
-            currentPlayer = CurrentPlayer.Child;
-        }
-        Debug.Log("Character Swapped!");
+           
     }
 }

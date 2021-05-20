@@ -43,6 +43,7 @@ public class PlayerControllerRB : StateMachine
     [Range(0.0f, 1.0f)]
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
+    public bool isTouchingWall;
     // states
     #endregion
     // player states
@@ -52,8 +53,8 @@ public class PlayerControllerRB : StateMachine
     // checks variables
     #region Check Variables
     [SerializeField] Transform groundCheck;
-    [SerializeField] Transform wallCheck;
-    [SerializeField] float wallCheckDistance = 0.5f;
+    [SerializeField] public Transform wallCheck;
+    [SerializeField] public float wallCheckDistance = 0.5f;
     //public float groundCheckRadius = 0.3f;
     //public LayerMask groundLayer;
     #endregion
@@ -119,6 +120,24 @@ public class PlayerControllerRB : StateMachine
             CurrentState.FixedUpdate();
     }
     #endregion
+    // functions that switch players
+    #region Switch Player Functions
+    public virtual void SwitchPlayer()
+    {
+
+    }
+    public virtual void EnableControls()
+    {
+        ControllerEnabled = true;
+        CanSwitch = true;
+    }
+    public virtual void DisableControls()
+    {
+        ControllerEnabled = false;
+        CanSwitch = false;
+    }
+
+    #endregion
     // functions that set
     #region Set Functions
     // set velocity 
@@ -136,7 +155,6 @@ public class PlayerControllerRB : StateMachine
         RB.velocity = workVector;
         CurrentVelocity = workVector;
     }
-
     // set velocity of y 
     public void SetVelocityY(float velocity)
     {
@@ -148,6 +166,16 @@ public class PlayerControllerRB : StateMachine
     // functions that check
     #region Check Functions
 
+    // check if can switch player
+    public bool CheckIfCanSwitch()
+    {
+        // check if controlle is enabled
+        if(ControllerEnabled)
+        {
+            return true;
+        }
+        return false;
+    }
     // check if grounded
     public bool CheckIfGrounded()
     {
@@ -159,6 +187,14 @@ public class PlayerControllerRB : StateMachine
     public bool CheckTouchingWall()
     {
         return Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, wallCheckDistance);
+    } 
+    //check forward wall Climb Ability
+    public bool CheckgWallClimbAbility()
+    {
+        //RaycastHit wallHit;
+        //Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, out wallHit, wallCheckDistance);
+        // check if wall is climbable (currently just checks if on climbable wall layer)
+        return Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, wallCheckDistance, 1<<12);
     }
     public bool CheckTouchingWallBehind()
     {
@@ -177,10 +213,9 @@ public class PlayerControllerRB : StateMachine
     // other functions
     #region Other Functions
     // flip direction
-    private void Flip()
+    public virtual void Flip()
     {
         FacingDirection *= -1;
-        transform.Rotate(0.0f, 180.0f, 0, 0f);
     }
     #endregion
     // debug code

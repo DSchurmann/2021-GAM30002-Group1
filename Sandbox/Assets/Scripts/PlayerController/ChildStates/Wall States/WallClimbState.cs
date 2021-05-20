@@ -31,6 +31,10 @@ public class WallClimbState : WallState
         // apply climbing velocity based on input value
         player.SetVelocityY(player.wallClimbSpeed *inputY);
 
+        if(!isWallClimbable && !isExitingState)
+        {
+            player.ChangeState(player.WallSlideState);
+        }
         // change to grab state if y velocy is zero
         if(inputY == 0 && !isExitingState)
         {

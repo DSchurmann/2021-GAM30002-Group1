@@ -6,6 +6,7 @@ public class WallState : ChildState
 {
     protected bool isGrounded;
     protected bool isTouchingWall;
+    protected bool isWallClimbable;
     protected bool inputGrab;
     protected bool inputJump;
     protected int inputX;
@@ -67,10 +68,14 @@ public class WallState : ChildState
     {
         base.Perform();
 
+        Debug.DrawLine(player.wallCheck.position, Vector3.right * player.FacingDirection * 1, Color.green);
+
         //check if grounded
         isGrounded = player.CheckIfGrounded();
         // check if touching wall
         isTouchingWall = player.CheckTouchingWall();
+        // check if wall is climbable
+        isWallClimbable = player.CheckgWallClimbAbility();
     }
 
   

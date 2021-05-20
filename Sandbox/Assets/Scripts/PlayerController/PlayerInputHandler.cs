@@ -134,7 +134,7 @@ public class PlayerInputHandler : MonoBehaviour
         // Switch player released
         if (ctx.canceled)
         {
-            InputSwitch = false;
+            //InputSwitch = false;
         }
     }
     // Set switch to false

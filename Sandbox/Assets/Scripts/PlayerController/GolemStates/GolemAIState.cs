@@ -28,12 +28,14 @@ public class GolemAIState:GolemState
     public override void Update()
     {
         base.Update();
+
         if (!isExitingState)
         {
             //check for input
-            if (player.ControllerEnabled)
+            if (player.ControllerEnabled && !isPosing)
             {
                 player.ChangeState(player.IdleState);
+                isPosing = true;
             }
         }
     }

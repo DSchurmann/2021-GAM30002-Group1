@@ -8,6 +8,7 @@ public class GolemGroundedState:GolemState
     protected bool isGrounded;
     protected bool isTouchingWall;
 
+
     public GolemGroundedState(GolemControllerRB player, string animation) : base(player, animation)
     {
 
@@ -38,7 +39,6 @@ public class GolemGroundedState:GolemState
     public override void FixedUpdate()
     {
         base.FixedUpdate();
-
     }
 
     public override void Perform()

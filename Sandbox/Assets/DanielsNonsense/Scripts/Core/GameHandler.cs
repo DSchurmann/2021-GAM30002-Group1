@@ -54,6 +54,12 @@ public class GameHandler : MonoBehaviour
     {
         //Set base runes for prototyping purposes
         InitializeRunes();
+
+        //Set Runes here
+        runes[0] = (runeDatabase[1]); //Rise Rune 
+        runes[1] = (runeDatabase[0]); //Step Rune
+        runes[2] = (null); //Smash (TBA)
+        runes[3] = (runeDatabase[3]); //Lift
     }
 
     // Update is called once per frame
@@ -62,32 +68,41 @@ public class GameHandler : MonoBehaviour
         //Do Shit about Updating the UI to display runes, wait mode, etc here
         //CODE
 
-        /* //Controlling Golem?
-         if (!switchMode)
-         {
-             //Get all UI Elements 
-             Image[] images = runeUIParent.GetComponentsInChildren<Image>();
+        //Controlling Golem?
+        if (!switchMode)
+        {
+            //Get all UI Elements 
+            Image[] images = runeUIParent.GetComponentsInChildren<Image>();
 
-             //Go Through
-             foreach (Image i in images)
-             {
-                 i.color = new Color(1f, 1f, 1f, .5f);
-             }
-         }
-         else
-         {
-             //Get all UI Elements 
-             Image[] images = runeUIParent.GetComponentsInChildren<Image>();
+            //Go Through
+            foreach (Image i in images)
+            {
+                //if(i.gameObject.name == "RuneUI")
+                i.color = new Color(.2f, .2f, .2f, .5f);
+            }
+        }
+        else
+        {
+            //Get all UI Elements 
+            Image[] images = runeUIParent.GetComponentsInChildren<Image>();
 
-             //Go Through
-             foreach (Image i in images)
-             {
-                 i.color = new Color(1f, 1f, 1f, 1f);
-             }
-         }*/
+            //Go Through
+            foreach (Image i in images)
+            {
+                if (i.gameObject.name == "RuneUI")
+                {
+                    i.color = new Color(.2f, .2f, .2f, 1f);
+                }
+                else
+                {
+                    i.color = new Color(1f, 1f, 1f, 1f);
+                }
+
+            }
+        }
 
         //WAIT MODE
-        /*waitObj.SetActive(waitMode);
+        waitObj.SetActive(waitMode);
 
         //Display Runes
         for (int i = 0; i < 4; i++)
@@ -104,7 +119,7 @@ public class GameHandler : MonoBehaviour
             {
                 runeObjects[i].GetComponent<Image>().enabled = (false);
             }
-        }*/
+        }
     }
 
     //Initialize Rune List
@@ -117,23 +132,6 @@ public class GameHandler : MonoBehaviour
         runeDatabase[2].runeRedType = Rune.RedRune.smash;
         runeDatabase.Add(new Rune("Lift", 3, Rune.RuneType.red, "Lift"));
         runeDatabase[3].runeRedType = Rune.RedRune.lift;
-        runeDatabase.Add(new Rune("Tee", 4, Rune.RuneType.blue, "Tee"));
-        runeDatabase.Add(new Rune("Leap", 5, Rune.RuneType.red, "Leap"));
-        runeDatabase[5].runeRedType = Rune.RedRune.leap;
-        runeDatabase.Add(new Rune("Throw", 6, Rune.RuneType.yellow, "Raise"));
-
-        //Set Runes
-        SetRunes();
-    }
-
-    //Set Base Rune List ((Called after all runes initialized))
-    public void SetRunes()
-    {
-        //Set Runes here
-        runes[0] = (runeDatabase[1]); //Rise Rune 
-        runes[1] = (runeDatabase[0]); //Step Rune
-        runes[2] = (runeDatabase[6]); //Smash (TBA)
-        runes[3] = (runeDatabase[3]); //Lift
     }
 
     //Set Switch State (If true, Golem is in control)
