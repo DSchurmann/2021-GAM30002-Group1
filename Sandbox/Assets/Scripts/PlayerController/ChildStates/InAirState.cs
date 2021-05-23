@@ -52,7 +52,7 @@ public class InAirState: ChildState
     {
         base.Exit();
     }
-
+    // AI in air mode
     public void AIMode()
     {
         if (player.CheckIfGrounded() && player.CurrentVelocity.y < 0.1f)
@@ -62,6 +62,7 @@ public class InAirState: ChildState
         }
     }
 
+    // contorller in air mode
     public void ControllerMode()
     {
         // get x input 
