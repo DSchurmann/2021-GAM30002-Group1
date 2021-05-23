@@ -122,6 +122,7 @@ public class PlayerInputHandler : MonoBehaviour
             InputWait= false;
         }
     }
+    public void SetWaitFalse() => InputWait = false;
 
     // Get Switch Input
     public void GetSwitchInput(InputAction.CallbackContext ctx)
@@ -145,11 +146,12 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (Time.time >= interactTimer + inputHoldTime)
         {
-            InputInteract = false;
+            InputSwitch = false;
         }
     }
 
-    // Get Ability Inputs
+    // -- Get Ability Inputs
+    // north button input
     public void GetNorthInput(InputAction.CallbackContext ctx)
     {
         // Input pressed
@@ -157,12 +159,15 @@ public class PlayerInputHandler : MonoBehaviour
         {
             InputNorth = true;
         }
-        // Input released
+       /* // Input released
         if (ctx.canceled)
         {
             InputNorth = false;
-        }
+        }*/
     }
+    public void SetNorthFalse() => InputNorth = false;
+
+    // south button input
     public void GetSouthInput(InputAction.CallbackContext ctx)
     {
         // Input pressed
@@ -170,12 +175,14 @@ public class PlayerInputHandler : MonoBehaviour
         {
             InputSouth = true;
         }
-        // Input released
+       /* // Input released
         if (ctx.canceled)
         {
             InputSouth = false;
-        }
+        }*/
     }
+    public void SetSouthFalse() => InputSouth = false;
+    // east button input
     public void GetEastRune(InputAction.CallbackContext ctx)
     {
         // Input pressed
@@ -184,11 +191,13 @@ public class PlayerInputHandler : MonoBehaviour
             InputEast = true;
         }
         // Input released
-        if (ctx.canceled)
+      /*  if (ctx.canceled)
         {
             InputEast = false;
-        }
+        }*/
     }
+    public void SetEastFalse() => InputEast = false;
+    // west button input
     public void GetWestInput(InputAction.CallbackContext ctx)
     {
         // Input pressed
@@ -197,9 +206,10 @@ public class PlayerInputHandler : MonoBehaviour
             InputWest = true;
         }
         // Input released
-        if (ctx.canceled)
+       /* if (ctx.canceled)
         {
             InputWest = false;
-        }
+        }*/
     }
+    public void SetWestFalse() => InputWest = false;
 }

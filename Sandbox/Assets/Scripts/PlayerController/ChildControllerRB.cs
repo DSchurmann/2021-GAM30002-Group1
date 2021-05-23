@@ -57,7 +57,7 @@ public class ChildControllerRB : PlayerControllerRB
         else
         {
             // set initial AI state
-            InitialState(AIFollowState);
+            InitialState(AIWaitState);
         }
     }
     #endregion
@@ -77,12 +77,14 @@ public class ChildControllerRB : PlayerControllerRB
     public override void EnableControls()
     {
         base.EnableControls();
-        ChangeState(IdleState);
+        QueueState(IdleState);
+        //ChangeState(IdleState);
     }
     public override void DisableControls()
     {
         base.DisableControls();
-        ChangeState(AIWaitState);
+        QueueState(AIWaitState);
+        //ChangeState(AIWaitState);
     }
     // change facing direction 
     public override void Flip()

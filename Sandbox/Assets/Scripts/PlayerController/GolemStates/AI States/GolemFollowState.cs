@@ -14,6 +14,9 @@ public class GolemFollowState:GolemAIState
     public override void Enter()
     {
         base.Enter();
+        player.Following = true;
+        if (player.Waiting)
+            player.Waiting = false;
     }
 
     public override void Exit()
@@ -28,7 +31,7 @@ public class GolemFollowState:GolemAIState
         if(isAnimationComplete)
         {
             // change state to wait if close
-            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) < 3)
+            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) <= player.closeDistance)
             {
                 player.ChangeState(player.AIWaitState);
             }
@@ -49,7 +52,6 @@ public class GolemFollowState:GolemAIState
     public override void Perform()
     {
         base.Perform();
-        
        
     }
 
@@ -60,7 +62,7 @@ public class GolemFollowState:GolemAIState
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
         //Check Distance
-        if (Mathf.Abs((pos - targPos).x) > 3)
+        if (Mathf.Abs((pos - targPos).x) > player.closeDistance)
         {
             //Move Towards
             Vector3 angle = (targPos - pos).normalized;

@@ -44,11 +44,13 @@ public class PlayerControllerRB : StateMachine
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
     public bool isTouchingWall;
+    [Header("Follow State")]
+    [Range(0.0f, 1.0f)]
+    public float closeDistance = 2f;
     // states
     #endregion
     // player states
     #region States
-
     #endregion
     // checks variables
     #region Check Variables
@@ -69,6 +71,8 @@ public class PlayerControllerRB : StateMachine
     #region Other Variables
     // player controlled
     public bool ControllerEnabled { get; set; }
+    public bool Waiting { get; set; }
+    public bool Following { get; set; }
     // player controlled
     public bool CanSwitch { get; set; }
     // current vecocity
@@ -110,7 +114,19 @@ public class PlayerControllerRB : StateMachine
         CurrentVelocity = RB.velocity;
         // update current state
         if(CurrentState!=null)
+        {
             CurrentState.Update();
+            Debug.Log(this.GetType().Name + ":  " + CurrentState.GetType().Name);
+        }
+
+        if(NextState!=null)
+        {
+            if(CurrentState.AnimationComplete())
+            {
+                ChangeState(UseNextState());
+            }
+        }
+           
     }
 
     public virtual void FixedUpdate()
@@ -186,6 +202,7 @@ public class PlayerControllerRB : StateMachine
     //check forward wall
     public bool CheckTouchingWall()
     {
+        Debug.DrawRay(Vector3.right, Vector3.right * FacingDirection);
         return Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, wallCheckDistance);
     } 
     //check forward wall Climb Ability
@@ -196,11 +213,41 @@ public class PlayerControllerRB : StateMachine
         // check if wall is climbable (currently just checks if on climbable wall layer)
         return Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, wallCheckDistance, 1<<12);
     }
-    public bool CheckTouchingWallBehind()
+    public virtual bool CheckTouchingWallBehind()
     {
         return Physics.Raycast(wallCheck.position, Vector3.right * -FacingDirection, wallCheckDistance);
     }
 
+    public void HandlePlatformLanding()
+    {
+        RaycastHit groundHit;
+
+        Ray ray = new Ray(transform.position, Vector3.down);
+        // raycast for check the ground distance
+        if (Physics.Raycast(ray, out groundHit, 1))
+        {
+            //Debug.Log("Landed on: " + groundHit.collider.gameObject.name);
+            if (groundHit.collider.gameObject.GetComponentInChildren<MovingPlatform>() != null)
+            {
+                //Debug.Log("Player on platform");
+                transform.parent = groundHit.collider.gameObject.transform;
+                //return true;
+            }
+
+            if(groundHit.collider.gameObject.transform.parent)
+            {
+                if (groundHit.collider.gameObject.transform.parent.GetComponentInChildren<MovingPlatform>() != null)
+                {
+                    transform.parent = groundHit.collider.gameObject.transform.parent.transform;
+                    //return true;
+                }
+            }
+            
+        }
+        transform.parent = null;
+
+        //return false;
+    }
     // check for axis flip
     public void CheckForFlip(int xInput)
     {

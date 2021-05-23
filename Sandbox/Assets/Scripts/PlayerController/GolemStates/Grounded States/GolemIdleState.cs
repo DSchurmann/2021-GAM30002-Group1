@@ -27,12 +27,16 @@ public class GolemIdleState:GolemGroundedState
     {
         base.Update();
 
-        // movement input
-        if (inputX != 0 && !isExitingState)
+        if(!isExitingState)
         {
-            if (player.ControllerEnabled)
-                player.ChangeState(player.MoveState);
+            // movement input
+            if (inputX != 0)
+            {
+                if (player.ControllerEnabled)
+                    player.ChangeState(player.MoveState);
+            }
         }
+       
     }
 
     public override void FixedUpdate()

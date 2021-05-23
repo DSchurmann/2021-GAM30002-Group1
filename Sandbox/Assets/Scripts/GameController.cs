@@ -6,19 +6,15 @@ public class GameController : MonoBehaviour
 {
     //Parameters -- Core
     public static GameController GH;
+    public PlayerSave SaveSystem;
     
-
-    public bool switchMode; //Is the Golem controlled?
-    public bool waitMode; //Is Wait Mode on?
     public PlayerControllerRB childObj;
     public PlayerControllerRB golemObj;
 
+    // checkpoint save
+    private SerializablePlayerSave checkpoint = new SerializablePlayerSave();
+    private bool saved;
 
-    //Parameters -- UI
-    //UI Objects to be set Here -- CODE
-    public GameObject waitObj;
-    public List<GameObject> runeObjects = new List<GameObject>(); //Inspector
-    public GameObject runeUIParent; //Inspector
 
     //AWAKE: Set Singleton
     private void Awake()
@@ -37,14 +33,20 @@ public class GameController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        // save game, setting initial checkpoint
+        if(CurrentPlayer()!=null)
+            SaveGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        // save first state
+        if(!saved && CurrentPlayer() != null)
+        {
+            saved = true;
+            SaveGame();
+        }
     }
 
     // Get current player
@@ -58,6 +60,17 @@ public class GameController : MonoBehaviour
             Debug.LogError("NO CURRENT PLAYER");
             return null;
         }
-           
+    }
+
+    // save the game
+    public void SaveGame()
+    {
+        checkpoint = SaveSystem.Save();
+    }
+
+    // load the game
+    public void LoadGame()
+    {
+        SaveSystem.Load(checkpoint);
     }
 }

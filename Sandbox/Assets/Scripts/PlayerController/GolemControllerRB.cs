@@ -12,7 +12,7 @@ public class GolemControllerRB : PlayerControllerRB
     public GolemMoveState MoveState { get; private set; }
     // pose states
     public GolemRaiseState RaiseAbility { get; private set; }
-    public GolemIdleState StepAbility { get; private set; }
+    public GolemStepState StepAbility { get; private set; }
     // ai states
     public GolemWaitState AIWaitState { get; private set; }
     public GolemFollowState AIFollowState { get; private set; }
@@ -25,7 +25,7 @@ public class GolemControllerRB : PlayerControllerRB
         IdleState = new GolemIdleState(this, "Idle");
         MoveState = new GolemMoveState(this, "Movement");
         RaiseAbility = new GolemRaiseState(this, "Raise");
-        StepAbility = new GolemIdleState(this, "Step");
+        StepAbility = new GolemStepState(this, "Step");
         AIFollowState = new GolemFollowState(this, "Movement");
         AIWaitState = new GolemWaitState(this, "Idle");
     }
@@ -44,7 +44,7 @@ public class GolemControllerRB : PlayerControllerRB
         }
         else
         {   // set initial AI state
-           InitialState(AIFollowState);
+           InitialState(AIWaitState);
         }
     }
     #endregion
@@ -64,6 +64,10 @@ public class GolemControllerRB : PlayerControllerRB
 
     public override void EnableControls()
     {
+        InputHandler.SetNorthFalse();
+        InputHandler.SetSouthFalse();
+        InputHandler.SetEastFalse();
+        InputHandler.SetWestFalse();
         base.EnableControls();
         //ChangeState(IdleState);
     }

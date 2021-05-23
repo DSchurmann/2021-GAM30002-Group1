@@ -29,6 +29,41 @@ public class InAirState: ChildState
     {
         base.Update();
 
+        // check for controller or ai
+
+        if(player.ControllerEnabled)
+        {
+            ControllerMode();
+        }
+        else
+        {
+            AIMode();
+        }
+       
+    }
+
+    public override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
+
+
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
+    public void AIMode()
+    {
+        if (player.CheckIfGrounded() && player.CurrentVelocity.y < 0.1f)
+        {
+            // land if ground detected while in air
+            player.ChangeState(player.LandState);
+        }
+    }
+
+    public void ControllerMode()
+    {
         // get x input 
         inputX = player.InputHandler.InputXNormal;
         inputJump = player.InputHandler.InputJump;
@@ -44,12 +79,12 @@ public class InAirState: ChildState
             // land if ground detected while in air
             player.ChangeState(player.LandState);
         }
-       /* else if (inputJump && isTouchingWall)
-        {
-            player.InputHandler.SetJumpFalse();
-            // check for jump while in air
-            player.ChangeState(player.WallJumpState);
-        }*/
+        /* else if (inputJump && isTouchingWall)
+         {
+             player.InputHandler.SetJumpFalse();
+             // check for jump while in air
+             player.ChangeState(player.WallJumpState);
+         }*/
         else if (inputJump && player.JumpState.CanJump())
         {
             player.InputHandler.SetJumpFalse();
@@ -57,13 +92,13 @@ public class InAirState: ChildState
             player.ChangeState(player.JumpState);
         }
         // change state to wall grab
-        else if(inputGrab && (isTouchingWall ||  isTouchingWallBehind))
+        else if (inputGrab && (isTouchingWall || isTouchingWallBehind))
         {
             Debug.Log("Grab wall");
             player.ChangeState(player.WallGrabState);
         }
         //change state to wall slide if touching wall
-        else if(isTouchingWall && inputX == player.FacingDirection && player.CurrentVelocity.y <= 0)
+        else if (isTouchingWall && inputX == player.FacingDirection && player.CurrentVelocity.y <= 0)
         {
             // check if touch wall in air
             player.ChangeState(player.WallSlideState);
@@ -73,21 +108,11 @@ public class InAirState: ChildState
             // check for direction change
             player.CheckForFlip(inputX);
             // set in air movement
-            float inAirMovementDampening = Mathf.Clamp(player.inAirMovementSpeed /10, 0.1f, 10.0f);
+            float inAirMovementDampening = Mathf.Clamp(player.inAirMovementSpeed / 10, 0.1f, 10.0f);
             player.SetVelocityX(player.inAirMovementSpeed * inputX);
         }
     }
 
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-    }
-
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
 
     public override void Perform()
     {

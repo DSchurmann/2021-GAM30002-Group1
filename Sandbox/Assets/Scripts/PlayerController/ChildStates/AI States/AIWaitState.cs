@@ -14,7 +14,7 @@ public class AIWaitState: AIState
     public override void Enter()
     {
         base.Enter();
-
+        player.Waiting = true;
     }
 
     public override void Exit()
@@ -28,10 +28,14 @@ public class AIWaitState: AIState
 
         if (!isExitingState)
         {
-            // change state to follow if too far
-            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > 3)
+            if (player.Following)
             {
-                player.ChangeState(player.AIFollowState);
+                // change state to follow if too far
+                if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
+                {
+               
+                    player.ChangeState(player.AIFollowState);
+                }
             }
         }
     }
@@ -48,23 +52,5 @@ public class AIWaitState: AIState
 
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckTouchingWall();
-    }
-
-    public void FollowProcedure()
-    {
-        //Get Our Position, Position of Child
-        Vector3 pos = player.transform.position;
-        Vector3 targPos = player.Other.transform.position;
-        targPos.z += 1f;
-        //Check Distance
-        if (Vector3.Distance(pos, targPos) > 3)
-        {
-            //Move Towards
-            Vector3 angle = (targPos - pos).normalized;
-
-            //Set Mov
-            player.SetVelocity(player.MovementSpeed, angle, player.FacingDirection);
-            player.SetVelocityY(0);
-        }
     }
 }

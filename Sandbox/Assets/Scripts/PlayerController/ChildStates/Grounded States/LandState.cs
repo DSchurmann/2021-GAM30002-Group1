@@ -14,13 +14,27 @@ public class LandState : GroundedState
 
         if(!isExitingState)
         {
-            if (inputX != 0)
+            if(player.ControllerEnabled)
             {
-                player.ChangeState(player.MoveState);
+                if (inputX != 0)
+                {
+                    player.ChangeState(player.MoveState);
+                }
+                else if (isAnimationComplete)
+                {
+                    player.ChangeState(player.IdleState);
+                }
             }
-            else if (isAnimationComplete)
+            else
             {
-                player.ChangeState(player.IdleState);
+                if(player.Following)
+                {
+                    player.ChangeState(player.AIFollowState);
+                }
+                else
+                {
+                    player.ChangeState(player.AIWaitState);
+                }
             }
         }
     }

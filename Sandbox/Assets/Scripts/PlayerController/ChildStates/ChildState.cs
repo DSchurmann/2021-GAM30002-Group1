@@ -7,6 +7,7 @@ public abstract class ChildState:State
     protected new ChildControllerRB player;
     protected bool switchedPlayer;
     protected bool inputAttack;
+    protected bool inputWait;
 
     protected ChildState(ChildControllerRB player, string animation) : base(player, animation)
     {
@@ -25,17 +26,47 @@ public abstract class ChildState:State
     {
         base.Update();
 
-        //get input
-        inputAttack = player.InputHandler.InputInteract;
-
-        if (inputAttack && !player.CheckTouchingWall())
+        if(player.ControllerEnabled)
         {
-            // set interact false
-            //player.InputHandler.SetInteractFalse();
-            // change player to  state
-            player.ChangeState(player.AttackState);
-
+            //get input
+            inputAttack = player.InputHandler.InputInteract;
+            inputWait = player.InputHandler.InputWait;
         }
+      
+        
+        if(!isExitingState)
+        {
+            if (player.ControllerEnabled)
+            {
+                // call wait to other player
+                if (inputWait)
+                {
+                    player.InputHandler.SetWaitFalse();
+                    if (player.Other.Waiting)
+                    {
+                        player.Other.ChangeState((player.Other as GolemControllerRB).AIFollowState);
+                        player.Other.Following = true;
+                        player.Other.Waiting = false;
+                    }
+                    else if (player.Other.Following)
+                    {
+                        player.Other.ChangeState((player.Other as GolemControllerRB).AIWaitState);
+                        player.Other.Following = false;
+                    }
+                }
+
+                // attack controls
+                if (inputAttack && !player.CheckTouchingWall())
+                {
+                    // change to attack state
+                    //player.InputHandler.SetInteractFalse();
+                    player.ChangeState(player.AttackState);
+
+                }
+            }
+        }
+        
+      
 
         Perform();
         //Debug.Log(this.GetType().Name + " state updating by delta time");

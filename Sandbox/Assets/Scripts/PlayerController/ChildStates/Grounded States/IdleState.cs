@@ -25,11 +25,28 @@ public class IdleState: GroundedState
     {
         base.Update();
 
-        //movement input
-        if (inputX != 0 && !isExitingState)
+        if(!isExitingState)
         {
-            if (player.ControllerEnabled)
-                player.ChangeState(player.MoveState);
+            //movement input
+            if (inputX != 0)
+            {
+                if (player.ControllerEnabled)
+                {
+                    player.ChangeState(player.MoveState);
+                }
+                else
+                {
+                    if (player.Following)
+                    {
+                        player.ChangeState(player.AIFollowState);
+                    }
+                    else
+                    {
+                        player.ChangeState(player.AIWaitState);
+
+                    }
+                }
+            }
         }
     }
 

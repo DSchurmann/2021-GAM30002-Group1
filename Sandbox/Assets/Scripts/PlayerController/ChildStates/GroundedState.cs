@@ -28,7 +28,10 @@ public class GroundedState : ChildState
     {
         base.Update();
 
-        if(!isExitingState)
+        player.HandlePlatformLanding();
+
+
+        if (!isExitingState)
         {
             // get input for x 
             inputX = player.InputHandler.InputXNormal;
@@ -74,5 +77,6 @@ public class GroundedState : ChildState
         isGrounded = player.CheckIfGrounded();
         isTouchingWall = player.CheckTouchingWall();
     }
+
   
 }

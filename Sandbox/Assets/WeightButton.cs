@@ -3,64 +3,81 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
-public class WeightButton : MonoBehaviour
+public class WeightButton : MonoBehaviour, ITrigger
 {
+    public bool enable;
     public bool triggered;
+    // value needed to trigger something
     public float triggerValue;
-
-    float idlePos;
-
-    public Transform triggeredObject;
-    public float objectIdlePos;
-    public float objTriggeredPos;
+    // platform idle position
+    private float idlePos;
+   
+    // triggered object positions positions
+    [Header("Triggered Object")]
+    public GameObject triggeredObject;
+    private ITriggeredObject toTrigger;
+    private float buttonIdlePos;
+    private float buttonTriggeredPos;
+    // button mode
+    public enum TriggerMode { ONCE, HOLD}
+    public TriggerMode triggerMode;
     
     // Start is called before the first frame update
     void Start()
     {
+        triggerMode = TriggerMode.ONCE;
         idlePos = transform.position.y;
-        objectIdlePos = triggeredObject.position.y;
+        //objectIdlePos = triggeredObject.position.y;
     }
 
     // Update is called once per frame
     void Update()
     {
-        float diff = idlePos - transform.position.y;
-        Debug.Log(diff);
-        if (diff > triggerValue)
-        {
-            triggered = true;
-        }
-        else
-        {
-            triggered = false;
-        }
-
-       /* if (!triggered && triggeredObject.position.y < objectIdlePos)
-        {
-            triggeredObject.DOMoveY(objectIdlePos, 2 * Time.deltaTime);
-        }*/
-
-        if (triggered)
-        {
-            if(triggeredObject.transform.position.y > objTriggeredPos)
-            {
-                triggeredObject.DOMoveY(objTriggeredPos,3);
-                //triggeredObject.transform.position = -triggeredObject.transform.up * Time.deltaTime;
-            }
-        }
-        else
-        {
-            if (triggeredObject.transform.position.y < objectIdlePos)
-            {
-                triggeredObject.DOMoveY(objectIdlePos, 3);
-                //triggeredObject.transform.position = triggeredObject.transform.up * Time.deltaTime;
-            }
-        }
+        if (enable)
+            CheckForPress();
     }
 
-
-    void TriggerObject()
+    // check press value againt trigger value
+    void CheckForPress()
     {
-        triggeredObject.DOMoveY(objTriggeredPos, 2 * Time.deltaTime);
+        float diff = idlePos - transform.position.y;
+
+        if (diff >= triggerValue)
+        {
+            // check switch mode
+            switch(triggerMode)
+            {
+                case TriggerMode.ONCE:
+                    if (!triggered)
+                    {
+                        triggered = true;
+                        SendTrigger();  
+                    }
+                    break;
+
+                case TriggerMode.HOLD:
+                    triggered = true;
+                    SendTrigger();
+                    break;
+            }
+        }
+        else
+        {
+            if(triggered)
+            {
+                triggered = false;
+                SendTriggerReset();
+            }
+        }
     }
+
+    public void SendTrigger()
+    {
+        triggeredObject.GetComponent<ITriggeredObject>()?.Trigger(true);
+    }
+    public void SendTriggerReset()
+    {
+        triggeredObject.GetComponent<ITriggeredObject>()?.Trigger(false);
+    }
+
 }

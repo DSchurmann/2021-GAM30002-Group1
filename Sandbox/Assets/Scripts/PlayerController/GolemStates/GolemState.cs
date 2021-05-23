@@ -7,9 +7,9 @@ public abstract class GolemState:State
     protected new GolemControllerRB player;
 
     protected bool isPosing;
-    // controller input for poses
     protected bool inputPoseRaise;
     protected bool inputPoseStep;
+    protected bool inputWait;
 
     protected GolemState(GolemControllerRB player, string animation) : base(player, animation)
     {
@@ -29,21 +29,67 @@ public abstract class GolemState:State
         base.Update();
 
         // change to pose on input
-        inputPoseRaise = player.InputHandler.InputNorth;
-        inputPoseStep = player.InputHandler.InputWest;
-
-        // player controled input
         if(player.ControllerEnabled)
         {
-            if (inputPoseRaise)
+            inputPoseRaise = player.InputHandler.InputNorth;
+            inputPoseStep = player.InputHandler.InputWest;
+            inputWait = player.InputHandler.InputWait;
+        }
+       
+
+        // player controls input
+
+        // wait controls, tell other player to wait
+      if(!isExitingState)
+        {
+            // enabled player controls
+            if (player.ControllerEnabled)
             {
-                player.ChangeState(player.RaiseAbility);
-            }
-            if (inputPoseStep)
-            {
-                player.ChangeState(player.StepAbility);
+                if (inputWait)
+                {
+                    player.InputHandler.SetWaitFalse();
+                    if (player.Other.Waiting)
+                    {
+                        player.Other.ChangeState((player.Other as ChildControllerRB).AIFollowState);
+                        player.Other.Following = true;
+                        player.Other.Waiting = false;
+                    }
+                    else if (player.Other.Following)
+                    {
+                        player.Other.ChangeState((player.Other as ChildControllerRB).AIWaitState);
+                        player.Other.Following = false;
+                    }
+                }
+                // if not posing, enable pose ability. Handle exiting poses in their states
+                if(!isPosing)
+                {
+                    if (inputPoseRaise)
+                    {
+                        player.ChangeState(player.RaiseAbility);
+                        player.InputHandler.SetNorthFalse();
+                    }
+                    if (inputPoseStep)
+                    {
+                        player.ChangeState(player.StepAbility);
+                        player.InputHandler.SetWestFalse();
+                    }
+                }
+                else
+                {
+                    if (inputPoseRaise)
+                    {
+                        player.ChangeState(player.IdleState);
+                        player.InputHandler.SetNorthFalse();
+                    }
+                    if (inputPoseStep)
+                    {
+                        player.ChangeState(player.IdleState);
+                        player.InputHandler.SetWestFalse();
+                    }
+                }
             }
         }
+      
 
         Perform();
         //Debug.Log(this.GetType().Name + " state updating by delta time");

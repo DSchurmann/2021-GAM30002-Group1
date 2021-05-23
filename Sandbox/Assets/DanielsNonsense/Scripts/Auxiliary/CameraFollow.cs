@@ -67,9 +67,9 @@ public class CameraFollow : MonoBehaviour
         float distX = Mathf.Abs(angle.x);
         float distY = Mathf.Abs(angle.y);
         float distZ = Mathf.Abs(angle.z);
-        //Debug.Log("angle x" + distX);
-        Debug.Log("angle y" + distY);
-        if (distX <= minFollowDistance.x && distX >= 0.1f)
+
+        // follow x axis
+        if (distX <= minFollowDistance.x && distX >= 0.01f)
         {
             //Go go go
             transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, (followSpeed/2) * Time.deltaTime);
@@ -79,6 +79,7 @@ public class CameraFollow : MonoBehaviour
             //Go go go
             transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, followSpeed * Time.deltaTime);
         }
+        // follow y axis
         if (distY <= minFollowDistance.y && distY >= 0.1f)
         {
             //Go go go

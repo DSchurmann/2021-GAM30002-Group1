@@ -14,6 +14,7 @@ public class GolemWaitState:GolemAIState
     public override void Enter()
     {
         base.Enter();
+        player.Waiting = true;
     }
 
     public override void Exit()
@@ -25,13 +26,23 @@ public class GolemWaitState:GolemAIState
     {
         base.Update();
 
-
-        // change state to follow if too far
-        if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > 3)
+        if (!isExitingState)
         {
-            player.ChangeState(player.AIFollowState);
-        }
+            if(player.ControllerEnabled)
+            {
+                player.ChangeState(player.IdleState);
+            }
+            // if following
+            if (player.Following)
+            {
+                // change state to follow if too far 
+                if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
+                {
+                    player.ChangeState(player.AIFollowState);
 
+                }
+            }
+        }
     }
 
     public override void FixedUpdate()

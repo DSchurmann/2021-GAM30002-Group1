@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GolemRaiseState : GolemAbilityState
 {
+
     public GolemRaiseState(GolemControllerRB player, string animation) : base(player, animation)
     {
 

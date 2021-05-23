@@ -6,6 +6,7 @@ public abstract class StateMachine : MonoBehaviour
 {
     public State CurrentState { get; private set; }
     public State PreviousState { get; private set; }
+    public State NextState { get; private set; }
 
 
     // set and enter starting state
@@ -25,6 +26,17 @@ public abstract class StateMachine : MonoBehaviour
 
         CurrentState = newState;
         CurrentState.Enter();
+    }
+
+    public void QueueState(State nextState)
+    {
+        NextState = nextState;
+    }
+    public State UseNextState()
+    {
+        State state = NextState;
+        NextState = null;
+        return state;
     }
 
 }

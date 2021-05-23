@@ -14,7 +14,9 @@ public class AIFollowState : AIState
     public override void Enter()
     {
         base.Enter();
-
+        player.Following = true;
+        if (player.Waiting)
+            player.Waiting = false;
     }
 
     public override void Exit()
@@ -28,8 +30,12 @@ public class AIFollowState : AIState
 
         if (!isExitingState)
         {
+            if(!isGrounded)
+            {
+                player.ChangeState(player.InAirState);
+            }
             // change state to wait if close
-            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) < 3)
+            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) <= player.closeDistance)
             {
                 player.ChangeState(player.AIWaitState);
             }
@@ -58,12 +64,15 @@ public class AIFollowState : AIState
 
     public void FollowProcedure()
     {
+        Debug.Log("FOLLOWING");
         //Get Our Position, Position of Golem
         Vector3 pos = player.transform.position;
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
+
+        // check if not touching ground
         //Check Distance
-        if (Mathf.Abs((pos - targPos).x) > 3)
+        if (Mathf.Abs((pos - targPos).x) > player.closeDistance)
         {
             //Move Towards
             Vector3 angle = (targPos - pos).normalized;
@@ -85,5 +94,8 @@ public class AIFollowState : AIState
 
             player.SetVelocityY(0);
         }
+
+        // check in-air state and apply gravity
+        player.SetVelocityY(player.CurrentVelocity.y * player.jumpInputMultiplier);
     }
 }
