@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
     public Vector3 minFollowDistance;
 
     public enum FollowMode { FOLLOWTARGET, CURRENTPLAYER, LOOKATPAN, LOOKATROTATE}
-    private FollowMode followMode;
+    public FollowMode followMode;
 
     //Start
     private void Start()
@@ -63,7 +63,7 @@ public class CameraFollow : MonoBehaviour
     // follow target;
     private void FollowTarget(Transform targetPlayer)
     {
-        Vector3 angle =  target.position - transform.position;
+        Vector3 angle = targetPlayer.position - transform.position;
         float distX = Mathf.Abs(angle.x);
         float distY = Mathf.Abs(angle.y);
         float distZ = Mathf.Abs(angle.z);
