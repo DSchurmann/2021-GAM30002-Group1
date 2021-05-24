@@ -5,7 +5,7 @@ public class Train : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 10f;
     private float jumpHeight = 7.5f;
-    [SerializeField] private int segment = 0;
+    [SerializeField] private int segment = 3;
     [SerializeField] private float d = 0;
     [SerializeField] private Rail rail;
 
@@ -14,6 +14,7 @@ public class Train : MonoBehaviour
     private CharacterController cc;
 
     public float percentage;
+    public bool flip = true;
 
     private void Start()
     {
@@ -55,17 +56,31 @@ public class Train : MonoBehaviour
         float dist = Vector3.Distance(rail.GetNodePos(segment), pos);
         percentage = dist / startDist;
 
-        d = percentage + (1 * 0.1f);
-        if (percentage > 1 && d > 1)
+        if (!flip)
         {
-            if (segment < rail.NodeLength - 2)
+            d = percentage + (1 * 0.1f);
+        }
+        else
+        {
+            Debug.Log("Going backwards");
+            d = percentage + (-1 * 0.1f);
+        }
+
+        if (d > 0.97f)
+        {
+            Debug.Log("should be changing somehow");
+            if (segment + 1 < rail.NodeLength - 1)
             {
                 percentage = 0;
                 segment++;
                 startDist = Vector3.Distance(pos, rail.GetNodePos(segment + 1));
             }
+            else
+            {
+                flip = !flip;
+            }
         }
-        else if (percentage < 0.06 && d < 0)
+        else if (d < 0.025f)
         {
             if (segment > 0)
             {
@@ -73,7 +88,12 @@ public class Train : MonoBehaviour
                 segment--;
                 startDist = Vector3.Distance(pos, rail.GetNodePos(segment));
             }
+            else
+            {
+                flip = !flip;
+            }
         }
+
 
         //move
         Vector3 catmullD = rail.CatmullMove(segment, d);
