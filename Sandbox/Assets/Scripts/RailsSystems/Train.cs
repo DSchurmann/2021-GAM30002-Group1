@@ -3,6 +3,8 @@
 [RequireComponent(typeof(CharacterController))]
 public class Train : MonoBehaviour
 {
+    private const float TRAIN_INCREMENT_AMOUNT = 0.1f;
+
     [SerializeField] private float moveSpeed = 10f;
     private float jumpHeight = 7.5f;
     [SerializeField] private int segment = 3;
@@ -58,15 +60,16 @@ public class Train : MonoBehaviour
 
         if (!flip)
         {
-            d = percentage + (1 * 0.1f);
+            Debug.Log("Going fowards");
+            d = percentage + TRAIN_INCREMENT_AMOUNT;
         }
         else
         {
             Debug.Log("Going backwards");
-            d = percentage + (-1 * 0.1f);
+            d = percentage - TRAIN_INCREMENT_AMOUNT;
         }
 
-        if (d > 0.97f)
+        if (d > 0.975f)
         {
             Debug.Log("should be changing somehow");
             if (segment + 1 < rail.NodeLength - 1)
@@ -96,10 +99,71 @@ public class Train : MonoBehaviour
 
 
         //move
-        Vector3 catmullD = rail.CatmullMove(segment, d);
+        bool goodMove = false;
         Vector3 catmullP = rail.CatmullMove(segment, percentage);
-        Vector3 offset = catmullD - pos;
+        Vector3 catmullD = catmullP;
+        while (!goodMove)
+        {
+            catmullD = rail.CatmullMove(segment, d);
+            float testDist = Vector3.Distance(catmullD, catmullP);
+            Debug.Log(testDist);
+            Debug.Log((TRAIN_INCREMENT_AMOUNT + TRAIN_INCREMENT_AMOUNT * startDist) / 1.8);
+            //if (testDist < (TRAIN_INCREMENT_AMOUNT + TRAIN_INCREMENT_AMOUNT * startDist) / 1.8)
+            if ((catmullD - pos).magnitude < moveSpeed/10)
+            {
+                Debug.Log("bad dist");
+                if (flip)
+                {
+                    d -= TRAIN_INCREMENT_AMOUNT;
+                    if (d < 0.025f)
+                    {
+                        if (segment > 0)
+                        {
+                            percentage = 1;
+                            segment--;
+                            startDist = Vector3.Distance(pos, rail.GetNodePos(segment));
+                            d = percentage - TRAIN_INCREMENT_AMOUNT;
+                            d = percentage + TRAIN_INCREMENT_AMOUNT;
+                        }
+                        else
+                        {
+                            flip = !flip;
+                        }
+                    }
+                }
+                else
+                {
+                    d += TRAIN_INCREMENT_AMOUNT;
+                    if (d > 0.975f)
+                    {
+                        if (segment + 1 < rail.NodeLength - 1)
+                        {
+                            percentage = 0;
+                            segment++;
+                            startDist = Vector3.Distance(pos, rail.GetNodePos(segment + 1));
+                            d = percentage + TRAIN_INCREMENT_AMOUNT;
+                        }
+                        else
+                        {
+                            flip = !flip;
+                            d = percentage - TRAIN_INCREMENT_AMOUNT;
+                        }
+                    }
+                }
+                Debug.Log(d);
+            }
+            else
+            {
+                goodMove = true;
+            }
+        }
 
+
+
+        Debug.DrawLine(catmullD, pos, new Color(0f, 0f, 1.0f), 1, false);
+        Debug.DrawLine(catmullP, pos, new Color(0f, 1.0f, 0f), 1, false);
+        Debug.DrawLine(catmullD, catmullP, new Color(1.0f, 0f, 0f), 1, false);
+        Vector3 offset = catmullD - pos;
         offset = offset.normalized * moveSpeed;
 
         Vector3 rot = rail.Rotate(segment, 1);
