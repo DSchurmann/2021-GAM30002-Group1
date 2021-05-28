@@ -73,4 +73,10 @@ public class GameController : MonoBehaviour
     {
         SaveSystem.Load(checkpoint);
     }
+
+    public void Quit()
+    {
+        Debug.Log("QUIT");
+        Application.Quit();
+    }
 }
