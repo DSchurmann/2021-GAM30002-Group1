@@ -28,7 +28,7 @@ public class GroundedState : ChildState
     {
         base.Update();
 
-        player.HandlePlatformLanding();
+        //player.HandlePlatformLanding();
 
 
         if (!isExitingState)

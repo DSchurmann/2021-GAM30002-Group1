@@ -280,21 +280,20 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     }
 
 
-
-    private void OnCollisionEnter(Collision collision)
+/*    private void OnCollisionEnter(Collision collision)
     {
 
-       /* colliding = true;
+        colliding = true;
         Debug.Log("Colliding");
         TemptargetPos = targetPos;
         targetPos = transform.position;
-        MovePlatform(0.01f);*/
+        MovePlatform(0.01f);
     }
     private void OnCollisionExit(Collision collision)
     {
-        /*colliding = false;
+        colliding = false;
         Debug.Log("Not colliding");
         targetPos = TemptargetPos;
-        MovePlatform(moveSpeed);*/
-    }
+        MovePlatform(moveSpeed);
+    }*/
 }
