@@ -37,6 +37,28 @@ public class Rail : MonoBehaviour
         return Vector3.Lerp(v1, v2, speed);
     }
 
+    public float ClosestPointOnCatmullRom(Vector3 pt, int seg)
+    { 
+        float aproxSegmentDist = Vector3.Distance(nodes[seg].position, nodes[seg + 1].position);
+
+        int ndivs = Mathf.Max((int)(aproxSegmentDist/0.1f), 10);
+
+        float result = 0;
+        float bestDistance = float.PositiveInfinity;
+        for (int i = 0; i <= ndivs; i++)
+        {
+            float t = (float)i / (float)ndivs;
+            Vector3 checkedPoint = CatmullMove(seg, t);
+            float dist = Vector3.Distance(checkedPoint, pt);
+            if (dist < bestDistance)
+            {
+                bestDistance = dist;
+                result = t;
+            }
+        }
+        return result;
+    }
+
     public Vector3 CatmullMove(int seg, float speed)
     {
         Vector3 p1, p2, p3, p4;
