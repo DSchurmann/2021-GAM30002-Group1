@@ -91,10 +91,10 @@ public class Rail : MonoBehaviour
     {
         for(int i = 0; i < nodes.Length; i++)
         {
-            UnityEditor.Handles.DrawWireCube(nodes[i].position, Vector3.one* NodeSize);
+            //UnityEditor.Handles.DrawWireCube(nodes[i].position, Vector3.one* NodeSize);
             if (i < nodes.Length - 1)
             {
-                UnityEditor.Handles.DrawDottedLine(nodes[i].position, nodes[i + 1].position, NodeSize*4);
+                //UnityEditor.Handles.DrawDottedLine(nodes[i].position, nodes[i + 1].position, NodeSize*4);
             }
         }
 
@@ -108,7 +108,7 @@ public class Rail : MonoBehaviour
                 {
                     f = (float)j / 20;
                 }
-                UnityEditor.Handles.DrawLine(CatmullMove(i, temp), CatmullMove(i, f + 0.05f));
+                //UnityEditor.Handles.DrawLine(CatmullMove(i, temp), CatmullMove(i, f + 0.05f));
                 temp = f;
             }
         }

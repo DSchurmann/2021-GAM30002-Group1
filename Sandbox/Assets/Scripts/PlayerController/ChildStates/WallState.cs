@@ -48,7 +48,8 @@ public class WallState : ChildState
         inputGrab = player.InputHandler.InputInteract;
         inputJump = player.InputHandler.InputJump;
 
-        if(isGrounded && !inputGrab)
+        
+        if (isGrounded && !inputGrab)
         {   // change to idle state if grounded
             player.ChangeState(player.IdleState);
         }

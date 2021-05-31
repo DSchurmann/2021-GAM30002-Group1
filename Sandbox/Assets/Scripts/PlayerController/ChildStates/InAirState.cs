@@ -91,18 +91,18 @@ public class InAirState: ChildState
             player.InputHandler.SetJumpFalse();
             // check for jump while in air
             player.ChangeState(player.JumpState);
-        }
+        }/*
         // change state to wall grab
-        else if (inputGrab && (isTouchingWall || isTouchingWallBehind))
+        else if (isTouchingWall && (isTouchingWall || isTouchingWallBehind))
         {
             Debug.Log("Grab wall");
             player.ChangeState(player.WallGrabState);
-        }
+        }*/
         //change state to wall slide if touching wall
         else if (isTouchingWall && inputX == player.FacingDirection && player.CurrentVelocity.y <= 0)
         {
             // check if touch wall in air
-            player.ChangeState(player.WallSlideState);
+            player.ChangeState(player.WallGrabState);
         }
         else
         {
