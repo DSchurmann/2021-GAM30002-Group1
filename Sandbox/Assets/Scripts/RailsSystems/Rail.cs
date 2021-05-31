@@ -37,11 +37,28 @@ public class Rail : MonoBehaviour
         return Vector3.Lerp(v1, v2, speed);
     }
 
-    public float ClosestPointOnCatmullRom(Vector3 pt, int seg)
-    { 
-        float aproxSegmentDist = Vector3.Distance(nodes[seg].position, nodes[seg + 1].position);
+    public float GetSegmentLength(int seg)
+    {
+        const int resolution = 7;
+        float dist = 0.0f;
+        float incrementAmount = 1.0f / (float)resolution;
+        for (int i = 0; i < resolution; i++)
+        {
+            dist += Vector3.Distance(CatmullMove(seg, incrementAmount * i), CatmullMove(seg, incrementAmount * (i + 1)));
+        }
 
-        int ndivs = Mathf.Max((int)(aproxSegmentDist/0.1f), 10);
+        return dist;
+    }
+
+    public float ClosestPointOnCatmullRom(Vector3 pt, int seg, float accuracy = 0.5f)
+    {
+        // set the height to zero so we only look at the player
+        pt.y = 0;
+
+        //float aproxSegmentDist = Vector3.Distance(nodes[seg].position, nodes[seg + 1].position);
+        float aproxSegmentDist = GetSegmentLength(seg);
+
+        int ndivs = Mathf.Max((int)(aproxSegmentDist / accuracy), 5); // the min is to account for the linear distance if the distance to to close the player.
 
         float result = 0;
         float bestDistance = float.PositiveInfinity;
