@@ -8,7 +8,6 @@ public class TrainController : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 1f;
     [SerializeField] private float jumpSpeed = 1f;
-    private float jumpHeight = 7.5f;
 
     private Rigidbody rb;
     private Train train;

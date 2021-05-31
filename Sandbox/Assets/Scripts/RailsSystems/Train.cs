@@ -26,11 +26,11 @@ public class Train : MonoBehaviour
         // get the position of the train
         Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
 
+        GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
 
         // check if player is not currenly connected to a rail
         if (!isConnectedtoRail)
         {
-            GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
             foreach (GameObject railObject in railObjects)
             {
                 Rail r = railObject.GetComponent<Rail>();
@@ -52,19 +52,31 @@ public class Train : MonoBehaviour
         }
 
         // jump rails
-        if (VelocityZ != 0)
+        foreach (GameObject railObject in railObjects)
         {
-            GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
-            foreach (GameObject railObject in railObjects)
+            Rail r = railObject.GetComponent<Rail>();
+
+            // skip if refering to ourselves of the rail has a lower Priority
+            if (r == rail || r.Priority < rail.Priority)
+                continue;
+
+
+            if (r.Priority > rail.Priority)
             {
-                Rail r = railObject.GetComponent<Rail>();
-
-                if (r == rail)
-                    continue;
-
+                // rail is within range
+                if (r.IsRailWithinRange(pos, railSeekRange, false))
+                {
+                    rail = r;
+                    segment = rail.GetSegmentOfClosestPoint(pos);
+                    break;
+                }
+            }
+            else if (VelocityZ != 0)
+            {
                 // rail is within range
                 if (r.IsRailWithinRange(pos, railSeekRange))
                 {
+                    // use dot product to ensure key press is in the right direction
                     float dot = Vector3.Dot(Vector3.forward * VelocityZ, r.ClosestPointOnCatmullRom(pos) - pos);
                     if (dot > 0)
                     {
