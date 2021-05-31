@@ -6,61 +6,12 @@ public class Train : MonoBehaviour
     // the distance to move along the rail in each step
     private const float TRAIN_INCREMENT_DIST = 0.6f;
 
-    private TrainInputs inputs;
-
-    [SerializeField] private float moveSpeed = 1f;
-    [SerializeField] private float jumpSpeed = 1f;
-    private float jumpHeight = 7.5f;
     [SerializeField] private int segment = 3;
     [SerializeField] private Rail rail;
 
-    private Rigidbody rb;
-
-    private Vector3 curVecity;
-
     private float percentage;
 
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        inputs = GetComponent<TrainInputs>();
-
-        curVecity = new Vector3();
-    }
-
-     public bool CheckIfGrounded()
-    {
-        const float GroundDistance = 0.5f;
-        return Physics.Raycast(transform.position, -Vector3.up, GroundDistance + 0.1f);
-    }
-
-    private void Update()
-    {
-        if(!rail)
-        {
-            return;
-        }
-
-        curVecity = rb.velocity;
-
-        Vector3 workingVelocity = new Vector3();
-        workingVelocity = MoveX(moveSpeed * inputs.Movement.x);
-
-        // check to jump
-        if (CheckIfGrounded() && inputs.Jump)
-        {
-            workingVelocity.y = jumpSpeed;
-        }
-        else
-        {
-            workingVelocity.y = curVecity.y;
-        }
-
-        // Update the velocity
-        rb.velocity = workingVelocity;
-    }
-
-    private Vector3 MoveX(float velocityX)
+    public Vector3 MoveX(float velocityX)
     {
         // get the position of the train
         Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
