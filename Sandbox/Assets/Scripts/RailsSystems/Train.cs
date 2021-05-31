@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 
 [RequireComponent(typeof(Rigidbody))]
 public class Train : MonoBehaviour
@@ -11,6 +12,7 @@ public class Train : MonoBehaviour
     private bool isConnectedtoRail = false;
     private Vector2 dir;
 
+    [SerializeField] private Rail[] ExludeRails;
     [SerializeField] private float railSeekRange = 0.2f;
 
     private float percentage;
@@ -34,6 +36,8 @@ public class Train : MonoBehaviour
             foreach (GameObject railObject in railObjects)
             {
                 Rail r = railObject.GetComponent<Rail>();
+                if (ExludeRails.Contains(r))
+                    continue;
                 // rail is within range
                 if (r.IsRailWithinRange(pos, railSeekRange, false))
                 {
@@ -57,9 +61,8 @@ public class Train : MonoBehaviour
             Rail r = railObject.GetComponent<Rail>();
 
             // skip if refering to ourselves of the rail has a lower Priority
-            if (r == rail || r.Priority < rail.Priority)
+            if (r == rail || r.Priority < rail.Priority || ExludeRails.Contains(r))
                 continue;
-
 
             if (r.Priority > rail.Priority)
             {
