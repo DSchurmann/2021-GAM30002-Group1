@@ -30,7 +30,7 @@ public class TrainController : MonoBehaviour
         curVecity = rb.velocity;
 
         Vector3 workingVelocity = new Vector3();
-        workingVelocity = train.MoveX(moveSpeed * inputs.Movement.x);
+        workingVelocity = train.MoveX(moveSpeed * inputs.Movement.x, inputs.Movement.y);
 
         // check to jump
         if (CheckIfGrounded() && inputs.Jump)

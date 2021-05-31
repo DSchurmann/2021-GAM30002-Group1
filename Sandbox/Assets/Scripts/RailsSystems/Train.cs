@@ -6,17 +6,79 @@ public class Train : MonoBehaviour
     // the distance to move along the rail in each step
     private const float TRAIN_INCREMENT_DIST = 0.6f;
 
-    [SerializeField] private int segment = 3;
-    [SerializeField] private Rail rail;
+    private int segment = -1;
+    private Rail rail;
+    private bool isConnectedtoRail = false;
+    private Vector2 dir;
+
+    [SerializeField] private float railSeekRange = 0.2f;
 
     private float percentage;
 
-    public Vector3 MoveX(float velocityX)
+    private void Start()
+    {
+        dir = Vector2.right;
+
+    }
+
+    public Vector3 MoveX(float velocityX, float VelocityZ = 0)
     {
         // get the position of the train
         Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
+
+
+        // check if player is not currenly connected to a rail
+        if (!isConnectedtoRail)
+        {
+            GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
+            foreach (GameObject railObject in railObjects)
+            {
+                Rail r = railObject.GetComponent<Rail>();
+                // rail is within range
+                if (r.IsRailWithinRange(pos, railSeekRange, false))
+                {
+                    rail = r;
+                    segment = rail.GetSegmentOfClosestPoint(pos);
+                    isConnectedtoRail = true;
+                    break;
+                }
+            }
+
+            // if still not connected to a rail move in direction dir
+            if (!isConnectedtoRail)
+            {
+                return dir.normalized * velocityX;
+            }
+        }
+
+        // jump rails
+        if (VelocityZ != 0)
+        {
+            GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
+            foreach (GameObject railObject in railObjects)
+            {
+                Rail r = railObject.GetComponent<Rail>();
+
+                if (r == rail)
+                    continue;
+
+                // rail is within range
+                if (r.IsRailWithinRange(pos, railSeekRange))
+                {
+                    float dot = Vector3.Dot(Vector3.forward * VelocityZ, r.ClosestPointOnCatmullRom(pos) - pos);
+                    if (dot > 0)
+                    {
+                        rail = r;
+                        segment = rail.GetSegmentOfClosestPoint(pos);
+                        break;
+                    }
+                }
+            }
+        }
+
+        
         // get percentage of the distance of the player in the current segment
-        percentage = rail.ClosestPointOnCatmullRom(pos, segment);
+        percentage = rail.ClosestPointOnCatmullRomAsPercent(pos, segment);
         // get the position of the train along the segment
         Vector3 catmullP = rail.CatmullMove(segment, percentage);
 
@@ -31,15 +93,14 @@ public class Train : MonoBehaviour
 
         // move the target
         float targetPercentage = percentage + Mathf.Sign(velocityX) * incremenmtAmount;
-        Debug.Log("test");
-        Debug.Log(percentage);
-        Debug.Log(targetPercentage);
 
         if (targetPercentage > 1.0f)
         {
             if (rail.NodeLength - 1 == segment + 1)
             {
+                // at the end of the rail disconnect
                 targetPercentage = 1.0f;
+                isConnectedtoRail = false;
             }
             else
             {
@@ -51,7 +112,9 @@ public class Train : MonoBehaviour
         {
             if (0 == segment)
             {
+                // at the start of the rail disconnect
                 targetPercentage = 0.0f;
+                isConnectedtoRail = false;
             }
             else
             {

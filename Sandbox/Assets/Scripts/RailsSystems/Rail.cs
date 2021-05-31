@@ -7,6 +7,7 @@ public class Rail : MonoBehaviour
     [Header("Node Properties")]
     [Range(0.1f,1f)]
     public float NodeSize = 0.25f;
+    public int Priority = 0;
 
     private Transform[] nodes;
 
@@ -50,7 +51,104 @@ public class Rail : MonoBehaviour
         return dist;
     }
 
-    public float ClosestPointOnCatmullRom(Vector3 pt, int seg, float accuracy = 0.5f)
+    public int GetSegmentOfClosestPoint(Vector3 pt, float accuracy = 0.5f)
+    {
+        int nodeOfClosestPoint = 0;
+        float bestDistance = float.PositiveInfinity;
+
+        for (int seg = 0; seg < nodes.Length - 1; seg++)
+        {
+            float aproxSegmentDist = GetSegmentLength(seg);
+
+            int ndivs = Mathf.Max((int)(aproxSegmentDist / accuracy), 5); // the min is to account for the linear distance if the distance to to close the player.
+            
+            for (int i = 0; i <= ndivs; i++)
+            {
+                float t = (float)i / (float)ndivs;
+                Vector3 checkedPoint = CatmullMove(seg, t);
+                float dist = Vector3.Distance(checkedPoint, pt);
+                if (dist < bestDistance)
+                {
+                    bestDistance = dist;
+                    nodeOfClosestPoint = seg;
+                }
+            }
+        }
+
+        return nodeOfClosestPoint;
+    }
+
+    public bool IsRailWithinRange(Vector3 pt, float range, bool includeEnds = true, float accuracy = 0.5f)
+    {
+        Vector3 closestPoint = ClosestPointOnCatmullRom(pt);
+
+        if (!includeEnds)
+        {
+            // check if closest point is either of the ends
+            if (closestPoint == nodes[0].position || closestPoint == nodes[NodeLength - 1].position)
+            {
+                return false;
+            }
+        }
+
+        float dist = Vector3.Distance(closestPoint, pt);
+        return dist <= range;
+    }
+
+    public Vector3 ClosestPointOnCatmullRom(Vector3 pt, float accuracy = 0.5f)
+    {
+        Vector3 closestPoint = new Vector3();
+        float bestDistance = float.PositiveInfinity;
+
+        for (int seg = 0; seg < nodes.Length - 1; seg++)
+        {
+            float aproxSegmentDist = GetSegmentLength(seg);
+
+            int ndivs = Mathf.Max((int)(aproxSegmentDist / accuracy), 5); // the min is to account for the linear distance if the distance to to close the player.
+
+            for (int i = 0; i <= ndivs; i++)
+            {
+                float t = (float)i / (float)ndivs;
+                Vector3 checkedPoint = CatmullMove(seg, t);
+                float dist = Vector3.Distance(checkedPoint, pt);
+                if (dist < bestDistance)
+                {
+                    bestDistance = dist;
+                    closestPoint = checkedPoint;
+                }
+            }
+        }
+
+        return closestPoint;
+    }
+
+    public Vector3 ClosestPointOnCatmullRom(Vector3 pt, int seg, float accuracy = 0.5f)
+    {
+        // set the height to zero so we only look at the player
+        pt.y = 0;
+
+        //float aproxSegmentDist = Vector3.Distance(nodes[seg].position, nodes[seg + 1].position);
+        float aproxSegmentDist = GetSegmentLength(seg);
+
+        int ndivs = Mathf.Max((int)(aproxSegmentDist / accuracy), 5); // the min is to account for the linear distance if the distance to to close the player.
+
+        Vector3 result = new Vector3();
+        float bestDistance = float.PositiveInfinity;
+        for (int i = 0; i <= ndivs; i++)
+        {
+            float t = (float)i / (float)ndivs;
+            Vector3 checkedPoint = CatmullMove(seg, t);
+            float dist = Vector3.Distance(checkedPoint, pt);
+            if (dist < bestDistance)
+            {
+                bestDistance = dist;
+                result = checkedPoint;
+            }
+        }
+        return result;
+    }
+
+    public float ClosestPointOnCatmullRomAsPercent(Vector3 pt, int seg, float accuracy = 0.5f)
     {
         // set the height to zero so we only look at the player
         pt.y = 0;
