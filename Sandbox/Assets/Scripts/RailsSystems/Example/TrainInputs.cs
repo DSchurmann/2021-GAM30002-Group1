@@ -31,7 +31,7 @@ public class TrainInputs : MonoBehaviour
         // jump released
         if (ctx.canceled)
         {
-            Jump = true;
+            Jump = false;
         }
     }
 }

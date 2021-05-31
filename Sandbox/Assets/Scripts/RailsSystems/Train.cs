@@ -9,11 +9,14 @@ public class Train : MonoBehaviour
     private TrainInputs inputs;
 
     [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float jumpSpeed = 1f;
     private float jumpHeight = 7.5f;
     [SerializeField] private int segment = 3;
     [SerializeField] private Rail rail;
 
     private Rigidbody rb;
+
+    private Vector3 curVecity;
 
     private float percentage;
 
@@ -21,6 +24,8 @@ public class Train : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         inputs = GetComponent<TrainInputs>();
+
+        curVecity = new Vector3();
     }
 
      public bool CheckIfGrounded()
@@ -36,7 +41,7 @@ public class Train : MonoBehaviour
             return;
         }
 
-
+        curVecity = rb.velocity;
 
         Vector3 workingVelocity = new Vector3();
         workingVelocity = MoveX(moveSpeed * inputs.Movement.x);
@@ -44,7 +49,11 @@ public class Train : MonoBehaviour
         // check to jump
         if (CheckIfGrounded() && inputs.Jump)
         {
-
+            workingVelocity.y = jumpSpeed;
+        }
+        else
+        {
+            workingVelocity.y = curVecity.y;
         }
 
         // Update the velocity
