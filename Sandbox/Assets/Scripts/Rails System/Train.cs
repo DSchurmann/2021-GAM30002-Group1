@@ -13,7 +13,7 @@ public class Train : MonoBehaviour
     private Vector2 dir;
 
     [SerializeField] private Rail[] ExludeRails;
-    [SerializeField] private float railSeekRange = 0.2f;
+    [SerializeField] private float railSeekRange = 2f;
 
     private float percentage;
 
