@@ -8,6 +8,7 @@ public class Rail : MonoBehaviour
     [Range(0.1f, 1f)]
     public float NodeSize = 0.25f;
     public int Priority = 0;
+    public bool enable = true;
 
     private Transform[] nodes;
 
@@ -80,6 +81,9 @@ public class Rail : MonoBehaviour
 
     public bool IsRailWithinRange(Vector3 pt, float range, bool includeEnds = true, float accuracy = 0.5f)
     {
+        if (!enable)
+            return false;
+
         Vector3 closestPoint = ClosestPointOnCatmullRom(pt, accuracy);
 
         if (!includeEnds)

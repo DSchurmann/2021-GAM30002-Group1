@@ -20,11 +20,15 @@ public class GolemAbilityState:GolemState
         base.Enter();
         // reset check for if ability is finished
         isAbilityFinished = false;
+
+        player.transform.Find("Rail").GetComponent<Rail>().enable = false;
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        player.transform.Find("Rail").GetComponent<Rail>().enable = true;
     }
 
     public override void Update()
