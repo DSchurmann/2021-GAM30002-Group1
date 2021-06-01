@@ -99,6 +99,7 @@ public class PlayerControllerRB : StateMachine
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
+        Train = GetComponent<Train>();
         // set facing direction
         FacingDirection = 1;
 
