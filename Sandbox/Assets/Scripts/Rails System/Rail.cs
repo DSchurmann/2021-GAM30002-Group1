@@ -91,7 +91,7 @@ public class Rail : MonoBehaviour
 
             // check if closest point is either of the ends
             Vector3 negateY = new Vector3(1, 0, 1);
-            if (closestPoint == nodes[0].position || closestPoint == nodes[NodeLength - 1].position)
+            if (closestPoint == Vector3.Scale(nodes[0].position, negateY) || closestPoint == Vector3.Scale(nodes[NodeLength-1].position, negateY))
             {
                 Debug.Log("end");
                 return false;
