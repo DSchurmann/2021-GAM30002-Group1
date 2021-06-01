@@ -28,7 +28,7 @@ public class GolemMoveState:GolemGroundedState
         // Check for direction flip
         player.CheckForFlip(inputX);
         // Set player movement velocity
-        player.SetVelocityX(player.MovementSpeed * inputX);
+        player.SetVelocityX(player.MovementSpeed * inputX, inputY);
         // Set player to idle state if stop moving
         if (inputX == 0f && !isExitingState)
         {
