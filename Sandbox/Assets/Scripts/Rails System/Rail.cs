@@ -80,13 +80,20 @@ public class Rail : MonoBehaviour
 
     public bool IsRailWithinRange(Vector3 pt, float range, bool includeEnds = true, float accuracy = 0.5f)
     {
-        Vector3 closestPoint = ClosestPointOnCatmullRom(pt);
+        Vector3 closestPoint = ClosestPointOnCatmullRom(pt, accuracy);
 
         if (!includeEnds)
         {
+            Debug.Log("endPoints");
+            Debug.Log(closestPoint);
+            Debug.Log(nodes[0].position);
+            Debug.Log(nodes[NodeLength - 1].position);
+
             // check if closest point is either of the ends
+            Vector3 negateY = new Vector3(1, 0, 1);
             if (closestPoint == nodes[0].position || closestPoint == nodes[NodeLength - 1].position)
             {
+                Debug.Log("end");
                 return false;
             }
         }

@@ -40,6 +40,7 @@ public class Train : MonoBehaviour
                 // rail is within range
                 if (r.IsRailWithinRange(pos, railSeekRange, false))
                 {
+                    Debug.Log("connect");
                     rail = r;
                     segment = rail.GetSegmentOfClosestPoint(pos);
                     isConnectedtoRail = true;
@@ -114,7 +115,25 @@ public class Train : MonoBehaviour
             {
                 // at the end of the rail disconnect
                 targetPercentage = 1.0f;
-                isConnectedtoRail = false;
+                foreach (GameObject railObject in railObjects)
+                {
+                    Rail r = railObject.GetComponent<Rail>();
+                    if (r == rail || ExludeRails.Contains(r))
+                        continue;
+                    // rail is within range
+                    if (r.IsRailWithinRange(pos, railSeekRange))
+                    {
+                        rail = r;
+                        segment = rail.GetSegmentOfClosestPoint(pos);
+                        isConnectedtoRail = true;
+                        break;
+                    }
+                    else
+                    {
+                        isConnectedtoRail = false;
+                    }
+                }
+                
             }
             else
             {
@@ -128,7 +147,25 @@ public class Train : MonoBehaviour
             {
                 // at the start of the rail disconnect
                 targetPercentage = 0.0f;
-                isConnectedtoRail = false;
+                foreach (GameObject railObject in railObjects)
+                {
+                    Rail r = railObject.GetComponent<Rail>();
+                    if (r == rail || ExludeRails.Contains(r))
+                        continue;
+                    // rail is within range
+                    if (r.IsRailWithinRange(pos, railSeekRange))
+                    {
+                        
+                        rail = r;
+                        segment = rail.GetSegmentOfClosestPoint(pos);
+                        isConnectedtoRail = true;
+                        break;
+                    }
+                    else
+                    {
+                        isConnectedtoRail = false;
+                    }
+                }
             }
             else
             {

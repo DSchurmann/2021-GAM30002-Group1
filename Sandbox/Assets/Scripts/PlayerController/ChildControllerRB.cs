@@ -92,6 +92,9 @@ public class ChildControllerRB : PlayerControllerRB
         base.Flip();
         //flip sprite
         transform.Rotate(0.0f, 180.0f, 0, 0f);
+
+        // exclude rail in trainsform
+        transform.Find("Rail").transform.Rotate(0.0f, -180.0f, 0, 0f);
     }
     #endregion
 }
