@@ -15,6 +15,7 @@ public class AIWaitState: AIState
     {
         base.Enter();
         player.Waiting = true;
+        GameController.GH.UH.waiting = (true);
     }
 
     public override void Exit()
