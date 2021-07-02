@@ -9,7 +9,12 @@ public class GameController : MonoBehaviour
     public PlayerSave SaveSystem;
     
     public PlayerControllerRB childObj;
+    public Vector3 childAudioPos;
     public PlayerControllerRB golemObj;
+    public Vector3 golemAudioPos;
+
+    public GameObject uiHandler;
+    public UIHandler UH;
 
     // checkpoint save
     private SerializablePlayerSave checkpoint = new SerializablePlayerSave();
@@ -36,6 +41,10 @@ public class GameController : MonoBehaviour
         // save game, setting initial checkpoint
         if(CurrentPlayer()!=null)
             SaveGame();
+
+        //Set UIHandler
+        uiHandler = GameObject.Find("UI");
+        UH = uiHandler.GetComponent<UIHandler>();
     }
 
     // Update is called once per frame
@@ -47,6 +56,10 @@ public class GameController : MonoBehaviour
             saved = true;
             SaveGame();
         }
+
+        //Set Positions (As Audio Sources)
+        childAudioPos = childObj.transform.position;
+        golemAudioPos = golemObj.transform.position;
     }
 
     // Get current player

@@ -19,7 +19,7 @@ public class PlayerInputHandler : MonoBehaviour
     // Switch player input
     public bool InputSwitch { get; private set; }
     // Ability A input
-    public bool InputNorth{ get; private set; }
+    public bool InputNorth { get; private set; }
     // Ability B input
     public bool InputSouth { get; private set; }
     // Ability C input
@@ -45,11 +45,23 @@ public class PlayerInputHandler : MonoBehaviour
         CheckJumpHold();
         //CheckInteractHold();
         //CheckSwitchHold();
+
+        //If in cutscene
+        if (Director.D != null && Director.D.inCutscene)
+        {
+            RawMovementInput = Director.D.movPos;
+            InputXNormal = (int)(RawMovementInput * Vector2.right).normalized.x;
+            InputYNormal = (int)(RawMovementInput * Vector2.up).normalized.y;
+        }
     }
 
     //Get Movement Input
     public void GetMovementInput(InputAction.CallbackContext ctx)
     {
+        //Do Thing
+        if (Director.D != null && Director.D.inCutscene)
+            return;
+
         RawMovementInput = ctx.ReadValue<Vector2>();
         InputXNormal = (int)(RawMovementInput * Vector2.right).normalized.x;
         InputYNormal = (int)(RawMovementInput * Vector2.up).normalized.y;
@@ -58,6 +70,10 @@ public class PlayerInputHandler : MonoBehaviour
     //Get Jump Input
     public void GetJumpInput(InputAction.CallbackContext ctx)
     {
+        //Do Thing
+        if (Director.D != null && Director.D.inCutscene)
+            return;
+
         // Jump pressed
         if (ctx.started)
         {
@@ -65,8 +81,8 @@ public class PlayerInputHandler : MonoBehaviour
             InputJumpStopped = false;
             jumpTimer = Time.time;
         }
-       // jump released
-        if(ctx.canceled)
+        // jump released
+        if (ctx.canceled)
         {
             InputJumpStopped = true;
         }
@@ -77,7 +93,7 @@ public class PlayerInputHandler : MonoBehaviour
     // Check jump delay
     private void CheckJumpHold()
     {
-        if(Time.time >= jumpTimer + inputHoldTime)
+        if (Time.time >= jumpTimer + inputHoldTime)
         {
             InputJump = false;
         }
@@ -86,6 +102,10 @@ public class PlayerInputHandler : MonoBehaviour
     //Get Interact Input
     public void GetInteractInput(InputAction.CallbackContext ctx)
     {
+        //Do Thing
+        if (Director.D != null && Director.D.inCutscene)
+            return;
+
         if (ctx.started)
         {
             InputInteract = true;
@@ -93,12 +113,12 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (ctx.canceled)
         {
-           InputInteract = false;
+            InputInteract = false;
         }
     }
     // Set interact to false
     public void SetInteractFalse() => InputInteract = false;
-    
+
     // Check input hold
     private void CheckInteractHold()
     {
@@ -111,6 +131,10 @@ public class PlayerInputHandler : MonoBehaviour
     //Get Wait Input
     public void GetWaitInput(InputAction.CallbackContext ctx)
     {
+        //Do Thing
+        if (Director.D != null && Director.D.inCutscene)
+            return;
+
         // Input pressed
         if (ctx.started)
         {
@@ -119,7 +143,7 @@ public class PlayerInputHandler : MonoBehaviour
         // Input released
         if (ctx.canceled)
         {
-            InputWait= false;
+            InputWait = false;
         }
     }
     public void SetWaitFalse() => InputWait = false;
@@ -127,6 +151,10 @@ public class PlayerInputHandler : MonoBehaviour
     // Get Switch Input
     public void GetSwitchInput(InputAction.CallbackContext ctx)
     {
+        //Do Thing
+        if (Director.D != null && Director.D.inCutscene)
+            return;
+
         // Switch player pressed
         if (ctx.started)
         {
@@ -159,11 +187,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             InputNorth = true;
         }
-       /* // Input released
-        if (ctx.canceled)
-        {
-            InputNorth = false;
-        }*/
+        /* // Input released
+         if (ctx.canceled)
+         {
+             InputNorth = false;
+         }*/
     }
     public void SetNorthFalse() => InputNorth = false;
 
@@ -175,11 +203,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             InputSouth = true;
         }
-       /* // Input released
-        if (ctx.canceled)
-        {
-            InputSouth = false;
-        }*/
+        /* // Input released
+         if (ctx.canceled)
+         {
+             InputSouth = false;
+         }*/
     }
     public void SetSouthFalse() => InputSouth = false;
     // east button input
@@ -191,10 +219,10 @@ public class PlayerInputHandler : MonoBehaviour
             InputEast = true;
         }
         // Input released
-      /*  if (ctx.canceled)
-        {
-            InputEast = false;
-        }*/
+        /*  if (ctx.canceled)
+          {
+              InputEast = false;
+          }*/
     }
     public void SetEastFalse() => InputEast = false;
     // west button input
@@ -206,10 +234,10 @@ public class PlayerInputHandler : MonoBehaviour
             InputWest = true;
         }
         // Input released
-       /* if (ctx.canceled)
-        {
-            InputWest = false;
-        }*/
+        /* if (ctx.canceled)
+         {
+             InputWest = false;
+         }*/
     }
     public void SetWestFalse() => InputWest = false;
 }

@@ -16,6 +16,7 @@ public class GolemRaiseState : GolemAbilityState
     {
         base.Enter();
         isPosing = true;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Golem/GolemPose", GameController.GH.golemAudioPos);
     }
 
     public override void Exit()
