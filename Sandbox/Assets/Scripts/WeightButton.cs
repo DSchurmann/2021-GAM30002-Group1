@@ -10,7 +10,8 @@ public class WeightButton : MonoBehaviour, ITrigger
     // value needed to trigger something
     public float triggerValue;
     // platform idle position
-    private float idlePos;
+    private Vector3 idlePos;
+    private float idlePosY;
    
     // triggered object positions positions
     [Header("Triggered Object")]
@@ -25,8 +26,9 @@ public class WeightButton : MonoBehaviour, ITrigger
     // Start is called before the first frame update
     void Start()
     {
-        triggerMode = TriggerMode.ONCE;
-        idlePos = transform.position.y;
+        //triggerMode = TriggerMode.ONCE;
+        idlePos = transform.position;
+        idlePosY = transform.position.y;
         //objectIdlePos = triggeredObject.position.y;
     }
 
@@ -37,10 +39,20 @@ public class WeightButton : MonoBehaviour, ITrigger
             CheckForPress();
     }
 
+    public void ConstrainHeight()
+    {
+        if(transform.position.y > idlePosY)
+        {
+            Vector3 pos = transform.position;
+            pos.y = idlePosY;
+            GetComponent<Rigidbody>().position = idlePos;
+        }
+    }
+
     // check press value againt trigger value
     void CheckForPress()
     {
-        float diff = idlePos - transform.position.y;
+        float diff = idlePosY - transform.position.y;
 
         if (diff >= triggerValue)
         {

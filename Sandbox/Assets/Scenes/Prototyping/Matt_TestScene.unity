@@ -1040,7 +1040,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SaveSystem: {fileID: 135109315}
   childObj: {fileID: 148529362}
+  childAudioPos: {x: 0, y: 0, z: 0}
   golemObj: {fileID: 1373422738}
+  golemAudioPos: {x: 0, y: 0, z: 0}
+  uiHandler: {fileID: 0}
+  UH: {fileID: 0}
 --- !u!82 &135109317
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2015,6 +2019,7 @@ MonoBehaviour:
   targetOffset: {x: 0, y: 0, z: 0}
   followSpeed: 8
   minFollowDistance: {x: 3, y: 50.21, z: 0}
+  panTarget: {x: 0, y: 0, z: 0}
   followMode: 0
 --- !u!1001 &407318393
 PrefabInstance:
@@ -6854,11 +6859,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6457358272977859797, guid: d833d79f662754b4cacaa61b88fc7b36, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 17.26
+      value: 9.74
       objectReference: {fileID: 0}
     - target: {fileID: 6457358272977859797, guid: d833d79f662754b4cacaa61b88fc7b36, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.069
+      value: -4.687
       objectReference: {fileID: 0}
     - target: {fileID: 6457358272977859797, guid: d833d79f662754b4cacaa61b88fc7b36, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7313,8 +7318,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1196300634}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 23.133522, y: 4.7, z: -4.65}
-  m_LocalScale: {x: 1.5567603, y: 4.0083094, z: 2}
+  m_LocalPosition: {x: 13.1, y: 1.22, z: -4.56}
+  m_LocalScale: {x: 0.9664991, y: 4.0083094, z: 2.6301444}
   m_Children:
   - {fileID: 662178403}
   m_Father: {fileID: 229694121}

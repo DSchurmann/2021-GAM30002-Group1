@@ -87,6 +87,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             case TriggerMode.HOLD:
                 if (triggered)
                 {
+                    targetPos = endPos;
                     MovePlatform(moveSpeed);
                 }
                 else
@@ -96,6 +97,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                         Vector3 temp = startPos;
                         targetPos = startPos;
                         MovePlatform(fallSpeed);
+                        triggered = false;
                     }
 
                     /*if (transform.position != startPos)
