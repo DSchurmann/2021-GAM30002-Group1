@@ -277,8 +277,8 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     public void Trigger(bool value)
     {
         triggered = value;
-        if(triggered)
-            Debug.Log("Triggered to open: " + this.GetType().Name);
+       /* if(triggered)
+            Debug.Log("Triggered to open: " + this.GetType().Name);*/
     }
 
 

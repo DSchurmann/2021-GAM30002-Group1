@@ -116,7 +116,7 @@ public class PlayerControllerRB : StateMachine
         if(CurrentState!=null)
         {
             CurrentState.Update();
-            Debug.Log(this.GetType().Name + ":  " + CurrentState.GetType().Name);
+            //Debug.Log(this.GetType().Name + ":  " + CurrentState.GetType().Name);
         }
 
         if(NextState!=null)
