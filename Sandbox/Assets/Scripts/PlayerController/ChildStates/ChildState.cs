@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ChildState:State
+public abstract class ChildState: PlayerState
 {
     protected new ChildControllerRB player;
     protected bool switchedPlayer;
@@ -90,6 +90,11 @@ public abstract class ChildState:State
     public override void Perform()
     {
 
+    }
+
+    public override bool AnimationComplete()
+    {
+        return base.AnimationComplete();
     }
 }
 

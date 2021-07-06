@@ -121,7 +121,8 @@ public class PlayerControllerRB : StateMachine
 
         if(NextState!=null)
         {
-            if(CurrentState.AnimationComplete())
+            PlayerState state = (PlayerState)CurrentState;
+            if(state.AnimationComplete())
             {
                 ChangeState(UseNextState());
             }

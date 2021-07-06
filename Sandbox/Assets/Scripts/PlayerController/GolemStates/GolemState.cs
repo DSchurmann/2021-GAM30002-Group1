@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GolemState:State
+public abstract class GolemState: PlayerState
 {
     protected new GolemControllerRB player;
 
@@ -113,6 +113,11 @@ public abstract class GolemState:State
     public override void Perform()
     {
 
+    }
+
+    public override bool AnimationComplete()
+    {
+        return base.AnimationComplete();
     }
 }
 
