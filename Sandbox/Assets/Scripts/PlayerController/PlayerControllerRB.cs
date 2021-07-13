@@ -44,6 +44,7 @@ public class PlayerControllerRB : StateMachine
     public float wallJumpTime = 0.4f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
     public bool isTouchingWall;
+    public bool isGrounded;
     [Header("Follow State")]
     [Range(0.0f, 1.0f)]
     public float closeDistance = 2f;
@@ -110,6 +111,7 @@ public class PlayerControllerRB : StateMachine
     // Update is called once per frame
     public virtual void Update()
     {
+        isGrounded = CheckIfGrounded();
         // keep record of current velocity
         CurrentVelocity = RB.velocity;
         // update current state
