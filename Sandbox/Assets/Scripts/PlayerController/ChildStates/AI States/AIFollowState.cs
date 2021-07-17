@@ -96,7 +96,7 @@ public class AIFollowState : AIState
             player.SetVelocityY(0);
         }
 
-        // check in-air state and apply gravity
+        // set y velocity, apply jumpInputMultipler for press-depended jump height
         player.SetVelocityY(player.CurrentVelocity.y * player.jumpInputMultiplier);
     }
 }
