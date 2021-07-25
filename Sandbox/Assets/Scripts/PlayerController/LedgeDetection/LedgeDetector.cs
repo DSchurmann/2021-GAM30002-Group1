@@ -1,131 +1,233 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-[ExecuteInEditMode]
-public class LedgeDetector : MonoBehaviour
+//[ExecuteInEditMode]
+public class LedgeDetector
 {
     // public components
-    protected ChildControllerRB player;
+    public Transform player;
     public Collider collider;
-    // public bools
-    public bool detectLedges;
-    public bool EdgeFound;
-    // public Vectors
-    public Vector3 EdgePoint;
-    public Vector3 TargetPosition;
-    // public ledge types
-    public bool Vaultable;
-    public float vaultDistance;
 
-    //public variablies
-    [SerializeField]
-    public float lengthDown = 1;
-    // private player variables
-    private bool isTouchingWall;
-    private bool isLedgeFound;
+    public bool ledgeFound;
+    public Vector3 ledgePosition;
+
+    public float[] originForward;
+    public float[] originDown;
+    public float lengthForward = 0.5f;
+    public float lengthDown = 2;
 
 
-    private void Start()
+    public LedgeDetector(Transform player, float[] originsForward, float[] originsDown)
     {
         // get componenets
-        player = GetComponent<ChildControllerRB>();
-        collider = GetComponent<Collider>();
-        // get player variables
-        isTouchingWall = player.CheckTouchingWall();
+        this.player = player;
+        collider = player.GetComponent<Collider>();
+
+        originForward = originsForward;
+        originDown = originsDown;
     }
 
-    private void Update()
+    public bool HeightCheck(Vector3 origin, float height)
     {
-        DetectLedges();
-
-        // check for ledges if player touching wall
-        if (isTouchingWall)
+        RaycastHit heightHit;
+        if(Physics.Raycast(origin, Vector3.up, out heightHit, height))
         {
-            DetectLedges();
+            Debug.DrawLine(ledgePosition, heightHit.point, Color.red);
+            //Debug.Log(heightHit.collider.gameObject.name);
+            return false;
         }
-
+        Debug.DrawLine(ledgePosition, ledgePosition + Vector3.up * height, Color.cyan);
+        return true;
     }
 
-    private void DetectLedges()
+    public bool[] TouchingWall()
     {
-        if (detectLedges)
+        // create hits array
+        bool[] hits = new bool[originForward.Length];
+        RaycastHit[] racastHitsForward = new RaycastHit[originForward.Length];
+
+        // create the rays
+        List<Ray> raysForward = new List<Ray>();
+
+        for (int i = 0; i < originForward.Length; i++)
         {
-            float lengthForward = player.wallCheckDistance;
-            Vector3 originForward = player.wallCheck.position;
-            Vector3 dirForward = Vector3.zero;
-            Vector3 originDown1 = Vector3.zero;
-            Vector3 originDown2 = Vector3.zero;
+            RaycastHit hit = new RaycastHit();
+            Ray ray = new Ray();
+            float rayLength = lengthForward;
+            ray.origin = player.position + Vector3.up * originForward[i];
+            ray.direction = player.forward * lengthForward;
+            raysForward.Add(ray);
 
-
-            // set forward direction from player facing direction
-            if (player.FacingDirection == 0)
+            // add hit to array
+            hits[i] = Physics.Raycast(ray, out hit, rayLength);
+            racastHitsForward[i] = hit;
+            // draw ray result
+            if (hits[i] == true)
             {
-                dirForward = Vector3.right;
+                Debug.DrawLine(ray.origin, hit.point, Color.red);
+                Debug.Log(hit.collider.name + "  IS THE MYSTERY ITEM!");
             }
             else
             {
-                dirForward = Vector3.right * player.FacingDirection;
+                Debug.DrawRay(ray.origin, ray.direction * rayLength, Color.green);
             }
-            // sat raycast variables
-            RaycastHit hitForward;
-            RaycastHit hitDown;
-            RaycastHit hitDownVaultCheck;
 
-            //Debug.DrawRay(player.wallCheck.position + new Vector3(0,-0.5f,0), Vector3.right * (player.FacingDirection * player.wallCheckDistance), Color.blue);
-            //Debug.DrawLine(originForward, dirForward * lengthForward);
-            if (Physics.Raycast(originForward, dirForward, out hitForward, lengthForward))
+        }
+
+        // if hit wall
+        if (hits.Length > 0)
+        {
+            bool wallVault = hits[0] && !hits[1] && !hits[2];
+            bool wallClimb = hits[1] && !hits[2];
+            bool wallJumpClimb = hits[2];
+
+
+            if (!wallVault && !wallClimb && !wallJumpClimb)
             {
-                originDown1 = new Vector3(hitForward.point.x, hitForward.point.y + 2, hitForward.point.z);
-                originDown2 = player.wallCheck.position + player.transform.TransformDirection(new Vector3(0.0f, collider.bounds.size.y + 0.25f, vaultDistance));
+                ledgeFound = false;
+                ledgePosition = Vector3.zero;
+            }
 
-                Debug.DrawRay(player.wallCheck.position, Vector3.right * (player.FacingDirection * player.wallCheckDistance), Color.blue);
-                if (Physics.Raycast(originDown1, Vector3.down, out hitDown, lengthDown))
+            //Debug.Log(ColourConsoleText(canVault, "VAULT") + "    " + ColourConsoleText(canClimb, "CLIMB") + "    " + ColourConsoleText(canJumpClimb, "JUMP"));
+
+
+            // check wall vault hit
+            if (wallVault)
+            {
+                List<Ray> raysDown = new List<Ray>();
+
+                RaycastHit hit;
+                Ray ray = new Ray();
+                float rayLength = lengthDown;
+                ray.origin = raysForward[1].origin + raysForward[1].direction * lengthForward;
+                //ray.origin = raysForward[1].origin + raysForward[1].direction * lengthForward + (Vector3.up * originDown[0]);
+                ray.direction = -player.up * lengthDown;
+                raysDown.Add(ray);
+
+                bool heightCheck = Physics.Raycast(ray, out hit, rayLength);
+
+                if (heightCheck)
                 {
-                    //Debug.DrawLine(originForward, hitForward.point, Color.red);
-                    //Debug.DrawLine(originDown, hitDown.point, Color.red);
-                    Debug.DrawRay(originDown1, Vector3.down * lengthDown, Color.blue);
-                    Vector3 pos1 = hitForward.point;
-                    Vector3 pos2 = hitDown.point;
-                    TargetPosition = hitDown.point;
+                    ledgeFound = true;
+                    Debug.DrawLine(ray.origin, hit.point, Color.red);
+                    //Debug.DrawRay(racastHitsForward[0].point, hit.point, Color.cyan);
+                    Vector3 pos1 = racastHitsForward[0].point;
+                    Vector3 pos2 = hit.point;
 
                     pos1.y = pos2.y;
 
-                    EdgePoint = new Vector3(pos1.x, pos2.y, pos1.z);
-                    EdgeFound = true;
-
-                    //Debug.DrawLine(EdgePoint, hitDown.point, Color.red);
-                    //Debug.DrawLine(hitForward.point, EdgePoint, Color.red);
-
-                   /* if (Physics.Raycast(originDown2, Vector3.down, out hitDownVaultCheck, lengthDown))
-                    {
-                        if ((hitDown.point.y - hitDownVaultCheck.point.y) < 0.5f)
-                        {
-                            Debug.DrawLine(originDown2, hitDownVaultCheck.point, Color.red);
-                            Vaultable = false;
-                        }
-                        else
-                        {
-                            Debug.DrawLine(originDown2, hitDownVaultCheck.point, Color.green);
-                            Vaultable = true;
-                        }
-                    }
-                    else
-                    {
-                        Vaultable = false;
-                    }*/
+                    Vector3 EdgePoint = new Vector3(pos1.x, pos2.y, pos1.z);
+                    ledgePosition = EdgePoint;
+                    Debug.DrawLine(EdgePoint, hit.point, Color.blue);
+                    Debug.DrawLine(racastHitsForward[0].point, pos1, Color.blue);
                 }
                 else
                 {
-                    EdgePoint = Vector3.zero;
-                    EdgeFound = false;
+                    ledgeFound = false;
+                    ledgePosition = Vector3.zero;
                 }
+
+                //Debug.DrawRay(raysForward[1].origin + raysForward[1].direction * lengthForward, Vector3.down * lengthDown, Color.red);
             }
-            else
+
+            // check wall climb hit
+            if (wallClimb)
             {
-                EdgePoint = Vector3.zero;
-                EdgeFound = false;
+                List<Ray> raysDown = new List<Ray>();
+
+                RaycastHit hit;
+                Ray ray = new Ray();
+                float rayLength = lengthDown;
+                //ray.origin = raysForward[1].origin + raysForward[1].direction * lengthForward;
+                ray.origin = raysForward[2].origin + raysForward[2].direction * lengthForward;
+                ray.direction = -player.up * lengthDown;
+                raysDown.Add(ray);
+
+                bool heightCheck = Physics.Raycast(ray, out hit, rayLength);
+
+                if (heightCheck)
+                {
+                    ledgeFound = true;
+                    Debug.DrawLine(ray.origin, hit.point, Color.red);
+                    //Debug.DrawRay(racastHitsForward[0].point, hit.point, Color.cyan);
+                    Vector3 pos1 = racastHitsForward[1].point;
+                    Vector3 pos2 = hit.point;
+
+                    pos1.y = pos2.y;
+
+                    Vector3 EdgePoint = new Vector3(pos1.x, pos2.y, pos1.z);
+                    ledgePosition = EdgePoint;
+                    Debug.DrawLine(EdgePoint, hit.point, Color.cyan);
+                    Debug.DrawLine(racastHitsForward[1].point, pos1, Color.cyan);
+                }
+                else
+                {
+                    ledgeFound = false;
+                    ledgePosition = Vector3.zero;
+                }
+
+                //Debug.DrawRay(raysForward[1].origin + raysForward[1].direction * lengthForward, Vector3.down * lengthDown, Color.red);
+            }
+
+            // check wall jump climb hit
+            if (wallJumpClimb)
+            {
+                List<Ray> raysDown = new List<Ray>();
+
+                RaycastHit hit;
+                Ray ray = new Ray();
+                float rayLength = lengthDown;
+                //ray.origin = raysForward[2].origin + raysForward[2].direction * lengthForward;
+                ray.origin = raysForward[2].origin + raysForward[2].direction * lengthForward + (Vector3.up * originDown[0]);
+                ray.direction = -player.up * lengthDown;
+                raysDown.Add(ray);
+
+                bool heightCheck = Physics.Raycast(ray, out hit, rayLength);
+
+                if (heightCheck)
+                {
+                    ledgeFound = true;
+                    //Debug.DrawLine(ray.origin, hit.point, Color.red);
+                    //Debug.DrawRay(racastHitsForward[0].point, hit.point, Color.cyan);
+                    Vector3 pos1 = racastHitsForward[2].point;
+                    Vector3 pos2 = hit.point;
+
+                    pos1.y = pos2.y;
+
+                    Vector3 EdgePoint = new Vector3(pos1.x, pos2.y, pos1.z);
+                    ledgePosition = EdgePoint;
+                    Debug.DrawLine(EdgePoint, hit.point, Color.white);
+                    Debug.DrawLine(racastHitsForward[2].point, pos1, Color.white);
+                    
+                }
+                else
+                {
+                    ledgeFound = false;
+                    ledgePosition = Vector3.zero;
+                }
+
+                //Debug.DrawRay(raysForward[1].origin + raysForward[1].direction * lengthForward, Vector3.down * lengthDown, Color.red);
             }
         }
+        return hits;
     }
+
+    string ColourConsoleText(bool result, string text)
+    {
+        string newString = "";
+        if (result)
+        {
+            newString = string.Format("<color=#00ff00>{0}</color>", text);
+        }
+        else
+        {
+            newString = string.Format("<color=#ff0000>{0}</color>", text);
+        }
+
+        return newString;
+    }
+
+
 }

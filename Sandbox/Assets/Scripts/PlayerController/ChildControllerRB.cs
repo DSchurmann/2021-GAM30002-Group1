@@ -7,16 +7,19 @@ public class ChildControllerRB : PlayerControllerRB
 {
     // states
     #region States
-    // player controlled states
+    // player controlled movement states
     public IdleState IdleState { get; private set; }
     public MoveState MoveState { get; private set; }
     public JumpState JumpState { get; private set; }
     public InAirState InAirState { get; private set; }
     public LandState LandState { get; private set; }
     public AttackState AttackState { get; private set; }
+    // player Wall states
     public WallSlideState WallSlideState { get; private set; }
     public WallGrabState WallGrabState { get; private set; }
     public WallClimbState WallClimbState { get; private set; }
+    public WallGrabLedgeState WallGrabLedgeState { get; private set; }
+    public WallClimbLedgeState WallClimbLedgeState { get; private set; }
     public WallJumpState WallJumpState { get; private set; }
     // player AI states
     public AIFollowState AIFollowState { get; private set; }
