@@ -32,6 +32,9 @@ public class ClimbingController : MonoBehaviour
 
     protected bool inputInteract;
 
+    // climbing properties
+    public float MaxDistanceToLedge_WallClimb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,20 +63,20 @@ public class ClimbingController : MonoBehaviour
 
         if(isTouchingWall)
         {
-            if(ledgeDetector.TouchingWall().Length>0)
+            if(ledgeDetector.TouchingWall().Length>0 && ledgeDetector.HeightCheck(ledgeDetector.ledgePosition, 2))
             {
                 bool[] hits = ledgeDetector.TouchingWall();
 
-                canVault = hits[0] && !hits[1] && !hits[2];
-                canClimb = hits[1] && !hits[2];
-                canJumpClimb = hits[2];
+                canVault = hits[0] && !hits[1] && !hits[2] && ledgeFound;
+                canClimb = hits[1] && !hits[2] && ledgeFound;
+                canJumpClimb = hits[2] && ledgeFound;
 
                 //Debug.Log(ColourConsoleText(canVault, "VAULT") + "    " + ColourConsoleText(canClimb, "CLIMB") + "    " + ColourConsoleText(canJumpClimb, "JUMP"));
 
             }
         }
 
-        if(inputInteract)
+        /*if(inputInteract)
         {
             if (canVault)
             {
@@ -90,10 +93,10 @@ public class ClimbingController : MonoBehaviour
                 Climb();
             }
             inputInteract = false;
-        }
+        }*/
 
-        if (ledgeDetector != null && ledgeFound)
-            ledgeDetector.HeightCheck(ledgeDetector.ledgePosition, 2);
+       /* if (ledgeDetector != null && ledgeFound)
+            ledgeDetector.HeightCheck(ledgeDetector.ledgePosition, 2);*/
 
     }
 
@@ -123,19 +126,35 @@ public class ClimbingController : MonoBehaviour
     {
         isClimbing = true;
 
-        Vector3 jumpPos = transform.position + transform.up * 1f;
-        Vector3 landingPos = ledgeDetector.ledgePosition;
+        Vector3 jumpPos = (transform.position + transform.forward * 0.5f);
+        Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * 0.15f); //+ (transform.up * 0.5f);
         Vector3 distance = landingPos - transform.position;
 
         //GetComponent<CharacterController>().Move(distance);
-        _rb.DOJump(landingPos, 0.1f, 1, 0.3f).OnComplete(FinishClimb);
-        GetComponent<Animator>().SetBool("ClimbUp", true);
+        _rb.DOMove(landingPos, 0.6f).OnComplete(FinishClimb);
+        //GetComponent<Animator>().SetBool("ClimbUp", true);
+    }
+
+    public IEnumerator ClimbUp()
+    {
+        float time = 0;
+        int secs = 0;
+        int max = 3;
+        while(secs < max)
+        {
+            time += Time.deltaTime;
+
+            secs = (int)time % 60;
+            Debug.Log(secs);
+        }
+
+        yield return null;
     }
 
     void FinishClimb()
     {
         isClimbing = false;
-        GetComponent<Animator>().SetBool("ClimbUp", false);
+        //GetComponent<Animator>().SetBool("ClimbUp", false);
     }
 
 

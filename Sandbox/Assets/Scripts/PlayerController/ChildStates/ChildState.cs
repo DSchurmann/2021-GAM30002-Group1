@@ -60,8 +60,13 @@ public abstract class ChildState: PlayerState
                 {
                     // change to attack state
                     //player.InputHandler.SetInteractFalse();
-                    //player.ChangeState(player.AttackState);
+                    player.ChangeState(player.AttackState);
 
+                }
+
+                if(player.GetComponent<ClimbingController>().canClimb)
+                {
+                    player.ChangeState(player.WallClimbLedgeState);
                 }
             }
         }

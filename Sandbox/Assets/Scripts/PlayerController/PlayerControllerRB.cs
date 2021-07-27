@@ -7,6 +7,8 @@ public class PlayerControllerRB : StateMachine
 {
     // other character reference
     public PlayerControllerRB Other;
+    [SerializeField]
+
    /* [Header("Movement")]
     [Range(0.1f, 10.0f)]
     public float SwitchPlayerDelay = 1f;*/
@@ -121,9 +123,11 @@ public class PlayerControllerRB : StateMachine
             //Debug.Log(this.GetType().Name + ":  " + CurrentState.GetType().Name);
         }
 
+        // change to next state, when animation complete
         if(NextState!=null)
         {
             PlayerState state = (PlayerState)CurrentState;
+           
             if(state.AnimationComplete())
             {
                 ChangeState(UseNextState());

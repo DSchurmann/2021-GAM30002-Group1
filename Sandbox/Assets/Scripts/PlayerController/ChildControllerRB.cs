@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class ChildControllerRB : PlayerControllerRB
 {
+    public string _CurrentState;
     // states
     #region States
     // player controlled movement states
@@ -42,7 +43,11 @@ public class ChildControllerRB : PlayerControllerRB
         WallJumpState = new WallJumpState(this, "Jump");
         AIWaitState = new AIWaitState(this, "Idle");
         AIFollowState = new AIFollowState(this, "Movement");
-       
+
+        WallClimbLedgeState = new WallClimbLedgeState(this, "LedgeClimb");
+        WallGrabLedgeState = new WallGrabLedgeState(this, "LedgeHang");
+
+
     }
 
     // Start is called before the first frame update
@@ -70,6 +75,8 @@ public class ChildControllerRB : PlayerControllerRB
     public override void Update()
     {
         base.Update();
+
+        _CurrentState = CurrentState.GetType().Name;
     }
 
     public override void FixedUpdate()

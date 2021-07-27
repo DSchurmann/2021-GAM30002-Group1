@@ -28,10 +28,16 @@ public class WallClimbState : WallState
         base.Update();
 
         HoldPosition(true, false);
-        // apply climbing velocity based on input value
-        player.SetVelocityY(player.wallClimbSpeed *inputY);
+        // check for distance to ledge ledge, apply climbing velocity based on input value
 
-        if(!isWallClimbable && !isExitingState)
+        if (!player.GetComponent<ClimbingController>().canJumpClimb)
+        {
+           
+
+        }
+        player.SetVelocityY(player.wallClimbSpeed * inputY);
+
+        if (!isWallClimbable && !isExitingState)
         {
             player.ChangeState(player.WallSlideState);
         }
