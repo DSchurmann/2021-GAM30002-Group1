@@ -21,7 +21,7 @@ public class RatEnemyState : EnemyState
     // Update is called once per frame
     public override void Update()
     {
-        
+        base.Update();
     }
 
 

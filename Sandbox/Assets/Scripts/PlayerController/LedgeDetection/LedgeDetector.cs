@@ -67,7 +67,6 @@ public class LedgeDetector
             if (hits[i] == true)
             {
                 Debug.DrawLine(ray.origin, hit.point, Color.red);
-                Debug.Log(hit.collider.name + "  IS THE MYSTERY ITEM!");
             }
             else
             {

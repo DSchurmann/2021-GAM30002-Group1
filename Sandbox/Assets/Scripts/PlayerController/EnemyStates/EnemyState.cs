@@ -26,7 +26,7 @@ public class EnemyState : State
     // Update is called once per frame
     public override void Update()
     {
-        
+        base.Update();
     }
 
     public virtual bool AnimationComplete()

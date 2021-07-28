@@ -8,6 +8,8 @@ public class EnemyControllerRB : PlayerControllerRB
     public string _currentState;
     public NavMeshAgent nav;
 
+    public Transform target;
+
     public override void Awake()
     {
         base.Awake();
