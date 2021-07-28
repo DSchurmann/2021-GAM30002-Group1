@@ -5,7 +5,7 @@ using UnityEngine;
 public class Stat
 {
     [SerializeField] private StatType type;
-    private float currentValue;
+    [SerializeField] private float currentValue;
     [SerializeField] private float maxValue;
 
     public Stat()

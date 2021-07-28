@@ -29,8 +29,30 @@ public class StatManager : MonoBehaviour
         return result;
     }
 
+    public Stat GetStatType(StatType type)
+    {
+        Stat result = null;
+        foreach (Stat s in stats)
+        {
+            if (s.Type == type)
+                return s;
+        }
+        return result;
+    }
+
     public List<Stat> GetStats
     {
         get { return stats; }
+    }
+
+    public bool HasStat(StatType type)
+    {
+        foreach (Stat s in stats)
+        {
+            if (s.Type == type)
+                return true;
+        }
+
+        return false;
     }
 }

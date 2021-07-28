@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class PlayerWeapon : MonoBehaviour
 {
-
-    public float damage;
-
+    public float attackDamage;
 
     // Start is called before the first frame update
     void Start()
@@ -20,13 +18,4 @@ public class PlayerWeapon : MonoBehaviour
         
     }
 
-    public void HitEnemy()
-    {
-
-    }
-
-    public void Animation_DetectWeaponHit()
-    {
-        Debug.Log("HIT WITH WEAPON!");
-    }
 }

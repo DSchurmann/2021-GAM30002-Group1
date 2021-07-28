@@ -23,12 +23,15 @@ public class RatChargeState : RatEnemyState
     {
         base.Update();
 
-        if (DistanceXZ(enemy.target) < minimumDistance)
-            enemy.nav.isStopped = true;
-        else
+        if(enemy.nav.isActiveAndEnabled)
         {
-            enemy.nav.isStopped = false;
-            enemy.nav.SetDestination(enemy.target.transform.position);
+            if (DistanceXZ(enemy.target) < minimumDistance)
+                enemy.nav.isStopped = true;
+            else
+            {
+                enemy.nav.isStopped = false;
+                enemy.nav.SetDestination(enemy.target.transform.position);
+            }
         }
           
     }

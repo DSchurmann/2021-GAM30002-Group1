@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2482718369687365338}
   - component: {fileID: 2482718369687365339}
   - component: {fileID: 2482718369687365336}
+  - component: {fileID: 3425845551610483457}
   m_Layer: 0
   m_Name: Stick
   m_TagString: Untagged
@@ -90,8 +91,20 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2482718369687365337}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3425845551610483457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2482718369687365337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e093a1274f984ec41b145a38be12e040, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
