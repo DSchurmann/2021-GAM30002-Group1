@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RatIdleState : EnemyState
+public class RatIdleState : RatEnemyState
 {
-    public RatIdleState(EnemyControllerRB enemy, string animation) : base(enemy, animation)
+    public RatIdleState(RatControllerRB enemy, string animation) : base(enemy, animation)
     {
+        this.enemy = enemy;
     }
 
     public override void Enter()
     {
         base.Enter();
+
+        enemy.ChangeState(enemy.RatChargeState);
+
     }
 
     public override void Update()

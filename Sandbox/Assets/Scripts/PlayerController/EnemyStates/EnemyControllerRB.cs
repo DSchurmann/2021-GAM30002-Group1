@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyControllerRB : PlayerControllerRB
 {
     public string _currentState;
-
+    public NavMeshAgent nav;
 
     public override void Awake()
     {
@@ -16,6 +17,8 @@ public class EnemyControllerRB : PlayerControllerRB
     {
         base.Start();
         ControllerEnabled = false;
+
+        nav = GetComponent<NavMeshAgent>();
     }
 
     // Update and FixedUpdate function

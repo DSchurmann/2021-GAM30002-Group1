@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RatWanderState : EnemyState
+public class RatWanderState : RatEnemyState
 {
-    public RatWanderState(EnemyControllerRB enemy, string animation) : base(enemy, animation)
+    public RatWanderState(RatControllerRB enemy, string animation) : base(enemy, animation)
     {
     }
 

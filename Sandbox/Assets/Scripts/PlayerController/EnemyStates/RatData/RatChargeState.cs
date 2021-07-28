@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RatChargeState : EnemyState
+public class RatChargeState : RatEnemyState
 {
-    public RatChargeState(EnemyControllerRB enemy, string animation) : base(enemy, animation)
+    public RatChargeState(RatControllerRB enemy, string animation) : base(enemy, animation)
     {
     }
 
@@ -17,6 +17,8 @@ public class RatChargeState : EnemyState
     public override void Update()
     {
         base.Update();
+
+        enemy.nav.SetDestination(GameObject.Find("ChildObj").transform.position);
     }
 
     public override void Perform()
