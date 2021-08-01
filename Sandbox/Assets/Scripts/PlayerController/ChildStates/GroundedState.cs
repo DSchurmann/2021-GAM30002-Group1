@@ -5,6 +5,7 @@ using UnityEngine;
 public class GroundedState : ChildState
 {
     protected int inputX;
+    protected int inputY;
     protected bool  inputJump;
     protected bool  inputGrab;
     protected bool  isGrounded;
@@ -33,8 +34,9 @@ public class GroundedState : ChildState
 
         if (!isExitingState)
         {
-            // get input for x 
+            // get input for x and y
             inputX = player.InputHandler.InputXNormal;
+            inputY = player.InputHandler.InputYNormal;
             // get input for jump
             inputJump = player.InputHandler.InputJump;
             inputGrab = player.InputHandler.InputInteract;

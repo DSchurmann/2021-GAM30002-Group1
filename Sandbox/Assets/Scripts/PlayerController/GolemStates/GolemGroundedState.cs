@@ -5,6 +5,7 @@ using UnityEngine;
 public class GolemGroundedState:GolemState
 {
     protected int inputX;
+    protected int inputY;
     protected bool isGrounded;
     protected bool isTouchingWall;
 
@@ -31,8 +32,9 @@ public class GolemGroundedState:GolemState
 
         if (!isExitingState)
         {
-            // get input for x 
+            // get input for x and y
             inputX = player.InputHandler.InputXNormal;
+            inputY = player.InputHandler.InputYNormal;
         }
     }
 

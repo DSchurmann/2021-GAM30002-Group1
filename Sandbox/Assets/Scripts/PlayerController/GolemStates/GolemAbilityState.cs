@@ -20,11 +20,19 @@ public class GolemAbilityState:GolemState
         base.Enter();
         // reset check for if ability is finished
         isAbilityFinished = false;
+
+        // choose the straight path to follow
+        GolemRailController railController = GameObject.Find("RailControl").GetComponent<GolemRailController>();
+        railController.SetRailStaight(true);
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        // choose the bendy path to follow
+        GolemRailController railController = GameObject.Find("RailControl").GetComponent<GolemRailController>();
+        railController.SetRailStaight(false);
     }
 
     public override void Update()

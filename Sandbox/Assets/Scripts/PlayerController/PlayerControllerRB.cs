@@ -67,6 +67,7 @@ public class PlayerControllerRB : StateMachine
     public Rigidbody RB { get; protected set; }
     public Collider Collider { get; protected set; }
     public Animator Anim { get; protected set; }
+    public Train Train { get; protected set; }
     #endregion
     // other variables
     #region Other Variables
@@ -77,11 +78,11 @@ public class PlayerControllerRB : StateMachine
     // player controlled
     public bool CanSwitch { get; set; }
     // current vecocity
-    public Vector2 CurrentVelocity { get; protected set; }
+    public Vector3 CurrentVelocity { get; protected set; }
     // facing direcion
     public int FacingDirection { get; protected set; }
     // work vector for calculation
-    private Vector2 workVector;
+    private Vector3 workVector;
     #endregion
     // Awake and Start functions
     #region Start Functions
@@ -99,6 +100,7 @@ public class PlayerControllerRB : StateMachine
         InputHandler = GetComponent<PlayerInputHandler>();
         RB = GetComponent<Rigidbody>();
         Collider = GetComponent<Collider>();
+        Train = GetComponent<Train>();
         // set facing direction
         FacingDirection = 1;
 
@@ -163,23 +165,34 @@ public class PlayerControllerRB : StateMachine
     public void SetVelocity(float velocity, Vector2 angle, int direction)
     {
         angle.Normalize();
-        workVector.Set(angle.x * velocity * direction, angle.y * velocity);
+        workVector = Train.MoveX(angle.x * velocity * direction);
+        workVector.y = angle.y * velocity;
         RB.velocity = workVector;
         CurrentVelocity = workVector;
     }
     // set velocity of x 
-    public void SetVelocityX(float velocity)
+    public void SetVelocityX(float velocityX, float velocityZ = 0f)
     {
-        workVector.Set(velocity, CurrentVelocity.y);
+        workVector = Train.MoveX(velocityX, velocityZ);
+        workVector.y = CurrentVelocity.y;
         RB.velocity = workVector;
         CurrentVelocity = workVector;
     }
     // set velocity of y 
     public void SetVelocityY(float velocity)
     {
-        workVector.Set(CurrentVelocity.x, velocity);
+        workVector.Set(CurrentVelocity.x, velocity, CurrentVelocity.z);
         RB.velocity = workVector;
         CurrentVelocity = workVector;
+    }
+
+    public void SetRailedVelocity(Vector2 velocity)
+    {
+        Vector3 tempVelocity;
+        tempVelocity = Train.MoveX(velocity.x);
+        tempVelocity.y = velocity.y;
+        RB.velocity = tempVelocity;
+        CurrentVelocity = tempVelocity;
     }
     #endregion
     // functions that check
