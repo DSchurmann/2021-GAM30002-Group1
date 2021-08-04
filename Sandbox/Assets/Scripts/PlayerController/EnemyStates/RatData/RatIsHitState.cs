@@ -8,11 +8,11 @@ public class RatIsHitState : RatEnemyState
     {
 
     }
-
    
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("ENEMY HIT");    
     }
   
 

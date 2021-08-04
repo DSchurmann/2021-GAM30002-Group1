@@ -15,7 +15,7 @@ public class RatChargeState : RatEnemyState
     {
         base.Enter();
 
-        minimumDistance = 2;
+        minimumDistance = 1.5f;
     }
 
   
@@ -25,15 +25,17 @@ public class RatChargeState : RatEnemyState
 
         if(enemy.nav.isActiveAndEnabled)
         {
-            if (DistanceXZ(enemy.target) < minimumDistance)
-                enemy.nav.isStopped = true;
-            else
-            {
-                enemy.nav.isStopped = false;
-                enemy.nav.SetDestination(enemy.target.transform.position);
-            }
-        }
+            enemy.nav.SetDestination(enemy.target.transform.position);
           
+        }
+
+        if (DistanceXZ(enemy.target) < minimumDistance)
+            enemy.nav.speed = 0;
+        else
+        {
+            enemy.nav.speed = enemy.MovementSpeed;
+
+        }
     }
 
     public override void Perform()

@@ -39,28 +39,30 @@ public class EnemyControllerRB : PlayerControllerRB
     #endregion
 
 
-    public void TakeDamage(float value)
+    public virtual void TakeDamage(float value)
     {
         GetComponent<StatManager>().GetStatType(StatType.health).MinusValue(value);
     }
 
     public void KnockBack(Transform hitObj)
     {
-        var magnitude = 10;
+        var magnitude = 1;
         var force = transform.position - target.transform.position;
         force.Normalize();
         GetComponent<Rigidbody>().AddForce(force * magnitude, ForceMode.Impulse);
     }
 
-    public void HandleHit(Collider other)
+    public virtual void HandleHit(Collider other)
     {
         // hit by player weapon
         if(other.gameObject.GetComponent<PlayerWeapon>()!= null)
         {
+            Debug.Log("hit by player weapon");
             nav.isStopped = true;
             float hitValue = other.gameObject.GetComponent<PlayerWeapon>().attackDamage;
             TakeDamage(hitValue);
-            KnockBack(other.transform);
+            //ChangeState(ish)
+            //KnockBack(other.transform);
         }
     }
 

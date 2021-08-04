@@ -11,6 +11,7 @@ public class RatControllerRB : EnemyControllerRB
     public RatAttackState RatAttackState { get; private set; }
     public RatIdleState RatIdleState { get; private set; }
     public RatChargeState RatChargeState { get; private set; }
+    public RatIsHitState RatIsHitState { get; private set; }
 
     public override void Awake()
     {
@@ -21,6 +22,7 @@ public class RatControllerRB : EnemyControllerRB
         RatAttackState = new RatAttackState(this, "Attack");
         RatIdleState = new RatIdleState(this, "Idle");
         RatChargeState = new RatChargeState(this, "Charge");
+        RatIsHitState = new RatIsHitState(this, "Hit");
     }
 
     // Start is called before the first frame update
