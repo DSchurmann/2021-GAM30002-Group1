@@ -7,28 +7,12 @@ public class DrawRailPath : MonoBehaviour
 {
 #if UNITY_EDITOR
     [SerializeField] private Color colour;
-    [SerializeField] private Rail rail;
     [SerializeField] private List<GameObject> nodes = new List<GameObject>();
 
     private void Awake()
     {
         runInEditMode = true;
-        Transform[] child = GetComponentsInChildren<Transform>();
-        //if there are nodes, add game object to list
-        if (child != null)
-        {
-            foreach (Transform t in child)
-            {
-                if (t != transform)
-                {
-                    nodes.Add(t.gameObject);
-                }
-            }
-        }
-    }
-
-    private void Start()
-    {
+        nodes.Clear();
         Transform[] child = GetComponentsInChildren<Transform>();
         //if there are nodes, add game object to list
         if (child != null)
@@ -45,10 +29,18 @@ public class DrawRailPath : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        foreach(GameObject n in nodes)
+        {
+            if(n == null)
+            {
+                nodes.Remove(n);
+            }
+        }
+
         Gizmos.color = colour;
 
         //draw the curve that the characters will traverse
-        for (int i = 0; i < rail.NodeLength - 1; i++)
+        for (int i = 0; i < nodes.Count - 1; i++)
         {
             float temp = 0;
             for (int j = 0; j < 20; j++)
@@ -104,11 +96,6 @@ public class DrawRailPath : MonoBehaviour
             + (-p1.z + 3.0f * p2.z - 3.0f * p3.z + p4.z) * t3);
 
         return new Vector3(x, 0, z);
-    }
-
-    public Rail SetRail
-    {
-        set { rail = value; }
     }
 
     public Color Colour

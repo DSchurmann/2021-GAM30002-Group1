@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DrawNode: MonoBehaviour
 {
-    private Color colour;
+    [SerializeField] private Color colour;
     [SerializeField] private float nodeSize = 1f;
     
     private void Start()
@@ -24,8 +24,9 @@ public class DrawNode: MonoBehaviour
         set { colour = value; }
     }
 
-    public float SetNodeSize
+    public float NodeSize
     {
+        get { return nodeSize; }
         set { nodeSize = value; }
     }
 }
