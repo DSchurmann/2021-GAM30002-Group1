@@ -70,7 +70,7 @@ public class GameController : MonoBehaviour
         if (childObj.ControllerEnabled) { return childObj; }
         else
         {
-            Debug.LogError("NO CURRENT PLAYER");
+            //Debug.LogError("NO CURRENT PLAYER");
             return null;
         }
     }
