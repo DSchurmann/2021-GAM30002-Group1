@@ -107,10 +107,10 @@ public class Rail : MonoBehaviour
 
         if (!includeEnds)
         {
-            Debug.Log("endPoints");
+            /*Debug.Log("endPoints");
             Debug.Log(closestPoint);
             Debug.Log(nodes[0].position);
-            Debug.Log(nodes[NodeLength - 1].position);
+            Debug.Log(nodes[NodeLength - 1].position);*/
 
             // check if closest point is either of the ends
             Vector3 negateY = new Vector3(1, 0, 1);
@@ -255,8 +255,8 @@ public class Rail : MonoBehaviour
 
     //Onscreen display for editor
 
-    //private void OnDrawGizmos()
-    private void OnDrawGizmosSelected()
+    private void OnDrawGizmos()
+    //private void OnDrawGizmosSelected()
     {
         if(drawNodes)
         {

@@ -17,10 +17,13 @@ public class Train : MonoBehaviour
 
     private float percentage;
 
+    int dirInput = 0;
+
     private void Start()
     {
         dir = Vector2.right;
     }
+
 
     public Vector3 MoveX(float velocityX, float VelocityZ = 0)
     {
@@ -38,70 +41,16 @@ public class Train : MonoBehaviour
 
         GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
 
-        // check if player is not currenly connected to a rail
+        GetRail(pos, railObjects);
+      
+
+        // if still not connected to a rail move in direction dir
         if (!isConnectedtoRail)
         {
-            foreach (GameObject railObject in railObjects)
-            {
-                Rail r = railObject.GetComponent<Rail>();
-                if (ExludeRails.Contains(r))
-                    continue;
-                // rail is within range
-                if (r.IsRailWithinRange(pos, railSeekRange, false))
-                {
-                    Debug.Log("connect");
-                    rail = r;
-                    segment = rail.GetSegmentOfClosestPoint(pos);
-                    isConnectedtoRail = true;
-                    break;
-                }
-            }
-
-            // if still not connected to a rail move in direction dir
-            if (!isConnectedtoRail)
-            {
-                return dir.normalized * velocityX;
-            }
+            return dir.normalized * velocityX;
         }
 
-
-
-        // jump rails
-        foreach (GameObject railObject in railObjects)
-        {
-            Rail r = railObject.GetComponent<Rail>();
-
-            // skip if refering to ourselves of the rail has a lower Priority
-            if (r == rail || r.Priority < rail.Priority || ExludeRails.Contains(r))
-                continue;
-
-            if (r.Priority > rail.Priority)
-            {
-                // rail is within range
-                if (r.IsRailWithinRange(pos, railSeekRange, false))
-                {
-                    rail = r;
-                    segment = rail.GetSegmentOfClosestPoint(pos);
-                    break;
-                }
-            }
-            else if (VelocityZ != 0)
-            {
-                // rail is within range
-                if (r.IsRailWithinRange(pos, railSeekRange))
-                {
-                    // use dot product to ensure key press is in the right direction
-                    float dot = Vector3.Dot(Vector3.forward * VelocityZ, r.ClosestPointOnCatmullRom(pos) - pos);
-                    if (dot > 0)
-                    {
-                        rail = r;
-                        segment = rail.GetSegmentOfClosestPoint(pos);
-                        break;
-                    }
-                }
-            }
-        }
-
+        JumpRail(pos, railObjects);
 
         // get percentage of the distance of the player in the current segment
         percentage = rail.ClosestPointOnCatmullRomAsPercent(pos, segment);
@@ -193,5 +142,84 @@ public class Train : MonoBehaviour
         Vector3 move = new Vector3(offset.x, 0, offset.z);
 
         return move;
+    }
+
+    // get rail
+    public void GetRail(Vector3 playerPosition, GameObject[] railObjects)
+    {
+        // check if player is not currenly connected to a rail
+        if (!isConnectedtoRail)
+        {
+            foreach (GameObject railObject in railObjects)
+            {
+                Rail r = railObject.GetComponent<Rail>();
+                if (ExludeRails.Contains(r))
+                    continue;
+                // rail is within range
+                if (r.IsRailWithinRange(playerPosition, railSeekRange, false))
+                {
+                    //Debug.Log("connect to rail path");
+                    rail = r;
+                    segment = rail.GetSegmentOfClosestPoint(playerPosition);
+                    isConnectedtoRail = true;
+                    break;
+                }
+            }  
+        }
+    }
+
+    // jump rail
+    public void JumpRail(Vector3 playerPosition, GameObject[] railObjects)
+    {
+        if (GetComponent<ChildControllerRB>() != null)
+        {
+            dirInput = GetComponent<ChildControllerRB>().InputHandler.InputYNormal;
+        }
+
+        if (GetComponent<GolemControllerRB>() != null)
+        {
+            dirInput = GetComponent<GolemControllerRB>().InputHandler.InputYNormal;
+        }
+
+        // jump rails
+        foreach (GameObject railObject in railObjects)
+        {
+            Rail r = railObject.GetComponent<Rail>();
+
+            // skip if refering to ourselves of the rail has a lower Priority
+            if (r == rail || r.Priority < rail.Priority || ExludeRails.Contains(r))
+                continue;
+
+            if (r.Priority > rail.Priority)
+            {
+                // rail is within range
+                if (r.IsRailWithinRange(playerPosition, railSeekRange, false))
+                {
+                    rail = r;
+                    segment = rail.GetSegmentOfClosestPoint(playerPosition);
+                    break;
+                }
+            }
+            else if (dirInput != 0)
+            {
+                // rail is within range
+                if (r.IsRailWithinRange(playerPosition, railSeekRange))
+                {
+                    // use dot product to ensure key press is in the right direction
+                    float dot = Vector3.Dot(Vector3.forward * dirInput, r.ClosestPointOnCatmullRom(playerPosition) - playerPosition);
+                    Debug.Log("DOT: " + dot);
+                    Debug.Log("DIR INPUT: " + dirInput);
+                    float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;//Use arc cosine to get the radian of the angle and convert it into an angle
+                    Debug.Log(string.Format("Angle:{0}", angle));
+
+                    if (dot > 0)
+                    {
+                        rail = r;
+                        segment = rail.GetSegmentOfClosestPoint(playerPosition);
+                        break;
+                    }
+                }
+            }
+        }
     }
 }
