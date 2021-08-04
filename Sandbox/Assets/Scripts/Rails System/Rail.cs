@@ -84,35 +84,7 @@ public class Rail : MonoBehaviour
             + (-p1.z + 3.0f * p2.z - 3.0f * p3.z + p4.z) * t3);
 
         return new Vector3(x, 0, z);
-    }
-
-    //Onscreen display for editor
-    private void OnDrawGizmos()
-    {
-        for(int i = 0; i < nodes.Length; i++)
-        {
-            //UnityEditor.Handles.DrawWireCube(nodes[i].position, Vector3.one* NodeSize);
-            if (i < nodes.Length - 1)
-            {
-                //UnityEditor.Handles.DrawDottedLine(nodes[i].position, nodes[i + 1].position, NodeSize*4);
-            }
-        }
-
-        for(int i = 0; i < nodes.Length - 1; i++)
-        {
-            float temp = 0;
-            for(int j = 0; j < 20; j++)
-            {
-                float f = 0;
-                if(j > 0)
-                {
-                    f = (float)j / 20;
-                }
-                //UnityEditor.Handles.DrawLine(CatmullMove(i, temp), CatmullMove(i, f + 0.05f));
-                temp = f;
-            }
-        }
-    }
+    }   
 
     private bool NotThis(Transform t)
     {
