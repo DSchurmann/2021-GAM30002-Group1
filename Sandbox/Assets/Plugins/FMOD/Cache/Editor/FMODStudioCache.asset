@@ -19,6 +19,29 @@ MonoBehaviour:
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-8974507349145574989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environ/Water
+  m_EditorClassIdentifier: 
+  Path: event:/Environ/Water
+  guid: ccd1a48c2bff8247a73a6475ea2ffd51
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-8248556142189964077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -134,6 +157,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 566
+--- !u!114 &-5386743487202313986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Golem/GolemWhir
+  m_EditorClassIdentifier: 
+  Path: event:/Golem/GolemWhir
+  guid: 6d5fffaa5391a24ea48105d93361dbc2
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
 --- !u!114 &-3050553461335907694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +203,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &-2729519190582416142
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/ChildAttack
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/ChildAttack
+  guid: 44a34b2ed6358c4783658af2862b4dab
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 400
 --- !u!114 &-2524436744013540397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,6 +271,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 36512
   Exists: 1
+--- !u!114 &-1575921870349779206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/ChildLand
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/ChildLand
+  guid: 7ace487592ce1848aec9fcb67d40546d
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &-1248809615252886548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,24 +399,24 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 3244382378425448205}
-  - {fileID: -9071979508387998643}
+  - {fileID: 9166898072552821418}
+  - {fileID: 5082312242075668918}
   EditorEvents:
-  - {fileID: 5784716672014524489}
-  - {fileID: -5959789986628526639}
-  - {fileID: -8134773160232856795}
-  - {fileID: 5308147787347953099}
-  - {fileID: 6516781176619093566}
-  - {fileID: -5937116626530912642}
-  - {fileID: -273385829539086430}
-  - {fileID: -452263741448638746}
-  - {fileID: 8026078992343509743}
-  - {fileID: -2524436744013540397}
+  - {fileID: 3069953814681207125}
+  - {fileID: -2729519190582416142}
+  - {fileID: -5386743487202313986}
+  - {fileID: 6932756973048593337}
+  - {fileID: -1575921870349779206}
+  - {fileID: 6043976801797767202}
+  - {fileID: 1725079182850936805}
+  - {fileID: 8252640051458501540}
+  - {fileID: -8974507349145574989}
+  - {fileID: 3275810088697414897}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -9071979508387998643}
+  - {fileID: 5082312242075668918}
   StringsBanks:
-  - {fileID: 3244382378425448205}
+  - {fileID: 9166898072552821418}
   stringsBankWriteTime: 637584880033145231
   cacheVersion: 6
 --- !u!114 &941627497760107721
@@ -350,6 +442,29 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 400
+--- !u!114 &1725079182850936805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Golem/GolemStep
+  m_EditorClassIdentifier: 
+  Path: event:/Golem/GolemStep
+  guid: 9fb50e59f344a94d84432295f6ea4038
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &2262470624651995556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,6 +487,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 762
   Exists: 1
+--- !u!114 &3069953814681207125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/ChildSwing
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/ChildSwing
+  guid: 1c43a979904d1148b9e9ef2fa6166913
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1000
 --- !u!114 &3244382378425448205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,6 +531,29 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1164
   Exists: 1
+--- !u!114 &3275810088697414897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/TestSound
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/TestSound
+  guid: f263ce4226c40a448790c26430950046
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 400
 --- !u!114 &3689887305028022092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,6 +619,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 65488
+--- !u!114 &5082312242075668918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build/Desktop/Master Bank.bank
+  Name: Master Bank
+  StudioPath: bank:/Master Bank
+  lastModified: 637584880033135210
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
 --- !u!114 &5308147787347953099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -527,6 +707,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &6043976801797767202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Golem/GolemPose
+  m_EditorClassIdentifier: 
+  Path: event:/Golem/GolemPose
+  guid: 8b105edec04dc9439ca78992ffecb05a
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 566
 --- !u!114 &6113874327867692957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -596,6 +799,29 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
+--- !u!114 &6932756973048593337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/BGM
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/BGM
+  guid: 7823f8cb557589448747485134d79ede
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 65488
 --- !u!114 &8026078992343509743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -619,7 +845,51 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2000
+--- !u!114 &8252640051458501540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/ChildStep
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/ChildStep
+  guid: b875f5f3add60649bdbf2e7eb4065810
+  Banks:
+  - {fileID: 5082312242075668918}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
 --- !u!114 &8644822566081064581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.strings.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build/Desktop/Master Bank.strings.bank
+  Name: Master Bank.strings
+  StudioPath: bank:/Master Bank.strings
+  lastModified: 637584880033145231
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 1164
+  Exists: 1
+--- !u!114 &9166898072552821418
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

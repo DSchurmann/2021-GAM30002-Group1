@@ -76,7 +76,7 @@ public abstract class ChildState: PlayerState
         Perform();
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
-
+ 
     // fixed update state
     public override void FixedUpdate()
     {
