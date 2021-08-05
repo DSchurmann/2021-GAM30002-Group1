@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteAlways]
 public class MovingPlatform : MonoBehaviour, ITriggeredObject
 {
     public bool enabled = true;
@@ -38,9 +39,18 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private Vector3 targetPos;
     private Vector3 TemptargetPos;
 
+    // raycast variables
+
+    private Collider collider;
+    private bool hitDetect;
+    private  RaycastHit hit;
+    public Transform hitTransform;
+    public Vector3 hitPosition;
     // Start is called before the first frame update
     void Start()
     {
+        collider = GetComponent<Collider>();
+
         // check if start position exists, if not, get platform position
         if (startPos == Vector3.zero)
             startPos = transform.position;
@@ -53,9 +63,14 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     // Update is called once per frame
     void Update()
     {
+    }
+
+    private void FixedUpdate()
+    {
+
         if (enabled)
         {
-            switch(platformMode)
+            switch (platformMode)
             {
                 case PlatFormMode.NONE:
                     // nothing
@@ -74,6 +89,23 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                     break;
             }
         }
+
+        /*hitDetect = Physics.BoxCast(collider.bounds.center + (Vector3.down * transform.localScale.y / 2), new Vector3(transform.localScale.x / 2, 0.2f, transform.localScale.z / 2), -transform.up, out hit, transform.rotation, 0f);
+        if(hitDetect)
+        {
+            hitTransform = hit.collider.transform;
+            hitPosition = hit.point;
+
+            Debug.Log("HIT: " + hitTransform.gameObject.name);
+
+            Debug.DrawLine(transform.position, hit.point, Color.cyan);
+        }
+        else
+        {
+            Debug.DrawLine(collider.bounds.center, Vector3.down * 20, Color.cyan);
+
+            ExtDebug.DrawBoxCastBox(collider.bounds.center + (Vector3.down* transform.localScale.y/2), new Vector3(transform.localScale.x/2, 0.2f, transform.localScale.z/2), transform.rotation, -transform.up, 0f, Color.cyan);
+        }*/
     }
 
     // platform modes
@@ -224,11 +256,13 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         if (transform.position == targetPos && !waiting)
         {
             waiting = true;
+            //StopCoroutine(MoveTo(0));
             StartCoroutine(WaitFor(waitTime));
           
         }
         // move to position if not waiting
         if (!waiting)
+            //StartCoroutine(MoveTo(3));
             MoveToPosition(transform, targetPos, speed);
     }
     // wait for seconds enumerator
@@ -240,6 +274,20 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         // loop if set
         if (loop)
             Loop();
+    }
+
+    private IEnumerator MoveTo(float time)
+    {
+        Vector3 startingPos = startPos;
+        Vector3 finalPos = endPos;
+        float elapsedTime = 0;
+
+        while (elapsedTime < time)
+        {
+            transform.position = Vector3.Lerp(startingPos, finalPos, (elapsedTime / time));
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
     }
 
     // switch direction if looping
@@ -265,6 +313,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             transform.position = Vector3.MoveTowards(transform.position, position, timeToMove * Time.deltaTime);
     }
 
+
     public void SetStartPosition()
     {
         startPos = transform.position;
@@ -282,14 +331,14 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     }
 
 
-/*    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
 
         colliding = true;
         Debug.Log("Colliding");
         TemptargetPos = targetPos;
         targetPos = transform.position;
-        MovePlatform(0.01f);
+        MovePlatform(0f);
     }
     private void OnCollisionExit(Collision collision)
     {
@@ -297,5 +346,5 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         Debug.Log("Not colliding");
         targetPos = TemptargetPos;
         MovePlatform(moveSpeed);
-    }*/
+    }
 }

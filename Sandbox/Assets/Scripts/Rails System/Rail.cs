@@ -28,6 +28,7 @@ public class Rail : MonoBehaviour
     private void Awake()
     {
         nodes = Array.FindAll(GetComponentsInChildren<Transform>(), NotThis);
+        updatePath = true;
     }
 
     public void Update()

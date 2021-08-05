@@ -61,6 +61,7 @@ public class EnemyControllerRB : PlayerControllerRB
             nav.isStopped = true;
             float hitValue = other.gameObject.GetComponent<PlayerWeapon>().attackDamage;
             TakeDamage(hitValue);
+            GameObject.Destroy(this.gameObject);
             //ChangeState(ish)
             //KnockBack(other.transform);
         }
