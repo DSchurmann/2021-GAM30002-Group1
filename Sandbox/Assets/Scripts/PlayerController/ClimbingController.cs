@@ -26,6 +26,8 @@ public class ClimbingController : MonoBehaviour
 
     public bool ledgeFound;
 
+    public bool isEnabled;
+
     // components
     public Rigidbody _rb;
     public PlayerInputHandler InputHandler { get; protected set; }
@@ -49,7 +51,7 @@ public class ClimbingController : MonoBehaviour
     {
         inputInteract = InputHandler.InputInteract;
 
-        if (ledgeDetector != null)
+        if (ledgeDetector != null && isEnabled)
         {
             isTouchingWall = ledgeDetector.TouchingWall().Any();
             ledgeFound = ledgeDetector.ledgeFound;
