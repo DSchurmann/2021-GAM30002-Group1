@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Railed : MonoBehaviour
 {
-
+    private int segment = -1;
+    public Rail _rail;
     private Transform _tr;
     private Rigidbody _rb;
-
-    public Rail _rail;
+    
 
     public bool orientToPath = true;
-
+   
     public int force = 0;
 
 
@@ -21,27 +21,33 @@ public class Railed : MonoBehaviour
         _tr = GetComponent<Transform>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         if (_rail == null)
             return;
 
-        float minMove = 0.1f;
+        float minPos = ComputePosAtMinDistance();
+        _tr.position = GetPositionForPos(minPos);
 
-       // _tr.position = 
+    }
 
+    private float ComputePosAtMinDistance()
+    {
+        if (_rail == null)
+            return 0f;
+
+        float minPos = 0f;
+
+
+        return minPos;
+    }
+
+    private Vector3 GetPositionForPos(float pos)
+    {
+        Vector3 position = Vector3.zero;
+        Quaternion rotation = Quaternion.identity;
+
+        return position;
     }
 
 }

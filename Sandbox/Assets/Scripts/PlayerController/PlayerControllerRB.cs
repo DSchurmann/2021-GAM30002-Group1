@@ -178,6 +178,16 @@ public class PlayerControllerRB : StateMachine
     public void SetVelocityX(float velocityX, float velocityZ = 0f)
     {
         workVector = Train.MoveX(velocityX, velocityZ);
+
+        // rotate character to path direction
+        if (workVector.sqrMagnitude > 0)
+        {
+            //transform.rotation = Quaternion.LookRotation(workVector, transform.up);
+            float step = 4 * Time.deltaTime;
+            Quaternion rot = Quaternion.LookRotation(workVector, transform.up);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 2);
+        }
+
         workVector.y = CurrentVelocity.y;
         RB.velocity = workVector;
         CurrentVelocity = workVector;
@@ -197,6 +207,10 @@ public class PlayerControllerRB : StateMachine
         tempVelocity.y = velocity.y;
         RB.velocity = tempVelocity;
         CurrentVelocity = tempVelocity;
+
+        
+
+
     }
     #endregion
     // functions that check
