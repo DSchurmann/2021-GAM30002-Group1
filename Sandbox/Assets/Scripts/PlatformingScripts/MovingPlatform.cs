@@ -252,6 +252,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     // move platform
     private void MovePlatform(float speed)
     {
+
         // wait when reach target
         if (transform.position == targetPos && !waiting)
         {
@@ -276,7 +277,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             Loop();
     }
 
-    private IEnumerator MoveTo(float time)
+/*    private IEnumerator MoveTo(float time)
     {
         Vector3 startingPos = startPos;
         Vector3 finalPos = endPos;
@@ -288,7 +289,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-    }
+    }*/
 
     // switch direction if looping
     public void Loop()
@@ -309,7 +310,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
 
     public void MoveToPosition(Transform transform, Vector3 position, float timeToMove)
     {
-        if(!hold)
+        if(!hold || !colliding)
             transform.position = Vector3.MoveTowards(transform.position, position, timeToMove * Time.deltaTime);
     }
 
@@ -338,13 +339,13 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         Debug.Log("Colliding");
         TemptargetPos = targetPos;
         targetPos = transform.position;
-        MovePlatform(0f);
+        //MovePlatform(0f);
     }
     private void OnCollisionExit(Collision collision)
     {
         colliding = false;
         Debug.Log("Not colliding");
         targetPos = TemptargetPos;
-        MovePlatform(moveSpeed);
+        //MovePlatform(moveSpeed);
     }
 }

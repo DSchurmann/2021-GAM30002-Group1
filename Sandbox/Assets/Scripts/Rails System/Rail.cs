@@ -117,7 +117,7 @@ public class Rail : MonoBehaviour
             Vector3 negateY = new Vector3(1, 0, 1);
             if (closestPoint == Vector3.Scale(nodes[0].position, negateY) || closestPoint == Vector3.Scale(nodes[NodeLength - 1].position, negateY))
             {
-                Debug.Log("end");
+                //Debug.Log("end");
                 return false;
             }
         }
