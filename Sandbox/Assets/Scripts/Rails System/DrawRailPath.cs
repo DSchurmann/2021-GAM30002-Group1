@@ -5,9 +5,9 @@ using System.Collections.Generic;
 [ExecuteInEditMode]
 public class DrawRailPath : MonoBehaviour
 {
-#if UNITY_EDITOR
     [SerializeField] private Color colour;
     [SerializeField] private List<GameObject> nodes = new List<GameObject>();
+    [SerializeField] private float radius = 0.25f;
 
     private void Awake()
     {
@@ -27,6 +27,7 @@ public class DrawRailPath : MonoBehaviour
         }
     }
 
+#if UNITY_EDITOR
     private void OnDrawGizmos()
     {
         foreach(GameObject n in nodes)
@@ -51,12 +52,21 @@ public class DrawRailPath : MonoBehaviour
                     f = (float)j / 20;
                 }
                 Gizmos.DrawLine(CatmullMove(i, temp), CatmullMove(i, f + 0.05f));
-                temp = f;
+                Ray rayDown = new Ray(CatmullMove(i, f + 0.05f), Vector3.down);
+                RaycastHit groundHit;
+
+                if (Physics.Raycast(rayDown, out groundHit, 50))
+                {
+                    Handles.color = colour;
+                    Handles.CircleHandleCap(0, groundHit.point + new Vector3(0f, 0f, 0f), transform.rotation * Quaternion.LookRotation(Vector3.down), radius, EventType.Repaint);
+                    temp = f;
+                }
             }
         }
     }
+#endif
 
-    public Vector3 CatmullMove(int seg, float speed)
+    private Vector3 CatmullMove(int seg, float speed)
     {
         Vector3 p1, p2, p3, p4;
 
@@ -90,12 +100,17 @@ public class DrawRailPath : MonoBehaviour
             + (2.0f * p1.x - 5.0f * p2.x + 4 * p3.x - p4.x) * t2
             + (-p1.x + 3.0f * p2.x - 3.0f * p3.x + p4.x) * t3);
 
+        float y = 0.5f * ((2.0f * p2.y)
+            + (-p1.y + p3.y) * speed
+            + (2.0f * p1.y - 5.0f * p2.y + 4 * p3.y - p4.y) * t2
+            + (-p1.y + 3.0f * p2.y - 3.0f * p3.y + p4.y) * t3);
+
         float z = 0.5f * ((2.0f * p2.z)
             + (-p1.z + p3.z) * speed
             + (2.0f * p1.z - 5.0f * p2.z + 4 * p3.z - p4.z) * t2
             + (-p1.z + 3.0f * p2.z - 3.0f * p3.z + p4.z) * t3);
 
-        return new Vector3(x, 0, z);
+        return new Vector3(x, y, z);
     }
 
     public Color Colour
@@ -109,5 +124,10 @@ public class DrawRailPath : MonoBehaviour
         get { return nodes; }
         set { nodes = value; }
     }
-#endif
+
+    public float Radius
+    {
+        get { return radius; }
+        set { radius = value; }
+    }
 }

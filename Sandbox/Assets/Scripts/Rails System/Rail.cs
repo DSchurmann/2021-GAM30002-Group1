@@ -1,40 +1,23 @@
 using System;
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
 [ExecuteInEditMode]
 public class Rail : MonoBehaviour
 {
-    public bool drawNodes = false;
-    public bool drawLines = false;
-    public bool drawContactPoints = true;
-    [Header("Node Properties")]
-    [Range(0.1f, 1f)]
-    public float NodeSize = 0.25f;
-    public Color nodeColour = Color.white;
-    public Color pathColour = Color.white;
-    public float contactPointRadius = 0.25f;
-    public Color contactPointColour = Color.green;
-    public int Priority = 0;
+    [SerializeField] private int priority = 0;
     public bool enable = true;
     public bool swapControls = false;
 
-    private Transform[] nodes;
-
-
-    [Header("Update the path. Useful when building")]
-    public bool updatePath;
+    private List<Transform> nodes;
 
     private void Awake()
     {
-        nodes = Array.FindAll(GetComponentsInChildren<Transform>(), NotThis);
-        updatePath = true;
-    }
-
-    public void Update()
-    {
-        if(updatePath)
-            nodes = Array.FindAll(GetComponentsInChildren<Transform>(), NotThis);
+        nodes = new List<Transform>();
+        foreach(GameObject g in GetComponent<DrawRailPath>().Nodes)
+        {
+            nodes.Add(g.transform);
+        }
     }
 
     public Vector3 Rotate(int seg, float d)
@@ -77,7 +60,7 @@ public class Rail : MonoBehaviour
         int nodeOfClosestPoint = 0;
         float bestDistance = float.PositiveInfinity;
 
-        for (int seg = 0; seg < nodes.Length - 1; seg++)
+        for (int seg = 0; seg < nodes.Count - 1; seg++)
         {
             float aproxSegmentDist = GetSegmentLength(seg);
 
@@ -131,7 +114,7 @@ public class Rail : MonoBehaviour
         Vector3 closestPoint = new Vector3();
         float bestDistance = float.PositiveInfinity;
 
-        for (int seg = 0; seg < nodes.Length - 1; seg++)
+        for (int seg = 0; seg < nodes.Count - 1; seg++)
         {
             float aproxSegmentDist = GetSegmentLength(seg);
 
@@ -216,7 +199,7 @@ public class Rail : MonoBehaviour
             p3 = nodes[seg + 1].position;
             p4 = nodes[seg + 1].position;
         }
-        else if (seg == nodes.Length - 2)
+        else if (seg == nodes.Count - 2)
         {
             p1 = nodes[seg - 1].position;
             p2 = nodes[seg].position;
@@ -254,80 +237,19 @@ public class Rail : MonoBehaviour
         return new Vector3(x, 0, z);
     }
 
-    //Onscreen display for editor
-    private void OnDrawGizmos()
-    //private void OnDrawGizmosSelected()
-    {
-        if(drawNodes)
-        {
-            Handles.color = nodeColour;
-            for (int i = 0; i < nodes.Length; i++)
-            {
-                UnityEditor.Handles.DrawWireCube(nodes[i].position, Vector3.one * NodeSize);
-                if (i < nodes.Length - 1)
-                {
-                    UnityEditor.Handles.DrawDottedLine(nodes[i].position, nodes[i + 1].position, NodeSize * 4);
-                }
-            }
-        }
-       
-
-        for (int i = 0; i < nodes.Length - 1; i++)
-        {
-            float temp = 0;
-            for (int j = 0; j < 20; j++)
-            {
-                float f = 0;
-                if (j > 0)
-                {
-                    f = (float)j / 20;
-                }
-                UnityEditor.Handles.DrawLine(CatmullMove(i, temp), CatmullMove(i, f + 0.05f));
-                temp = f;
-
-               
-                    Ray rayDown = new Ray(CatmullMove(i, f + 0.05f), Vector3.down);
-                    RaycastHit groundHit;
-
-                    if (Physics.Raycast(rayDown, out groundHit, 50) && drawContactPoints)
-                    {
-                        Handles.color = contactPointColour;
-                        Handles.CircleHandleCap(
-                            0,
-                            groundHit.point + new Vector3(0f, 0f, 0f),
-                            transform.rotation * Quaternion.LookRotation(Vector3.down),
-                            contactPointRadius,
-                            EventType.Repaint
-                    );
-
-                    if (drawLines)
-                    {
-                        Handles.color = pathColour;
-                        UnityEditor.Handles.DrawLine(CatmullMove(i, f + 0.05f), CatmullMove(i, f + 0.05f) + Vector3.down * groundHit.distance);
-                    }
-                }
-            }
-        }
-    }
-
     private bool NotThis(Transform t)
     {
         return t != this.transform;
     }
 
-    public Vector3 GetNodePos(int i)
-    {
-        return nodes[i].position;
-    }
-
     public int NodeLength
     {
-        get { return nodes.Length; }
+        get { return nodes.Count; }
     }
 
-    public string getName(int i)
+    public int Priority
     {
-        return nodes[i].name;
+        get { return priority; }
+        set { priority = value; }
     }
-
 }

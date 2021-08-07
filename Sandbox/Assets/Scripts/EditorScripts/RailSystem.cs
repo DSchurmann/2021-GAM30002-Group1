@@ -11,7 +11,6 @@ public class RailSystem : EditorWindow
 {
     [SerializeField] private List<RailContainer> rails = new List<RailContainer>();
     private Vector2 scrollpos;
-    private float nodeSize = 1f;
     private string sceneName;
 
     [MenuItem("Tools/Level Tools/Rail System")]
@@ -34,7 +33,6 @@ public class RailSystem : EditorWindow
     {
         if (sceneName != SceneManager.GetActiveScene().name)
         {
-            Debug.Log("scene should have changed");
             GetRailDataFromObjects();
         }
     }
@@ -62,29 +60,17 @@ public class RailSystem : EditorWindow
             //add nodes
             for (int i = 0; i < 4; i++)
             {
-                r.AddNode(nodeSize);
+                r.AddNode();
             }
             //add container to list, increment count and set the rail to the active object in the scene
             rails.Add(r);
             Selection.activeObject = r.GetRail;
             }
         GUILayout.EndHorizontal();
-        GUILayout.Space(10);
+        GUILayout.Space(30);
 
         if (rails.Count > 0)
         {
-            //check if the node size has been changed before changing it for all nodes, prevents it being changed 10 times a second
-            EditorGUI.BeginChangeCheck();
-            nodeSize = EditorGUILayout.Slider("Node Size", nodeSize, 0, 10);
-            if (EditorGUI.EndChangeCheck())
-            {
-                foreach (RailContainer rc in rails)
-                {
-                    rc.ChangeNodeSize(nodeSize);
-                }
-            }
-            GUILayout.Space(30);
-
             foreach (RailContainer g in rails)
             {
                 //remove any rails that have been deleted via the hierachy
@@ -116,8 +102,34 @@ public class RailSystem : EditorWindow
                 g.Colour = EditorGUILayout.ColorField(g.Colour, GUILayout.Width(50));
                 GUILayout.EndHorizontal();
 
-                GUILayout.Label("Nodes");
-                foreach(GameObject n in g.GetNodes)
+                GUILayout.BeginHorizontal();
+                g.ChangePriority(EditorGUILayout.IntField(g.GetRail.GetComponent<Rail>().Priority));
+                GUILayout.EndHorizontal();
+
+                //Path radius
+                GUILayout.BeginHorizontal();
+                EditorGUI.BeginChangeCheck();
+                float radius = EditorGUILayout.Slider("Path Radius", g.GetRail.GetComponent<DrawRailPath>().Radius, 0.25f, 5f);
+                if(EditorGUI.EndChangeCheck())
+                {
+                    g.ChangeRadius(radius);
+                }
+                GUILayout.EndHorizontal();
+
+                //NODES\\
+                GUILayout.Label("Nodes", EditorStyles.boldLabel);
+                //check if the node size has been changed before changing it for all nodes, prevents it being changed 10 times a second
+                //node size
+                EditorGUI.BeginChangeCheck();
+                float size = EditorGUILayout.Slider("Node Size", g.NodeSize, 0, 10);
+                if (EditorGUI.EndChangeCheck())
+                {
+                    foreach (RailContainer rc in rails)
+                    {
+                        rc.ChangeNodeSize(size);
+                    }
+                }
+                foreach (GameObject n in g.GetNodes)
                 {
                     //remove any nodes that have been deleted via the hierachy
                     if(n == null)
@@ -146,7 +158,7 @@ public class RailSystem : EditorWindow
                 GUILayout.BeginHorizontal();
                 if (GUILayout.Button("Add Node"))
                 {
-                    g.AddNode(nodeSize);
+                    g.AddNode();
                     Selection.activeObject = g.GetNodes[g.GetNodes.Count - 1];
                 }
                 GUILayout.EndHorizontal();
@@ -160,8 +172,7 @@ public class RailSystem : EditorWindow
     {
         //find all rails with tag - for when openning the window after having nodes
         GameObject[] g = GameObject.FindGameObjectsWithTag("Rail");
-        Debug.Log("# of rails: " + g.Length);
-        if (g.Length != 0)
+        if (g.Length > 0)
         {
             //empty rails list just in case
             rails.Clear();
@@ -176,7 +187,6 @@ public class RailSystem : EditorWindow
                 //if there are nodes, add game object to list
                 if (child != null)
                 {
-                    nodeSize = child[1].GetComponent<DrawNode>().NodeSize;
                     foreach (Transform t in child)
                     {
                         if (t != r.transform)
@@ -203,6 +213,7 @@ public class RailSystem : EditorWindow
     {
         private readonly GameObject obj;
         private Color colour;
+        private float nodeSize = 1f;
 
         public RailContainer(GameObject r, Color c)
         {
@@ -211,7 +222,7 @@ public class RailSystem : EditorWindow
             obj.GetComponent<DrawRailPath>().Nodes = new List<GameObject>();
         }
 
-        public void AddNode(float size)
+        public void AddNode()
         {
             //create new object and set parent to rail object
             GameObject n = new GameObject("Node" + obj.GetComponent<DrawRailPath>().Nodes.Count);
@@ -225,7 +236,7 @@ public class RailSystem : EditorWindow
             //add draw node script and set the colour to the same as the parent
             n.AddComponent<DrawNode>();
             n.GetComponent<DrawNode>().SetColour = colour;
-            n.GetComponent<DrawNode>().NodeSize = size;
+            n.GetComponent<DrawNode>().NodeSize = nodeSize;
 
             //add node to list and increment childCount
             obj.GetComponent<DrawRailPath>().Nodes.Add(n);
@@ -250,6 +261,16 @@ public class RailSystem : EditorWindow
             SceneView.RepaintAll();
         }
 
+        public void ChangeRadius(float r)
+        {
+            obj.GetComponent<DrawRailPath>().Radius = r;
+        }
+
+        public void ChangePriority(int p)
+        {
+            obj.GetComponent<Rail>().Priority = p;
+        }
+
         public GameObject GetRail
         {
             get { return obj; }
@@ -266,6 +287,12 @@ public class RailSystem : EditorWindow
                     n.GetComponent<DrawNode>().SetColour = value;
                 }
             }
+        }
+
+        public float NodeSize
+        {
+            get { return nodeSize; }
+            set { nodeSize = value; }
         }
 
         public List<GameObject> GetNodes
