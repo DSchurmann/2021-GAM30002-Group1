@@ -8,11 +8,12 @@ public class Railed : MonoBehaviour
     public Rail _rail;
     private Transform _tr;
     private Rigidbody _rb;
-    
+
+    private Vector3 workVector;
 
     public bool orientToPath = true;
    
-    public int force = 0;
+    public float force = 0;
 
 
     private void Awake()
@@ -26,28 +27,26 @@ public class Railed : MonoBehaviour
         if (_rail == null)
             return;
 
-        float minPos = ComputePosAtMinDistance();
-        _tr.position = GetPositionForPos(minPos);
+        workVector = GetComponent<Train>().MoveX(force);
 
-    }
+       _rb.velocity = workVector;
 
-    private float ComputePosAtMinDistance()
-    {
-        if (_rail == null)
-            return 0f;
+        /*Vector3 ffV = transform.rotation * Vector3.forward;
+        //ffV = pathCreator.transform.TransformVector(ffV);
+        ffV.y = 0;
+        GetComponent<Rigidbody>().velocity = Vector3.Dot(GetComponent<Rigidbody>().velocity, ffV) * ffV;
 
-        float minPos = 0f;
+        GetComponent<Rigidbody>().AddForce(new Vector3((ffV * force).x, GetComponent<Rigidbody>().velocity.y, (ffV * force).z));*/
 
 
-        return minPos;
-    }
-
-    private Vector3 GetPositionForPos(float pos)
-    {
-        Vector3 position = Vector3.zero;
+        /*Vector3 position = Vector3.zero;
         Quaternion rotation = Quaternion.identity;
 
-        return position;
-    }
 
+        Train train = GetComponent<Train>();
+
+        if (train != null)
+            position = train.MoveX(0);*/
+
+    }
 }

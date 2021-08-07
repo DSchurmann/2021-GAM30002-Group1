@@ -182,8 +182,6 @@ public class PlayerControllerRB : StateMachine
         // rotate character to path direction
         if (workVector.sqrMagnitude > 0)
         {
-            //transform.rotation = Quaternion.LookRotation(workVector, transform.up);
-            float step = 4 * Time.deltaTime;
             Quaternion rot = Quaternion.LookRotation(workVector, transform.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 2);
         }
@@ -207,10 +205,6 @@ public class PlayerControllerRB : StateMachine
         tempVelocity.y = velocity.y;
         RB.velocity = tempVelocity;
         CurrentVelocity = tempVelocity;
-
-        
-
-
     }
     #endregion
     // functions that check
