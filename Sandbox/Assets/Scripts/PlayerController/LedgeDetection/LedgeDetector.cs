@@ -62,7 +62,7 @@ public class LedgeDetector
             raysForward.Add(ray);
 
             // add hit to array
-            hits[i] = Physics.Raycast(ray, out hit, rayLength) && hit.collider.tag == "Railed";
+            hits[i] = Physics.Raycast(ray, out hit, rayLength) && hit.collider.tag != "Railed";
             racastHitsForward[i] = hit;
             // draw ray result
             if (hits[i] == true)
