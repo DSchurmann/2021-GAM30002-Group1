@@ -18,6 +18,7 @@ public class LedgeDetector
     public float lengthForward = 0.5f;
     public float lengthDown = 2;
 
+    public bool foundClimbable;
 
     public LedgeDetector(Transform player, float[] originsForward, float[] originsDown)
     {
@@ -61,7 +62,7 @@ public class LedgeDetector
             raysForward.Add(ray);
 
             // add hit to array
-            hits[i] = Physics.Raycast(ray, out hit, rayLength);
+            hits[i] = Physics.Raycast(ray, out hit, rayLength) && hit.collider.tag == "Railed";
             racastHitsForward[i] = hit;
             // draw ray result
             if (hits[i] == true)
