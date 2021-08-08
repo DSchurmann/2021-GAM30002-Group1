@@ -14,9 +14,13 @@ public class Rail : MonoBehaviour
     private void Awake()
     {
         nodes = new List<Transform>();
-        foreach(GameObject g in GetComponent<DrawRailPath>().Nodes)
+
+        if(GetComponent<DrawRailPath>() != null)
         {
-            nodes.Add(g.transform);
+            foreach (GameObject g in GetComponent<DrawRailPath>().Nodes)
+            {
+                nodes.Add(g.transform);
+            }
         }
     }
 

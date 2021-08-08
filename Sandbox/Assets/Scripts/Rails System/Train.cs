@@ -24,6 +24,14 @@ public class Train : MonoBehaviour
         dir = Vector2.right;
     }
 
+    public Vector3 GetPos(Rail rail)
+    {
+        Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
+        segment = rail.GetSegmentOfClosestPoint(pos, 0.1f);
+        return rail.ClosestPointOnCatmullRom(pos, 0.1f);
+        //return MoveX(0);
+    }
+
 
     public Vector3 MoveX(float velocityX, float VelocityZ = 0)
     {
@@ -36,14 +44,15 @@ public class Train : MonoBehaviour
             VelocityZ = temp;
         }
 
+
         // get the position of the train
         Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
-
+        
         GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
 
         GetRail(pos, railObjects);
-      
 
+        
         // if still not connected to a rail move in direction dir
         if (!isConnectedtoRail)
         {
@@ -130,11 +139,12 @@ public class Train : MonoBehaviour
             else
             {
                 segment -= 1;
-                targetPercentage += 1;
+                targetPercentage = 1;
             }
         }
 
-        Vector3 targetPos = rail.CatmullMove(segment, targetPercentage);
+        //segment = rail.GetSegmentOfClosestPoint(pos);
+        Vector3 targetPos = rail.CatmullMove(segment, targetPercentage);       
         Debug.DrawLine(catmullP, targetPos, Color.green);
         Vector3 offset = targetPos - pos;
         offset = offset.normalized * Mathf.Abs(velocityX);
