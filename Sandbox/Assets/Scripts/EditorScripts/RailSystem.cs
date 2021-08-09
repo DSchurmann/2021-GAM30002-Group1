@@ -53,6 +53,8 @@ public class RailSystem : EditorWindow
             //add required components
             g.AddComponent<Rail>();
             g.AddComponent<DrawRailPath>();
+            Camera cam = SceneView.lastActiveSceneView.camera;
+            g.transform.position = cam.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 10f));
             Color c = new Color((float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255), (float)UnityEngine.Random.Range(0, 255));
             g.GetComponent<DrawRailPath>().Colour = c;
             //setup rail container
@@ -231,6 +233,10 @@ public class RailSystem : EditorWindow
             if(obj.GetComponent<DrawRailPath>().Nodes.Count > 0)
             {
                 n.transform.position = obj.GetComponent<DrawRailPath>().Nodes[obj.GetComponent<DrawRailPath>().Nodes.Count - 1].transform.position;
+            }
+            else
+            {
+                n.transform.localPosition = Vector3.zero;
             }
 
             //add draw node script and set the colour to the same as the parent
