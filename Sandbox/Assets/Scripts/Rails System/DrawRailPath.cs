@@ -59,8 +59,8 @@ public class DrawRailPath : MonoBehaviour
                 {
                     Handles.color = colour;
                     Handles.CircleHandleCap(0, groundHit.point + new Vector3(0f, 0f, 0f), transform.rotation * Quaternion.LookRotation(Vector3.down), radius, EventType.Repaint);
-                    temp = f;
                 }
+                temp = f;
             }
         }
     }
