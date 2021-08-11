@@ -5534,6 +5534,7 @@ MonoBehaviour:
   groundCheck: {fileID: 949442441}
   wallCheck: {fileID: 562522885}
   wallCheckDistance: 0.5
+  pathRotationSpeed: 0
   _currentState: 
   nav: {fileID: 0}
   target: {fileID: 543450652163829278}
@@ -9491,6 +9492,7 @@ MonoBehaviour:
   groundCheck: {fileID: 615728645}
   wallCheck: {fileID: 131409008}
   wallCheckDistance: 6
+  pathRotationSpeed: 2
 --- !u!4 &882052622
 Transform:
   m_ObjectHideFlags: 0
@@ -9500,7 +9502,7 @@ Transform:
   m_GameObject: {fileID: 882052619}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 67.07, y: 0.04, z: -0.85}
-  m_LocalScale: {x: 1.3, y: 1.3, z: 1}
+  m_LocalScale: {x: 2.0579, y: 2.0579, z: 1.583}
   m_Children:
   - {fileID: 543450653051242887}
   - {fileID: 1441353454}
@@ -10765,7 +10767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 964679676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 51.22, y: 1.48, z: -1.16}
+  m_LocalPosition: {x: 53.56, y: 1.48, z: -4.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10783,7 +10785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa124c50628eb9344bd1fbfd3b8dee4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rail: {fileID: 0}
+  _rail: {fileID: 192971888}
   orientToPath: 1
   force: 0
 --- !u!1 &970334269
@@ -12708,6 +12710,7 @@ MonoBehaviour:
   groundCheck: {fileID: 1428073159}
   wallCheck: {fileID: 1759251432}
   wallCheckDistance: 0.5
+  pathRotationSpeed: 1
   _CurrentState: 
 --- !u!1 &1234250165
 GameObject:
