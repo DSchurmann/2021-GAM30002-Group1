@@ -10,6 +10,7 @@ public class Rail : MonoBehaviour
     public bool swapControls = false;
 
     private List<Transform> nodes;
+    [SerializeField] private RailType type;
 
     private void Awake()
     {
@@ -255,5 +256,11 @@ public class Rail : MonoBehaviour
     {
         get { return priority; }
         set { priority = value; }
+    }
+
+    public RailType Type
+    { 
+        get { return type; }
+        set { type = value; }
     }
 }

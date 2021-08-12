@@ -104,8 +104,17 @@ public class RailSystem : EditorWindow
                 g.Colour = EditorGUILayout.ColorField(g.Colour, GUILayout.Width(50));
                 GUILayout.EndHorizontal();
 
+                //priority and rail type
                 GUILayout.BeginHorizontal();
+                GUILayout.Label("Rail Priority: ");
                 g.ChangePriority(EditorGUILayout.IntField(g.GetRail.GetComponent<Rail>().Priority));
+                GUILayout.Label("Rail Type: ");
+                EditorGUI.BeginChangeCheck();
+                RailType t = (RailType)EditorGUILayout.EnumPopup(g.GetRail.GetComponent<Rail>().Type);
+                if(EditorGUI.EndChangeCheck())
+                {
+                    g.GetRail.GetComponent<Rail>().Type = t;
+                }
                 GUILayout.EndHorizontal();
 
                 //Path radius
@@ -123,13 +132,10 @@ public class RailSystem : EditorWindow
                 //check if the node size has been changed before changing it for all nodes, prevents it being changed 10 times a second
                 //node size
                 EditorGUI.BeginChangeCheck();
-                float size = EditorGUILayout.Slider("Node Size", g.NodeSize, 0, 10);
+                float size = EditorGUILayout.Slider("Node Size", g.NodeSize, 0.25f, 10f);
                 if (EditorGUI.EndChangeCheck())
                 {
-                    foreach (RailContainer rc in rails)
-                    {
-                        rc.ChangeNodeSize(size);
-                    }
+                    g.ChangeNodeSize(size);
                 }
                 foreach (GameObject n in g.GetNodes)
                 {
