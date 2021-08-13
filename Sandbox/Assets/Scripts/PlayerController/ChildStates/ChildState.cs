@@ -64,7 +64,7 @@ public abstract class ChildState: PlayerState
 
                 }
 
-                if(player.GetComponent<ClimbingController>().canClimb)
+                if(player.GetComponent<ClimbingController>().canClimb && player.InputHandler.InputJump)
                 {
                     player.ChangeState(player.WallClimbLedgeState);
                 }
