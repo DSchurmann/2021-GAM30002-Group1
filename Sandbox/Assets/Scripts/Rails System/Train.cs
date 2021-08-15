@@ -12,8 +12,8 @@ public class Train : MonoBehaviour
     private bool isConnectedtoRail = false;
     private Vector2 dir;
 
-    [SerializeField] private Rail[] ExludeRails;
     [SerializeField] private float railSeekRange = 2f;
+    [SerializeField] private RailType type;
 
     private float percentage;
 
@@ -22,6 +22,14 @@ public class Train : MonoBehaviour
     private void Start()
     {
         dir = Vector2.right;
+    }
+
+    public Vector3 GetPos(Rail rail)
+    {
+        Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
+        segment = rail.GetSegmentOfClosestPoint(pos, 0.1f);
+        return rail.ClosestPointOnCatmullRom(pos, 0.1f);
+        //return MoveX(0);
     }
 
 
@@ -36,14 +44,15 @@ public class Train : MonoBehaviour
             VelocityZ = temp;
         }
 
+
         // get the position of the train
         Vector3 pos = new Vector3(transform.position.x, 0, transform.position.z);
-
+        
         GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
 
         GetRail(pos, railObjects);
-      
 
+        
         // if still not connected to a rail move in direction dir
         if (!isConnectedtoRail)
         {
@@ -78,7 +87,7 @@ public class Train : MonoBehaviour
                 foreach (GameObject railObject in railObjects)
                 {
                     Rail r = railObject.GetComponent<Rail>();
-                    if (r == rail || ExludeRails.Contains(r))
+                    if (r == rail || CheckType(r))
                         continue;
                     // rail is within range
                     if (r.IsRailWithinRange(pos, railSeekRange))
@@ -110,7 +119,7 @@ public class Train : MonoBehaviour
                 foreach (GameObject railObject in railObjects)
                 {
                     Rail r = railObject.GetComponent<Rail>();
-                    if (r == rail || ExludeRails.Contains(r))
+                    if (r == rail || CheckType(r))
                         continue;
                     // rail is within range
                     if (r.IsRailWithinRange(pos, railSeekRange))
@@ -130,11 +139,12 @@ public class Train : MonoBehaviour
             else
             {
                 segment -= 1;
-                targetPercentage += 1;
+                targetPercentage = 1;
             }
         }
 
-        Vector3 targetPos = rail.CatmullMove(segment, targetPercentage);
+        //segment = rail.GetSegmentOfClosestPoint(pos);
+        Vector3 targetPos = rail.CatmullMove(segment, targetPercentage);       
         Debug.DrawLine(catmullP, targetPos, Color.green);
         Vector3 offset = targetPos - pos;
         offset = offset.normalized * Mathf.Abs(velocityX);
@@ -153,7 +163,7 @@ public class Train : MonoBehaviour
             foreach (GameObject railObject in railObjects)
             {
                 Rail r = railObject.GetComponent<Rail>();
-                if (ExludeRails.Contains(r))
+                if (CheckType(r))
                     continue;
                 // rail is within range
                 if (r.IsRailWithinRange(playerPosition, railSeekRange, false))
@@ -187,7 +197,7 @@ public class Train : MonoBehaviour
             Rail r = railObject.GetComponent<Rail>();
 
             // skip if refering to ourselves of the rail has a lower Priority
-            if (r == rail || r.Priority < rail.Priority || ExludeRails.Contains(r))
+            if (r == rail || r.Priority < rail.Priority || CheckType(r))
                 continue;
 
             if (r.Priority > rail.Priority)
@@ -221,5 +231,15 @@ public class Train : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private bool CheckType(Rail r)
+    {
+        bool result = true;
+        if(r.Type != type || r.Type != RailType.Both)
+        {
+            result = false;
+        }
+        return result;
     }
 }

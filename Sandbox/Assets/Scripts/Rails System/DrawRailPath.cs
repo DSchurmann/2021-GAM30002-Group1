@@ -58,9 +58,9 @@ public class DrawRailPath : MonoBehaviour
                 if (Physics.Raycast(rayDown, out groundHit, 50))
                 {
                     Handles.color = colour;
-                    Handles.CircleHandleCap(0, groundHit.point + new Vector3(0f, 0f, 0f), transform.rotation * Quaternion.LookRotation(Vector3.down), radius, EventType.Repaint);
-                    temp = f;
+                    Handles.DrawSolidDisc(groundHit.point, groundHit.normal, radius);
                 }
+                temp = f;
             }
         }
     }

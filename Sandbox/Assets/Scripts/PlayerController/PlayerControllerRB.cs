@@ -86,6 +86,8 @@ public class PlayerControllerRB : StateMachine
     // work vector for calculation
     private Vector3 workVector;
     #endregion
+
+    public float pathRotationSpeed;
     // Awake and Start functions
     #region Start Functions
     public virtual void Awake()
@@ -183,7 +185,7 @@ public class PlayerControllerRB : StateMachine
         if (workVector.sqrMagnitude > 0)
         {
             Quaternion rot = Quaternion.LookRotation(workVector, transform.up);
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 2);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rot, 2 * pathRotationSpeed);
         }
 
         workVector.y = CurrentVelocity.y;

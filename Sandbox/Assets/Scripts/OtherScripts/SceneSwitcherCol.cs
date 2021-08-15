@@ -19,4 +19,9 @@ public class SceneSwitcherCol : MonoBehaviour
     {
         SceneManager.LoadScene(index);
     }
+
+    public void NextScene(int index)
+    {
+
+    }
 }

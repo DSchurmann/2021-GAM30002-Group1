@@ -10,13 +10,18 @@ public class Rail : MonoBehaviour
     public bool swapControls = false;
 
     private List<Transform> nodes;
+    [SerializeField] private RailType type;
 
     private void Awake()
     {
         nodes = new List<Transform>();
-        foreach(GameObject g in GetComponent<DrawRailPath>().Nodes)
+
+        if(GetComponent<DrawRailPath>() != null)
         {
-            nodes.Add(g.transform);
+            foreach (GameObject g in GetComponent<DrawRailPath>().Nodes)
+            {
+                nodes.Add(g.transform);
+            }
         }
     }
 
@@ -251,5 +256,11 @@ public class Rail : MonoBehaviour
     {
         get { return priority; }
         set { priority = value; }
+    }
+
+    public RailType Type
+    { 
+        get { return type; }
+        set { type = value; }
     }
 }

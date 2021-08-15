@@ -29,8 +29,8 @@ public abstract class ChildState: PlayerState
         if(player.ControllerEnabled)
         {
             //get input
-            inputAttack = player.InputHandler.InputInteract;
-            inputWait = player.InputHandler.InputWait;
+            //inputAttack = player.InputHandler.InputInteract;
+            //inputWait = player.InputHandler.InputWait;
         }
       
         
@@ -64,7 +64,7 @@ public abstract class ChildState: PlayerState
 
                 }
 
-                if(player.GetComponent<ClimbingController>().canClimb)
+                if(player.GetComponent<ClimbingController>().canClimb && player.InputHandler.InputJump)
                 {
                     player.ChangeState(player.WallClimbLedgeState);
                 }

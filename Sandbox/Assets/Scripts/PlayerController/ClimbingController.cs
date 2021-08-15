@@ -7,9 +7,8 @@ using DG.Tweening;
 [ExecuteInEditMode]
 public class ClimbingController : MonoBehaviour
 {
-    [Header("Vault properies")]
+    [Header("Properies")]
     public Vector3 vault_SPH; //' speed, height and distance variables of vault
-
 
     public float[] origins_forward;
     public float[] origins_down;
@@ -26,6 +25,7 @@ public class ClimbingController : MonoBehaviour
 
     public bool ledgeFound;
 
+    public LayerMask Climbable;
     public bool isEnabled;
 
     // components
@@ -44,6 +44,8 @@ public class ClimbingController : MonoBehaviour
 
         _rb = GetComponent<Rigidbody>();
         InputHandler = GetComponent<PlayerInputHandler>();
+
+
     }
 
     // Update is called once per frame
