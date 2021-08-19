@@ -3,56 +3,65 @@ using UnityEngine;
 
 public class StatManager : MonoBehaviour
 {
-    [SerializeField] private List<Stat> stats;
+    [SerializeField] private Health hp;
+    [SerializeField] private Damage dmg;
 
     private void Start()
     {
-        foreach (Stat s in stats)
+        if(hp != null)
         {
-            s.Start();
+            hp.Initialize();
         }
-
-    }
-
-    public void CreateStat(StatType type, float max)
-    {
-        stats.Add(new Stat(type, max));
-    }
-
-    public Stat GetStat(int i)
-    {
-        Stat result = null;
-        if (i < stats.Count && i > 0)
+        if(dmg != null)
         {
-            result = stats[i];
+            dmg.Initialize();
         }
-        return result;
     }
 
-    public Stat GetStatType(StatType type)
+    public void AddHealth()
     {
-        Stat result = null;
-        foreach (Stat s in stats)
+        hp = gameObject.AddComponent<Health>();
+    }
+
+    public void RemoveHealth()
+    {
+        if (hp != null)
         {
-            if (s.Type == type)
-                return s;
+#if UNITY_EDITOR
+            DestroyImmediate(GetComponent<Health>());
+#else
+            Destroy(GetComponent<Health>());
+#endif
+            hp = null;
         }
-        return result;
     }
 
-    public List<Stat> GetStats
+    public void AddDamage()
     {
-        get { return stats; }
+        dmg = gameObject.AddComponent<Damage>();
     }
 
-    public bool HasStat(StatType type)
+    public void RemoveDamage()
     {
-        foreach (Stat s in stats)
+        if (dmg != null)
         {
-            if (s.Type == type)
-                return true;
+#if UNITY_EDITOR
+            DestroyImmediate(GetComponent<Damage>());
+#else
+            Destroy(GetComponent<Damage>());
+#endif
+            dmg = null;
         }
+    }
 
-        return false;
+    public Health Health
+    {
+        get { return hp; }
+        set { hp = value; }
+    }
+    public Damage Damage
+    {
+        get { return dmg; }
+        set { dmg = value; }
     }
 }

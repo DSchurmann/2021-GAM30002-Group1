@@ -41,7 +41,7 @@ public class EnemyControllerRB : PlayerControllerRB
 
     public virtual void TakeDamage(float value)
     {
-        GetComponent<StatManager>().GetStatType(StatType.health).MinusValue(value);
+        GetComponent<StatManager>().Health.MinusValue(value);
     }
 
     public void KnockBack(Transform hitObj)
