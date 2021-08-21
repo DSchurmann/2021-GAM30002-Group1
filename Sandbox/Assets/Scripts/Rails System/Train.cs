@@ -217,10 +217,10 @@ public class Train : MonoBehaviour
                 {
                     // use dot product to ensure key press is in the right direction
                     float dot = Vector3.Dot(Vector3.forward * dirInput, r.ClosestPointOnCatmullRom(playerPosition) - playerPosition);
-                    Debug.Log("DOT: " + dot);
-                    Debug.Log("DIR INPUT: " + dirInput);
+                    //Debug.Log("DOT: " + dot);
+                    //Debug.Log("DIR INPUT: " + dirInput);
                     float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;//Use arc cosine to get the radian of the angle and convert it into an angle
-                    Debug.Log(string.Format("Angle:{0}", angle));
+                    //Debug.Log(string.Format("Angle:{0}", angle));
 
                     if (dot > 0)
                     {
@@ -235,6 +235,7 @@ public class Train : MonoBehaviour
     
     private bool CheckType(Rail r)
     {
+
         bool result = true;
         if(r.Type != type || r.Type != RailType.Both)
         {

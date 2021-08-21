@@ -77,6 +77,7 @@ public class ChildControllerRB : PlayerControllerRB
         base.Update();
 
         _CurrentState = CurrentState.GetType().Name;
+        isTouchingWall = CheckTouchingWall();
     }
 
     public override void FixedUpdate()

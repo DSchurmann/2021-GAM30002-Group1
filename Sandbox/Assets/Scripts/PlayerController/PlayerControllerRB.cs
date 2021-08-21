@@ -19,7 +19,7 @@ public class PlayerControllerRB : StateMachine
     [Range(0.0f, 10.0f)]
     public float MovementSpeed = 4f;
     [Header("Jump State")]
-    [Range(0.0f, 10.0f)]
+    [Range(0.0f, 60.0f)]
     public float JumpSpeed = 10f;
     public int jumpsAllowed = 1;
     [Header("In Air State")]
