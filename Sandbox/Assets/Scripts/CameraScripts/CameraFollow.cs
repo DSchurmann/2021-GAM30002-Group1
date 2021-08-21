@@ -9,7 +9,7 @@ public class CameraFollow : MonoBehaviour
     [Header("Camera Target Offset")]
     public Vector3 targetOffset;
     [Header("Follow Properties")]
-    [Range(0.0f, 10.0f)]
+    [Range(0.0f, 50.0f)]
     public float followSpeed = 4;
     public Vector3 minFollowDistance;
     public Vector3 panTarget;
@@ -84,27 +84,30 @@ public class CameraFollow : MonoBehaviour
         float distY = Mathf.Abs(angle.y);
         float distZ = Mathf.Abs(angle.z);
 
+        Vector3 targetPos = targetPlayer.transform.position;
+        targetPos += targetOffset;
+
         // follow x axis
         if (distX <= minFollowDistance.x && distX >= 0.01f)
         {
             //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, (followSpeed / 2) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, (followSpeed / 2) * Time.deltaTime);
         }
         else if (distX > minFollowDistance.x)
         {
             //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, followSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
         }
         // follow y axis
         if (distY <= minFollowDistance.y && distY >= 0.1f)
         {
             //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, (followSpeed / 4) * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, (followSpeed / 4) * Time.deltaTime);
         }
         else if (distY > minFollowDistance.y)
         {
             //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targetPlayer.transform.position, followSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
         }
     }
 

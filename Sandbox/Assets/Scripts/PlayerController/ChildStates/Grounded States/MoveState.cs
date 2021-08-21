@@ -24,6 +24,10 @@ public class MoveState : GroundedState
         base.Update();
 
         //Debug.Log(isAnimationComplete);
+        if(player.isTouchingWall)
+        {
+            player.ChangeState(player.IdleState);
+        }
 
         if(player.ControllerEnabled)
         {
