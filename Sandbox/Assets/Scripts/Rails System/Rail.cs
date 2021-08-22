@@ -16,7 +16,7 @@ public class Rail : MonoBehaviour
     {
         nodes = new List<Transform>();
 
-#if UNITY_EDITOR
+
         if (GetComponent<DrawRailPath>() != null)
         {
             foreach (GameObject g in GetComponent<DrawRailPath>().Nodes)
@@ -24,7 +24,7 @@ public class Rail : MonoBehaviour
                 nodes.Add(g.transform);
             }
         }
-#endif
+
     }
 
     public Vector3 Rotate(int seg, float d)
