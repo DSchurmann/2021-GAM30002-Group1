@@ -51,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314076451785148404}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -110,11 +110,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b73f24dd8916df74b9ee73d9b0059900, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enable: 0
   triggered: 0
   triggerValue: 0.2
   triggeredObject: {fileID: 0}
-  objectIdlePos: 0
-  objTriggeredPos: -2
+  triggerMode: 0
 --- !u!54 &314076451785148413
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -142,7 +142,7 @@ SpringJoint:
   m_ConnectedArticulationBody: {fileID: 0}
   m_Anchor: {x: 0, y: 0.5000005, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -13.249264, y: 0.005265951, z: -0.014883518}
+  m_ConnectedAnchor: {x: -17.326, y: 2.5741389, z: -5.793}
   serializedVersion: 2
   m_Spring: 100
   m_Damper: 10
