@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+#if UNITY_EDITOR
 [ExecuteInEditMode]
 public class DrawRailPath : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class DrawRailPath : MonoBehaviour
         }
     }
 
-#if UNITY_EDITOR
+
     private void OnDrawGizmos()
     {
         foreach(GameObject n in nodes)
@@ -64,7 +65,7 @@ public class DrawRailPath : MonoBehaviour
             }
         }
     }
-#endif
+
 
     private Vector3 CatmullMove(int seg, float speed)
     {
@@ -131,3 +132,4 @@ public class DrawRailPath : MonoBehaviour
         set { radius = value; }
     }
 }
+#endif

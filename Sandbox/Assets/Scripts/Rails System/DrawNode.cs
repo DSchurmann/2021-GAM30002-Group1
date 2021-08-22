@@ -1,6 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
+#if UNITY_EDITOR
 public class DrawNode: MonoBehaviour
 {
     [SerializeField] private Color colour;
@@ -13,10 +14,10 @@ public class DrawNode: MonoBehaviour
 
     private void OnDrawGizmos()
     {
-#if UNITY_EDITOR
+
         Gizmos.color = colour;
         Gizmos.DrawCube(transform.position, Vector3.one * nodeSize);
-#endif
+
     }
 
     public Color SetColour
@@ -30,3 +31,4 @@ public class DrawNode: MonoBehaviour
         set { nodeSize = value; }
     }
 }
+#endif

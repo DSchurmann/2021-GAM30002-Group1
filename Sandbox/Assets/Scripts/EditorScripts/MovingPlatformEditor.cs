@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+#if UNITY_EDITOR
 [CustomEditor(typeof(MovingPlatform))]
 public class MovingObjectEditor : Editor
 {
@@ -21,3 +22,4 @@ public class MovingObjectEditor : Editor
 
     }
 }
+#endif

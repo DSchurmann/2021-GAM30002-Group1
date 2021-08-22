@@ -10,7 +10,7 @@ public class SceneSwitcherCol : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PControlled"))
         {
-            SwitchScene(2);
+            SwitchScene(SceneManager.GetActiveScene().buildIndex+1);
             Destroy(GameController.GH.gameObject);
         }
     }
