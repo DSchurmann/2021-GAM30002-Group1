@@ -8,8 +8,8 @@ public class Train : MonoBehaviour
     private const float TRAIN_INCREMENT_DIST = 0.6f;
 
     private int segment = -1;
-    private Rail rail;
-    private bool isConnectedtoRail = false;
+    [SerializeField] private Rail rail;
+    [SerializeField] private bool isConnectedtoRail = false;
     private Vector2 dir;
 
     [SerializeField] private float railSeekRange = 2f;
@@ -87,7 +87,7 @@ public class Train : MonoBehaviour
                 foreach (GameObject railObject in railObjects)
                 {
                     Rail r = railObject.GetComponent<Rail>();
-                    if (r == rail || CheckType(r))
+                    if (r == rail || !CheckType(r))
                         continue;
                     // rail is within range
                     if (r.IsRailWithinRange(pos, railSeekRange))
@@ -102,7 +102,6 @@ public class Train : MonoBehaviour
                         isConnectedtoRail = false;
                     }
                 }
-
             }
             else
             {
@@ -119,7 +118,7 @@ public class Train : MonoBehaviour
                 foreach (GameObject railObject in railObjects)
                 {
                     Rail r = railObject.GetComponent<Rail>();
-                    if (r == rail || CheckType(r))
+                    if (r == rail || !CheckType(r))
                         continue;
                     // rail is within range
                     if (r.IsRailWithinRange(pos, railSeekRange))
@@ -163,7 +162,7 @@ public class Train : MonoBehaviour
             foreach (GameObject railObject in railObjects)
             {
                 Rail r = railObject.GetComponent<Rail>();
-                if (CheckType(r))
+                if (!CheckType(r))
                     continue;
                 // rail is within range
                 if (r.IsRailWithinRange(playerPosition, railSeekRange, false))
@@ -197,11 +196,12 @@ public class Train : MonoBehaviour
             Rail r = railObject.GetComponent<Rail>();
 
             // skip if refering to ourselves of the rail has a lower Priority
-            if (r == rail || r.Priority < rail.Priority || CheckType(r))
+            if (r == rail || r.Priority < rail.Priority || !CheckType(r))
                 continue;
 
-            if (r.Priority > rail.Priority)
+            if (r.Priority > rail.Priority && CheckType(r))
             {
+                Debug.Log(r.name + " - " + CheckType(r));
                 // rail is within range
                 if (r.IsRailWithinRange(playerPosition, railSeekRange, false))
                 {
@@ -212,6 +212,7 @@ public class Train : MonoBehaviour
             }
             else if (dirInput != 0)
             {
+                Debug.Log("this is where it changes");
                 // rail is within range
                 if (r.IsRailWithinRange(playerPosition, railSeekRange))
                 {
@@ -235,12 +236,14 @@ public class Train : MonoBehaviour
     
     private bool CheckType(Rail r)
     {
-
-        bool result = true;
-        if(r.Type != type || r.Type != RailType.Both)
+        if(r.Type == type)
         {
-            result = false;
+            return true;
         }
-        return result;
+        else if(r.Type == RailType.Both)
+        {
+            return true;
+        }
+        return false;
     }
 }
