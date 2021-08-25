@@ -10447,13 +10447,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180113385a2acdd4a8549500a7e29f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-  - type: 0
-    currentValue: 0
-    maxValue: 10
-  - type: 1
-    currentValue: 0
-    maxValue: 5
+  hp: {fileID: 0}
+  dmg: {fileID: 0}
 --- !u!1 &573343164
 GameObject:
   m_ObjectHideFlags: 0
@@ -11072,6 +11067,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5c49d2ecdf598418715e6ff77d9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rail: {fileID: 0}
+  isConnectedtoRail: 0
   railSeekRange: 2
   type: 0
 --- !u!114 &594013820
@@ -17657,6 +17654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5c49d2ecdf598418715e6ff77d9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rail: {fileID: 0}
+  isConnectedtoRail: 0
   railSeekRange: 2
   type: 2
 --- !u!1 &887115243
@@ -17692,13 +17691,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 180113385a2acdd4a8549500a7e29f7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats:
-  - type: 0
-    currentValue: 0
-    maxValue: 10
-  - type: 1
-    currentValue: 0
-    maxValue: 5
+  hp: {fileID: 0}
+  dmg: {fileID: 0}
 --- !u!195 &887115245
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -20919,6 +20913,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5c49d2ecdf598418715e6ff77d9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rail: {fileID: 0}
+  isConnectedtoRail: 0
   railSeekRange: 2
   type: 0
 --- !u!114 &1046747841
@@ -31014,7 +31010,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6457358272977859797, guid: a74d984408dc82e4eaf5994966328926, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 36.936943
+      value: 36.608
       objectReference: {fileID: 0}
     - target: {fileID: 6457358272977859797, guid: a74d984408dc82e4eaf5994966328926, type: 3}
       propertyPath: m_LocalPosition.z
@@ -37964,7 +37960,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh152120
+  m_Name: pb_Mesh31134
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
