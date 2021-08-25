@@ -7,6 +7,7 @@ public class GolemAbilityState:GolemState
     protected bool isAbilityFinished;
     protected bool isGrounded;
     protected bool isTouchingWall;
+    protected int inputX;
 
     public GolemAbilityState(GolemControllerRB player, string animation) : base(player, animation)
     {
@@ -30,6 +31,13 @@ public class GolemAbilityState:GolemState
     public override void Update()
     {
         base.Update();
+
+        inputX = player.InputHandler.InputXNormal;
+
+        if(inputX != 0 && player.ControllerEnabled)
+        {
+            player.ChangeState(player.MoveState);
+        }
 
         if (isAbilityFinished)
         {

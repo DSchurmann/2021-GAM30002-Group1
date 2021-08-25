@@ -201,7 +201,7 @@ public class Train : MonoBehaviour
 
             if (r.Priority > rail.Priority && CheckType(r))
             {
-                Debug.Log(r.name + " - " + CheckType(r));
+                //Debug.Log(r.name + " - " + CheckType(r));
                 // rail is within range
                 if (r.IsRailWithinRange(playerPosition, railSeekRange, false))
                 {
@@ -212,7 +212,7 @@ public class Train : MonoBehaviour
             }
             else if (dirInput != 0)
             {
-                Debug.Log("this is where it changes");
+                //Debug.Log("this is where it changes");
                 // rail is within range
                 if (r.IsRailWithinRange(playerPosition, railSeekRange))
                 {
