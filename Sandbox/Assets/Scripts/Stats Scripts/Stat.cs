@@ -4,7 +4,6 @@ using UnityEngine;
 [Serializable]
 public class Stat
 {
-    [SerializeField] private StatType type;
     [SerializeField] private float currentValue;
     [SerializeField] private float maxValue;
 
@@ -13,9 +12,8 @@ public class Stat
 
     }
 
-    public Stat(StatType t, float m)
+    public Stat( float m)
     {
-        type = t;
         maxValue = m;
         currentValue = m;
     }
@@ -53,12 +51,6 @@ public class Stat
             result = currentValue;
         }
         return result;
-    }
-
-    public StatType Type
-    {
-        get { return type; }
-        set { type = value; }
     }
 
     public float Max

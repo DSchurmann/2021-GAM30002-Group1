@@ -4,11 +4,10 @@ using UnityEngine;
 [Serializable]
 public class StatComponent : MonoBehaviour
 {
-    [SerializeField] private StatType type;
     private float currentValue;
-    [SerializeField] private float maxValue;
+    private int maxValue;
 
-    public void Start()
+    public void Initialize()
     {
         currentValue = maxValue;
     }
@@ -42,10 +41,10 @@ public class StatComponent : MonoBehaviour
         }
         return result;
     }
-}
 
-public enum StatType 
-{ 
-    health,
-    damage,
+    public int Max
+    {
+        get { return maxValue; }
+        set { maxValue = value; }
+    }
 }
