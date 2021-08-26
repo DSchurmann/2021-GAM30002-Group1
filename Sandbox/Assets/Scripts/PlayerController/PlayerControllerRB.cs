@@ -48,7 +48,7 @@ public class PlayerControllerRB : StateMachine
     public bool isTouchingWall;
     public bool isGrounded;
     [Header("Follow State")]
-    [Range(0.0f, 1.0f)]
+    [Range(0.0f, 10.0f)]
     public float closeDistance = 2f;
     // states
     #endregion
