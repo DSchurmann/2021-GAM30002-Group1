@@ -131,8 +131,8 @@ public class PlayerControllerRB : StateMachine
         if(NextState!=null)
         {
             PlayerState state = (PlayerState)CurrentState;
-           
-            if(state.AnimationComplete())
+
+            if (state.AnimationComplete())
             {
                 ChangeState(UseNextState());
             }
@@ -155,11 +155,13 @@ public class PlayerControllerRB : StateMachine
     }
     public virtual void EnableControls()
     {
+        Debug.Log("Controls enable");
         ControllerEnabled = true;
         CanSwitch = true;
     }
     public virtual void DisableControls()
     {
+        Debug.Log("Constrols Disable");
         ControllerEnabled = false;
         CanSwitch = false;
     }

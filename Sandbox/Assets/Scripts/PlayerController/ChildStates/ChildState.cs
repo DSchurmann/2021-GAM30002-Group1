@@ -30,7 +30,7 @@ public abstract class ChildState: PlayerState
         {
             //get input
             //inputAttack = player.InputHandler.InputInteract;
-            //inputWait = player.InputHandler.InputWait;
+            inputWait = player.InputHandler.InputWait;
         }
       
         
@@ -44,15 +44,19 @@ public abstract class ChildState: PlayerState
                     player.InputHandler.SetWaitFalse();
                     if (player.Other.Waiting)
                     {
+                        Debug.Log("Golem Following");
                         player.Other.ChangeState((player.Other as GolemControllerRB).AIFollowState);
                         player.Other.Following = true;
                         player.Other.Waiting = false;
                     }
                     else if (player.Other.Following)
                     {
+                        Debug.Log("Golem Waiting");
                         player.Other.ChangeState((player.Other as GolemControllerRB).AIWaitState);
                         player.Other.Following = false;
                     }
+
+                    Debug.Log("Golem Following " + player.Other.Following.ToString());
                 }
 
                 // attack controls

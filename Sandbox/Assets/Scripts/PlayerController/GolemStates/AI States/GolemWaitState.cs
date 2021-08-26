@@ -16,6 +16,7 @@ public class GolemWaitState:GolemAIState
         base.Enter();
         player.Waiting = true;
         GameController.GH.UH.waiting = (true);
+        Debug.Log("Golem Wait");
     }
 
     public override void Exit()
@@ -29,7 +30,7 @@ public class GolemWaitState:GolemAIState
 
         if (!isExitingState)
         {
-            if(player.ControllerEnabled)
+            if (player.ControllerEnabled)
             {
                 player.ChangeState(player.IdleState);
             }
@@ -40,7 +41,6 @@ public class GolemWaitState:GolemAIState
                 if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
                 {
                     player.ChangeState(player.AIFollowState);
-
                 }
             }
         }
