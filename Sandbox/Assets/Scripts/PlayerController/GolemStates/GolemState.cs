@@ -28,6 +28,7 @@ public abstract class GolemState: PlayerState
     {
         base.Update();
 
+
         // change to pose on input
         if(player.ControllerEnabled)
         {
@@ -35,12 +36,11 @@ public abstract class GolemState: PlayerState
             inputPoseStep = player.InputHandler.InputWest;
             inputWait = player.InputHandler.InputWait;
         }
-       
 
         // player controls input
 
         // wait controls, tell other player to wait
-      if(!isExitingState)
+        if (!isExitingState)
         {
             // enabled player controls
             if (player.ControllerEnabled)
@@ -50,15 +50,20 @@ public abstract class GolemState: PlayerState
                     player.InputHandler.SetWaitFalse();
                     if (player.Other.Waiting)
                     {
+                        Debug.Log("Child Following");
                         player.Other.ChangeState((player.Other as ChildControllerRB).AIFollowState);
                         player.Other.Following = true;
                         player.Other.Waiting = false;
                     }
                     else if (player.Other.Following)
                     {
+                        Debug.Log("Child Waiting");
+
                         player.Other.ChangeState((player.Other as ChildControllerRB).AIWaitState);
                         player.Other.Following = false;
                     }
+
+                    Debug.Log("Child Following " + player.Other.Following.ToString());
                 }
                 // if not posing, enable pose ability. Handle exiting poses in their states
                 if(!isPosing)

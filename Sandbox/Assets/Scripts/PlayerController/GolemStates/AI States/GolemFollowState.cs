@@ -18,6 +18,7 @@ public class GolemFollowState:GolemAIState
         if (player.Waiting)
             player.Waiting = false;
         GameController.GH.UH.waiting = (false);
+        Debug.Log("Golem Follow");
     }
 
     public override void Exit()

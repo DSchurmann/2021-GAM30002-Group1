@@ -48,7 +48,7 @@ public class PlayerControllerRB : StateMachine
     public bool isTouchingWall;
     public bool isGrounded;
     [Header("Follow State")]
-    [Range(0.0f, 1.0f)]
+    [Range(0.0f, 10.0f)]
     public float closeDistance = 2f;
     // states
     #endregion
@@ -131,8 +131,8 @@ public class PlayerControllerRB : StateMachine
         if(NextState!=null)
         {
             PlayerState state = (PlayerState)CurrentState;
-           
-            if(state.AnimationComplete())
+
+            if (state.AnimationComplete())
             {
                 ChangeState(UseNextState());
             }
@@ -155,11 +155,13 @@ public class PlayerControllerRB : StateMachine
     }
     public virtual void EnableControls()
     {
+        Debug.Log("Controls enable");
         ControllerEnabled = true;
         CanSwitch = true;
     }
     public virtual void DisableControls()
     {
+        Debug.Log("Constrols Disable");
         ControllerEnabled = false;
         CanSwitch = false;
     }
