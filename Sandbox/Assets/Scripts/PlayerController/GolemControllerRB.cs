@@ -74,6 +74,9 @@ public class GolemControllerRB : PlayerControllerRB
     public override void DisableControls()
     {
         base.DisableControls();
+        //QueueState(AIWaitState);
+        Debug.Log("GOLEM PUT INTO WAIT STATE");
+        ChangeState(AIWaitState);
     }
     // change facing direction
     public override void Flip()

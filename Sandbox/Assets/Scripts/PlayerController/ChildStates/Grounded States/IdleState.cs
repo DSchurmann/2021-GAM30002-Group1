@@ -20,7 +20,7 @@ public class IdleState: GroundedState
         }
         else
         {
-            if (player.Following )
+            if (player.Following)
             {
                 player.ChangeState(player.AIFollowState);
             }

@@ -31,6 +31,7 @@ public abstract class PlayerState: State
         isExitingState = false;
         //Debug.Log(animation);
         //Debug.Log(this.GetType().Name + " state entered");
+
     }
 
     // update state
@@ -47,9 +48,12 @@ public abstract class PlayerState: State
             InputSwitchPlayer = false;
             player.InputHandler.SetSwitchFalse();
             player.Other.InputHandler.SetSwitchFalse();
+
             if (player.CanSwitch)
             {
                 player.DisableControls();
+                player.Other.Following = false;
+                player.Other.Waiting = false;
                 player.Other.EnableControls();
             }
         }
