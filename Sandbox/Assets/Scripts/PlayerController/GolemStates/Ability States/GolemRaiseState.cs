@@ -27,6 +27,7 @@ public class GolemRaiseState : GolemAbilityState
     public override void Update()
     {
         base.Update();
+
     }
 
     public override void FixedUpdate()

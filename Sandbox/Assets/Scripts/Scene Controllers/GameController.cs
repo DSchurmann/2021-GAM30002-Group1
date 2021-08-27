@@ -43,7 +43,7 @@ public class GameController : MonoBehaviour
             SaveGame();
 
         //Set UIHandler
-        uiHandler = GameObject.Find("UI");
+        //uiHandler = GameObject.Find("UI");
         UH = uiHandler.GetComponent<UIHandler>();
     }
 

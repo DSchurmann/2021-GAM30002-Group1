@@ -65,7 +65,7 @@ public class AIFollowState : AIState
 
     public void FollowProcedure()
     {
-        Debug.Log("FOLLOWING");
+        //Debug.Log("FOLLOWING");
         //Get Our Position, Position of Golem
         Vector3 pos = player.transform.position;
         Vector3 targPos = player.Other.transform.position;
