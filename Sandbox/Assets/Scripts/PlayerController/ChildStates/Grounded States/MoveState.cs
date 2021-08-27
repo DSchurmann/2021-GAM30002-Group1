@@ -23,6 +23,11 @@ public class MoveState : GroundedState
     {
         base.Update();
 
+        //Debug.Log(isAnimationComplete);
+        if(player.isTouchingWall)
+        {
+            //player.ChangeState(player.IdleState);
+        }
 
         if(player.ControllerEnabled)
         {
@@ -50,14 +55,14 @@ public class MoveState : GroundedState
 
     }
 
-    public void Move(float input)
+    public void Move(int input)
     {
         // Check for direction flip
-        player.CheckForFlip(inputX);
+        player.CheckForFlip(input);
         // Set player movement velocity
-        player.SetVelocityX(player.MovementSpeed * inputX);
+        player.SetVelocityX(player.MovementSpeed * input);
         // Set player to idle state if stop moving
-        if (inputX == 0f && !isExitingState)
+        if (input == 0f && !isExitingState)
         {
             player.ChangeState(player.IdleState);
         }

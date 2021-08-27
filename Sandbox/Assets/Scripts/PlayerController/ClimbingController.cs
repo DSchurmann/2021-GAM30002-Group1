@@ -18,6 +18,10 @@ public class ClimbingController : MonoBehaviour
     public bool isGapAhead;
     public bool isGapJumpable;
 
+    // gap variables
+    public float minDistanceToGap;
+    public float gapCheckDepth;
+
     // climbing variables
     public bool isVaulting;
     public bool isClimbing;
@@ -30,6 +34,8 @@ public class ClimbingController : MonoBehaviour
 
     public LayerMask Climbable;
     public bool isEnabled;
+
+
 
     // components
     public Rigidbody _rb;
@@ -59,7 +65,7 @@ public class ClimbingController : MonoBehaviour
         if (ledgeDetector != null && isEnabled)
         {
             isTouchingWall = ledgeDetector.TouchingWall().Any();
-            isGapAhead = ledgeDetector.GapCheck(transform.position + transform.forward*1,2);
+            isGapAhead = ledgeDetector.GapCheck(transform.position + (Vector3.one * 0.2f) + transform.forward * origins_forward[0], gapCheckDepth);
             ledgeFound = ledgeDetector.ledgeFound;
         }
         else
@@ -83,29 +89,6 @@ public class ClimbingController : MonoBehaviour
 
             }
         }
-
-        /*if(inputInteract)
-        {
-            if (canVault)
-            {
-                Vault();
-            }
-
-            if (canClimb)
-            {
-                Climb();
-            }
-
-            if (canJumpClimb)
-            {
-                Climb();
-            }
-            inputInteract = false;
-        }*/
-
-       /* if (ledgeDetector != null && ledgeFound)
-            ledgeDetector.HeightCheck(ledgeDetector.ledgePosition, 2);*/
-
     }
 
 
@@ -134,12 +117,11 @@ public class ClimbingController : MonoBehaviour
     {
         isClimbing = true;
 
-        Vector3 jumpPos = (transform.position + transform.forward * 0.5f);
-        Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * 0.15f); //+ (transform.up * 0.5f);
+        Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * 0.25f); //+ (transform.up * 0.5f);
         Vector3 distance = landingPos - transform.position;
 
         //GetComponent<CharacterController>().Move(distance);
-        _rb.DOMove(landingPos, 0.6f).OnComplete(FinishClimb);
+        _rb.DOMove(landingPos, 0.5f).OnComplete(FinishClimb);
         //GetComponent<Animator>().SetBool("ClimbUp", true);
     }
 

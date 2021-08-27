@@ -18,6 +18,7 @@ public class AIFollowState : AIState
         if (player.Waiting)
             player.Waiting = false;
         GameController.GH.UH.waiting = (false);
+
     }
 
     public override void Exit()
@@ -71,30 +72,49 @@ public class AIFollowState : AIState
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
 
-        // check if not touching ground
-        //Check Distance
-        if (Mathf.Abs((pos - targPos).x) > player.closeDistance)
+        if(player.GetComponent<ClimbingController>().isGapAhead)
         {
-            //Move Towards
-            Vector3 angle = (targPos - pos).normalized;
-
-            //Set Mov
-            if (angle.x > 0)
-            {
-                // flip player and change direction
-                if(player.FacingDirection!= 1) {player.Flip();}
-                player.SetVelocityX(player.MovementSpeed * angle.x);
-                
-            }
-            else if (angle.x < 0)
-            {
-                // flip playe rand change direction
-                if (player.FacingDirection != -1) { player.Flip(); }
-                player.SetVelocityX(player.MovementSpeed * angle.x);
-            }
-
-            player.SetVelocityY(0);
+            holdPosition.x = player.transform.position.x;
+            HoldPosition(true, false);
+            player.Anim.Play("Idle");
+            //player.Following = false;
+            //player.ChangeState(player.AIWaitState);
         }
+        else
+        {
+            // check if not touching ground
+            //Check Distance
+            if (Mathf.Abs((pos - targPos).x) > player.closeDistance)
+            {
+                //Move Towards
+                Vector3 angle = (targPos - pos).normalized;
+
+                //Set Mov
+                if (angle.x > 0)
+                {
+                    // flip player and change direction
+                    if (player.FacingDirection != 1) { player.Flip(); }
+                    player.SetVelocityX(player.MovementSpeed * angle.x);
+
+                }
+                else if (angle.x < 0)
+                {
+                    // flip playe rand change direction
+                    if (player.FacingDirection != -1) { player.Flip(); }
+                    player.SetVelocityX(player.MovementSpeed * angle.x);
+                }
+
+                //set jump
+                if (isTouchingWall && player.CheckgWallClimbAbility())
+                {
+                    //player.ChangeState(player.JumpState);
+                }
+
+                player.SetVelocityY(0);
+            }
+        }
+
+        
 
         // set y velocity, apply jumpInputMultipler for press-depended jump height
         player.SetVelocityY(player.CurrentVelocity.y * player.jumpInputMultiplier);

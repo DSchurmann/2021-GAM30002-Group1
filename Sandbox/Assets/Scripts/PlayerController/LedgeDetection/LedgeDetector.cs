@@ -52,16 +52,16 @@ public class LedgeDetector
         return true;
     }
 
-    public bool GapCheck(Vector3 origin, float minDistanceToGap)
+    public bool GapCheck(Vector3 origin, float depth)
     {
-        RaycastHit heightHit;
-        if (Physics.Raycast(origin, Vector3.down, out heightHit, minDistanceToGap))
+        RaycastHit depthHit;
+        if (Physics.Raycast(origin, Vector3.down, out depthHit, depth))
         {
-            Debug.DrawLine(ledgePosition, heightHit.point, Color.yellow);
+            Debug.DrawLine(origin, depthHit.point, Color.yellow);
             //Debug.Log(heightHit.collider.gameObject.name);
             return false;
         }
-        Debug.DrawLine(ledgePosition, ledgePosition + Vector3.down * minDistanceToGap, Color.cyan);
+        Debug.DrawLine(origin, origin + Vector3.down * depth, Color.cyan);
         return true;
 
     }

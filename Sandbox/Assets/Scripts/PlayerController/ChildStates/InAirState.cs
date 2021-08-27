@@ -57,6 +57,7 @@ public class InAirState: ChildState
     {
         if (player.CheckIfGrounded() && player.CurrentVelocity.y < 0.1f)
         {
+            Debug.Log("PLAYER IN AIR");
             // land if ground detected while in air
             player.ChangeState(player.LandState);
         }
