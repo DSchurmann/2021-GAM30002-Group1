@@ -15,10 +15,10 @@ public class WeightButton : MonoBehaviour, ITrigger
    
     // triggered object positions positions
     [Header("Triggered Object")]
-    public GameObject triggeredObject;
-    private ITriggeredObject toTrigger;
-    private float buttonIdlePos;
-    private float buttonTriggeredPos;
+    public GameObject[] triggeredObjects;
+    //private ITriggeredObject toTrigger;
+    //private float buttonIdlePos;
+    //private float buttonTriggeredPos;
     // button mode
     public enum TriggerMode { ONCE, HOLD}
     public TriggerMode triggerMode;
@@ -85,11 +85,18 @@ public class WeightButton : MonoBehaviour, ITrigger
 
     public void SendTrigger()
     {
-        triggeredObject.GetComponent<ITriggeredObject>()?.Trigger(true);
+        foreach (GameObject item in triggeredObjects)
+        {
+            item.GetComponent<ITriggeredObject>()?.Trigger(true);
+        }
+        
     }
     public void SendTriggerReset()
     {
-        triggeredObject.GetComponent<ITriggeredObject>()?.Trigger(false);
+        foreach (GameObject item in triggeredObjects)
+        {
+            item.GetComponent<ITriggeredObject>()?.Trigger(true);
+        }
     }
 
 }

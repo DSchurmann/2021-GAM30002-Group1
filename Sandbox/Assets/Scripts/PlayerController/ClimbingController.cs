@@ -15,6 +15,9 @@ public class ClimbingController : MonoBehaviour
     public LedgeDetector ledgeDetector;
 
     public bool isTouchingWall;
+    public bool isGapAhead;
+    public bool isGapJumpable;
+
     // climbing variables
     public bool isVaulting;
     public bool isClimbing;
@@ -56,6 +59,7 @@ public class ClimbingController : MonoBehaviour
         if (ledgeDetector != null && isEnabled)
         {
             isTouchingWall = ledgeDetector.TouchingWall().Any();
+            isGapAhead = ledgeDetector.GapCheck(transform.position + transform.forward*1,2);
             ledgeFound = ledgeDetector.ledgeFound;
         }
         else

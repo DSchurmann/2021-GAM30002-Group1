@@ -67,12 +67,19 @@ public abstract class ChildState: PlayerState
                     player.ChangeState(player.AttackState);
 
                 }
-
-                if(player.GetComponent<ClimbingController>().canClimb)
-                {
-                    player.ChangeState(player.WallClimbLedgeState);
-                }
             }
+
+            // auto climbing
+            if (player.GetComponent<ClimbingController>().canClimb)
+            {
+                player.ChangeState(player.WallClimbLedgeState);
+            }
+
+            if (player.GetComponent<ClimbingController>().canJumpClimb)
+            {
+                player.ChangeState(player.JumpState);
+            }
+
         }
         
       

@@ -10,15 +10,24 @@ public class LedgeDetector
     public Transform player;
     public Collider collider;
 
+    // climbing ledges
     public bool ledgeFound;
     public Vector3 ledgePosition;
 
+    // jumping edges
+    public bool edgeFound;
+    public Vector3 edgePosition;
+
+    // ray positions
     public float[] originForward;
     public float[] originDown;
     public float lengthForward = 0.5f;
     public float lengthDown = 2;
 
+    // public bools
     public bool foundClimbable;
+    public bool foundJumpable;
+
 
     public LedgeDetector(Transform player, float[] originsForward, float[] originsDown)
     {
@@ -42,6 +51,21 @@ public class LedgeDetector
         Debug.DrawLine(ledgePosition, ledgePosition + Vector3.up * height, Color.cyan);
         return true;
     }
+
+    public bool GapCheck(Vector3 origin, float minDistanceToGap)
+    {
+        RaycastHit heightHit;
+        if (Physics.Raycast(origin, Vector3.down, out heightHit, minDistanceToGap))
+        {
+            Debug.DrawLine(ledgePosition, heightHit.point, Color.yellow);
+            //Debug.Log(heightHit.collider.gameObject.name);
+            return false;
+        }
+        Debug.DrawLine(ledgePosition, ledgePosition + Vector3.down * minDistanceToGap, Color.cyan);
+        return true;
+
+    }
+
 
     public bool[] TouchingWall()
     {

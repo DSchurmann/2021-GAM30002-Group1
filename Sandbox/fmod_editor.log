@@ -2,12 +2,13 @@
 [LOG] Manager::init                            : maxchannels = 256 studioflags = 00000006 flags 00000000 extradriverdata 0000000000000000.
 [LOG] SystemI::init                            : Initialize version=20109 (115889), maxchannels=256, flags=0x00020000
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
+[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] SystemI::init                            : Output requires a sample rate of 44100Hz, resampling will occur.
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 00000274B1513F08 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000001C9EF48F378 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -16,21 +17,19 @@
 [LOG] Manager::init                            : done.
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
 [LOG] Manager::readBank                        : fileversion = 135, compatVersion = 132 (oldest = 44, newest = 135)
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274B16994A8
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274B16994A8
 [LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
 [LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_05', format=5, channels=2, frequency=48000, lengthbytes=2528, lengthpcm=11436, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.204529.
@@ -39,14 +38,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_09', format=5, channels=2, frequency=48000, lengthbytes=1952, lengthpcm=8874, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.164398.
@@ -55,14 +54,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_12', format=5, channels=2, frequency=48000, lengthbytes=2784, lengthpcm=12032, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.128540.
@@ -71,14 +70,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_15', format=5, channels=2, frequency=48000, lengthbytes=1920, lengthpcm=8608, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.129730.
@@ -87,14 +86,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_03', format=5, channels=2, frequency=48000, lengthbytes=2432, lengthpcm=11370, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.148712.
@@ -103,14 +102,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_19', format=5, channels=2, frequency=48000, lengthbytes=4224, lengthpcm=19584, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.181122.
@@ -119,14 +118,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_20', format=5, channels=2, frequency=48000, lengthbytes=2784, lengthpcm=12348, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.144287.
@@ -135,14 +134,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_06', format=5, channels=2, frequency=48000, lengthbytes=2176, lengthpcm=10246, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.190613.
@@ -151,14 +150,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_10', format=5, channels=2, frequency=48000, lengthbytes=1920, lengthpcm=8802, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.157074.
@@ -167,14 +166,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_01', format=5, channels=2, frequency=48000, lengthbytes=2176, lengthpcm=10126, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.139099.
@@ -183,14 +182,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_18', format=5, channels=2, frequency=48000, lengthbytes=5472, lengthpcm=27136, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.160248.
@@ -199,14 +198,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_14', format=5, channels=2, frequency=48000, lengthbytes=2496, lengthpcm=10816, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.186188.
@@ -215,14 +214,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_08', format=5, channels=2, frequency=48000, lengthbytes=2304, lengthpcm=10722, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.204071.
@@ -231,14 +230,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_07', format=5, channels=2, frequency=48000, lengthbytes=3328, lengthpcm=15549, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.140350.
@@ -247,14 +246,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_11', format=5, channels=2, frequency=48000, lengthbytes=2944, lengthpcm=13876, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.116760.
@@ -263,14 +262,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_16', format=5, channels=2, frequency=48000, lengthbytes=2560, lengthpcm=11776, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.148865.
@@ -279,14 +278,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_13', format=5, channels=2, frequency=48000, lengthbytes=4000, lengthpcm=19584, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.182465.
@@ -295,14 +294,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_04', format=5, channels=2, frequency=48000, lengthbytes=2432, lengthpcm=12386, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.167267.
@@ -311,14 +310,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_17', format=5, channels=2, frequency=48000, lengthbytes=2528, lengthpcm=11264, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.155243.
@@ -327,14 +326,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Land_Walk_Forward_Landing_01', format=5, channels=2, frequency=48000, lengthbytes=3584, lengthpcm=16382, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.217499.
@@ -343,687 +342,85 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 0000005A850FF598
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274AF4EBAD8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1FA7D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1FA7D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1FA7E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1FA7F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000001C9F0BF86D8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Emotes_Lands_02', format=5, channels=2, frequency=48000, lengthbytes=1888, lengthpcm=8962, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.163879.
 [LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF362188 : node = 00000273FE50D3B0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF362188
+[LOG] SystemI::createSound                     : setdata soundi = 000001CA2FD34EC8 : node = 000001C7827E0DE0
+[LOG] SystemI::createSound                     : add node to async list : head = 000001C78110A9D8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000001CA2FD34EC8
 [LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50D4C0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000001C7827E0EF0
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF362188
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274B1698DE8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (0000027402BF7358)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274B16994A8)
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_03', format=5, channels=2, frequency=48000, lengthbytes=3008, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.028137.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_17', format=5, channels=2, frequency=48000, lengthbytes=2752, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.054901.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_06', format=5, channels=2, frequency=48000, lengthbytes=2688, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.041534.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_14', format=5, channels=2, frequency=48000, lengthbytes=2528, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.051422.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_12', format=5, channels=2, frequency=48000, lengthbytes=2592, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.048065.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_01', format=5, channels=2, frequency=48000, lengthbytes=2784, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.068268.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_15', format=5, channels=2, frequency=48000, lengthbytes=2688, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.048279.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_16', format=5, channels=2, frequency=48000, lengthbytes=2592, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.053436.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_07', format=5, channels=2, frequency=48000, lengthbytes=2656, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.057587.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_10', format=5, channels=2, frequency=48000, lengthbytes=2560, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.057739.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_08', format=5, channels=2, frequency=48000, lengthbytes=2816, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.070129.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_05', format=5, channels=2, frequency=48000, lengthbytes=2848, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.066589.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_19', format=5, channels=2, frequency=48000, lengthbytes=2592, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.054565.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_11', format=5, channels=2, frequency=48000, lengthbytes=2720, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.052887.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_09', format=5, channels=2, frequency=48000, lengthbytes=2656, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.105164.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_18', format=5, channels=2, frequency=48000, lengthbytes=2656, lengthpcm=12802, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.034576.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_13', format=5, channels=2, frequency=48000, lengthbytes=2528, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.061066.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_02', format=5, channels=2, frequency=48000, lengthbytes=2720, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.034973.
-[LOG] SystemI::createSoundInternal             : Create name='', mode=0x02000202
-[LOG] SystemI::createSoundInternal             : exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             : exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000084A7C9EE88
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFCB1067D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFCB1067D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFCB1067E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFCB1067F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 00000274E00B3588
-[LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
-[LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
-[LOG] SystemI::createSoundInternal             : Sample 0/1: name='Ellen_Footsteps_Stone_Run_04', format=5, channels=2, frequency=48000, lengthbytes=2624, lengthpcm=12882, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.054169.
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF361AC8 : node = 00000273FE50E7B0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF361AC8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50E8C0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF361AC8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF362188)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000273FFDD4218)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF35F5A8)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF3629F8 : node = 00000273FE50B830
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF3629F8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50B940
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF3629F8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF361AC8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000002740382DC78)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF361C78)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF3644F8 : node = 00000273FE50FE30
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF3644F8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50FF40
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF3644F8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF3629F8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000273FFDD4218)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF364348)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF364348 : node = 00000273FE50D270
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF364348
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50D380
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF364348
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF3644F8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000273FFDD4558)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF363268)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF35F098 : node = 00000273FE50CEB0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF35F098
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50CFC0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF35F098
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF364348)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000273FFDD4BD8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF35FE18)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF361C78 : node = 00000273FE50F2F0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF361C78
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50F400
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF361C78
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF35F098)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000002740327CA88)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF3644F8)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF3644F8 : node = 00000273FE50FE30
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF3644F8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50FF40
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF3644F8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF361C78)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000002740327F9A8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF3629F8)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF361AC8 : node = 00000273FE50D130
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF361AC8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50D240
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF361AC8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF3644F8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000002740327CA88)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF3655D8)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF363778 : node = 00000273FE50D4F0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF363778
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50D600
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF363778
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF361AC8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (0000027402161FB8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF35FE18)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF3624E8 : node = 00000273FE50B5B0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF3624E8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50B6C0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF3624E8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF363778)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274021627D8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF3655D8)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF364858 : node = 00000273FE50CEB0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF364858
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50CFC0
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF364858
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF3624E8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (0000027402161FB8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF35F248)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274AF361AC8 : node = 00000273FE50CFF0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274AF361AC8
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50D100
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274AF361AC8
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF364858)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (0000027403834AF8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF363268)
-[LOG] SystemI::createSound                     : filename = ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 00000274DF54DB78 : node = 00000273FE50F2F0
-[LOG] SystemI::createSound                     : add node to async list : head = 0000027404C95D08.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 00000274DF54DB78
-[LOG] SystemI::createSoundInternal             :     Create name='../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1780896
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 45536
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 00000273FE50F400
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Dropship_Mono_Loop_01', format=5, channels=2, frequency=48000, lengthbytes=227392, lengthpcm=1198016, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.237244.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 00000274DF54DB78
-[LOG] SoundI::release                          : Bed Loop Idea 2 (00000274B169BED8)
-[LOG] SoundI::release                          :     Bed Loop Idea 2 (0000027402BF7B78)
-[LOG] SoundI::release                          :     Bed Loop Idea 2 (00000274B169A228)
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274DF54DB78)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (0000027402161FB8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274DF54CA98)
-[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (00000274AF361AC8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000002740382F4D8)
-[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (00000274AF364348)
-[LOG] SoundI::release                          :  (000002753213CAD8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_01 (00000274026112B8)
-[LOG] SoundI::release                          :  (000002753213F5F8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_02 (000002740382D798)
-[LOG] SoundI::release                          :  (000002753213F318)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_03 (00000273FFFF2D88)
-[LOG] SoundI::release                          :  (000002753213C3A8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_04 (00000273FFC23528)
-[LOG] SoundI::release                          :  (00000273F6A2E468)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_05 (00000273FFFF2A48)
-[LOG] SoundI::release                          :  (0000027532140738)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_06 (0000027402612CB8)
-[LOG] SoundI::release                          :  (0000027532141428)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_07 (0000027402618478)
-[LOG] SoundI::release                          :  (00000275321408A8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_08 (0000027402619658)
-[LOG] SoundI::release                          :  (000002753213C968)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_09 (00000273FFFF0828)
-[LOG] SoundI::release                          :  (0000027532141148)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_10 (000002740260E878)
-[LOG] SoundI::release                          :  (000002753213D208)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_11 (00000273FFC21988)
-[LOG] SoundI::release                          :  (000002753213FE98)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_12 (00000273FFFF16C8)
-[LOG] SoundI::release                          :  (000002753213F8D8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_13 (00000273FFC22D08)
-[LOG] SoundI::release                          :  (0000027532140008)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_14 (0000027402611798)
-[LOG] SoundI::release                          :  (00000275321412B8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_15 (00000273FFFF1A08)
-[LOG] SoundI::release                          :  (000002753213EA78)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_16 (00000273FFC23A08)
-[LOG] SoundI::release                          :  (000002753213C518)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_17 (00000273FFC23868)
-[LOG] SoundI::release                          :  (000002753213FBB8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_18 (00000274026139B8)
-[LOG] SoundI::release                          :  (000002753213F038)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_19 (00000273FFFF30C8)
-[LOG] SoundI::release                          :  (000002753213DAA8)
-[LOG] SoundI::release                          :     Ellen_Emotes_Lands_20 (00000273FFFF3408)
-[LOG] SoundI::release                          :  (000002753213D378)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Land_Walk_Forward_Landing_01 (00000273FFC20AE8)
-[LOG] SoundI::release                          :  (000002753213E628)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_01 (0000027402BF19F8)
-[LOG] SoundI::release                          :  (000002753213C688)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_02 (0000027403834958)
-[LOG] SoundI::release                          :  (000002753213E4B8)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_03 (0000027402165558)
-[LOG] SoundI::release                          :  (000002753213D098)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_04 (0000027403830858)
-[LOG] SoundI::release                          :  (000002753213CF28)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_05 (00000273FFA56988)
-[LOG] SoundI::release                          :  (000002753213D938)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_06 (00000274021663F8)
-[LOG] SoundI::release                          :  (000002753213DC18)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_07 (0000027400131DD8)
-[LOG] SoundI::release                          :  (000002753213FD28)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_08 (0000027400132E18)
-[LOG] SoundI::release                          :  (000002753213DEF8)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_09 (0000027404ADA1A8)
-[LOG] SoundI::release                          :  (0000027532141598)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_10 (0000027400132458)
-[LOG] SoundI::release                          :  (0000027532140CF8)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_11 (00000273FFA55128)
-[LOG] SoundI::release                          :  (0000027532140B88)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_12 (0000027402BF1038)
-[LOG] SoundI::release                          :  (00000275321419E8)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_13 (0000027404AD97E8)
-[LOG] SoundI::release                          :  (0000027532141708)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_14 (0000027402BF7358)
-[LOG] SoundI::release                          :  (000002753213F768)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_15 (0000027402BF1B98)
-[LOG] SoundI::release                          :  (000002753213C0C8)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_16 (0000027400133E58)
-[LOG] SoundI::release                          :  (0000027532140A18)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_17 (00000274021656F8)
-[LOG] SoundI::release                          :  (00000275321402E8)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_18 (0000027404AD7F88)
-[LOG] SoundI::release                          :  (0000027532140178)
-[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Run_19 (00000273FFA53DA8)
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000001CA2FD34EC8
+[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (000001C9EFE2CE28)
+[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000001C7814D19F8)
+[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000001CA04FA5478)
+[LOG] SoundI::release                          : Bed Loop Idea 2 (000001C9EFE2C258)
+[LOG] SoundI::release                          :     Bed Loop Idea 2 (000001C7814D0E98)
+[LOG] SoundI::release                          :     Bed Loop Idea 2 (000001CA04FA63A8)
+[LOG] SoundI::release                          : Dropship_Mono_Loop_01 (000001CA2FD34EC8)
+[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000001C7814CC3D8)
+[LOG] SoundI::release                          :     Dropship_Mono_Loop_01 (000001CB3A013248)
+[LOG] SoundI::release                          :  (000001C7813717D8)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_01 (000001C7814CE458)
+[LOG] SoundI::release                          :  (000001CAFB44E9D8)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_02 (000001C7814D1038)
+[LOG] SoundI::release                          :  (000001C781B73D78)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_03 (000001C7814CEFB8)
+[LOG] SoundI::release                          :  (000001C781371F08)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_04 (000001C7814D2078)
+[LOG] SoundI::release                          :  (000001C781B74788)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_05 (000001C7814D1518)
+[LOG] SoundI::release                          :  (000001C781B74338)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_06 (000001C7814CCD98)
+[LOG] SoundI::release                          :  (000001C7813721E8)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_07 (000001C7814CCA58)
+[LOG] SoundI::release                          :  (000001C781371948)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_08 (000001C7814D0198)
+[LOG] SoundI::release                          :  (000001C781B73A98)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_09 (000001C7814CDF78)
+[LOG] SoundI::release                          :  (000001C7813714F8)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_10 (000001C7814D1ED8)
+[LOG] SoundI::release                          :  (000001C781371AB8)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_11 (000001C7814CE118)
+[LOG] SoundI::release                          :  (000001C781B74618)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_12 (000001C7814CE798)
+[LOG] SoundI::release                          :  (000001C781371D98)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_13 (000001C7814CF158)
+[LOG] SoundI::release                          :  (000001C781372078)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_14 (000001C7814CC238)
+[LOG] SoundI::release                          :  (000001C781B744A8)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_15 (000001C7814D1858)
+[LOG] SoundI::release                          :  (000001C781371C28)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_16 (000001C7814D0B58)
+[LOG] SoundI::release                          :  (000001CAFB44EE28)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_17 (000001C7814D0338)
+[LOG] SoundI::release                          :  (000001C781371668)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_18 (000001C7814D09B8)
+[LOG] SoundI::release                          :  (000001C781B73C08)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_19 (000001C7814D0678)
+[LOG] SoundI::release                          :  (000001C781B74058)
+[LOG] SoundI::release                          :     Ellen_Emotes_Lands_20 (000001C7814D0818)
+[LOG] SoundI::release                          :  (000001CAFB44F6C8)
+[LOG] SoundI::release                          :     Ellen_Footsteps_Stone_Land_Walk_Forward_Landing_01 (000001C7814CDA98)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
@@ -1034,9 +431,3 @@
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
-[LOG] Thread::callback                         : FMOD mixer thread finished.
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=44100, nAvgBytesPerSec=352800, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
-[LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       : Output buffer size: 3760 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
-[LOG] SystemI::startDriver                     : Output requires a sample rate of 44100Hz, resampling will occur.
-[LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
