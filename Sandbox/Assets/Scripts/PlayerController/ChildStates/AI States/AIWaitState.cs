@@ -18,8 +18,7 @@ public class AIWaitState: AIState
         GameController.GH.UH.waiting = (true);
 
         holdPosition.x = player.transform.position.x;
-        holdPosition.x = player.transform.position.x;
-        HoldPosition(true, true);
+        HoldPosition(true, false);
     }
 
     public override void Exit()

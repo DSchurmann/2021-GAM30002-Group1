@@ -13,6 +13,8 @@ public class IdleState: GroundedState
     {
         base.Enter();
         player.SetVelocityX(0f);
+
+       
         
     }
 
