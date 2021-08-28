@@ -75,7 +75,7 @@ public class GolemControllerRB : PlayerControllerRB
     {
         base.DisableControls();
         //QueueState(AIWaitState);
-        Debug.Log("GOLEM PUT INTO WAIT STATE");
+        //Debug.Log("GOLEM PUT INTO WAIT STATE");
         ChangeState(AIWaitState);
     }
     // change facing direction
