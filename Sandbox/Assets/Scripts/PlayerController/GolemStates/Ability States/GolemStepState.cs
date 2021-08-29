@@ -15,12 +15,16 @@ public class GolemStepState : GolemAbilityState
     public override void Enter()
     {
         base.Enter();
+        player.posing = true;
         isPosing = true;
         FMODUnity.RuntimeManager.PlayOneShot("event:/Golem/GolemPose", GameController.GH.golemAudioPos);
     }
 
     public override void Exit()
     {
+        player.posing = false;
+        isPosing = false;
+
         base.Exit();
     }
 
@@ -28,8 +32,17 @@ public class GolemStepState : GolemAbilityState
     {
         base.Update();
 
-       
-       
+        // if following
+        if (player.Following)
+        {
+            // change state to follow if too far 
+            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
+            {
+                player.ChangeState(player.AIFollowState);
+            }
+        }
+
+
     }
 
     public override void FixedUpdate()

@@ -28,7 +28,6 @@ public abstract class GolemState: PlayerState
     {
         base.Update();
 
-
         // change to pose on input
         if(player.ControllerEnabled)
         {
@@ -65,33 +64,47 @@ public abstract class GolemState: PlayerState
 
                     Debug.Log("Child Following " + player.Other.Following.ToString());
                 }
+
+
+                // simple posing
+                if (inputPoseRaise)
+                {
+                    player.ChangeState(player.RaiseAbility);
+                    player.InputHandler.SetNorthFalse();
+                }
+                if (inputPoseStep)
+                {
+                    player.ChangeState(player.StepAbility);
+                    player.InputHandler.SetWestFalse();
+                }
                 // if not posing, enable pose ability. Handle exiting poses in their states
-                if(!isPosing)
-                {
-                    if (inputPoseRaise)
-                    {
-                        player.ChangeState(player.RaiseAbility);
-                        player.InputHandler.SetNorthFalse();
-                    }
-                    if (inputPoseStep)
-                    {
-                        player.ChangeState(player.StepAbility);
-                        player.InputHandler.SetWestFalse();
-                    }
-                }
-                else
-                {
-                    if (inputPoseRaise)
-                    {
-                        player.ChangeState(player.IdleState);
-                        player.InputHandler.SetNorthFalse();
-                    }
-                    if (inputPoseStep)
-                    {
-                        player.ChangeState(player.IdleState);
-                        player.InputHandler.SetWestFalse();
-                    }
-                }
+                /* if(!isPosing)
+                 {
+                     if (inputPoseRaise)
+                     {
+                         player.ChangeState(player.RaiseAbility);
+                         player.InputHandler.SetNorthFalse();
+                     }
+                     if (inputPoseStep)
+                     {
+                         player.ChangeState(player.StepAbility);
+                         player.InputHandler.SetWestFalse();
+                     }
+                 }
+                 else
+                 {
+
+                     if (inputPoseRaise)
+                     {
+                         player.ChangeState(player.IdleState);
+                         player.InputHandler.SetNorthFalse();
+                     }
+                     if (inputPoseStep)
+                     {
+                         player.ChangeState(player.IdleState);
+                         player.InputHandler.SetWestFalse();
+                     }
+                 }*/
             }
         }
       

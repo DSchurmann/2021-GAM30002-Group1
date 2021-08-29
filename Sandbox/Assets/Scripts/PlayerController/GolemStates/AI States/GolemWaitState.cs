@@ -38,13 +38,16 @@ public class GolemWaitState:GolemAIState
             {
                 player.ChangeState(player.IdleState);
             }
-            // if following
-            if (player.Following)
+            else
             {
-                // change state to follow if too far 
-                if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
+                // if following
+                if (player.Following)
                 {
-                    player.ChangeState(player.AIFollowState);
+                    // change state to follow if too far 
+                    if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
+                    {
+                        player.ChangeState(player.AIFollowState);
+                    }
                 }
             }
         }

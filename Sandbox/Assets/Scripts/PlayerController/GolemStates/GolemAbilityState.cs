@@ -39,10 +39,10 @@ public class GolemAbilityState:GolemState
             player.ChangeState(player.MoveState);
         }
 
-        if (isAbilityFinished)
+       /* if (isAbilityFinished)
         {
             player.ChangeState(player.IdleState);
-        }
+        }*/
     }
 
     public override void FixedUpdate()

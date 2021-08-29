@@ -35,7 +35,7 @@ public class GolemAIState:GolemState
             if (player.ControllerEnabled && !isPosing)
             {
                 player.ChangeState(player.IdleState);
-                isPosing = true;
+                //isPosing = true;
             }
         }
     }
