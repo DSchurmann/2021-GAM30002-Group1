@@ -46,14 +46,14 @@ public abstract class ChildState: PlayerState
                     {
                         Debug.Log("Golem Following");
                         player.Other.ChangeState((player.Other as GolemControllerRB).AIFollowState);
-                        player.Other.Following = true;
-                        player.Other.Waiting = false;
+                        //player.Other.Following = true;
+                        //player.Other.Waiting = false;
                     }
                     else if (player.Other.Following)
                     {
                         Debug.Log("Golem Waiting");
                         player.Other.ChangeState((player.Other as GolemControllerRB).AIWaitState);
-                        player.Other.Following = false;
+                        //player.Other.Following = false;
                     }
 
                     Debug.Log("Golem Following " + player.Other.Following.ToString());
@@ -67,12 +67,19 @@ public abstract class ChildState: PlayerState
                     player.ChangeState(player.AttackState);
 
                 }
-
-                if(player.GetComponent<ClimbingController>().canClimb)
-                {
-                    player.ChangeState(player.WallClimbLedgeState);
-                }
             }
+
+            // auto climbing
+            if (player.GetComponent<ClimbingController>().canClimb)
+            {
+                player.ChangeState(player.WallClimbLedgeState);
+            }
+
+            if (player.GetComponent<ClimbingController>().canJumpClimb)
+            {
+                player.ChangeState(player.JumpState);
+            }
+
         }
         
       

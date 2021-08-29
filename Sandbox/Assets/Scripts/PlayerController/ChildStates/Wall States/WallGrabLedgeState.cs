@@ -33,6 +33,5 @@ public class WallGrabLedgeState : WallState
         {
             player.ChangeState(player.IdleState);
         }
-       
     }
 }

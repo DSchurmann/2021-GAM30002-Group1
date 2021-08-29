@@ -14,9 +14,13 @@ public class GolemWaitState:GolemAIState
     public override void Enter()
     {
         base.Enter();
+        player.Following = false;
         player.Waiting = true;
         GameController.GH.UH.waiting = (true);
         Debug.Log("Golem Wait");
+
+        holdPosition.x = player.transform.position.x;
+        HoldPosition(true, false);
     }
 
     public override void Exit()

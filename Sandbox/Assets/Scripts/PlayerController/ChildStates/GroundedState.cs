@@ -34,7 +34,23 @@ public class GroundedState : ChildState
         if (!isExitingState)
         {
             // get input for x 
-            inputX = player.InputHandler.InputXNormal;
+            if (player.ControllerEnabled)
+            {
+                inputX = player.InputHandler.InputXNormal;
+            }
+            else
+            {
+                if(player.Following)
+                {
+                    inputX = 1;
+                }
+                else
+                {
+                    inputX = 0;
+                }
+            }
+                
+
             // get input for jump
             inputJump = player.InputHandler.InputJump;
             inputGrab = player.InputHandler.InputInteract;

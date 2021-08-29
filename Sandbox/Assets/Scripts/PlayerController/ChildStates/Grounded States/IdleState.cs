@@ -13,7 +13,22 @@ public class IdleState: GroundedState
     {
         base.Enter();
         player.SetVelocityX(0f);
-        
+
+        if (player.ControllerEnabled)
+        {
+
+        }
+        else
+        {
+            if (player.Following)
+            {
+                player.ChangeState(player.AIFollowState);
+            }
+            else
+            {
+                player.ChangeState(player.AIWaitState);
+            }
+        }
     }
 
     public override void Exit()

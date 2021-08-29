@@ -78,6 +78,7 @@ public class ChildControllerRB : PlayerControllerRB
 
         _CurrentState = CurrentState.GetType().Name;
         isTouchingWall = CheckTouchingWall();
+        //isTouchingWall = GetComponent<ClimbingController>()
     }
 
     public override void FixedUpdate()
@@ -88,14 +89,15 @@ public class ChildControllerRB : PlayerControllerRB
     public override void EnableControls()
     {
         base.EnableControls();
-        QueueState(IdleState);
+        QueueState(AIWaitState);
         //ChangeState(IdleState);
     }
     public override void DisableControls()
     {
         base.DisableControls();
-        QueueState(AIWaitState);
-        //ChangeState(AIWaitState);
+        //QueueState(AIWaitState);
+        //Debug.Log("CHILD PUT INTO WAIT STATE");
+        ChangeState(AIWaitState);
     }
     // change facing direction 
     public override void Flip()

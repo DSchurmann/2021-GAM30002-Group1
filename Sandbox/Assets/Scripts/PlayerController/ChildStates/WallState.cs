@@ -12,7 +12,7 @@ public class WallState : ChildState
     protected int inputX;
     protected int inputY;
 
-    protected Vector3 holdPosition;
+    
 
     public WallState(ChildControllerRB player, string animation) : base(player, animation)
     {
@@ -85,23 +85,5 @@ public class WallState : ChildState
         return base.AnimationComplete();
     }
 
-    public void HoldPosition(bool x, bool y)
-    {
-        Vector3 pos = player.transform.position;
-       
-        // set velocity for wall grab
-        if(x)
-        {
-            pos.x = holdPosition.x;
-            player.transform.position = pos;
-            player.SetVelocityX(0);
-        }
-           
-        if(y)
-        {
-            pos.y = holdPosition.y;
-            player.transform.position = pos;
-            player.SetVelocityY(0);
-        }
-    }
+   
 }

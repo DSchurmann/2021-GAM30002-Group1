@@ -10,6 +10,8 @@ public abstract class PlayerState: State
     protected bool InputSwitchPlayer;
     protected bool SwitchPressed;
 
+    protected Vector3 holdPosition;
+
     public PlayerState(PlayerControllerRB player, string animation)
     {
         this.player = player;
@@ -29,6 +31,7 @@ public abstract class PlayerState: State
         isExitingState = false;
         //Debug.Log(animation);
         //Debug.Log(this.GetType().Name + " state entered");
+
     }
 
     // update state
@@ -45,9 +48,12 @@ public abstract class PlayerState: State
             InputSwitchPlayer = false;
             player.InputHandler.SetSwitchFalse();
             player.Other.InputHandler.SetSwitchFalse();
+
             if (player.CanSwitch)
             {
                 player.DisableControls();
+                player.Other.Following = false;
+                player.Other.Waiting = false;
                 player.Other.EnableControls();
             }
         }
@@ -77,6 +83,26 @@ public abstract class PlayerState: State
     public virtual bool AnimationComplete()
     {
         return (player.Anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !player.Anim.IsInTransition(0));
+    }
+
+    public void HoldPosition(bool x, bool y)
+    {
+        Vector3 pos = player.transform.position;
+
+        // set velocity for wall grab
+        if (x)
+        {
+            pos.x = holdPosition.x;
+            player.transform.position = pos;
+            player.SetVelocityX(0);
+        }
+
+        if (y)
+        {
+            pos.y = holdPosition.y;
+            player.transform.position = pos;
+            player.SetVelocityY(0);
+        }
     }
 }
 

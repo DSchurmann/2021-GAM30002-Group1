@@ -15,6 +15,13 @@ public class ClimbingController : MonoBehaviour
     public LedgeDetector ledgeDetector;
 
     public bool isTouchingWall;
+    public bool isGapAhead;
+    public bool isGapJumpable;
+
+    // gap variables
+    public float minDistanceToGap;
+    public float gapCheckDepth;
+
     // climbing variables
     public bool isVaulting;
     public bool isClimbing;
@@ -28,15 +35,19 @@ public class ClimbingController : MonoBehaviour
     public LayerMask Climbable;
     public bool isEnabled;
 
+    // player climbing properties
+    public float maxLedgeJumpHeight = 2;
+    protected float climbForwardAmount = 0.25f;
+    //public float MaxDistanceToLedge_WallClimb;
+
+
     // components
     public Rigidbody _rb;
     public PlayerInputHandler InputHandler { get; protected set; }
 
     protected bool inputInteract;
 
-    // climbing properties
-    public float MaxDistanceToLedge_WallClimb;
-
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -56,6 +67,7 @@ public class ClimbingController : MonoBehaviour
         if (ledgeDetector != null && isEnabled)
         {
             isTouchingWall = ledgeDetector.TouchingWall().Any();
+            isGapAhead = ledgeDetector.GapCheck(transform.position + (Vector3.one * origins_forward[0]), gapCheckDepth);
             ledgeFound = ledgeDetector.ledgeFound;
         }
         else
@@ -69,39 +81,36 @@ public class ClimbingController : MonoBehaviour
         {
             if(ledgeDetector.TouchingWall().Length>0 && ledgeDetector.HeightCheck(ledgeDetector.ledgePosition, 2))
             {
+
                 bool[] hits = ledgeDetector.TouchingWall();
 
-                canVault = hits[0] && !hits[1] && !hits[2] && ledgeFound;
-                canClimb = hits[1] && !hits[2] && ledgeFound;
-                canJumpClimb = hits[2] && ledgeFound;
+               
+
+
+                if (ledgeFound && ledgeDetector.ForwardCheck(ledgeDetector.ledgePosition+Vector3.up*0.25f,0.5f))
+                {
+                    Vector3 diff = (ledgeDetector.ledgePosition - transform.position);
+
+
+                    canVault = hits[0] && !hits[1] && !hits[2];
+                    canClimb = hits[1] && !hits[2];
+                    if(diff.y < maxLedgeJumpHeight)
+                        canJumpClimb = hits[2];
+                }
+                else
+                {
+                    canVault = false;
+                    canClimb = false;
+                    canJumpClimb = false;
+                }
+
+              
+
 
                 //Debug.Log(ColourConsoleText(canVault, "VAULT") + "    " + ColourConsoleText(canClimb, "CLIMB") + "    " + ColourConsoleText(canJumpClimb, "JUMP"));
 
             }
         }
-
-        /*if(inputInteract)
-        {
-            if (canVault)
-            {
-                Vault();
-            }
-
-            if (canClimb)
-            {
-                Climb();
-            }
-
-            if (canJumpClimb)
-            {
-                Climb();
-            }
-            inputInteract = false;
-        }*/
-
-       /* if (ledgeDetector != null && ledgeFound)
-            ledgeDetector.HeightCheck(ledgeDetector.ledgePosition, 2);*/
-
     }
 
 
@@ -130,12 +139,11 @@ public class ClimbingController : MonoBehaviour
     {
         isClimbing = true;
 
-        Vector3 jumpPos = (transform.position + transform.forward * 0.5f);
-        Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * 0.15f); //+ (transform.up * 0.5f);
+        Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount); //+ (transform.up * 0.5f);
         Vector3 distance = landingPos - transform.position;
 
         //GetComponent<CharacterController>().Move(distance);
-        _rb.DOMove(landingPos, 0.6f).OnComplete(FinishClimb);
+        _rb.DOMove(landingPos, 0.5f).OnComplete(FinishClimb);
         //GetComponent<Animator>().SetBool("ClimbUp", true);
     }
 

@@ -234,9 +234,15 @@ public class PlayerControllerRB : StateMachine
     //check forward wall
     public bool CheckTouchingWall()
     {
-        Debug.DrawRay(Vector3.right, Vector3.right * FacingDirection);
+        Debug.DrawRay(wallCheck.position, Vector3.right * FacingDirection * wallCheckDistance, Color.cyan);
         return Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, wallCheckDistance);
-    } 
+    }
+
+    //check forward gap
+    public bool CheckGapAhead()
+    {
+        return GetComponent<ClimbingController>().isGapAhead;
+    }
     //check forward wall Climb Ability
     public bool CheckgWallClimbAbility()
     {
