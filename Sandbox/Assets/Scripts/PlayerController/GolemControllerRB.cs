@@ -33,8 +33,8 @@ public class GolemControllerRB : PlayerControllerRB
        
         RaiseAbility = new GolemRaiseState(this, "Raise");
         StepAbility = new GolemStepState(this, "Step");
-        TPoseAbility = new GolemRaiseState(this, "Raise");
-        CrouchAbility = new GolemStepState(this, "Step");
+        TPoseAbility = new GolemRaiseState(this, "Tee");
+        CrouchAbility = new GolemStepState(this, "Crouch");
 
         AIFollowState = new GolemFollowState(this, "Movement");
         AIWaitState = new GolemWaitState(this, "Idle");
