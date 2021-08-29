@@ -9,6 +9,8 @@ public abstract class GolemState: PlayerState
     protected bool isPosing;
     protected bool inputPoseRaise;
     protected bool inputPoseStep;
+    protected bool inputPoseC;
+    protected bool inputPoseT;
     protected bool inputWait;
 
     protected GolemState(GolemControllerRB player, string animation) : base(player, animation)
@@ -28,13 +30,14 @@ public abstract class GolemState: PlayerState
     {
         base.Update();
 
-
         // change to pose on input
         if(player.ControllerEnabled)
         {
             inputPoseRaise = player.InputHandler.InputNorth;
             inputPoseStep = player.InputHandler.InputWest;
             inputWait = player.InputHandler.InputWait;
+            inputPoseT = player.InputHandler.InputEast;
+            inputPoseC = player.InputHandler.InputSouth;
         }
 
         // player controls input
@@ -65,33 +68,59 @@ public abstract class GolemState: PlayerState
 
                     Debug.Log("Child Following " + player.Other.Following.ToString());
                 }
+
+
+                // simple posing
+                if (inputPoseRaise)
+                {
+                    player.ChangeState(player.RaiseAbility);
+                    player.InputHandler.SetNorthFalse();
+                }
+                if (inputPoseStep)
+                {
+                    player.ChangeState(player.StepAbility);
+                    player.InputHandler.SetWestFalse();
+                }
+                if (inputPoseT)
+                {
+                    player.ChangeState(player.TPoseAbility);
+                    player.InputHandler.SetEastFalse();
+                }
+                if (inputPoseC)
+                {
+                    player.ChangeState(player.CrouchAbility);
+                    player.InputHandler.SetSouthFalse();
+                }
+
+
                 // if not posing, enable pose ability. Handle exiting poses in their states
-                if(!isPosing)
-                {
-                    if (inputPoseRaise)
-                    {
-                        player.ChangeState(player.RaiseAbility);
-                        player.InputHandler.SetNorthFalse();
-                    }
-                    if (inputPoseStep)
-                    {
-                        player.ChangeState(player.StepAbility);
-                        player.InputHandler.SetWestFalse();
-                    }
-                }
-                else
-                {
-                    if (inputPoseRaise)
-                    {
-                        player.ChangeState(player.IdleState);
-                        player.InputHandler.SetNorthFalse();
-                    }
-                    if (inputPoseStep)
-                    {
-                        player.ChangeState(player.IdleState);
-                        player.InputHandler.SetWestFalse();
-                    }
-                }
+                /* if(!isPosing)
+                 {
+                     if (inputPoseRaise)
+                     {
+                         player.ChangeState(player.RaiseAbility);
+                         player.InputHandler.SetNorthFalse();
+                     }
+                     if (inputPoseStep)
+                     {
+                         player.ChangeState(player.StepAbility);
+                         player.InputHandler.SetWestFalse();
+                     }
+                 }
+                 else
+                 {
+
+                     if (inputPoseRaise)
+                     {
+                         player.ChangeState(player.IdleState);
+                         player.InputHandler.SetNorthFalse();
+                     }
+                     if (inputPoseStep)
+                     {
+                         player.ChangeState(player.IdleState);
+                         player.InputHandler.SetWestFalse();
+                     }
+                 }*/
             }
         }
       

@@ -14,7 +14,11 @@ public class GolemFollowState:GolemAIState
     public override void Enter()
     {
         base.Enter();
+
         player.Following = true;
+        if (isPosing)
+            isPosing = false;
+
         if (player.Waiting)
             player.Waiting = false;
         GameController.GH.UH.waiting = (false);
