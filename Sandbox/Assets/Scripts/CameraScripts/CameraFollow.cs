@@ -59,13 +59,28 @@ public class CameraFollow : MonoBehaviour
     private void FollowCurrentPlayer()
     {
         if (GameController.GH.CurrentPlayer() != null)
-            FollowTarget(GameController.GH.CurrentPlayer().transform);
+        {
+            if(GameController.GH.CurrentPlayer().GetComponent<ChildControllerRB>() != null)
+            {
+                transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 1;
+                transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
+            }
+            else if (GameController.GH.CurrentPlayer().GetComponent<GolemControllerRB>() != null)
+            {
+                transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
+                transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 1;
+            }
+
+        }
+         
+            //FollowTarget(GameController.GH.CurrentPlayer().transform);
     }
 
     // follow currently controlled player
     private void FollowPlayer(Transform targetPlayer)
     {
-        FollowTarget(targetPlayer);
+        //FollowTarget(targetPlayer);
+       // GetComponentInChildren<Cinemachine.CinemachineVirtualCamera>().m_Follow = GameController.GH.CurrentPlayer().transform;
     }
 
     //Start Pan (set position)
