@@ -1,8 +1,9 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 
-#if UNITY_EDITOR
+[ExecuteInEditMode]
 [CustomEditor(typeof(StatManager))]
 public class StatManagerEditor : Editor
 {
