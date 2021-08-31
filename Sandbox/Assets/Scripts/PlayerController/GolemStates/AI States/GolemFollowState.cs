@@ -39,6 +39,7 @@ public class GolemFollowState:GolemAIState
             // change state to wait if close
             if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) <= player.closeDistance)
             {
+                Debug.Log("Golem Close stop Following");
                 player.ChangeState(player.AIWaitState);
             }
             else

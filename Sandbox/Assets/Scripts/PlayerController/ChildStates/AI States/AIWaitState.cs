@@ -37,7 +37,7 @@ public class AIWaitState: AIState
                 // change state to follow if too far
                 if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
                 {
-               
+                    Debug.Log("Child Far start Following");
                     player.ChangeState(player.AIFollowState);
                 }
             }

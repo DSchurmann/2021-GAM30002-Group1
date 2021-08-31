@@ -39,6 +39,8 @@ public class AIFollowState : AIState
             // change state to wait if close
             if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) <= player.closeDistance)
             {
+                Debug.Log("Child Close stop Following");
+
                 player.ChangeState(player.AIWaitState);
             }
             else
@@ -72,8 +74,10 @@ public class AIFollowState : AIState
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
 
-        if(player.GetComponent<ClimbingController>().isGapAhead)
+        if(!player.GetComponent<ClimbingController>().isGapAhead)
         {
+            Debug.Log("Stop");
+        
             holdPosition.x = player.transform.position.x;
             HoldPosition(true, false);
             player.Anim.Play("Idle");
