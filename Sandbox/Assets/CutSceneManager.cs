@@ -27,15 +27,15 @@ public class CutSceneManager : MonoBehaviour
             Director = GameController.GH.GetComponent<Director>();
         }
 
-        //PopulateDirector();
+        PopulateDirector();
     }
 
     // Start is called before the first frame update
     void Start()
     {
         //PopulateManager();
-        PopulateDirector();
-        Director.StartCutscene(Director.cutscenes["Intro"]);
+        //PopulateDirector();
+        //Director.StartCutscene(Director.cutscenes["Intro"]);
         //NumberOfCutscenes = cutscenes.Count;
     }
 

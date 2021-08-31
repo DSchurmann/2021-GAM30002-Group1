@@ -161,7 +161,7 @@ public class PlayerControllerRB : StateMachine
     }
     public virtual void DisableControls()
     {
-        Debug.Log("Constrols Disable");
+        Debug.Log("Controls Disable");
         ControllerEnabled = false;
         CanSwitch = false;
     }

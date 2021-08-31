@@ -85,7 +85,7 @@ public class Director : MonoBehaviour
         CutEvent cur = curCutscene.cutsceneEvents[stage];
         float progress = 0f;
         Debug.Log(cur.eventType.ToString());
-        bool charMove = (cur.eventType == CutEvent.EventType.moveChild || cur.eventType == CutEvent.EventType.moveGolem);
+        bool charMove = (cur.eventType == CutEvent.EventType.moveChild || cur.eventType == CutEvent.EventType.moveGolem || cur.eventType == CutEvent.EventType.moveBoth);
         bool camFade = (cur.eventType == CutEvent.EventType.fadeIn || cur.eventType == CutEvent.EventType.fadeOut);
         float percProgress = 0f;
 
@@ -104,16 +104,22 @@ public class Director : MonoBehaviour
 
             case CutEvent.EventType.moveChild:
                 // Move Child to position
+                GameController.GH.childObj.EnableControls();
+                GameController.GH.golemObj.DisableControls();
                 //GameController.GH.childObj.transform.position = movPos;
                 break;
 
             case CutEvent.EventType.moveGolem:
                 // Move Golem to position
+                GameController.GH.childObj.DisableControls();
+                GameController.GH.golemObj.EnableControls();
                 //GameController.GH.golemObj.transform.position = movPos;
                 break;
 
             case CutEvent.EventType.moveBoth:
                 // Move Golem to position
+                GameController.GH.childObj.EnableControls();
+                GameController.GH.golemObj.EnableControls();
                 //GameController.GH.golemObj.transform.position = movPos;
                 break;
 
@@ -128,8 +134,8 @@ public class Director : MonoBehaviour
                 //Do Camera Movement
                 //panPos = GameController.GH.childObj.transform.position;
                 //Set CameraObj Target Position
-                GameController.GH.childObj.ControllerEnabled = true;
-                GameController.GH.golemObj.ControllerEnabled = false;
+                GameController.GH.childObj.EnableControls();
+                GameController.GH.golemObj.DisableControls();
                 camObj.GetComponent<CameraFollow>().followMode = CameraFollow.FollowMode.CURRENTPLAYER;
                 break;
 
@@ -137,8 +143,8 @@ public class Director : MonoBehaviour
                 //Do Camera Movement
                 //panPos = GameController.GH.golemObj.transform.position;
                 //Set CameraObj Target Position
-                GameController.GH.childObj.ControllerEnabled = false;
-                GameController.GH.golemObj.ControllerEnabled = true;
+                GameController.GH.childObj.DisableControls();
+                GameController.GH.golemObj.EnableControls();
                 camObj.GetComponent<CameraFollow>().followMode = CameraFollow.FollowMode.CURRENTPLAYER;
                 break;
 

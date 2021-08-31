@@ -45,6 +45,7 @@ public abstract class PlayerState: State
         // switch players
         if (InputSwitchPlayer && player.ControllerEnabled)
         {
+            Debug.Log("SWAP PLAYER");
             InputSwitchPlayer = false;
             player.InputHandler.SetSwitchFalse();
             player.Other.InputHandler.SetSwitchFalse();

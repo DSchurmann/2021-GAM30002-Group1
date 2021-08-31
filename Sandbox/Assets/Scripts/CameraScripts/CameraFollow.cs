@@ -88,7 +88,7 @@ public class CameraFollow : MonoBehaviour
     // follow currently controlled player
     private void FollowCurrentPlayer()
     {
-        EnableCinemachine();
+        //EnableCinemachine();
 
         if (GameController.GH.CurrentPlayer() != null)
         {
