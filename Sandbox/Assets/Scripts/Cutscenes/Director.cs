@@ -45,13 +45,14 @@ public class Director : MonoBehaviour
         stage = (0);
 
         //Set Camera Object
-        camObj = GameObject.Find("CameraFollow");
+        if(camObj == null)
+            camObj = GameObject.Find("CameraFollow");
 
         //Initialize Cutscenes
-        InitCutscenes();
+        //InitCutscenes();
 
         //Run Debug Cutscene
-        StartCutscene(cutscenes["Sample"]);
+        //StartCutscene(cutscenes["Intro"]);
     }
 
     // Update is called once per frame
@@ -90,40 +91,69 @@ public class Director : MonoBehaviour
 
         //(These should be a case statement, remember to fix)
         //Check Event Type -- ANIMATE CHILD
-        if (cur.eventType == CutEvent.EventType.animChild)
+        switch (cur.eventType)
         {
-            //Get Child to Play Animation
-            //GameHandler.GH.childObj.GetComponent<PlayerAnimationController>().ChangeState(cur.animName);
-        }
-        //Check Event Type -- ANIMATE GOLEM
-        else if (cur.eventType == CutEvent.EventType.animGolem)
-        {
-            //Get Golem to Play Animation
-            //GameHandler.GH.golemObj.GetComponent<Animator>().Play(cur.animName);
-        }
-        //Check Event Type -- Move / Rotate Camera
-        else if (cur.eventType == CutEvent.EventType.changeCamera)
-        {
-            //Do Camera Movement
-            panPos = cur.newPos;
+            case CutEvent.EventType.animChild:
+                //Get Child to Play Animation
+                //GameHandler.GH.childObj.GetComponent<PlayerAnimationController>().ChangeState(cur.animName);
+                break;
 
-            //Set CameraObj Target Position
-            camObj.GetComponent<CameraFollow>().PanTo(panPos);
-        }
-        //Check Event Type -- Rotate Camera
-        else if (cur.eventType == CutEvent.EventType.rotateCamera)
-        {
-            //Do Camera Rotate
-            rotPos = cur.newRotation;
+            case CutEvent.EventType.animGolem:
 
-            //Set CameraObj Rotation
-            //camObj.GetComponent<CameraFollow>().RotateTo(rotPos);
-        }
-        //Otherwise?
-        else
-        {
-            //Set Camera Back to Following
-            camObj.GetComponent<CameraFollow>().FollowToPlayer();
+                break;
+
+            case CutEvent.EventType.moveChild:
+                // Move Child to position
+                //GameController.GH.childObj.transform.position = movPos;
+                break;
+
+            case CutEvent.EventType.moveGolem:
+                // Move Golem to position
+                //GameController.GH.golemObj.transform.position = movPos;
+                break;
+
+            case CutEvent.EventType.moveBoth:
+                // Move Golem to position
+                //GameController.GH.golemObj.transform.position = movPos;
+                break;
+
+            case CutEvent.EventType.changeCamera:
+                //Do Camera Movement
+                panPos = cur.newPos;
+                //Set CameraObj Target Position
+                camObj.GetComponent<CameraFollow>().PanTo(panPos);
+                break;
+
+            case CutEvent.EventType.targetChild:
+                //Do Camera Movement
+                //panPos = GameController.GH.childObj.transform.position;
+                //Set CameraObj Target Position
+                GameController.GH.childObj.ControllerEnabled = true;
+                GameController.GH.golemObj.ControllerEnabled = false;
+                camObj.GetComponent<CameraFollow>().followMode = CameraFollow.FollowMode.CURRENTPLAYER;
+                break;
+
+            case CutEvent.EventType.targetGolem:
+                //Do Camera Movement
+                //panPos = GameController.GH.golemObj.transform.position;
+                //Set CameraObj Target Position
+                GameController.GH.childObj.ControllerEnabled = false;
+                GameController.GH.golemObj.ControllerEnabled = true;
+                camObj.GetComponent<CameraFollow>().followMode = CameraFollow.FollowMode.CURRENTPLAYER;
+                break;
+
+            case CutEvent.EventType.rotateCamera:
+                //Do Camera Rotate
+                rotPos = cur.newRotation;
+                //Set CameraObj Rotation
+                //camObj.GetComponent<CameraFollow>().RotateTo(rotPos);
+                break;
+
+            default:
+                //Set Camera Back to Following
+                if (camObj != null)
+                    camObj.GetComponent<CameraFollow>().FollowToPlayer();
+                break;
         }
 
         //Progress Animation
@@ -226,18 +256,18 @@ public class Director : MonoBehaviour
         //Set Temp
         Cutscene newCut = new Cutscene("");
 
-        //Sample Cutscene
-        #region Introduction / Sample Cutscene
+        //Intro2 Cutscene
+        #region Intro2
 
         //Sample Cutscene
         //Set Name
-        newCut.cutsceneName = ("Sample");
+        newCut.cutsceneName = ("Intro2");
 
         //Start Adding Sequences!
-        newCut.cutsceneEvents.Add(new CutEvent("PlaceChild", CutEvent.EventType.moveChild, true, new Vector3(10f, -0.5f, -3.58f), new Vector3(0f, 0f, 0f), 0f)); //Place starting point for Child
-        newCut.cutsceneEvents.Add(new CutEvent("PlaceGolem", CutEvent.EventType.moveGolem, true, new Vector3(-6.55f, 2.15f, 0f), new Vector3(0f, 0f, 0f), 0f)); //Place Starting Point for Golem
+        //newCut.cutsceneEvents.Add(new CutEvent("PlaceChild", CutEvent.EventType.moveChild, true, new Vector3(10f, -0.5f, -3.58f), new Vector3(0f, 0f, 0f), 0f)); //Place starting point for Child
+        //newCut.cutsceneEvents.Add(new CutEvent("PlaceGolem", CutEvent.EventType.moveGolem, true, new Vector3(-6.55f, 2.15f, 0f), new Vector3(0f, 0f, 0f), 0f)); //Place Starting Point for Golem
         newCut.cutsceneEvents.Add(new CutEvent("CameraFadeIn", CutEvent.EventType.fadeIn, false, .25f));
-        newCut.cutsceneEvents.Add(new CutEvent("ChildWalksOnScreen", CutEvent.EventType.moveChild, false, new Vector3(-1f, 0f, 0f), new Vector3(0f, 0f, 0f), 1.25f)); //Child walks towards the Golem
+        newCut.cutsceneEvents.Add(new CutEvent("ChildWalksOnScreen", CutEvent.EventType.moveChild, false, new Vector3(1f, 0f, 0f), new Vector3(0f, 0f, 0f), 1.25f)); //Child walks towards the Golem
         newCut.cutsceneEvents.Add(new CutEvent("ChildWalksOnScreen", CutEvent.EventType.moveChild, false, new Vector3(0f, 0f, 0f), new Vector3(0f, -15f, 0f), 0.5f)); //Child stops
         newCut.cutsceneEvents.Add(new CutEvent("CameraPansUp", CutEvent.EventType.changeCamera, false, new Vector3(4.95f, 0f, -2.65f), new Vector3(0f, 0f, 0f), 1f)); //Camera pans to the Golem
         newCut.cutsceneEvents.Add(new CutEvent("CameraStaysForASec", CutEvent.EventType.changeCamera, false, new Vector3(4.95f, 0f, -2.65f), new Vector3(0f, 0f, 0f), .02f)); //Camera stays in position
@@ -252,5 +282,50 @@ public class Director : MonoBehaviour
         cutscenes.Add(newCut.cutsceneName, newCut);
 
         #endregion
+
+        /* //Sample Cutscene
+         #region Introduction / Sample Cutscene
+
+         //Sample Cutscene
+         //Set Name
+         newCut.cutsceneName = ("Sample");
+
+         //Start Adding Sequences!
+         //newCut.cutsceneEvents.Add(new CutEvent("PlaceChild", CutEvent.EventType.moveChild, true, new Vector3(10f, -0.5f, -3.58f), new Vector3(0f, 0f, 0f), 0f)); //Place starting point for Child
+         //newCut.cutsceneEvents.Add(new CutEvent("PlaceGolem", CutEvent.EventType.moveGolem, true, new Vector3(-6.55f, 2.15f, 0f), new Vector3(0f, 0f, 0f), 0f)); //Place Starting Point for Golem
+         newCut.cutsceneEvents.Add(new CutEvent("CameraFadeIn", CutEvent.EventType.fadeIn, false, .25f));
+         newCut.cutsceneEvents.Add(new CutEvent("ChildWalksOnScreen", CutEvent.EventType.moveChild, false, new Vector3(-1f, 0f, 0f), new Vector3(0f, 0f, 0f), 1.25f)); //Child walks towards the Golem
+         newCut.cutsceneEvents.Add(new CutEvent("ChildWalksOnScreen", CutEvent.EventType.moveChild, false, new Vector3(0f, 0f, 0f), new Vector3(0f, -15f, 0f), 0.5f)); //Child stops
+         newCut.cutsceneEvents.Add(new CutEvent("CameraPansUp", CutEvent.EventType.changeCamera, false, new Vector3(4.95f, 0f, -2.65f), new Vector3(0f, 0f, 0f), 1f)); //Camera pans to the Golem
+         newCut.cutsceneEvents.Add(new CutEvent("CameraStaysForASec", CutEvent.EventType.changeCamera, false, new Vector3(4.95f, 0f, -2.65f), new Vector3(0f, 0f, 0f), .02f)); //Camera stays in position
+         newCut.cutsceneEvents.Add(new CutEvent("CameraPansUp", CutEvent.EventType.changeCamera, false, new Vector3(9.19f, -1.12f, -1.68f), new Vector3(0f, 0f, 0f), 1f)); //Camera pans to the Button
+         newCut.cutsceneEvents.Add(new CutEvent("CameraStaysForASec", CutEvent.EventType.changeCamera, false, new Vector3(-0.44f, -1.12f, -1.68f), new Vector3(0f, 0f, 0f), .02f)); //Camera stays in position
+         newCut.cutsceneEvents.Add(new CutEvent("CameraFadeOut", CutEvent.EventType.fadeOut, false, 0.75f));
+         newCut.cutsceneEvents.Add(new CutEvent("CameraReturns", CutEvent.EventType.changeCamera, false, new Vector3(-5.6f, 3.31f, -8f), new Vector3(0f, 0f, 0f), 0f)); //Camera returns to the child
+         newCut.cutsceneEvents.Add(new CutEvent("CameraFadeOut", CutEvent.EventType.fadeIn, false, 0.75f));
+         //Cutscene ends, game begins.
+
+         //Add Cutscene to the Cutscene List
+         cutscenes.Add(newCut.cutsceneName, newCut);
+
+         #endregion*/
+    }
+
+
+    public void AddNewCutScene(string name)
+    {
+        Cutscene newCut = new Cutscene(name);
+
+        cutscenes.Add(newCut.cutsceneName, newCut);
+    }
+
+    public void AddCutSceneEvent(string cutsceneName, string eventName, CutEvent.EventType type, Vector3 position, Vector3 rotation, float length)
+    {
+
+        Cutscene targetCutscene = cutscenes[cutsceneName];
+
+        CutEvent newEvent = new CutEvent(eventName, type, false, position, rotation, length);
+
+        targetCutscene.cutsceneEvents.Add(newEvent);
     }
 }

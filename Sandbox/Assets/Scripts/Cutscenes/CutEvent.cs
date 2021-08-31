@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CutEvent 
+public class CutEvent: MonoBehaviour
 {
     //Parameters -- Core
     public string eventName;
-    public enum EventType { moveChild, moveGolem, animChild, animGolem, changeCamera, rotateCamera, fadeIn, fadeOut, changeScene };
+    public enum EventType { moveChild, moveGolem, moveBoth, targetChild, targetGolem, animChild, animGolem, changeCamera, rotateCamera, fadeIn, fadeOut, changeScene };
     public EventType eventType;
     public bool synchronous; //Does this event immediately hit up the next event? Or do we only continue when this one is finished?
 
