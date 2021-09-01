@@ -40,6 +40,10 @@ public class ClimbingController : MonoBehaviour
     protected float climbForwardAmount = 0.25f;
     //public float MaxDistanceToLedge_WallClimb;
 
+    // ground properties
+    public Vector3 groundAngle;
+    public float maxSlopeAngle;
+
 
     // components
     public Rigidbody _rb;
@@ -67,7 +71,8 @@ public class ClimbingController : MonoBehaviour
         if (ledgeDetector != null && isEnabled)
         {
             isTouchingWall = ledgeDetector.TouchingWall().Any();
-            isGapAhead = ledgeDetector.GapCheck(transform.position + (Vector3.one * origins_forward[0]), gapCheckDepth);
+            isGapAhead = ledgeDetector.GapCheck(transform.position + (transform.forward * origins_forward[0]), gapCheckDepth);
+            groundAngle = ledgeDetector.GroundCheck(transform.position + Vector3.up * 0.2f , gapCheckDepth);
             ledgeFound = ledgeDetector.ledgeFound;
         }
         else
@@ -76,6 +81,11 @@ public class ClimbingController : MonoBehaviour
             isTouchingWall = false;
         }
        
+        if(groundAngle.x != 0)
+        {
+            Debug.Log("Ground angle: " + groundAngle);
+        }
+
 
         if(isTouchingWall)
         {

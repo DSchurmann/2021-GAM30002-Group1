@@ -60,6 +60,7 @@ public class PlayerControllerRB : StateMachine
     [SerializeField] Transform groundCheck;
     [SerializeField] public Transform wallCheck;
     [SerializeField] public float wallCheckDistance = 0.5f;
+    [SerializeField] public float groundAngle = 0.0f;
     //public float groundCheckRadius = 0.3f;
     //public LayerMask groundLayer;
     #endregion
@@ -227,10 +228,11 @@ public class PlayerControllerRB : StateMachine
     // check if grounded
     public bool CheckIfGrounded()
     {
-        float GroundDistance = 0.001f;
+        float GroundDistance = 0.5f;
         //return Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
         return Physics.Raycast(groundCheck.position, -Vector3.up, GroundDistance + 0.1f);
     }
+
     //check forward wall
     public bool CheckTouchingWall()
     {
