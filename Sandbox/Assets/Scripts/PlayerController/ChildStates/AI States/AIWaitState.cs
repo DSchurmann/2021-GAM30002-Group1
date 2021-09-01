@@ -41,6 +41,22 @@ public class AIWaitState: AIState
                     player.ChangeState(player.AIFollowState);
                 }
             }
+            else
+            {
+                if (player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
+                {
+                    player.GetComponent<Rigidbody>().useGravity = false;
+                    Debug.Log("HOLDING POSITION ON SLOPE");
+                    holdPosition.x = player.transform.position.x;
+                    holdPosition.y = player.transform.position.y;
+                    HoldPosition(true, true);
+                }
+                else
+                {
+                    player.GetComponent<Rigidbody>().useGravity = true;
+                    HoldPosition(false, false);
+                }
+            }
         }
     }
 
