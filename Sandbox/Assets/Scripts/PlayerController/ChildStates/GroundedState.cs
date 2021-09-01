@@ -6,7 +6,7 @@ public class GroundedState : ChildState
 {
     protected int inputX;
     protected bool  inputJump;
-    protected bool  inputGrab;
+    protected bool inputGrab;
     protected bool  isGrounded;
     protected bool isTouchingWall;
 
