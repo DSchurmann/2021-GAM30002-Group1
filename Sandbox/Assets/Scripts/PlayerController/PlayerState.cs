@@ -26,7 +26,7 @@ public abstract class PlayerState: State
         Perform();
         // set animation on
         //player.Anim.Play(animation);
-        player.Anim.CrossFade(animation, 0.1f);
+        player.Anim.CrossFade(animation, 0.5f);
         // set start time
         startTime = Time.time;
         isExitingState = false;
