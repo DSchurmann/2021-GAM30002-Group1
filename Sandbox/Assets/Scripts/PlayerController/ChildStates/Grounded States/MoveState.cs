@@ -12,6 +12,8 @@ public class MoveState : GroundedState
     public override void Enter()
     {
         base.Enter();
+
+        player.Anim.Play(animation);
     }
 
     public override void Exit()
