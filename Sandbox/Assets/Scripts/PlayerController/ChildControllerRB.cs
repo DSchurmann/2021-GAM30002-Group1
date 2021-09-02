@@ -142,7 +142,7 @@ public class ChildControllerRB : PlayerControllerRB
             }
 
         }
-        else if(!item.isTextActive)
+        else if(item!= null && !item.isTextActive)
         {
             item.DisplayUI();
         }

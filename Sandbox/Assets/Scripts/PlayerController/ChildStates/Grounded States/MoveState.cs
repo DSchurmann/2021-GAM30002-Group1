@@ -39,12 +39,6 @@ public class MoveState : GroundedState
         }
     }
 
-    public override void FixedUpdate()
-    {
-        base.FixedUpdate();
-       
-    }
-
     public override void Perform()
     {
         base.Perform();

@@ -53,10 +53,13 @@ public abstract class GolemState: PlayerState
                     player.InputHandler.SetWaitFalse();
                     if (player.Other.Waiting)
                     {
-                        Debug.Log("Child Following");
-                        player.Other.ChangeState((player.Other as ChildControllerRB).AIFollowState);
-                        player.Other.Following = true;
-                        player.Other.Waiting = false;
+                        if(!(player.Other as ChildControllerRB).CheckGapAhead())
+                        {
+                            Debug.Log("Child Following");
+                            player.Other.ChangeState((player.Other as ChildControllerRB).AIFollowState);
+                            player.Other.Following = true;
+                            player.Other.Waiting = false;
+                        }
                     }
                     else if (player.Other.Following)
                     {

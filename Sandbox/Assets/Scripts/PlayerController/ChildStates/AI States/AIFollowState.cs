@@ -14,6 +14,7 @@ public class AIFollowState : AIState
     public override void Enter()
     {
         base.Enter();
+        player.GetComponent<Rigidbody>().useGravity = true;
         player.Following = true;
         if (player.Waiting)
             player.Waiting = false;
@@ -74,15 +75,15 @@ public class AIFollowState : AIState
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
 
-        if(!player.GetComponent<ClimbingController>().isGapAhead)
+        if(player.GetComponent<ClimbingController>().isGapAhead)
         {
             Debug.Log("Stop");
         
-            holdPosition.x = player.transform.position.x;
+            /*holdPosition.x = player.transform.position.x;
             HoldPosition(true, false);
-            player.Anim.Play("Idle");
-            //player.Following = false;
-            //player.ChangeState(player.AIWaitState);
+            player.Anim.Play("Idle");*/
+            player.Following = false;
+            player.ChangeState(player.AIWaitState);
         }
         else
         {
