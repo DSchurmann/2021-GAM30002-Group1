@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         InputHandler = GetComponent<PlayerInputHandler>();
-
+        
         PauseMenuUI.SetActive(GameIsPaused);
     }
 
@@ -23,6 +23,7 @@ public class PauseMenu : MonoBehaviour
     {
         if (InputHandler.InputPause)// TODO change with pause input
         {
+            InputHandler.SetPauseFalse();
             if (GameIsPaused)
             {
                 Resume();
