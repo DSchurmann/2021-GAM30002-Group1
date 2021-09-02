@@ -66,7 +66,7 @@ public class IdleState: GroundedState
             }
             else
             {
-                if(player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
+                if(player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle && isGrounded)
                 {
                     player.GetComponent<Rigidbody>().useGravity = false;
                     Debug.Log("HOLDING POSITION ON SLOPE");

@@ -228,7 +228,7 @@ public class PlayerControllerRB : StateMachine
     // check if grounded
     public bool CheckIfGrounded()
     {
-        float GroundDistance = 0.5f;
+        float GroundDistance = 0.1f;
         //return Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
         return Physics.Raycast(groundCheck.position, -Vector3.up, GroundDistance + 0.1f);
     }

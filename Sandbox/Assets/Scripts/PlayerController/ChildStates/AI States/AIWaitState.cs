@@ -38,13 +38,14 @@ public class AIWaitState: AIState
                 // change state to follow if too far
                 if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
                 {
+                    player.GetComponent<Rigidbody>().useGravity = true;
                     Debug.Log("Child Far start Following");
                     player.ChangeState(player.AIFollowState);
                 }
             }
             else
             {
-                if (player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
+                if (player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle && isGrounded)
                 {
                     player.GetComponent<Rigidbody>().useGravity = false;
                     //Debug.Log("HOLDING POSITION ON SLOPE");

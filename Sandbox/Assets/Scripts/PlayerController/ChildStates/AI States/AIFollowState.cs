@@ -115,7 +115,7 @@ public class AIFollowState : AIState
                     //player.ChangeState(player.JumpState);
                 }
 
-                player.SetVelocityY(0);
+                //player.SetVelocityY(0);
             }
         }
 
