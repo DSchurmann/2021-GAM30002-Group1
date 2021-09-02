@@ -14,6 +14,7 @@ public class AIFollowState : AIState
     public override void Enter()
     {
         base.Enter();
+        player.Anim.Play(animation);
         player.GetComponent<Rigidbody>().useGravity = true;
         player.Following = true;
         if (player.Waiting)
