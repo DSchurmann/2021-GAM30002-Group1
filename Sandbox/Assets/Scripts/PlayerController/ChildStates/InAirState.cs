@@ -117,8 +117,10 @@ public class InAirState: ChildState
             // set in air movement
             float inAirMovementDampening = Mathf.Clamp(player.inAirMovementSpeed / 10, 0.1f, 10.0f);
            
+            if(inputX != 0)
+                player.SetVelocityX(player.inAirMovementSpeed * player.FacingDirection);
             //player.SetVelocityX(player.inAirMovementSpeed * inputX);
-            player.SetVelocityX(player.inAirMovementSpeed * player.FacingDirection);
+
         }
     }
 
