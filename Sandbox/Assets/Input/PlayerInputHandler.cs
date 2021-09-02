@@ -31,6 +31,9 @@ public class PlayerInputHandler : MonoBehaviour
     public bool InputInteractStopped { get; private set; }
     public bool InputJumpStopped { get; private set; }
 
+    // Pause Button
+    public bool InputPause { get; private set; }
+
     [SerializeField]
     private float inputDelay = 1f;
     [SerializeField]
@@ -240,4 +243,14 @@ public class PlayerInputHandler : MonoBehaviour
          }*/
     }
     public void SetWestFalse() => InputWest = false;
+
+    public void GetPauseInput(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started)
+        {
+            InputPause = true;
+        }
+    }
+
+    public void SetPauseFalse() => InputPause = false;
 }

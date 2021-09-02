@@ -5,15 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public PlayerInputHandler InputHandler { get; private set; }
 
     public static bool GameIsPaused = false;
     [SerializeField] private GameObject PauseMenuUI;
     [SerializeField] private int MenuSceneIndex = 0;
+    
+    private void Start()
+    {
+        InputHandler = GetComponent<PlayerInputHandler>();
+
+        PauseMenuUI.SetActive(GameIsPaused);
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (false)// TODO change with pause input
+        if (InputHandler.InputPause)// TODO change with pause input
         {
             if (GameIsPaused)
             {
