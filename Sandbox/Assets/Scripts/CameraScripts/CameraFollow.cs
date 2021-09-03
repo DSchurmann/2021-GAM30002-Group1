@@ -124,22 +124,22 @@ public class CameraFollow : MonoBehaviour
     }
 
     // follow target;
-    private void FollowTarget(Transform targetPlayer)
+    private void FollowTarget(Transform target)
     {
 
-        if (targetPlayer == GameController.GH.childObj.transform)
+        if (target == GameController.GH.childObj.transform)
         {
             transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 1;
             transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
         }
-        else if (targetPlayer == GameController.GH.golemObj.transform)
+        else if (target == GameController.GH.golemObj.transform)
         {
             transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
             transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 1;
         }
         else
         {
-            SetCinemachineTargetFollow(targetPlayer.position);
+            SetCinemachineTargetFollow(target.position);
         }
 
         /* Vector3 angle = targetPlayer.position - transform.position;
