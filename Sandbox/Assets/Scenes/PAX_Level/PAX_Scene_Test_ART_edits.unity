@@ -16687,6 +16687,9 @@ MonoBehaviour:
   wallCheck: {fileID: 131409008}
   wallCheckDistance: 6
   pathRotationSpeed: 0
+  posing: 0
+  poseLocked: 0
+  _CurrentState: none
 --- !u!4 &882052622
 Transform:
   m_ObjectHideFlags: 0
@@ -23964,6 +23967,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2050282444882006386, guid: bf892e9150fe6f34ebd06a0727d6233c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6922162059366801499, guid: bf892e9150fe6f34ebd06a0727d6233c, type: 3}
       propertyPath: Other
       value: 
@@ -23973,8 +23980,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6922162059366801499, guid: bf892e9150fe6f34ebd06a0727d6233c, type: 3}
+      propertyPath: closeDistance
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922162059366801499, guid: bf892e9150fe6f34ebd06a0727d6233c, type: 3}
       propertyPath: inAirMovementSpeed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6922162060326294352, guid: bf892e9150fe6f34ebd06a0727d6233c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7465504503099886419, guid: bf892e9150fe6f34ebd06a0727d6233c, type: 3}
       propertyPath: m_RootOrder
@@ -36784,7 +36799,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh23844
+  m_Name: pb_Mesh149826
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

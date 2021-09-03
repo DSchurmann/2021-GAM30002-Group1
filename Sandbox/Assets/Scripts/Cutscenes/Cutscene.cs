@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Cutscene 
+public class Cutscene: MonoBehaviour
 {
     //Parameters -- Core
     public string cutsceneName;

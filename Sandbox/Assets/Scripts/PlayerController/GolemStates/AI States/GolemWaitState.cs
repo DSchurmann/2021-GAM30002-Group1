@@ -14,7 +14,7 @@ public class GolemWaitState:GolemAIState
     public override void Enter()
     {
         base.Enter();
-        player.Following = false;
+        //player.Following = false;
         player.Waiting = true;
         GameController.GH.UH.waiting = (true);
         Debug.Log("Golem Wait");
@@ -34,7 +34,7 @@ public class GolemWaitState:GolemAIState
 
         if (!isExitingState)
         {
-            if (player.ControllerEnabled)
+            if (player.ControllerEnabled) // switch to golem control
             {
                 player.ChangeState(player.IdleState);
             }
@@ -46,6 +46,7 @@ public class GolemWaitState:GolemAIState
                     // change state to follow if too far 
                     if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) > player.closeDistance)
                     {
+                        Debug.Log("Golem Far start Following");
                         player.ChangeState(player.AIFollowState);
                     }
                 }

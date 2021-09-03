@@ -19,8 +19,9 @@ public class ClimbingController : MonoBehaviour
     public bool isGapJumpable;
 
     // gap variables
-    public float minDistanceToGap;
-    public float gapCheckDepth;
+    public float minDistanceToGap = 0.5f;
+    public float gapCheckHeight = 0.5f;
+    public float gapCheckDepth = 1f;
 
     // climbing variables
     public bool isVaulting;
@@ -39,6 +40,10 @@ public class ClimbingController : MonoBehaviour
     public float maxLedgeJumpHeight = 2;
     protected float climbForwardAmount = 0.25f;
     //public float MaxDistanceToLedge_WallClimb;
+
+    // ground properties
+    public Vector3 groundAngle;
+    public float maxSlopeAngle;
 
 
     // components
@@ -67,7 +72,8 @@ public class ClimbingController : MonoBehaviour
         if (ledgeDetector != null && isEnabled)
         {
             isTouchingWall = ledgeDetector.TouchingWall().Any();
-            isGapAhead = ledgeDetector.GapCheck(transform.position + (Vector3.one * origins_forward[0]), gapCheckDepth);
+            isGapAhead = ledgeDetector.GapCheck(transform.position + Vector3.up * gapCheckHeight + (transform.forward * minDistanceToGap), gapCheckDepth);
+            groundAngle = ledgeDetector.GroundCheck(transform.position + Vector3.up * 0.2f , gapCheckDepth);
             ledgeFound = ledgeDetector.ledgeFound;
         }
         else
@@ -76,6 +82,11 @@ public class ClimbingController : MonoBehaviour
             isTouchingWall = false;
         }
        
+        if(groundAngle.x != 0)
+        {
+            Debug.Log("Ground angle: " + groundAngle);
+        }
+
 
         if(isTouchingWall)
         {

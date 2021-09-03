@@ -26,6 +26,8 @@ public class ChildControllerRB : PlayerControllerRB
     public AIFollowState AIFollowState { get; private set; }
     public AIWaitState AIWaitState { get; private set; }
     #endregion
+
+    private bool interactGrab;
     // Awake and Start functions
     #region Start Functions
     public override void Awake()
@@ -78,6 +80,7 @@ public class ChildControllerRB : PlayerControllerRB
 
         _CurrentState = CurrentState.GetType().Name;
         isTouchingWall = CheckTouchingWall();
+
         //isTouchingWall = GetComponent<ClimbingController>()
     }
 
@@ -105,6 +108,53 @@ public class ChildControllerRB : PlayerControllerRB
         base.Flip();
         //flip sprite
         transform.Rotate(0.0f, 180.0f, 0, 0f);
+    }
+    #endregion
+    // Trigger functions for interactable objects
+    #region Trigger Functions
+    public void OnTriggerEnter(Collider other)
+    {
+        InteractableItem item = other.GetComponent<InteractableItem>();
+        if (item != null && ControllerEnabled)
+        {
+            item.DisplayUI();
+        }
+    }
+
+    public void OnTriggerStay(Collider other)
+    {
+        InteractableItem item = other.GetComponent<InteractableItem>();
+        List<string> interactStates = new List<string>(new string[] { "IdleState", "LandState", "MoveState" });
+        bool canInteract = interactStates.Contains(CurrentState.GetType().Name);
+        interactGrab = InputHandler.InputInteract;
+
+        if (item != null && interactGrab && canInteract)
+        {
+            item.Interact();
+            InputHandler.SetInteractFalse();
+        }
+        else if (item != null && !ControllerEnabled)
+        {
+            item.HideUI();
+            if(item.IsOpen)
+            {
+                item.Interact();
+            }
+
+        }
+        else if(item!= null && !item.isTextActive)
+        {
+            item.DisplayUI();
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        InteractableItem item = other.GetComponent<InteractableItem>();
+        if (item != null || (item != null && !ControllerEnabled))
+        {
+            item.HideUI();
+        }
     }
     #endregion
 }

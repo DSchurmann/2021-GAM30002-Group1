@@ -25,7 +25,8 @@ public abstract class PlayerState: State
         // perform 
         Perform();
         // set animation on
-        player.Anim.Play(animation);
+        //player.Anim.Play(animation);
+        player.Anim.CrossFade(animation, 0.5f);
         // set start time
         startTime = Time.time;
         isExitingState = false;
@@ -45,6 +46,7 @@ public abstract class PlayerState: State
         // switch players
         if (InputSwitchPlayer && player.ControllerEnabled)
         {
+            Debug.Log("SWAP PLAYER");
             InputSwitchPlayer = false;
             player.InputHandler.SetSwitchFalse();
             player.Other.InputHandler.SetSwitchFalse();

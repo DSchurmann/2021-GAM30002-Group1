@@ -34,6 +34,7 @@ public class IdleState: GroundedState
     public override void Exit()
     {
         base.Exit();
+        player.GetComponent<Rigidbody>().useGravity = true;
     }
   
     public override void Update()
@@ -47,7 +48,8 @@ public class IdleState: GroundedState
             {
                 if (player.ControllerEnabled)
                 {
-                    player.ChangeState(player.MoveState);
+                    if (player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
+                        player.ChangeState(player.MoveState);
                 }
                 else
                 {
@@ -60,6 +62,22 @@ public class IdleState: GroundedState
                         player.ChangeState(player.AIWaitState);
 
                     }
+                }
+            }
+            else
+            {
+                if(player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle && isGrounded)
+                {
+                    player.GetComponent<Rigidbody>().useGravity = false;
+                    Debug.Log("HOLDING POSITION ON SLOPE");
+                    holdPosition.x = player.transform.position.x;
+                    holdPosition.y = player.transform.position.y;
+                    HoldPosition(true, true);
+                }
+                else
+                {
+                    player.GetComponent<Rigidbody>().useGravity = true;
+                    HoldPosition(false, false);
                 }
             }
         }

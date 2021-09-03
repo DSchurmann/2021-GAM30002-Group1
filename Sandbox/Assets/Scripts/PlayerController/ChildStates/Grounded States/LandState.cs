@@ -16,14 +16,14 @@ public class LandState : GroundedState
         {
             if (player.ControllerEnabled)
             {
-                if (inputX != 0)
+                if (inputX != 0 )
                 {
                     player.ChangeState(player.MoveState);
 
                     //Play Landing Sound
                     FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
                 }
-                else if (isAnimationComplete)
+                else if (isAnimationComplete || player.isGrounded)
                 {
                     player.ChangeState(player.IdleState);
 

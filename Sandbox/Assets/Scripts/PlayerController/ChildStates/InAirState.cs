@@ -14,6 +14,8 @@ public class InAirState: ChildState
     private bool isJumping;
     private bool inputGrab;
 
+    public float Velx = 0;
+
     public InAirState(ChildControllerRB player, string animation) : base(player, animation)
     {
 
@@ -22,6 +24,7 @@ public class InAirState: ChildState
     public override void Enter()
     {
         base.Enter();
+        Velx = player.CurrentVelocity.x;
         StartJumpTimeBuff();
     }
 
@@ -76,7 +79,8 @@ public class InAirState: ChildState
         CheckJumpReleased();
 
         // check for ground
-        if (player.CheckIfGrounded() && player.CurrentVelocity.y < 0.1f)
+        //if (player.CheckIfGrounded() && player.CurrentVelocity.y < 0.1f)
+        if (player.CheckIfGrounded())
         {
             // land if ground detected while in air
             player.ChangeState(player.LandState);
@@ -109,9 +113,14 @@ public class InAirState: ChildState
         {
             // check for direction change
             player.CheckForFlip(inputX);
+        
             // set in air movement
             float inAirMovementDampening = Mathf.Clamp(player.inAirMovementSpeed / 10, 0.1f, 10.0f);
-            player.SetVelocityX(player.inAirMovementSpeed * inputX);
+           
+            if(inputX != 0)
+                player.SetVelocityX(player.inAirMovementSpeed * player.FacingDirection);
+            //player.SetVelocityX(player.inAirMovementSpeed * inputX);
+
         }
     }
 
