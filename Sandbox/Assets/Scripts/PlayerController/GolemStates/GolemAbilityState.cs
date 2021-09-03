@@ -21,11 +21,18 @@ public class GolemAbilityState:GolemState
         base.Enter();
         // reset check for if ability is finished
         isAbilityFinished = false;
+        player.posing = true;
+        isPosing = true;
+        isPoseLocked = true;
+        player.StartCoroutine(ResetPoseLock(player.PoseLockTime));
     }
 
     public override void Exit()
     {
         base.Exit();
+
+        player.posing = false;
+        isPosing = false;
     }
 
     public override void Update()
@@ -34,7 +41,7 @@ public class GolemAbilityState:GolemState
 
         inputX = player.InputHandler.InputXNormal;
 
-        if(inputX != 0 && player.ControllerEnabled)
+        if(inputX != 0 && player.ControllerEnabled && !isPoseLocked)
         {
             player.ChangeState(player.MoveState);
         }
@@ -49,6 +56,13 @@ public class GolemAbilityState:GolemState
     {
         base.FixedUpdate();
 
+    }
+
+    public IEnumerator ResetPoseLock(float lockTime)
+    {
+        yield return new WaitForSeconds(lockTime);
+
+        isPoseLocked = false;
     }
 
     public override void Perform()

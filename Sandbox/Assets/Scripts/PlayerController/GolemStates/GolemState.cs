@@ -7,6 +7,7 @@ public abstract class GolemState: PlayerState
     protected new GolemControllerRB player;
 
     protected bool isPosing;
+    protected bool isPoseLocked;
     protected bool inputPoseRaise;
     protected bool inputPoseStep;
     protected bool inputPoseC;
@@ -23,6 +24,8 @@ public abstract class GolemState: PlayerState
     public override void Enter()
     {
         base.Enter();
+
+        player.Anim.CrossFade(animation, player.PoseBlendTime);
     }
 
     // update state
@@ -72,28 +75,31 @@ public abstract class GolemState: PlayerState
                     Debug.Log("Child Following " + player.Other.Following.ToString());
                 }
 
-
-                // simple posing
-                if (inputPoseRaise)
+                if(!isPoseLocked)
                 {
-                    player.ChangeState(player.RaiseAbility);
-                    player.InputHandler.SetNorthFalse();
+                    // simple posing
+                    if (inputPoseRaise)
+                    {
+                        player.ChangeState(player.RaiseAbility);
+                        player.InputHandler.SetNorthFalse();
+                    }
+                    if (inputPoseStep)
+                    {
+                        player.ChangeState(player.StepAbility);
+                        player.InputHandler.SetWestFalse();
+                    }
+                    if (inputPoseT)
+                    {
+                        player.ChangeState(player.TPoseAbility);
+                        player.InputHandler.SetEastFalse();
+                    }
+                    if (inputPoseC)
+                    {
+                        player.ChangeState(player.CrouchAbility);
+                        player.InputHandler.SetSouthFalse();
+                    }
                 }
-                if (inputPoseStep)
-                {
-                    player.ChangeState(player.StepAbility);
-                    player.InputHandler.SetWestFalse();
-                }
-                if (inputPoseT)
-                {
-                    player.ChangeState(player.TPoseAbility);
-                    player.InputHandler.SetEastFalse();
-                }
-                if (inputPoseC)
-                {
-                    player.ChangeState(player.CrouchAbility);
-                    player.InputHandler.SetSouthFalse();
-                }
+               
 
 
                 // if not posing, enable pose ability. Handle exiting poses in their states

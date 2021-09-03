@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class GolemControllerRB : PlayerControllerRB
 {
-
+    public float PoseBlendTime = 0.5f;
+    public float PoseLockTime = 0.5f;
     // states
     #region States
     public GolemIdleState IdleState { get; private set; }
@@ -20,7 +21,6 @@ public class GolemControllerRB : PlayerControllerRB
     public GolemFollowState AIFollowState { get; private set; }
 
     public bool posing;
-    public bool poseLocked;
     public string _CurrentState = "none";
     #endregion
     // Awake and Start functions
@@ -57,7 +57,6 @@ public class GolemControllerRB : PlayerControllerRB
         {   // set initial AI state
            InitialState(AIWaitState);
         }
-        posing = false;
     }
     #endregion
     // Update and FixedUpdate function
@@ -86,10 +85,6 @@ public class GolemControllerRB : PlayerControllerRB
         //ChangeState(IdleState);
     }
 
-    public void DisablePoseLocked()
-    {
-        poseLocked = false;
-    }
     public override void DisableControls()
     {
         base.DisableControls();

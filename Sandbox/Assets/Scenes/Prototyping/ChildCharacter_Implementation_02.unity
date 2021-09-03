@@ -1520,7 +1520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: Fade in
-  eventType: 9
+  eventType: 10
   synchronous: 0
   newPos: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
@@ -2540,7 +2540,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eventName: Fade out
-  eventType: 10
+  eventType: 11
   synchronous: 0
   newPos: {x: 0, y: 0, z: 0}
   targetObject: {fileID: 0}
@@ -3739,6 +3739,7 @@ MonoBehaviour:
   cutsceneEvents:
   - {fileID: 181512923}
   - {fileID: 1977394655}
+  - {fileID: 214168016}
   - {fileID: 888151081}
   - {fileID: 260806054}
 --- !u!4 &385919504
@@ -9367,8 +9368,9 @@ MonoBehaviour:
   wallCheckDistance: 6
   groundAngle: 0
   pathRotationSpeed: 2
+  PoseBlendTime: 0.5
+  PoseLockTime: 0.5
   posing: 0
-  poseLocked: 0
   _CurrentState: none
 --- !u!4 &882052622
 Transform:
@@ -11823,6 +11825,14 @@ PrefabInstance:
       propertyPath: Other
       value: 
       objectReference: {fileID: 1229604118}
+    - target: {fileID: 2979943131630858024, guid: 61af72f4ee6fc4c41ac881713ce51999, type: 3}
+      propertyPath: PoseLockTime
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2979943131630858024, guid: 61af72f4ee6fc4c41ac881713ce51999, type: 3}
+      propertyPath: PoseBlendTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 2979943131630858030, guid: 61af72f4ee6fc4c41ac881713ce51999, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -17284,7 +17294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e457cdb10c1c614abc5a0e21bf91530, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneToTrigger: {fileID: 1796820489}
+  cutsceneToTrigger: {fileID: 385919503}
   triggeredBy: 0
 --- !u!23 &1693483686
 MeshRenderer:
@@ -20129,7 +20139,7 @@ MonoBehaviour:
   - {fileID: 711202953}
   - {fileID: 95855055}
   - {fileID: 385919503}
-  NumberOfCutscenes: 3
+  NumberOfCutscenes: 4
 --- !u!4 &1899906100
 Transform:
   m_ObjectHideFlags: 0
