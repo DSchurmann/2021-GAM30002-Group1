@@ -8,7 +8,7 @@ public class SceneSwitcherCol : MonoBehaviour
     //On Trigger Enter
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("PControlled"))
+        if (other.gameObject.GetComponent<PlayerControllerRB>() != null)
         {
             SwitchScene(SceneManager.GetActiveScene().buildIndex+1);
             Destroy(GameController.GH.gameObject);
