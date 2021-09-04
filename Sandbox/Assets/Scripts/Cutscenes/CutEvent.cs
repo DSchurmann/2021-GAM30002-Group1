@@ -6,12 +6,15 @@ public class CutEvent: MonoBehaviour
 {
     //Parameters -- Core
     public string eventName;
-    public enum EventType { moveChild, moveGolem, moveBoth, targetChild, targetGolem, animChild, animGolem, changeCamera, rotateCamera, fadeIn, fadeOut, changeScene };
+    public enum EventType { moveChild, moveGolem, moveBoth, targetChild, targetGolem, lookAt, animChild, animGolem, changeCamera, rotateCamera, fadeIn, fadeOut, changeScene };
     public EventType eventType;
     public bool synchronous; //Does this event immediately hit up the next event? Or do we only continue when this one is finished?
 
     //Parameters -- Movement
     public Vector3 newPos;
+
+    //Parameters -- Movement
+    public Transform targetObject;
 
     //Parameters -- Animation to play
     public string animName;
@@ -43,6 +46,19 @@ public class CutEvent: MonoBehaviour
         eventType = type;
         synchronous = sync;
         newPos = targetPos;
+        newRotation = targetRot;
+        duration = length;
+    }
+
+    //Constructor -- With Position & Rotation & target
+    public CutEvent(string name, EventType type, bool sync, Vector3 targetPos, Transform targetObj, Vector3 targetRot, float length)
+    {
+        //Set Parameters 
+        eventName = name;
+        eventType = type;
+        synchronous = sync;
+        newPos = targetPos;
+        targetObject = targetObj;
         newRotation = targetRot;
         duration = length;
     }

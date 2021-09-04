@@ -17,6 +17,7 @@ public class Director : MonoBehaviour
     public Vector3 panPos;
     public Vector3 rotPos;
     public Vector3 movPos;
+    public GameObject targetPos;
 
     //Parameters -- Components/Objects
     public GameObject fadeObj;
@@ -128,6 +129,12 @@ public class Director : MonoBehaviour
                 panPos = cur.newPos;
                 //Set CameraObj Target Position
                 camObj.GetComponent<CameraFollow>().PanTo(panPos);
+                break;
+
+            case CutEvent.EventType.lookAt:
+                //Do Camera Movement
+                camObj.GetComponent<CameraFollow>().target = cur.targetObject;
+                camObj.GetComponent<CameraFollow>().followMode = CameraFollow.FollowMode.FOLLOWTARGET;
                 break;
 
             case CutEvent.EventType.targetChild:
