@@ -24,7 +24,7 @@ public class Book : InteractableItem
 
     public override void DisplayUI()
     {
-        interactText = "Press 'e' to read";
+        interactText = "Press [E] to read";
 
         text.gameObject.SetActive(true);
         text.text = interactText;

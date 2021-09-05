@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class InteractableItem : MonoBehaviour
 {
-    [SerializeField] protected string interactText = "Press 'e' to interact";
+    protected string interactText = "Press 'e' to interact";
     [SerializeField] protected Text text;
     protected bool isOpen = false;
 

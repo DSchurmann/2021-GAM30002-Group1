@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.XInput;
+using UnityEngine.InputSystem.DualShock;
+using System.Linq;
 
 public class UIHandler : MonoBehaviour
 {
@@ -22,9 +26,37 @@ public class UIHandler : MonoBehaviour
     public bool childMain;
     public bool waiting;
 
-    // Update is called once per frame
+    public GameObject mkbUI;
+    public GameObject xboxUI;
+    public GameObject dsUI;
+
+    private ControllerType ct;
+
     void Update()
     {
+        if (Keyboard.current.anyKey.wasPressedThisFrame && ct != ControllerType.mkb)
+        {
+            ct = ControllerType.mkb;
+        }
+        foreach(InputControl c in Gamepad.current.allControls)
+        {
+            if(c.IsPressed())
+            {
+                if (Gamepad.current is DualShockGamepad)
+                {
+                    ct = ControllerType.ds;
+                }
+                else
+                {
+                    ct = ControllerType.xbox;
+                }
+            }
+        }
+
+        Debug.LogError(ct);
+
+
+
         //Set State
         childMain = (GameController.GH.CurrentPlayer() == GameController.GH.childObj);
 
@@ -51,5 +83,12 @@ public class UIHandler : MonoBehaviour
             waitState.GetComponent<Image>().sprite = waitSprite;
         else
             waitState.GetComponent<Image>().sprite = followSprite;
+    }
+    
+    private enum ControllerType
+    { 
+        mkb,
+        xbox,
+        ds,
     }
 }
