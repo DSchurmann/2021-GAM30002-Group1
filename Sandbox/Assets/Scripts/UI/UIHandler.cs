@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.XInput;
 using UnityEngine.InputSystem.DualShock;
-using System.Linq;
 
 public class UIHandler : MonoBehaviour
 {
@@ -30,35 +26,18 @@ public class UIHandler : MonoBehaviour
     public GameObject xboxUI;
     public GameObject dsUI;
 
-    private ControllerType ct;
+    public static ControllerType controllerType;
 
     void Update()
     {
-        if (Keyboard.current.anyKey.wasPressedThisFrame && ct != ControllerType.mkb)
-        {
-            ct = ControllerType.mkb;
-        }
-        foreach(InputControl c in Gamepad.current.allControls)
-        {
-            if(c.IsPressed())
-            {
-                if (Gamepad.current is DualShockGamepad)
-                {
-                    ct = ControllerType.ds;
-                }
-                else
-                {
-                    ct = ControllerType.xbox;
-                }
-            }
-        }
-
-        Debug.LogError(ct);
-
-
+        controllerType = GetInputType(controllerType);
+        ChangeUI(controllerType);
 
         //Set State
         childMain = (GameController.GH.CurrentPlayer() == GameController.GH.childObj);
+
+        //change UI elements
+        ChangeIcons(childMain, waiting, GetCurrentUI(controllerType));
 
         //Based on State, Set Thing
         if (childMain)
@@ -84,8 +63,106 @@ public class UIHandler : MonoBehaviour
         else
             waitState.GetComponent<Image>().sprite = followSprite;
     }
+
+    private void ChangeIcons(bool child, bool wait, GameObject ui)
+    {
+        if (child)
+        {
+            //Child Colour = Full
+            ui.transform.Find("ChildPort").GetComponent<Image>().color = mainCol;
+
+            //Golem Colour = Less Full
+            ui.transform.Find("GolPort").GetComponent<Image>().color = subCol;
+        }
+        else
+        {
+            //Child Colour = Less Full
+            ui.transform.Find("ChildPort").GetComponent<Image>().color = mainCol;
+
+            //Golem Colour = Full
+            ui.transform.Find("GolPort").GetComponent<Image>().color = subCol;
+        }
+
+        //Set Wait Mode Indicator
+        if (wait)
+            ui.transform.Find("WaitIndicator").GetComponent<Image>().sprite = waitSprite;
+        else
+            ui.transform.Find("WaitIndicator").GetComponent<Image>().sprite = followSprite;
+    }
+
+    private ControllerType GetInputType(ControllerType t)
+    {
+        ControllerType result = t;
+        //get keyboard input
+        if (Keyboard.current.anyKey.wasPressedThisFrame && controllerType != ControllerType.mkb)
+        {
+            result = ControllerType.mkb;
+        }
+        else
+        {
+            //get all inputs from all controllers and check which button was pressed
+            foreach (InputControl c in Gamepad.current.allControls)
+            {
+                if (c.IsPressed())
+                {
+                    //once button is found, check if the corrisponding gamepad is a DualShock or Xbox
+                    if (Gamepad.current is DualShockGamepad)
+                    {
+                        result = ControllerType.ds;
+                        break;
+                    }
+                    else
+                    {
+                        result = ControllerType.xbox;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
+    private void ChangeUI(ControllerType t)
+    {
+        if(t == ControllerType.mkb && !mkbUI.activeSelf)
+        {
+            mkbUI.SetActive(true);
+            dsUI.SetActive(false);
+            xboxUI.SetActive(false);
+
+        }
+        else if(t == ControllerType.ds && !dsUI.activeSelf)
+        {
+            dsUI.SetActive(true);
+            mkbUI.SetActive(false);
+            xboxUI.SetActive(false);
+        }
+        else if(t == ControllerType.xbox && !xboxUI.activeSelf)
+        {
+            xboxUI.SetActive(true);
+            mkbUI.SetActive(false);
+            dsUI.SetActive(false);
+        }
+    }
+
+    private GameObject GetCurrentUI(ControllerType c)
+    {
+        switch(c)
+        {
+            case ControllerType.mkb:
+                return mkbUI;
+            case ControllerType.ds:
+                return dsUI;
+            case ControllerType.xbox:
+                return xboxUI;
+            default:
+                Debug.LogError("Something wrong getting current UI");
+                return null;
+        }
+    }
     
-    private enum ControllerType
+    public enum ControllerType
     { 
         mkb,
         xbox,

@@ -7,7 +7,11 @@ public class InteractableItem : MonoBehaviour
 {
     protected string interactText = "Press 'e' to interact";
     [SerializeField] protected Text text;
+    [SerializeField] protected Sprite dsInteract;
+    [SerializeField] protected Sprite xboxInteract;
+    [SerializeField] protected Image image;
     protected bool isOpen = false;
+    protected bool isDisplay = false;
 
 
     public virtual void Interact() { }
@@ -17,6 +21,8 @@ public class InteractableItem : MonoBehaviour
     public void HideUI()
     {
         text.gameObject.SetActive(false);
+        image.gameObject.SetActive(false);
+        isDisplay = false;
     }
 
     public bool isTextActive
