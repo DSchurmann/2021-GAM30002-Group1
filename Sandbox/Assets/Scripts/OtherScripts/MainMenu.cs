@@ -9,6 +9,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private int nextScene;
     [SerializeField] private Slider loadProgress;
     [SerializeField] private Button play;
+    [SerializeField] private Button quit;
+
+    private float targetProgress = 0.0f;
+    private float progress = 0.0f;
+    private float Speed = 1f;
 
     private void Awake()
     {
@@ -18,8 +23,21 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         play.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
         loadProgress.gameObject.SetActive(true);
         StartCoroutine(LoadAsyncOperation());
+    }
+
+    public void Quit()
+    {
+        Debug.Log("Quit");
+        Application.Quit();
+    }
+
+    public void Update()
+    {
+        progress = Mathf.Lerp(targetProgress, progress, Speed * Time.deltaTime);
+        loadProgress.value = progress;
     }
 
     IEnumerator LoadAsyncOperation()
@@ -28,7 +46,7 @@ public class MainMenu : MonoBehaviour
 
         while (gameLevel.progress < 1)
         {
-            loadProgress.value = gameLevel.progress;
+            targetProgress = gameLevel.progress;
             yield return new WaitForEndOfFrame();
         }
     }
