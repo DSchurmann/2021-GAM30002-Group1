@@ -1811,10 +1811,10 @@ BoxCollider:
   m_GameObject: {fileID: 2979943131630858001}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.31, y: 4.34, z: 1}
-  m_Center: {x: 0.18, y: 2, z: 0}
+  m_Size: {x: 0.27, y: 0.52, z: 0.08}
+  m_Center: {x: 0, y: 2.01, z: 0}
 --- !u!114 &2979943131630858024
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1848,9 +1848,11 @@ MonoBehaviour:
   groundCheck: {fileID: 2979943130800264492}
   wallCheck: {fileID: 2979943131908116596}
   wallCheckDistance: 6
+  groundAngle: 0
   pathRotationSpeed: 20
+  PoseBlendTime: 0.5
+  PoseLockTime: 0.5
   posing: 0
-  poseLocked: 0
   _CurrentState: none
 --- !u!114 &2979943131630858027
 MonoBehaviour:
