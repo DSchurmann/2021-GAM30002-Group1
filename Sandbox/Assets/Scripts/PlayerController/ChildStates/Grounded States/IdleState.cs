@@ -13,7 +13,7 @@ public class IdleState: GroundedState
     {
         base.Enter();
         player.SetVelocityX(0f);
-        player.Anim.CrossFade(animation, 0.1f);
+        player.Anim.CrossFade(animation, 0.06f);
         if (player.ControllerEnabled)
         {
 

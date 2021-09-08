@@ -19,6 +19,7 @@ public class WallGrabState : WallState
     public override void Enter()
     {
         base.Enter();
+        player.Anim.CrossFade(animation, 0.06f);
         HoldPosition(true, true);
     }
 

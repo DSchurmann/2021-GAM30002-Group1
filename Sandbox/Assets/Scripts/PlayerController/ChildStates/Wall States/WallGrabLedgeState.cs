@@ -18,6 +18,7 @@ public class WallGrabLedgeState : WallState
     public override void Exit()
     {
         base.Exit();
+        player.Anim.CrossFade(animation, 0.06f);
         holdPosition.x -= player.wallClimbDistance;
         holdPosition.y = player.transform.position.y;
         HoldPosition(true, true);
