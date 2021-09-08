@@ -7,6 +7,7 @@ public class Book : InteractableItem
     [SerializeField][TextArea] private string content;
     [SerializeField] private GameObject bookUI;
     [SerializeField] private Text bookUIText;
+    [SerializeField] private Image closeInput;
 
     private void Update()
     {
@@ -16,6 +17,7 @@ public class Book : InteractableItem
             {
                 case UIHandler.ControllerType.mkb:
                     image.gameObject.SetActive(false);
+                    closeInput.gameObject.SetActive(false);
                     break;
                 case UIHandler.ControllerType.ds:
                     image.sprite = dsInteract;
@@ -27,6 +29,23 @@ public class Book : InteractableItem
                     break;
             }
         }
+        else
+        {
+            switch (UIHandler.controllerType)
+            {
+                case UIHandler.ControllerType.mkb:
+                    closeInput.gameObject.SetActive(false);
+                    break;
+                case UIHandler.ControllerType.ds:
+                    closeInput.sprite = dsInteract;
+                    closeInput.gameObject.SetActive(true);
+                    break;
+                case UIHandler.ControllerType.xbox:
+                    closeInput.sprite = xboxInteract;
+                    closeInput.gameObject.SetActive(true);
+                    break;
+            }
+        }
     }
 
     public override void Interact()
@@ -34,12 +53,15 @@ public class Book : InteractableItem
         isOpen = !isOpen;
         if(isOpen)
         {
+            HideUI();
             bookUIText.text = content;
             bookUI.SetActive(true);
+            UIHandler.DisableUI = true;
         }
         else
         {
             bookUI.SetActive(false);
+            UIHandler.DisableUI = false;
         }
     }
 

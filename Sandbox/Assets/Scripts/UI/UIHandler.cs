@@ -26,15 +26,21 @@ public class UIHandler : MonoBehaviour
     public GameObject xboxUI;
     public GameObject dsUI;
 
-    public bool disableUI = false;
+    public static bool DisableUI = false;
+    [SerializeField] private bool disableUI = false;
 
     public static ControllerType controllerType;
+
+    private void Awake()
+    {
+        DisableUI = disableUI;
+    }
 
     void Update()
     {
         controllerType = GetInputType(controllerType);
 
-        if (!disableUI)
+        if (!DisableUI)
         {
             ChangeUI(controllerType);
 
@@ -67,6 +73,12 @@ public class UIHandler : MonoBehaviour
                 waitState.GetComponent<Image>().sprite = waitSprite;
             else
                 waitState.GetComponent<Image>().sprite = followSprite;
+        }
+        else
+        {
+            xboxUI.SetActive(false);
+            mkbUI.SetActive(false);
+            dsUI.SetActive(false);
         }
     }
 

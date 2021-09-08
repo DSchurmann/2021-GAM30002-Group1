@@ -142,6 +142,10 @@ public class ChildControllerRB : PlayerControllerRB
             }
 
         }
+        else if(item!= null && item.IsOpen)
+        {
+            item.HideUI();
+        }
         else if(item!= null && !item.isTextActive)
         {
             item.DisplayUI();
