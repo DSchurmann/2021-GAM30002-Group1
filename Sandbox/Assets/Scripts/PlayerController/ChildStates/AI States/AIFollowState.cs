@@ -85,6 +85,8 @@ public class AIFollowState : AIState
             player.Anim.Play("Idle");*/
             player.Following = false;
             player.ChangeState(player.AIWaitState);
+            GameController.GH.UH.waiting = (true);
+
         }
         else
         {

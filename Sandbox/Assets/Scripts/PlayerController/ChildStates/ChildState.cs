@@ -55,12 +55,16 @@ public abstract class ChildState: PlayerState
                         Debug.Log("Golem Waiting");
                         player.Other.ChangeState((player.Other as GolemControllerRB).AIWaitState);
                         player.Other.Following = false;
+                        GameController.GH.UH.waiting = (true);
+
                     }
                     else
                     {
                         Debug.Log("Golem Following");
                         player.Other.ChangeState((player.Other as GolemControllerRB).AIFollowState);
                         player.Other.Following = true;
+                        GameController.GH.UH.waiting = (false);
+
                     }
 
                     player.InputHandler.SetWaitFalse();

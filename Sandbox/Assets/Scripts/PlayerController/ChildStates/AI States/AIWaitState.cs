@@ -15,7 +15,6 @@ public class AIWaitState: AIState
     {
         base.Enter();
         player.Waiting = true;
-        GameController.GH.UH.waiting = (true);
 
         holdPosition.x = player.transform.position.x;
         HoldPosition(true, false);

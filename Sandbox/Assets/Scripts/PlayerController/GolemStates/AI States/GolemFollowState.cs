@@ -83,7 +83,7 @@ public class GolemFollowState:GolemAIState
                 player.SetVelocityX(player.MovementSpeed * angle.x);
             }
                 
-            player.SetVelocityY(0);
+            //player.SetVelocityY(0);
         }
     }
 
