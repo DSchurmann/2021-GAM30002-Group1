@@ -180,9 +180,9 @@ public class PlayerControllerRB : StateMachine
         CurrentVelocity = workVector;
     }
     // set velocity of x 
-    public void SetVelocityX(float velocityX, float velocityZ = 0f)
+    public void SetVelocityX(float velocityX)
     {
-        workVector = Train.MoveX(velocityX, velocityZ);
+        workVector = Train.MoveX(velocityX);
 
         // rotate character to path direction
         if (workVector.sqrMagnitude > 0)

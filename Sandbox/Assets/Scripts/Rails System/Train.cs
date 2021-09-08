@@ -15,8 +15,10 @@ public class Train : MonoBehaviour
     [SerializeField] private float railSeekRange = 2f;
     [SerializeField] private RailType type;
 
+
     private float percentage;
 
+    [SerializeField, Range(0.125f, 0.925f)] private float DeadZone = 0.7f;
     int dirInput = 0;
 
     private void Start()
@@ -33,16 +35,16 @@ public class Train : MonoBehaviour
     }
 
 
-    public Vector3 MoveX(float velocityX, float VelocityZ = 0)
+    public Vector3 MoveX(float velocityX)
     {
         // invert path
-        if (isConnectedtoRail && rail.swapControls)
-        {
-            Debug.Log("swap");
-            float temp = velocityX;
-            velocityX = VelocityZ;
-            VelocityZ = temp;
-        }
+        //if (isConnectedtoRail && rail.swapControls)
+        //{
+        //    Debug.Log("swap");
+        //    float temp = velocityX;
+        //    velocityX = VelocityZ;
+        //    VelocityZ = temp;
+        //}
 
 
         // get the position of the train
@@ -182,12 +184,15 @@ public class Train : MonoBehaviour
     {
         if (GetComponent<ChildControllerRB>() != null)
         {
-            dirInput = GetComponent<ChildControllerRB>().InputHandler.InputYNormal;
-        }
-
-        if (GetComponent<GolemControllerRB>() != null)
-        {
-            dirInput = GetComponent<GolemControllerRB>().InputHandler.InputYNormal;
+            float inputY = GetComponent<ChildControllerRB>().InputHandler.RawMovementInput.y;
+            if (Mathf.Abs(inputY) >= DeadZone)
+            {
+                dirInput = (int)Mathf.Sign(inputY);
+            }
+            else
+            {
+                dirInput = 0;
+            }
         }
 
         // jump rails
