@@ -26,42 +26,48 @@ public class UIHandler : MonoBehaviour
     public GameObject xboxUI;
     public GameObject dsUI;
 
+    public bool disableUI = false;
+
     public static ControllerType controllerType;
 
     void Update()
     {
         controllerType = GetInputType(controllerType);
-        ChangeUI(controllerType);
 
-        //Set State
-        childMain = (GameController.GH.CurrentPlayer() == GameController.GH.childObj);
-
-        //change UI elements
-        ChangeIcons(childMain, waiting, GetCurrentUI(controllerType));
-
-        //Based on State, Set Thing
-        if (childMain)
+        if (!disableUI)
         {
-            //Child Colour = Full
-            childPort.GetComponent<Image>().color = mainCol;
+            ChangeUI(controllerType);
 
-            //Golem Colour = Less Full
-            golPort.GetComponent<Image>().color = subCol;
+            //Set State
+            childMain = (GameController.GH.CurrentPlayer() == GameController.GH.childObj);
+
+            //change UI elements
+            ChangeIcons(childMain, waiting, GetCurrentUI(controllerType));
+
+            //Based on State, Set Thing
+            if (childMain)
+            {
+                //Child Colour = Full
+                childPort.GetComponent<Image>().color = mainCol;
+
+                //Golem Colour = Less Full
+                golPort.GetComponent<Image>().color = subCol;
+            }
+            else
+            {
+                //Child Colour = Less Full
+                childPort.GetComponent<Image>().color = subCol;
+
+                //Golem Colour = Full
+                golPort.GetComponent<Image>().color = mainCol;
+            }
+
+            //Set Wait Mode Indicator
+            if (waiting)
+                waitState.GetComponent<Image>().sprite = waitSprite;
+            else
+                waitState.GetComponent<Image>().sprite = followSprite;
         }
-        else
-        {
-            //Child Colour = Less Full
-            childPort.GetComponent<Image>().color = subCol;
-
-            //Golem Colour = Full
-            golPort.GetComponent<Image>().color = mainCol;
-        }
-
-        //Set Wait Mode Indicator
-        if (waiting)
-            waitState.GetComponent<Image>().sprite = waitSprite;
-        else
-            waitState.GetComponent<Image>().sprite = followSprite;
     }
 
     private void ChangeIcons(bool child, bool wait, GameObject ui)
