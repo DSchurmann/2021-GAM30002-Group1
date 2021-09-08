@@ -253,8 +253,8 @@ Shader "Universal Render Pipeline/NiloCat Extension/Screen Space Decal/Unlit"
 #endif
                 half4 col = tex2D(_MainTex, uv);
                 col *= _Color;// tint color
-                col.a = saturate(col.a * _AlphaRemap.x + _AlphaRemap.y);// alpha remap MAD
-                col.rgb *= lerp(1, col.a, _MulAlphaToRGB);// extra multiply alpha to RGB
+                col.a = saturate(col.a);// alpha remap MAD
+                //col.rgb *= lerp(1, col.a, _MulAlphaToRGB);// extra multiply alpha to RGB
 
 #if _UnityFogEnable
                 // Mix the pixel color with fogColor. You can optionaly use MixFogColor to override the fogColor
