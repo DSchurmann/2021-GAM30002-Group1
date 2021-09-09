@@ -101,7 +101,7 @@ public class Director : MonoBehaviour
         {
             case CutEvent.EventType.animChild:
                 //Get Child to Play Animation
-                //GameHandler.GH.childObj.GetComponent<PlayerAnimationController>().ChangeState(cur.animName);
+                GameController.GH.childObj.GetComponent<ChildControllerRB>().GetComponent<Animator>().Play("Wave01");
                 break;
 
             case CutEvent.EventType.animGolem:
