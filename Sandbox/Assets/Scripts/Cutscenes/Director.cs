@@ -23,6 +23,7 @@ public class Director : MonoBehaviour
     //Parameters -- Components/Objects
     public GameObject fadeObj;
     public GameObject camObj;
+    public GameObject widescreenBars;
 
     //Parameters -- Cutscene Database
     public Dictionary<string, Cutscene> cutscenes = new Dictionary<string, Cutscene>();
@@ -63,9 +64,18 @@ public class Director : MonoBehaviour
         if(fadeObj != null)
         {
             if (!inCutscene)
+            {
                 fadeObj.SetActive(false);
+                if(widescreenBars != null)
+                    widescreenBars.SetActive(false);
+            }
             else
+            {
                 fadeObj.SetActive(true);
+                if (widescreenBars != null)
+                    widescreenBars.SetActive(true);
+            }
+                
         }
        
     }
@@ -219,6 +229,8 @@ public class Director : MonoBehaviour
                 //Do Fade
                 if(fadeObj != null)
                     fadeObj.GetComponent<Image>().color = Color.Lerp(startCol, endCol, percProgress);
+
+               
             }
 
             //On Change Scene

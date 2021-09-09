@@ -247,7 +247,7 @@ Shader "Universal Render Pipeline/NiloCat Extension/Screen Space Decal/Unlit"
             //===================================================
 
             // sample the decal texture
-            float2 uv = decalSpaceUV.xy * _MainTex_ST.xy + _MainTex_ST.zw;//Texture tiling & offset
+            float2 uv = _MainTex_ST.xy + _MainTex_ST.zw;//Texture tiling & offset
 #if _FracUVEnable
                 uv = frac(uv);// add frac to ignore texture wrap setting
 #endif
