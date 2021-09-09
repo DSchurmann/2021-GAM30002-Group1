@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Director : MonoBehaviour
 {
@@ -59,10 +60,14 @@ public class Director : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!inCutscene)
-            fadeObj.SetActive(false);
-        else
-            fadeObj.SetActive(true);
+        if(fadeObj != null)
+        {
+            if (!inCutscene)
+                fadeObj.SetActive(false);
+            else
+                fadeObj.SetActive(true);
+        }
+       
     }
 
     //Start Cutscene
@@ -212,14 +217,20 @@ public class Director : MonoBehaviour
                 }
 
                 //Do Fade
-                fadeObj.GetComponent<Image>().color = Color.Lerp(startCol, endCol, percProgress);
+                if(fadeObj != null)
+                    fadeObj.GetComponent<Image>().color = Color.Lerp(startCol, endCol, percProgress);
             }
 
             //On Change Scene
             if (cur.eventType == CutEvent.EventType.changeScene)
             {
-                //Debug
-                Debug.Log("Change Scene.");
+                //load next scene
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                StopCoroutine(ProcessCutscene());
+                //EndCutscene();
+                break;
+                //curCutscene.cutsceneEvents.Clear();
+               
             }
 
             //Yield on Progress
@@ -254,7 +265,8 @@ public class Director : MonoBehaviour
         curCutscene = null;
 
         //Reset Camera
-        camObj.GetComponent<CameraFollow>().FollowToPlayer();
+        if(camObj != null)
+            camObj.GetComponent<CameraFollow>().FollowToPlayer();
 
         //Reset Stage
         stage = (0);

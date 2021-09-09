@@ -58,8 +58,10 @@ public class GameController : MonoBehaviour
         }
 
         //Set Positions (As Audio Sources)
-        childAudioPos = childObj.transform.position;
-        golemAudioPos = golemObj.transform.position;
+        if(childObj != null)
+            childAudioPos = childObj.transform.position;
+        if (golemObj != null)
+            golemAudioPos = golemObj.transform.position;
     }
 
     // Get current player
