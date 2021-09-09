@@ -15679,6 +15679,7 @@ MonoBehaviour:
   isConnectedtoRail: 0
   railSeekRange: 2
   type: 0
+  DeadZone: 0.7
 --- !u!114 &594013820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28727,7 +28728,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh251658
+  m_Name: pb_Mesh883514
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -42681,6 +42682,14 @@ PrefabInstance:
       propertyPath: inAirMovementSpeed
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7768186053678144342, guid: 23b54ac1772beba44a3f82f2143db7e8, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7768186053678144343, guid: 23b54ac1772beba44a3f82f2143db7e8, type: 3}
+      propertyPath: m_Radius
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 7801533574121173085, guid: 23b54ac1772beba44a3f82f2143db7e8, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -44055,6 +44064,7 @@ MonoBehaviour:
   mkbUI: {fileID: 0}
   xboxUI: {fileID: 0}
   dsUI: {fileID: 0}
+  disableUI: 0
 --- !u!114 &1661908404
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -234,7 +234,7 @@ public class PlayerControllerRB : StateMachine
     }
 
     //check forward wall
-    public bool CheckTouchingWall()
+    public virtual bool CheckTouchingWall()
     {
         Debug.DrawRay(wallCheck.position, Vector3.right * FacingDirection * wallCheckDistance, Color.cyan);
         return Physics.Raycast(wallCheck.position, Vector3.right * FacingDirection, wallCheckDistance);

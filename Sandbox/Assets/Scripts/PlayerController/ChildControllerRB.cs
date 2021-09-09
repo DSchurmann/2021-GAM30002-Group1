@@ -109,6 +109,11 @@ public class ChildControllerRB : PlayerControllerRB
         //flip sprite
         transform.Rotate(0.0f, 180.0f, 0, 0f);
     }
+
+    public override bool CheckTouchingWall()
+    {
+        return GetComponent<ClimbingController>().isTouchingWall;
+    }
     #endregion
     // Trigger functions for interactable objects
     #region Trigger Functions

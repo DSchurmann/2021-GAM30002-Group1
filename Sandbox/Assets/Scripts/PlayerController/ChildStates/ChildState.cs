@@ -89,7 +89,7 @@ public abstract class ChildState: PlayerState
 
             if (player.GetComponent<ClimbingController>().canJumpClimb)
             {
-                player.ChangeState(player.JumpState);
+                //player.ChangeState(player.JumpState);
             }
 
         }

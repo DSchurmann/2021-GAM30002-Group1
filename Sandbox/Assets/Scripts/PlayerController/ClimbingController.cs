@@ -38,7 +38,7 @@ public class ClimbingController : MonoBehaviour
 
     // player climbing properties
     public float maxLedgeJumpHeight = 2;
-    protected float climbForwardAmount = 0.25f;
+    protected float climbForwardAmount = 0.6f;
     //public float MaxDistanceToLedge_WallClimb;
 
     // ground properties
@@ -67,11 +67,12 @@ public class ClimbingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         inputInteract = InputHandler.InputInteract;
 
         if (ledgeDetector != null && isEnabled)
         {
-            isTouchingWall = ledgeDetector.TouchingWall().Any();
+            isTouchingWall = ledgeDetector.TouchingWall().Any(w => w == true);
             isGapAhead = ledgeDetector.GapCheck(transform.position + Vector3.up * gapCheckHeight + (transform.forward * minDistanceToGap), gapCheckDepth);
             groundAngle = ledgeDetector.GroundCheck(transform.position + Vector3.up * 0.2f , gapCheckDepth);
             ledgeFound = ledgeDetector.ledgeFound;
@@ -148,31 +149,74 @@ public class ClimbingController : MonoBehaviour
     // climb
     public void Climb()
     {
-        isClimbing = true;
-
-        Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount); //+ (transform.up * 0.5f);
-        Vector3 distance = landingPos - transform.position;
-
-        //GetComponent<CharacterController>().Move(distance);
-        _rb.DOMove(landingPos, 0.5f).OnComplete(FinishClimb);
-        //GetComponent<Animator>().SetBool("ClimbUp", true);
-    }
-
-    public IEnumerator ClimbUp()
-    {
-        float time = 0;
-        int secs = 0;
-        int max = 3;
-        while(secs < max)
+       
+        if(!isClimbing)
         {
-            time += Time.deltaTime;
+            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount); //+ (transform.up * 0.5f);
+            Vector3 distance = landingPos - transform.position;
 
-            secs = (int)time % 60;
-            Debug.Log(secs);
+            //GetComponent<CharacterController>().Move(distance);
+            //_rb.DOMove(landingPos, 0.7f).OnComplete(FinishClimb);
+
+            Vector3 diff = _rb.transform.position - ledgeDetector.ledgePosition;
+            float dist = diff.y;
+            Debug.Log("Distance to ledge = " + dist);
+            Vector3 climbUpPos = _rb.transform.position;
+            climbUpPos.y += dist;
+
+            isClimbing = true;
+
+            StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + _rb.transform.up * 1.5f, 0.4f));
+            //StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + transform.up +transform.forward*0.5f, 1));
+            //StartCoroutine(MoveOverSeconds(_rb.transform, ledgeDetector.ledgePosition, 1));
+            //GetComponent<Animator>().SetBool("ClimbUp", true);
         }
 
-        yield return null;
     }
+
+    public IEnumerator MoveOverSeconds(Transform objectToMove, Vector3 end, float seconds)
+    {
+        float elapsedTime = 0;
+        Vector3 startingPos = objectToMove.position;
+        while (elapsedTime < seconds)
+        {
+            objectToMove.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        objectToMove.position = end;
+        StartCoroutine(MoveForward(objectToMove, _rb.transform.position + transform.forward * climbForwardAmount, 0.3f));
+    }
+
+    public IEnumerator MoveForward(Transform objectToMove, Vector3 end, float seconds)
+    {
+        float elapsedTime = 0;
+        Vector3 startingPos = objectToMove.position;
+        while (elapsedTime < seconds)
+        {
+            objectToMove.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
+            elapsedTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        objectToMove.position = end;
+        FinishClimb();
+    }
+
+    /*    public IEnumerator MoveUpToLedge(float duration)
+        {
+            float time = 0;
+            int secs = 0;
+            int max = 3;
+            while(secs < max)
+            {
+                time += Time.deltaTime;
+
+                secs = (int)time % 60;
+                Debug.Log(secs);
+            }
+
+            yield return null;
+        }*/
 
     void FinishClimb()
     {
