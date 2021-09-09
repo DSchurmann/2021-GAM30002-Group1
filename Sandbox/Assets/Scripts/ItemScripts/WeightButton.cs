@@ -7,6 +7,7 @@ public class WeightButton : MonoBehaviour, ITrigger
 {
     public bool enable;
     public bool triggered;
+    private bool triggeredCutscene;
     // value needed to trigger something
     public float triggerValue;
     // platform idle position
@@ -20,6 +21,7 @@ public class WeightButton : MonoBehaviour, ITrigger
     //private float buttonIdlePos;
     //private float buttonTriggeredPos;
     // button mode
+    public Cutscene cutsceneToTrigger;
     public enum TriggerMode { ONCE, HOLD}
     public TriggerMode triggerMode;
     
@@ -63,7 +65,7 @@ public class WeightButton : MonoBehaviour, ITrigger
                     if (!triggered)
                     {
                         triggered = true;
-                        SendTrigger();  
+                        SendTrigger();
                     }
                     break;
 
@@ -85,6 +87,10 @@ public class WeightButton : MonoBehaviour, ITrigger
 
     public void SendTrigger()
     {
+        if(cutsceneToTrigger != null && !triggeredCutscene)
+        {
+            GameController.GH.GetComponent<Director>().StartCutscene(cutsceneToTrigger);
+        }
         foreach (GameObject item in triggeredObjects)
         {
             item.GetComponent<ITriggeredObject>()?.Trigger(true);
