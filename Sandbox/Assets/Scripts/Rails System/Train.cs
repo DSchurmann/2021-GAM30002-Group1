@@ -182,9 +182,9 @@ public class Train : MonoBehaviour
     // jump rail
     public void JumpRail(Vector3 playerPosition, GameObject[] railObjects)
     {
-        if (GetComponent<ChildControllerRB>() != null)
+        if (GetComponent<PlayerControllerRB>() != null)
         {
-            float inputY = GetComponent<ChildControllerRB>().InputHandler.RawMovementInput.y;
+            float inputY = GetComponent<PlayerControllerRB>().InputHandler.RawMovementInput.y;
             if (Mathf.Abs(inputY) >= DeadZone)
             {
                 dirInput = (int)Mathf.Sign(inputY);
