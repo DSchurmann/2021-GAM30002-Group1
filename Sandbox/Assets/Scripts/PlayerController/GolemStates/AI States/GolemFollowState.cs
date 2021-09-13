@@ -68,23 +68,16 @@ public class GolemFollowState:GolemAIState
         Vector3 pos = player.transform.position;
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
-        //Check Distance
-        if (Mathf.Abs((pos - targPos).x) > player.closeDistance)
-        {
-            //Move Towards
-            Vector3 angle = (targPos - pos).normalized;
 
-            //Set Mov
-            if(angle.x >0)
-            {
-                player.SetVelocityX(player.MovementSpeed  * angle.x);
-            }else if (angle.x < 0)
-            {
-                player.SetVelocityX(player.MovementSpeed * angle.x);
-            }
-                
-            //player.SetVelocityY(0);
-        }
+        // set move speed
+        float followSpeed = player.Other.MovementSpeed;
+        float dist = Mathf.Abs((pos - targPos).x);
+        dist -= player.closeDistance;
+        followSpeed += dist * player.followSpeedFactor;
+
+        //Move Towards Child
+        Vector3 angle = (targPos - pos).normalized;
+        player.SetVelocityX(followSpeed * angle.x);
     }
 
 

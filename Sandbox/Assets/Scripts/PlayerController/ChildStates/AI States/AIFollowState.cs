@@ -76,7 +76,15 @@ public class AIFollowState : AIState
         Vector3 targPos = player.Other.transform.position;
         targPos.z += 1f;
 
-        if(player.GetComponent<ClimbingController>().isGapAhead)
+        // set move speed
+        float followSpeed = player.Other.MovementSpeed;
+        float dist = Mathf.Abs((pos - targPos).x);
+        dist -= player.closeDistance;
+        followSpeed += dist * player.followSpeedFactor;
+
+        Debug.Log(followSpeed);
+
+        if (player.GetComponent<ClimbingController>().isGapAhead)
         {
             Debug.Log("Stop");
         
@@ -90,36 +98,18 @@ public class AIFollowState : AIState
         }
         else
         {
-            // check if not touching ground
-            //Check Distance
-            if (Mathf.Abs((pos - targPos).x) > player.closeDistance)
-            {
-                //Move Towards
-                Vector3 angle = (targPos - pos).normalized;
+            //Move Towards Golem
+            Vector3 angle = (targPos - pos).normalized;
+            player.SetVelocityX(followSpeed * angle.x);
+            //flip the player
+            if ((player.FacingDirection != 1 && angle.x > 0) || (player.FacingDirection != -1 && angle.x < 0)) { player.Flip(); }
 
-                //Set Mov
-                if (angle.x > 0)
-                {
-                    // flip player and change direction
-                    if (player.FacingDirection != 1) { player.Flip(); }
-                    player.SetVelocityX(player.MovementSpeed * angle.x);
+            ////set jump
+            //if (isTouchingWall && player.CheckgWallClimbAbility())
+            //{
+            //    player.ChangeState(player.JumpState);
+            //}
 
-                }
-                else if (angle.x < 0)
-                {
-                    // flip playe rand change direction
-                    if (player.FacingDirection != -1) { player.Flip(); }
-                    player.SetVelocityX(player.MovementSpeed * angle.x);
-                }
-
-                //set jump
-                if (isTouchingWall && player.CheckgWallClimbAbility())
-                {
-                    //player.ChangeState(player.JumpState);
-                }
-
-                //player.SetVelocityY(0);
-            }
         }
 
         
