@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-9203949484796630436
+--- !u!114 &-9168444307526040201
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,20 +10,62 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Golem/GolemPose
+  m_Name: event:/Golem/GolemStep
   m_EditorClassIdentifier: 
-  Path: event:/Golem/GolemPose
-  guid: 8b105edec04dc9439ca78992ffecb05a
+  Path: event:/Golem/GolemStep
+  guid: 9fb50e59f344a94d84432295f6ea4038
   Banks:
-  - {fileID: 175342642455900998}
+  - {fileID: -5529302340423413866}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 566
---- !u!114 &-7564863164460875599
+  Length: 500
+--- !u!114 &-8266984555779853716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/ChildSwing
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/ChildSwing
+  guid: 1c43a979904d1148b9e9ef2fa6166913
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 1000
+--- !u!114 &-5529302340423413866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master Bank.bank
+  m_EditorClassIdentifier: 
+  Path: ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build/Desktop/Master Bank.bank
+  Name: Master Bank
+  StudioPath: bank:/Master Bank
+  lastModified: 637652643534296745
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-4172393655979498338
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,98 +86,6 @@ MonoBehaviour:
   - Name: Desktop
     Value: 1164
   Exists: 1
---- !u!114 &-5088698579315784273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TestFolder/TestSound
-  m_EditorClassIdentifier: 
-  Path: event:/TestFolder/TestSound
-  guid: f263ce4226c40a448790c26430950046
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 400
---- !u!114 &-3870817323888549184
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Golem/GolemStep
-  m_EditorClassIdentifier: 
-  Path: event:/Golem/GolemStep
-  guid: 9fb50e59f344a94d84432295f6ea4038
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 500
---- !u!114 &-3533266885134945691
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Environ/Water
-  m_EditorClassIdentifier: 
-  Path: event:/Environ/Water
-  guid: ccd1a48c2bff8247a73a6475ea2ffd51
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
---- !u!114 &-994021904510175154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TestFolder/BGM
-  m_EditorClassIdentifier: 
-  Path: event:/TestFolder/BGM
-  guid: 7823f8cb557589448747485134d79ede
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 1
-  Is3D: 0
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 65488
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,115 +99,27 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: -7564863164460875599}
-  - {fileID: 175342642455900998}
+  - {fileID: -4172393655979498338}
+  - {fileID: -5529302340423413866}
   EditorEvents:
-  - {fileID: 1846040892549508671}
-  - {fileID: 5733823615257584793}
-  - {fileID: 2150720136662721309}
-  - {fileID: -994021904510175154}
-  - {fileID: 1718101190557680705}
-  - {fileID: -9203949484796630436}
-  - {fileID: -3870817323888549184}
-  - {fileID: 3993507179447239335}
-  - {fileID: -3533266885134945691}
-  - {fileID: -5088698579315784273}
+  - {fileID: -8266984555779853716}
+  - {fileID: 959924456583049247}
+  - {fileID: 656073008587002182}
+  - {fileID: 1800596277545207671}
+  - {fileID: 1475132238447862371}
+  - {fileID: 4192954326961724640}
+  - {fileID: -9168444307526040201}
+  - {fileID: 585217046493668215}
+  - {fileID: 8428020876904360138}
+  - {fileID: 5158591951658176070}
   EditorParameters: []
   MasterBanks:
-  - {fileID: 175342642455900998}
+  - {fileID: -5529302340423413866}
   StringsBanks:
-  - {fileID: -7564863164460875599}
+  - {fileID: -4172393655979498338}
   stringsBankWriteTime: 637652643534296745
   cacheVersion: 6
---- !u!114 &175342642455900998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master Bank.bank
-  m_EditorClassIdentifier: 
-  Path: ../FMOD/3D Game Kit (FMOD Project BLANK v2.00.00)/Build/Desktop/Master Bank.bank
-  Name: Master Bank
-  StudioPath: bank:/Master Bank
-  lastModified: 637652643534296745
-  LoadResult: 0
-  FileSizes: []
-  Exists: 1
---- !u!114 &1718101190557680705
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TestFolder/ChildLand
-  m_EditorClassIdentifier: 
-  Path: event:/TestFolder/ChildLand
-  guid: 7ace487592ce1848aec9fcb67d40546d
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 500
---- !u!114 &1846040892549508671
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/TestFolder/ChildSwing
-  m_EditorClassIdentifier: 
-  Path: event:/TestFolder/ChildSwing
-  guid: 1c43a979904d1148b9e9ef2fa6166913
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 0
-  MaxDistance: 0
-  Length: 1000
---- !u!114 &2150720136662721309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/Golem/GolemWhir
-  m_EditorClassIdentifier: 
-  Path: event:/Golem/GolemWhir
-  guid: 6d5fffaa5391a24ea48105d93361dbc2
-  Banks:
-  - {fileID: 175342642455900998}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2000
---- !u!114 &3993507179447239335
+--- !u!114 &585217046493668215
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -272,7 +134,7 @@ MonoBehaviour:
   Path: event:/TestFolder/ChildStep
   guid: b875f5f3add60649bdbf2e7eb4065810
   Banks:
-  - {fileID: 175342642455900998}
+  - {fileID: -5529302340423413866}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -280,7 +142,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 500
---- !u!114 &5733823615257584793
+--- !u!114 &656073008587002182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Golem/GolemWhir
+  m_EditorClassIdentifier: 
+  Path: event:/Golem/GolemWhir
+  guid: 6d5fffaa5391a24ea48105d93361dbc2
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
+--- !u!114 &959924456583049247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -295,7 +180,7 @@ MonoBehaviour:
   Path: event:/TestFolder/ChildAttack
   guid: 44a34b2ed6358c4783658af2862b4dab
   Banks:
-  - {fileID: 175342642455900998}
+  - {fileID: -5529302340423413866}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -303,3 +188,118 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 400
+--- !u!114 &1475132238447862371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/ChildLand
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/ChildLand
+  guid: 7ace487592ce1848aec9fcb67d40546d
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 500
+--- !u!114 &1800596277545207671
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/BGM
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/BGM
+  guid: 7823f8cb557589448747485134d79ede
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 65488
+--- !u!114 &4192954326961724640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Golem/GolemPose
+  m_EditorClassIdentifier: 
+  Path: event:/Golem/GolemPose
+  guid: 8b105edec04dc9439ca78992ffecb05a
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 566
+--- !u!114 &5158591951658176070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/TestFolder/TestSound
+  m_EditorClassIdentifier: 
+  Path: event:/TestFolder/TestSound
+  guid: f263ce4226c40a448790c26430950046
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 400
+--- !u!114 &8428020876904360138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Environ/Water
+  m_EditorClassIdentifier: 
+  Path: event:/Environ/Water
+  guid: ccd1a48c2bff8247a73a6475ea2ffd51
+  Banks:
+  - {fileID: -5529302340423413866}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 0
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 2000
