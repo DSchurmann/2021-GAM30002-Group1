@@ -12252,6 +12252,10 @@ PrefabInstance:
       propertyPath: pathRotationSpeed
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 2979943131630858030, guid: 61af72f4ee6fc4c41ac881713ce51999, type: 3}
+      propertyPath: DeadZone
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 2979943131643838788, guid: 61af72f4ee6fc4c41ac881713ce51999, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -15080,6 +15084,9 @@ MonoBehaviour:
   isTouchingWall: 0
   isGrounded: 0
   closeDistance: 2
+  closeRange: 0.3
+  followSpeedFactor: 0.5
+  maxFollowSpeed: 10
   groundCheck: {fileID: 949442441}
   wallCheck: {fileID: 562522885}
   wallCheckDistance: 0.5
@@ -27393,6 +27400,9 @@ MonoBehaviour:
   isTouchingWall: 0
   isGrounded: 0
   closeDistance: 2
+  closeRange: 0.3
+  followSpeedFactor: 0.5
+  maxFollowSpeed: 10
   groundCheck: {fileID: 700059149}
   wallCheck: {fileID: 83767463}
   wallCheckDistance: 0.5
@@ -47535,6 +47545,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1133025131}
     m_Modifications:
+    - target: {fileID: 7426239931107175140, guid: 23b54ac1772beba44a3f82f2143db7e8, type: 3}
+      propertyPath: DeadZone
+      value: 0.6
+      objectReference: {fileID: 0}
     - target: {fileID: 7426239931107175143, guid: 23b54ac1772beba44a3f82f2143db7e8, type: 3}
       propertyPath: m_Name
       value: ChildObj
