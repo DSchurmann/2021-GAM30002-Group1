@@ -74,6 +74,10 @@ public class GolemFollowState:GolemAIState
         float dist = Mathf.Abs((pos - targPos).x);
         dist -= player.closeDistance;
         followSpeed += dist * player.followSpeedFactor;
+        if (followSpeed > player.maxFollowSpeed)
+        {
+            followSpeed = player.maxFollowSpeed;
+        }
 
         //Move Towards Child
         Vector3 angle = (targPos - pos).normalized;

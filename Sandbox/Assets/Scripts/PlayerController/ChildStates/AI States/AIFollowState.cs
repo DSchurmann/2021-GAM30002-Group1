@@ -81,6 +81,10 @@ public class AIFollowState : AIState
         float dist = Mathf.Abs((pos - targPos).x);
         dist -= player.closeDistance;
         followSpeed += dist * player.followSpeedFactor;
+        if (followSpeed > player.maxFollowSpeed)
+        {
+            followSpeed = player.maxFollowSpeed;
+        }
 
         Debug.Log(followSpeed);
 

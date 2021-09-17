@@ -52,6 +52,7 @@ public class PlayerControllerRB : StateMachine
     public float closeDistance = 2f;
     public float closeRange = 0.3f;
     public float followSpeedFactor = 0.5f;
+    public float maxFollowSpeed = 10f;
 
     // states
     #endregion
