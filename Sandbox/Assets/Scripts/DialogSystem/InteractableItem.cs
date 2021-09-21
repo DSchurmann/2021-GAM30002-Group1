@@ -20,6 +20,7 @@ public class InteractableItem : MonoBehaviour
 
     public void HideUI()
     {
+        //hide relivent text for object
         text.gameObject.SetActive(false);
         image.gameObject.SetActive(false);
         isDisplay = false;
