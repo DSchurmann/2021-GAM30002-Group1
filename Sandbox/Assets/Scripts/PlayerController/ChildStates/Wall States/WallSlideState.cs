@@ -27,7 +27,7 @@ public class WallSlideState : WallState
             if (inputGrab && isWallClimbable)
             {
                 // change player to wall slide state if down input detected ot grab input is released
-                player.ChangeState(player.WallGrabState);
+                //player.ChangeState(player.WallGrabState);
             }
             else if (inputJump)
             {

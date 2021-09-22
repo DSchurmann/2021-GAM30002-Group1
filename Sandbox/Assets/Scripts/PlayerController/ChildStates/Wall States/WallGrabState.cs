@@ -45,16 +45,24 @@ public class WallGrabState : WallState
 
         if(!isExitingState)
         {
-            if(!isWallClimbable)
+            if(!player.GetComponent<ClimbingController>().isClimbing)
             {
-                player.ChangeState(player.WallSlideState);
-            //}else if (inputY > 0 || inputY < 0)
-            }else if (inputX == player.FacingDirection)
-            {
-                //Debug.Log("GRABBING WALL");
-                // change player to wall climb state if up input detected
-                player.ChangeState(player.WallClimbState);
+                if (!isWallClimbable)
+                {
+                    player.ChangeState(player.WallSlideState);
+                    //}else if (inputY > 0 || inputY < 0)
+                }
+                else if (inputX == player.FacingDirection)
+                {
+                    //Debug.Log("GRABBING WALL");
+                    // change player to wall climb state if up input detected
+                    if(!player.GetComponent<ClimbingController>().isClimbing)
+                    {
+                        player.ChangeState(player.WallClimbState);
+                    }
+                }
             }
+           
         /* else if (!inputGrab)
          {
              // change player to wall slide state if down input detected ot grab input is released
@@ -62,10 +70,13 @@ public class WallGrabState : WallState
          }*/
         else if (inputJump)
             {
-                player.WallJumpState.GetJumpDirection(isTouchingWall);
-                player.InputHandler.SetJumpFalse();
-                // check for jump while in air
-                player.ChangeState(player.WallJumpState);
+                if (!player.GetComponent<ClimbingController>().isClimbing)
+                {
+                    player.WallJumpState.GetJumpDirection(isTouchingWall);
+                    player.InputHandler.SetJumpFalse();
+                    // check for jump while in air
+                    player.ChangeState(player.WallJumpState);
+                }
             }
         }
     }

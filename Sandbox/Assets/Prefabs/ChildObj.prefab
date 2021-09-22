@@ -41510,6 +41510,9 @@ MonoBehaviour:
   isTouchingWall: 0
   isGrounded: 0
   closeDistance: 3
+  closeRange: 0.3
+  followSpeedFactor: 0.5
+  maxFollowSpeed: 10
   groundCheck: {fileID: 7768186054019249284}
   wallCheck: {fileID: 7768186053151118763}
   wallCheckDistance: 0.5
@@ -41535,7 +41538,7 @@ MonoBehaviour:
   - 1.8
   origins_down:
   - 1.8
-  isTouchingWall: 1
+  isTouchingWall: 0
   isGapAhead: 1
   isGapJumpable: 0
   minDistanceToGap: 0.5
@@ -64298,7 +64301,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7768186053798059755
 Transform:
   m_ObjectHideFlags: 0

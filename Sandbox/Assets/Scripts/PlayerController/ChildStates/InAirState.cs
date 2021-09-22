@@ -106,8 +106,11 @@ public class InAirState: ChildState
         //change state to wall slide if touching wall
         else if (isTouchingWall && inputX == player.FacingDirection && player.CurrentVelocity.y <= 0)
         {
-            // check if touch wall in air
-            player.ChangeState(player.WallGrabState);
+            if (!player.GetComponent<ClimbingController>().isClimbing)
+            {
+                // check if touch wall in air
+                player.ChangeState(player.WallGrabState);
+            }
         }
         else
         {

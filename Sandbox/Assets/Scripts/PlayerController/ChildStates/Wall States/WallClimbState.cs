@@ -38,14 +38,14 @@ public class WallClimbState : WallState
         }
         player.SetVelocityY(player.wallClimbSpeed * inputX * player.FacingDirection);
 
-        if (!isWallClimbable && !isExitingState)
+        if (!isWallClimbable && !isExitingState && !player.GetComponent<ClimbingController>().isClimbing)
         {
             player.ChangeState(player.WallSlideState);
-        }
-        // change to grab state if y velocy is zero
-        if(inputX == 0 && !isExitingState)
-        {
-            player.ChangeState(player.WallGrabState);
+            // change to grab state if y velocy is zero
+            if (inputX == 0 && !isExitingState)
+            {
+                player.ChangeState(player.WallGrabState);
+            }
         }
     }
 }

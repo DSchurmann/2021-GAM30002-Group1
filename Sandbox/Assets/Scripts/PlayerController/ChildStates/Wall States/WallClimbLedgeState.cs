@@ -13,7 +13,7 @@ public class WallClimbLedgeState : AbilityState
     {
         base.Enter();
         //HoldPosition(true, false);
-        player.Anim.CrossFade(animation, 0.06f);
+        player.Anim.Play(animation);
         player.GetComponent<ClimbingController>().Climb();
        
     }

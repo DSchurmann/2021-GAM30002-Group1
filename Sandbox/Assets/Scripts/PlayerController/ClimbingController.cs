@@ -38,7 +38,7 @@ public class ClimbingController : MonoBehaviour
 
     // player climbing properties
     public float maxLedgeJumpHeight = 2;
-    protected float climbForwardAmount = 0.6f;
+    public float climbForwardAmount = 0.4f;
     //public float MaxDistanceToLedge_WallClimb;
 
     // ground properties
@@ -152,7 +152,7 @@ public class ClimbingController : MonoBehaviour
        
         if(!isClimbing)
         {
-            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount); //+ (transform.up * 0.5f);
+            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount) + (transform.up * 0.1f); //+ (transform.up * 0.5f);
             Vector3 distance = landingPos - transform.position;
 
             //GetComponent<CharacterController>().Move(distance);
@@ -165,11 +165,13 @@ public class ClimbingController : MonoBehaviour
             climbUpPos.y += dist;
 
             isClimbing = true;
+            //canClimb = false;
 
-            StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + _rb.transform.up * 1.5f, 0.4f));
+            //StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + _rb.transform.up * 1.5f, 0.4f));
             //StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + transform.up +transform.forward*0.5f, 1));
             //StartCoroutine(MoveOverSeconds(_rb.transform, ledgeDetector.ledgePosition, 1));
             //GetComponent<Animator>().SetBool("ClimbUp", true);
+            _rb.DOJump(landingPos, 0.5f, 1, 0.8f).OnComplete(FinishClimb);
         }
 
     }
