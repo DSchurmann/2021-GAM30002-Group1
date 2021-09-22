@@ -153,77 +153,18 @@ public class ClimbingController : MonoBehaviour
         if(!isClimbing)
         {
             isClimbing = true;
+
             Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount);// + (transform.up * 0.1f);
-            Vector3 distance = landingPos - transform.position;
+            _rb.DOJump(landingPos, 0.4f, 1, 0.8f).OnComplete(FinishClimb);
 
-            //GetComponent<CharacterController>().Move(distance);
-            //_rb.DOMove(landingPos, 0.7f).OnComplete(FinishClimb);
-
-            Vector3 diff = _rb.transform.position - ledgeDetector.ledgePosition;
-            float dist = diff.y;
-            //Debug.Log("Distance to ledge = " + dist);
-            Vector3 climbUpPos = _rb.transform.position;
-            climbUpPos.y += dist;
-
-           
-            //canClimb = false;
-
-            //StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + _rb.transform.up * 1.5f, 0.4f));
-            //StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + transform.up +transform.forward*0.5f, 1));
-            //StartCoroutine(MoveOverSeconds(_rb.transform, ledgeDetector.ledgePosition, 1));
-            //GetComponent<Animator>().SetBool("ClimbUp", true);
-            _rb.DOJump(landingPos, 0.5f, 1, 0.8f).OnComplete(FinishClimb);
         }
 
     }
-
-    public IEnumerator MoveOverSeconds(Transform objectToMove, Vector3 end, float seconds)
-    {
-        float elapsedTime = 0;
-        Vector3 startingPos = objectToMove.position;
-        while (elapsedTime < seconds)
-        {
-            objectToMove.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        objectToMove.position = end;
-        StartCoroutine(MoveForward(objectToMove, _rb.transform.position + transform.forward * climbForwardAmount, 0.3f));
-    }
-
-    public IEnumerator MoveForward(Transform objectToMove, Vector3 end, float seconds)
-    {
-        float elapsedTime = 0;
-        Vector3 startingPos = objectToMove.position;
-        while (elapsedTime < seconds)
-        {
-            objectToMove.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        objectToMove.position = end;
-        FinishClimb();
-    }
-
-    /*    public IEnumerator MoveUpToLedge(float duration)
-        {
-            float time = 0;
-            int secs = 0;
-            int max = 3;
-            while(secs < max)
-            {
-                time += Time.deltaTime;
-
-                secs = (int)time % 60;
-                Debug.Log(secs);
-            }
-
-            yield return null;
-        }*/
 
     void FinishClimb()
     {
         isClimbing = false;
+        //StartCoroutine(FinishClimb(0.1f));
         //GetComponent<Animator>().SetBool("ClimbUp", false);
     }
 

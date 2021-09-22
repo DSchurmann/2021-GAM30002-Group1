@@ -80,21 +80,20 @@ public abstract class ChildState: PlayerState
 
                 }
             }
-
-            // auto climbing
-            if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing)
-            {
-                player.ChangeState(player.WallClimbLedgeState);
-            }
-
-            if (player.GetComponent<ClimbingController>().canJumpClimb)
-            {
-                //player.ChangeState(player.JumpState);
-            }
-
         }
-        
-      
+
+        // auto climbing
+        if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing)
+        {
+            //player.GetComponent<ClimbingController>().Climb();
+            player.ChangeState(player.WallClimbLedgeState);
+        }
+
+        if (player.GetComponent<ClimbingController>().canJumpClimb)
+        {
+            //player.ChangeState(player.JumpState);
+        }
+
 
         Perform();
         //Debug.Log(this.GetType().Name + " state updating by delta time");

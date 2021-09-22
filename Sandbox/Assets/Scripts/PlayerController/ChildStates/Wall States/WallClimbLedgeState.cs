@@ -15,12 +15,15 @@ public class WallClimbLedgeState : AbilityState
         //HoldPosition(true, false);
         player.Anim.Play(animation);
         player.GetComponent<ClimbingController>().Climb();
+        //player.GetComponent<ClimbingController>().isClimbing = true;
         Debug.Log("ENTERED CLIMBING STATE");  
     }
 
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("EXITED CLIMBING STATE");
+
         //holdPosition.x -= player.wallClimbDistance;
         //holdPosition.y = player.transform.position.y;
         //HoldPosition(true, true);
@@ -47,6 +50,7 @@ public class WallClimbLedgeState : AbilityState
         }*/
        if(isAnimationComplete)
         {
+            //player.GetComponent<ClimbingController>().isClimbing = false;
             isAbilityFinished = true;
         }
     }

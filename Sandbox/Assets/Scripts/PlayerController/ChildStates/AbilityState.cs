@@ -27,7 +27,7 @@ public class AbilityState : ChildState
         base.Update();
 
         // when ability is finished change to grounded or in air state
-        if (isAbilityFinished && !player.GetComponent<ClimbingController>().isClimbing)
+        if (isAbilityFinished )
         {
             if (isGrounded && player.CurrentVelocity.y < 0.01f)
             {
@@ -35,7 +35,8 @@ public class AbilityState : ChildState
             }
             else
             {
-                player.ChangeState(player.InAirState);
+                if(!player.GetComponent<ClimbingController>().isClimbing)
+                    player.ChangeState(player.InAirState);
             }
         }
     }
