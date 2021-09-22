@@ -105,7 +105,7 @@ public class ClimbingController : MonoBehaviour
 
 
                     canVault = hits[0] && !hits[1] && !hits[2];
-                    canClimb = hits[1] && !hits[2];
+                    canClimb = hits[1] && !hits[2] && ledgeDetector.ledgePosition != Vector3.zero;
                     if(diff.y < maxLedgeJumpHeight)
                         canJumpClimb = hits[2];
                 }
@@ -154,7 +154,7 @@ public class ClimbingController : MonoBehaviour
         {
             isClimbing = true;
 
-            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount);// + (transform.up * 0.1f);
+            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount + (transform.up * 0.01f));
             _rb.DOJump(landingPos, 0.4f, 1, 0.8f).OnComplete(FinishClimb);
 
         }

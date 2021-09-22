@@ -83,7 +83,7 @@ public abstract class ChildState: PlayerState
         }
 
         // auto climbing
-        if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing)
+        if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing && player.GetComponent<ClimbingController>().ledgeDetector.ledgePosition != Vector3.zero)
         {
             //player.GetComponent<ClimbingController>().Climb();
             player.ChangeState(player.WallClimbLedgeState);
