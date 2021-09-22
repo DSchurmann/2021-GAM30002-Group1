@@ -53,17 +53,21 @@ public class MoveState : GroundedState
 
     public void Move(int input)
     {
-        // Check for direction flip
-        player.CheckForFlip(input);
+
         // Set player movement velocity
-        if(player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
+        if (player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
             player.SetVelocityX(player.MovementSpeed * input);
-        // Set player to idle state if stop moving
-        if (input == 0f && !isExitingState)
+
+        if (!player.GetComponent<ClimbingController>().isClimbing)
         {
-            player.ChangeState(player.IdleState);
+            // Check for direction flip
+            player.CheckForFlip(input);
+
+            // Set player to idle state if stop moving
+            if (input == 0f && !isExitingState)
+            {
+                player.ChangeState(player.IdleState);
+            }
         }
     }
-
-  
 }

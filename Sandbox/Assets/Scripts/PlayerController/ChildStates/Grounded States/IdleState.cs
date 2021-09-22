@@ -13,7 +13,7 @@ public class IdleState: GroundedState
     {
         base.Enter();
         player.SetVelocityX(0f);
-        player.Anim.CrossFade(animation, 0.02f);
+        player.Anim.CrossFade(animation, 0.05f);
         if (player.ControllerEnabled)
         {
 
@@ -69,7 +69,7 @@ public class IdleState: GroundedState
                 if(player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle && isGrounded)
                 {
                     player.GetComponent<Rigidbody>().useGravity = false;
-                    Debug.Log("HOLDING POSITION ON SLOPE");
+                    //Debug.Log("HOLDING POSITION ON SLOPE");
                     holdPosition.x = player.transform.position.x;
                     holdPosition.y = player.transform.position.y;
                     HoldPosition(true, true);

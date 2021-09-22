@@ -152,7 +152,8 @@ public class ClimbingController : MonoBehaviour
        
         if(!isClimbing)
         {
-            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount) + (transform.up * 0.1f); //+ (transform.up * 0.5f);
+            isClimbing = true;
+            Vector3 landingPos = ledgeDetector.ledgePosition + (transform.forward * climbForwardAmount);// + (transform.up * 0.1f);
             Vector3 distance = landingPos - transform.position;
 
             //GetComponent<CharacterController>().Move(distance);
@@ -160,11 +161,11 @@ public class ClimbingController : MonoBehaviour
 
             Vector3 diff = _rb.transform.position - ledgeDetector.ledgePosition;
             float dist = diff.y;
-            Debug.Log("Distance to ledge = " + dist);
+            //Debug.Log("Distance to ledge = " + dist);
             Vector3 climbUpPos = _rb.transform.position;
             climbUpPos.y += dist;
 
-            isClimbing = true;
+           
             //canClimb = false;
 
             //StartCoroutine(MoveOverSeconds(_rb.transform, _rb.transform.position + _rb.transform.up * 1.5f, 0.4f));

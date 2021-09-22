@@ -15,7 +15,7 @@ public class WallClimbLedgeState : AbilityState
         //HoldPosition(true, false);
         player.Anim.Play(animation);
         player.GetComponent<ClimbingController>().Climb();
-       
+        Debug.Log("ENTERED CLIMBING STATE");  
     }
 
     public override void Exit()

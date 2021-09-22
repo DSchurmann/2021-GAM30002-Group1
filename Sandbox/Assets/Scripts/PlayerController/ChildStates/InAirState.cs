@@ -26,6 +26,12 @@ public class InAirState: ChildState
         base.Enter();
         Velx = player.CurrentVelocity.x;
         StartJumpTimeBuff();
+
+        if (player.GetComponent<ClimbingController>().isClimbing)
+        {
+            // check if touch wall in air
+            player.ChangeState(player.WallClimbLedgeState);
+        }
     }
 
     public override void Update()
@@ -114,8 +120,11 @@ public class InAirState: ChildState
         }
         else
         {
-            // check for direction change
-            player.CheckForFlip(inputX);
+            if (!player.GetComponent<ClimbingController>().isClimbing)
+            {
+                // check for direction change
+                player.CheckForFlip(inputX);
+            }
         
             // set in air movement
             float inAirMovementDampening = Mathf.Clamp(player.inAirMovementSpeed / 10, 0.1f, 10.0f);

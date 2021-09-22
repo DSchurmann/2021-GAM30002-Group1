@@ -34,7 +34,7 @@ public class GroundedState : ChildState
         if (!isExitingState)
         {
             // get input for x 
-            if (player.ControllerEnabled)
+            if (player.ControllerEnabled && !player.GetComponent<ClimbingController>().isClimbing)
             {
                 inputX = player.InputHandler.InputXNormal;
             }
