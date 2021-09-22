@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Renderer))]
+[ExecuteAlways]
 public class LightTexture : MonoBehaviour
 {
     public Transform spotlight;
