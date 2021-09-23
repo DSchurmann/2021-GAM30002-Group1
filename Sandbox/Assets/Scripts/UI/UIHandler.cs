@@ -38,7 +38,7 @@ public class UIHandler : MonoBehaviour
 
     void Update()
     {
-        controllerType = GetInputType(controllerType);
+        //controllerType = GetInputType(controllerType);
 
         if (!DisableUI)
         {

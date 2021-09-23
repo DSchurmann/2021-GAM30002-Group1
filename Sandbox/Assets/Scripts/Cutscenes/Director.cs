@@ -65,19 +65,17 @@ public class Director : MonoBehaviour
         {
             if (!inCutscene)
             {
-                fadeObj.SetActive(false);
+                //fadeObj.SetActive(false);
                 if(widescreenBars != null)
                     widescreenBars.SetActive(false);
             }
             else
             {
-                fadeObj.SetActive(true);
+                //fadeObj.SetActive(true);
                 if (widescreenBars != null)
                     widescreenBars.SetActive(true);
-            }
-                
+            } 
         }
-       
     }
 
     //Start Cutscene
