@@ -66,14 +66,20 @@ public class Director : MonoBehaviour
             if (!inCutscene)
             {
                 //fadeObj.SetActive(false);
-                if(widescreenBars != null)
+                if (widescreenBars != null)
+                {
                     widescreenBars.SetActive(false);
+                    UIHandler.DisableUI = false;
+                }
             }
             else
             {
                 //fadeObj.SetActive(true);
                 if (widescreenBars != null)
+                {
                     widescreenBars.SetActive(true);
+                    UIHandler.DisableUI = true;
+                }
             } 
         }
     }

@@ -27,6 +27,7 @@ public class UIHandler : MonoBehaviour
     public GameObject dsUI;
 
     public static bool DisableUI = false;
+    //used for Unity editor because static variables do no show up
     [SerializeField] private bool disableUI = false;
 
     public static ControllerType controllerType;
@@ -38,7 +39,7 @@ public class UIHandler : MonoBehaviour
 
     void Update()
     {
-        //controllerType = GetInputType(controllerType);
+        controllerType = GetInputType(controllerType);
 
         if (!DisableUI)
         {

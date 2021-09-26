@@ -27,47 +27,44 @@ public class Tutorial : MonoBehaviour
         foreach (GameObject g in inTrigger)
         {
             PlayerControllerRB c = g.GetComponent<PlayerControllerRB>();
-            if (c != null)
+            switch (triggerableBy)
             {
-                switch (triggerableBy)
-                {
-                    case RailType.Child:
-                        if (c is ChildControllerRB)
-                        {
-                            if (displaying && !c.ControllerEnabled)
-                            {
-                                HideTutorial();
-                            }
-                            else if (c.ControllerEnabled)
-                            {
-                                ShowTutorial();
-                            }
-                        }
-                        break;
-                    case RailType.Golem:
-                        if (c is GolemControllerRB)
-                        {
-                            if (displaying && !c.ControllerEnabled)
-                            {
-                                HideTutorial();
-                            }
-                            else if (c.ControllerEnabled)
-                            {
-                                ShowTutorial();
-                            }
-                        }
-                        break;
-                    case RailType.Both:
-                        if (c.ControllerEnabled || inTrigger.Count == 2)
-                        {
-                            ShowTutorial();
-                        }
-                        else if (displaying && !c.ControllerEnabled)
+                case RailType.Child:
+                    if (c is ChildControllerRB)
+                    {
+                        if (displaying && (!c.ControllerEnabled || c.Other.Following))
                         {
                             HideTutorial();
                         }
-                        break;
-                }
+                        else if (c.ControllerEnabled)
+                        {
+                            ShowTutorial();
+                        }
+                    }
+                    break;
+                case RailType.Golem:
+                    if (c is GolemControllerRB)
+                    {
+                        if (displaying && (!c.ControllerEnabled || c.Other.Following))
+                        {
+                            HideTutorial();
+                        }
+                        else if (c.ControllerEnabled)
+                        {
+                            ShowTutorial();
+                        }
+                    }
+                    break;
+                case RailType.Both:
+                    if (c.ControllerEnabled || inTrigger.Count == 2)
+                    {
+                        ShowTutorial();
+                    }
+                    else if (displaying && (!c.ControllerEnabled || c.Other.Following))
+                    {
+                        HideTutorial();
+                    }
+                    break;
             }
         }
     }
@@ -75,7 +72,7 @@ public class Tutorial : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         PlayerControllerRB c = other.GetComponent<PlayerControllerRB>();
-        if (c != null && c.ControllerEnabled)
+        if (c != null)
         {
             if (triggerableBy == RailType.Child && c is ChildControllerRB)
             {
@@ -96,57 +93,10 @@ public class Tutorial : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        PlayerControllerRB c = other.GetComponent<PlayerControllerRB>();
-        if(c != null)
-        {
-            switch (triggerableBy)
-            {
-                case RailType.Child:
-                    if (c is ChildControllerRB)
-                    {
-                        if (displaying && !c.ControllerEnabled)
-                        {
-                            HideTutorial();
-                        }
-                        else if(c.ControllerEnabled)
-                        {
-                            ShowTutorial();
-                        }
-                    }
-                    break;
-                case RailType.Golem:
-                    if (c is GolemControllerRB)
-                    {
-                        if (displaying && !c.ControllerEnabled)
-                        {
-                            HideTutorial();
-                        }
-                        else if (c.ControllerEnabled)
-                        {
-                            ShowTutorial();
-                        }
-                    }
-                    break;
-                case RailType.Both:
-                    if (displaying && !c.ControllerEnabled)
-                    {
-                        HideTutorial();
-                    }
-                    if (c.ControllerEnabled)
-                    {
-                        ShowTutorial();
-                    }
-                    break;
-            }
-        }
-    }
-
     private void OnTriggerExit(Collider other)
     {
         PlayerControllerRB c = other.GetComponent<PlayerControllerRB>();
-        if (c != null && c.ControllerEnabled)
+        if (c != null)
         {
             if (triggerableBy == RailType.Child && c is ChildControllerRB) //if only triggerable by child and child is 
             {

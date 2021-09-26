@@ -77,6 +77,7 @@ public class Book : InteractableItem
         {
             bookUI.SetActive(false);
             UIHandler.DisableUI = false;
+            page = 0;
         }
     }
 
