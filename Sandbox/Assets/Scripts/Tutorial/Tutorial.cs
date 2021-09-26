@@ -6,24 +6,32 @@ using UnityEngine.UI;
 [RequireComponent(typeof(BoxCollider))]
 public class Tutorial : MonoBehaviour
 {
+    //message for mkb and controller is separate because the current setup requires the controller message to have a gap for the image
     [SerializeField] private string mkbMessage;
     [Tooltip("This message will display when the controller is the input option, leave space for the control image")]
     [SerializeField] private string controllerMessage;
+    
+    //UI components
     [Tooltip("This is where the message will be shown")]
     [SerializeField] private Text text;
     [Tooltip("This is the UI image object")]
     [SerializeField] private Image controllerImage;
     [SerializeField] private Sprite dualshockInputSprite;
     [SerializeField] private Sprite xboxInputSprite;
+
+    //Type of triggerable collider
     [SerializeField] private RailType triggerableBy;
+
     [Tooltip("If true, the tutorial will only ever show once, otherwise it will always show when triggered")]
     [SerializeField] private bool oneTime = false;
     private bool triggered = false;
     private bool displaying = false;
+    //List containing PlayerControllerRB objects currently in the trigger
     private List<GameObject> inTrigger = new List<GameObject>();
 
     private void Update()
     {
+        //for each object in trigger check if it is the right character to show or hide the tutorial display
         foreach (GameObject g in inTrigger)
         {
             PlayerControllerRB c = g.GetComponent<PlayerControllerRB>();
@@ -32,7 +40,7 @@ public class Tutorial : MonoBehaviour
                 case RailType.Child:
                     if (c is ChildControllerRB)
                     {
-                        if (displaying && (!c.ControllerEnabled || c.Other.Following))
+                        if (displaying && !c.ControllerEnabled)
                         {
                             HideTutorial();
                         }
@@ -45,7 +53,7 @@ public class Tutorial : MonoBehaviour
                 case RailType.Golem:
                     if (c is GolemControllerRB)
                     {
-                        if (displaying && (!c.ControllerEnabled || c.Other.Following))
+                        if (displaying && !c.ControllerEnabled)
                         {
                             HideTutorial();
                         }
@@ -60,7 +68,7 @@ public class Tutorial : MonoBehaviour
                     {
                         ShowTutorial();
                     }
-                    else if (displaying && (!c.ControllerEnabled || c.Other.Following))
+                    else if (displaying && !c.ControllerEnabled )
                     {
                         HideTutorial();
                     }
@@ -71,6 +79,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //if the object entering trigger has a PlayerControllerRB component, display tutorial if its the right character type and add to list of objects in trigger
         PlayerControllerRB c = other.GetComponent<PlayerControllerRB>();
         if (c != null)
         {
@@ -95,6 +104,7 @@ public class Tutorial : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        //if the object entering trigger has a PlayerControllerRB component, hide tutorial if its the right character type and remove the object from the list
         PlayerControllerRB c = other.GetComponent<PlayerControllerRB>();
         if (c != null)
         {
@@ -116,6 +126,7 @@ public class Tutorial : MonoBehaviour
 
     private void ShowTutorial()
     {
+        //if tutorial can be triggered (isn't a one time) show the relevant tutorial message (mkb or controller)
         if (!triggered)
         {
             switch (UIHandler.controllerType)
@@ -140,6 +151,7 @@ public class Tutorial : MonoBehaviour
             }
 
             displaying = true;
+            //if the tutorial is a one-time, change triggered and the tutorial will never display again... or until next playthrough or load or something
             if (oneTime)
             {
                 triggered = true;
@@ -149,6 +161,7 @@ public class Tutorial : MonoBehaviour
 
     private void HideTutorial()
     {
+        //hide everything
         text.gameObject.SetActive(false);
         controllerImage.gameObject.SetActive(false);
         displaying = false;
