@@ -27,6 +27,7 @@ public class UIHandler : MonoBehaviour
     public GameObject dsUI;
 
     public static bool DisableUI = false;
+    //used for Unity editor because static variables do no show up
     [SerializeField] private bool disableUI = false;
 
     public static ControllerType controllerType;
@@ -38,10 +39,12 @@ public class UIHandler : MonoBehaviour
 
     void Update()
     {
-        //controllerType = GetInputType(controllerType);
+        //get which controller type is being used
+        controllerType = GetInputType(controllerType);
 
         if (!DisableUI)
         {
+            //change UI based on controller type
             ChangeUI(controllerType);
 
             //Set State
@@ -76,6 +79,7 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
+            //disable all UI
             xboxUI.SetActive(false);
             mkbUI.SetActive(false);
             dsUI.SetActive(false);
@@ -143,6 +147,7 @@ public class UIHandler : MonoBehaviour
 
     private void ChangeUI(ControllerType t)
     {
+        //change displayed UI
         if(t == ControllerType.mkb && !mkbUI.activeSelf)
         {
             mkbUI.SetActive(true);

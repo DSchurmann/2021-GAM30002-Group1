@@ -16,6 +16,7 @@ public class Book : InteractableItem
 
     private void Start()
     {
+        //add listerners to the buttons so they do the right thing
         next.onClick.AddListener(NextPage);
         previous.onClick.AddListener(PreviousPage);
     }
@@ -77,6 +78,7 @@ public class Book : InteractableItem
         {
             bookUI.SetActive(false);
             UIHandler.DisableUI = false;
+            page = 0;
         }
     }
 
@@ -110,6 +112,7 @@ public class Book : InteractableItem
     {
         if(isOpen)
         {
+            //change to the next page
             if (page < content.Count - 1)
             {
                 page++;
@@ -123,6 +126,7 @@ public class Book : InteractableItem
     {
         if(isOpen)
         {
+            //change to the previous page
             if (page > 0)
             {
                 page--;
