@@ -48,7 +48,7 @@ public class Director : MonoBehaviour
         stage = (0);
 
         //Set Camera Object
-        if(camObj == null)
+        if (camObj == null)
             camObj = GameObject.Find("CameraFollow");
 
         //Initialize Cutscenes
@@ -61,26 +61,20 @@ public class Director : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(fadeObj != null)
+        if (fadeObj != null)
         {
             if (!inCutscene)
             {
                 //fadeObj.SetActive(false);
                 if (widescreenBars != null)
-                {
                     widescreenBars.SetActive(false);
-                    UIHandler.DisableUI = false;
-                }
             }
             else
             {
                 //fadeObj.SetActive(true);
                 if (widescreenBars != null)
-                {
                     widescreenBars.SetActive(true);
-                    UIHandler.DisableUI = true;
-                }
-            } 
+            }
         }
     }
 
@@ -115,11 +109,13 @@ public class Director : MonoBehaviour
         {
             case CutEvent.EventType.animChild:
                 //Get Child to Play Animation
-                GameController.GH.childObj.GetComponent<ChildControllerRB>().GetComponent<Animator>().Play("Wave01");
+                GameController.GH.childObj.GetComponent<ChildControllerRB>().GetComponent<Animator>().Play(cur.animName);
                 break;
 
             case CutEvent.EventType.animGolem:
-
+                //GameController.GH.golemObj.GetComponent<GolemControllerRB>().ChangeState(GameController.GH.golemObj.GetComponent<GolemControllerRB>().RaiseAbility);
+                GameController.GH.golemObj.GetComponent<GolemControllerRB>().GetComponent<Animator>().Play(cur.animName);
+                //GameController.GH.golemObj.GetComponent<GolemControllerRB>().ChangeState(GameController.GH.golemObj.GetComponent<GolemControllerRB>().RaiseAbility);
                 break;
 
             case CutEvent.EventType.moveChild:
@@ -231,10 +227,10 @@ public class Director : MonoBehaviour
                 }
 
                 //Do Fade
-                if(fadeObj != null)
+                if (fadeObj != null)
                     fadeObj.GetComponent<Image>().color = Color.Lerp(startCol, endCol, percProgress);
 
-               
+
             }
 
             //On Change Scene
@@ -246,7 +242,7 @@ public class Director : MonoBehaviour
                 //EndCutscene();
                 break;
                 //curCutscene.cutsceneEvents.Clear();
-               
+
             }
 
             //Yield on Progress
@@ -281,7 +277,7 @@ public class Director : MonoBehaviour
         curCutscene = null;
 
         //Reset Camera
-        if(camObj != null)
+        if (camObj != null)
             camObj.GetComponent<CameraFollow>().FollowToPlayer();
 
         //Reset Stage

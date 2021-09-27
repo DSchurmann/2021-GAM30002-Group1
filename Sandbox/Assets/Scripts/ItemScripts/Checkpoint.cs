@@ -27,7 +27,7 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.GetComponent<PlayerControllerRB>()!=null)
+        if(other.gameObject.GetComponent<ChildControllerRB>()!=null)
         {
             // save at the checkpoint
             if(!GameSaved)
