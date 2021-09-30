@@ -10,9 +10,11 @@ public class CameraFollow : MonoBehaviour
     public Vector3 targetOffset;
     [Header("Follow Properties")]
     [Range(0.0f, 50.0f)]
-    public float followSpeed = 4;
+    public float followSpeed = 4f;
     public Vector3 minFollowDistance;
     public Vector3 panTarget;
+    [SerializeField] private float MaxRotateAngle = 25f;
+    [SerializeField] private float RotateSpeed = 100f;
 
     public enum FollowMode { FOLLOWTARGET, CURRENTPLAYER, LOOKATPAN, LOOKATROTATE }
     public FollowMode followMode;
@@ -23,6 +25,7 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         followMode = FollowMode.CURRENTPLAYER;
+
     }
 
     // Update is called once per frame
@@ -47,7 +50,18 @@ public class CameraFollow : MonoBehaviour
 
                 break;
         }
+        RotateCamera();
+    }
 
+    private void RotateCamera()
+    {
+        PlayerControllerRB curPlayer = GameController.GH.CurrentPlayer();
+        //float dir = Mathf.Sign(curPlayer.CurrentVelocity.x);
+        float dir = curPlayer.FacingDirection;
+        //Vector3 curRotation = transform.rotation.eulerAngles;
+        //Vector3 newRotation = new Vector3(0f, Mathf.Lerp(curRotation.y, MaxRotateAngle * dir, 0.5f * Time.deltaTime), 0f);
+        Quaternion targetRotaion = Quaternion.Euler(transform.rotation.x, transform.rotation.y + (MaxRotateAngle * dir), transform.rotation.z);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotaion, RotateSpeed * Time.deltaTime);
     }
 
     // enable cinemachine components
