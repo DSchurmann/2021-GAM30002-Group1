@@ -58,6 +58,10 @@ public class CameraFollow : MonoBehaviour
         PlayerControllerRB curPlayer = GameController.GH.CurrentPlayer();
         //float dir = Mathf.Sign(curPlayer.CurrentVelocity.x);
         float dir = curPlayer.FacingDirection;
+        if (GameController.GH.GetComponent<Director>().inCutscene)
+        {
+            dir = 0;
+        }
         //Vector3 curRotation = transform.rotation.eulerAngles;
         //Vector3 newRotation = new Vector3(0f, Mathf.Lerp(curRotation.y, MaxRotateAngle * dir, 0.5f * Time.deltaTime), 0f);
         Quaternion targetRotaion = Quaternion.Euler(transform.rotation.x, transform.rotation.y + (MaxRotateAngle * dir), transform.rotation.z);
