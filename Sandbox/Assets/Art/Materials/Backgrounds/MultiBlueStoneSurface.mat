@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Child_V3_body
+  m_Name: MultiBlueStoneSurface
   m_Shader: {fileID: 4800000, guid: 6459b2db96a08ca41b0f9b39dc7ad59e, type: 3}
   m_ShaderKeywords: N_F_EAL_ON N_F_O_ON N_F_RELGI_ON N_F_SS_ON
   m_LightmapFlags: 4
@@ -60,8 +60,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
+        m_Texture: {fileID: 2800000, guid: 3a9aef4229a3ad141a31a3f04cd168eb, type: 3}
+        m_Scale: {x: 5.54, y: 1.24}
         m_Offset: {x: 0, y: 0}
     - _MaskGloss:
         m_Texture: {fileID: 0}
@@ -204,9 +204,9 @@ Material:
     - _OcclusionStrength: 1
     - _Oper: 0
     - _OutlineExtrudeMethod: 0
-    - _OutlineWidth: -0.04
+    - _OutlineWidth: 0.5
     - _OutlineWidthAffectedByViewDistance: 0
-    - _OutlineZPostionInCamera: 0.16
+    - _OutlineZPostionInCamera: 0
     - _OverallShadowColorPower: 1
     - _PSGLOTEX: 0
     - _PTexturePower: 1
@@ -232,11 +232,11 @@ Material:
     - _SelfLitIntensity: 0
     - _SelfLitPower: 2
     - _SelfShadowAffectedByLightShadowStrength: 0
-    - _SelfShadowHardness: 0.752
-    - _SelfShadowRealTimeShadowColorPower: 2.68
-    - _SelfShadowRealtimeShadowIntensity: 0.71
+    - _SelfShadowHardness: 1
+    - _SelfShadowRealTimeShadowColorPower: 1
+    - _SelfShadowRealtimeShadowIntensity: 1
     - _SelfShadowShadowTAtViewDirection: 0
-    - _SelfShadowThreshold: 0.915
+    - _SelfShadowThreshold: 0.85
     - _ShadowColorTexturePower: 0
     - _ShadowHardness: 0
     - _ShadowTColorPower: 1
@@ -269,19 +269,19 @@ Material:
     - _CustomLightDirection: {r: 0, g: 0, b: 10, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _GlossColor: {r: 1, g: 1, b: 1, a: 1}
-    - _HighlightColor: {r: 0.6603774, g: 0.6603774, b: 0.6603774, a: 1}
-    - _MainColor: {r: 0.9528302, g: 0.6954945, b: 0.4449537, a: 1}
-    - _OutlineColor: {r: 0.2735849, g: 0.24454877, b: 0.21551263, a: 1}
+    - _HighlightColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 0.2156863, g: 0.2156863, b: 0.2156863, a: 1}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _OutlineOffset: {r: 0, g: 0, b: 0, a: 1}
-    - _OverallShadowColor: {r: 0.04002298, g: 0.029592378, b: 0.047169805, a: 1}
+    - _OverallShadowColor: {r: 0, g: 0, b: 0, a: 1}
     - _RimLightColor: {r: 1, g: 1, b: 1, a: 1}
     - _SelfLitColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SelfShadowRealTimeShadowColor: {r: 0.2924528, g: 0.21789338, b: 0.11725702, a: 1}
+    - _SelfShadowRealTimeShadowColor: {r: 1, g: 1, b: 1, a: 1}
     - _ShadowTColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
     - _XYZPosition: {r: 0, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &5193058816615834792
+--- !u!114 &2341245056909061502
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
