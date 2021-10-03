@@ -8,7 +8,7 @@ public class PlayerControllerRB : StateMachine
     // other character reference
     public PlayerControllerRB Other;
     [SerializeField]
-
+   
    /* [Header("Movement")]
     [Range(0.1f, 10.0f)]
     public float SwitchPlayerDelay = 1f;*/
@@ -125,8 +125,8 @@ public class PlayerControllerRB : StateMachine
         isGrounded = CheckIfGrounded();
         // keep record of current velocity
         CurrentVelocity = RB.velocity;
-        // update current state
-        if(CurrentState!=null)
+        // update current state if game not paused
+        if(CurrentState!=null && !GameController.GH.GamePaused)
         {
             CurrentState.Update();
             //Debug.Log(this.GetType().Name + ":  " + CurrentState.GetType().Name);
@@ -160,13 +160,13 @@ public class PlayerControllerRB : StateMachine
     }
     public virtual void EnableControls()
     {
-        Debug.Log("Controls enable");
+        //Debug.Log("Controls enable");
         ControllerEnabled = true;
         CanSwitch = true;
     }
     public virtual void DisableControls()
     {
-        Debug.Log("Controls Disable");
+        //Debug.Log("Controls Disable");
         ControllerEnabled = false;
         CanSwitch = false;
     }

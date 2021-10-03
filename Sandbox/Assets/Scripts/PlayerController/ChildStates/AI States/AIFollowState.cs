@@ -86,11 +86,11 @@ public class AIFollowState : AIState
             followSpeed = player.maxFollowSpeed;
         }
 
-        Debug.Log(followSpeed);
+        //Debug.Log(followSpeed);
 
         if (player.GetComponent<ClimbingController>().isGapAhead)
         {
-            Debug.Log("Stop");
+            //Debug.Log("Stop");
         
             /*holdPosition.x = player.transform.position.x;
             HoldPosition(true, false);

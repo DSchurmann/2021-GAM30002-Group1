@@ -122,21 +122,24 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            //get all inputs from all controllers and check which button was pressed
-            foreach (InputControl c in Gamepad.current.allControls)
+            if(Gamepad.current != null)
             {
-                if (c.IsPressed())
+                //get all inputs from all controllers and check which button was pressed
+                foreach (InputControl c in Gamepad.current.allControls)
                 {
-                    //once button is found, check if the corrisponding gamepad is a DualShock or Xbox
-                    if (Gamepad.current is DualShockGamepad)
+                    if (c.IsPressed())
                     {
-                        result = ControllerType.ds;
-                        break;
-                    }
-                    else
-                    {
-                        result = ControllerType.xbox;
-                        break;
+                        //once button is found, check if the corrisponding gamepad is a DualShock or Xbox
+                        if (Gamepad.current is DualShockGamepad)
+                        {
+                            result = ControllerType.ds;
+                            break;
+                        }
+                        else
+                        {
+                            result = ControllerType.xbox;
+                            break;
+                        }
                     }
                 }
             }

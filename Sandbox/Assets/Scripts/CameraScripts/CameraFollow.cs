@@ -31,26 +31,30 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        switch (followMode)
+        if(!GameController.GH.GamePaused)
         {
-            case FollowMode.CURRENTPLAYER:
-                FollowCurrentPlayer();
-                break;
+            switch (followMode)
+            {
+                case FollowMode.CURRENTPLAYER:
+                    FollowCurrentPlayer();
+                    break;
 
-            case FollowMode.FOLLOWTARGET:
-                if (target)
-                    FollowTarget(target);
-                break;
+                case FollowMode.FOLLOWTARGET:
+                    if (target)
+                        FollowTarget(target);
+                    break;
 
-            case FollowMode.LOOKATPAN:
-                PanLook(panTarget);
-                break;
-            case FollowMode.LOOKATROTATE:
+                case FollowMode.LOOKATPAN:
+                    PanLook(panTarget);
+                    break;
+                case FollowMode.LOOKATROTATE:
 
-                break;
+                    break;
+            }
+
+            RotateCamera();
+
         }
-        RotateCamera();
     }
 
     private void RotateCamera()
