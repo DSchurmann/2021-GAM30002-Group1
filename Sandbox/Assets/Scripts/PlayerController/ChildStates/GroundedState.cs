@@ -17,7 +17,7 @@ public class GroundedState : ChildState
     public override void Enter()
     {
         base.Enter();
-        player.JumpState.ResetJumpsAllowed();
+        
     }
     public override void Exit()
     {
