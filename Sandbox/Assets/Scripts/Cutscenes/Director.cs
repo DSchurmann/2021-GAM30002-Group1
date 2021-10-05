@@ -227,8 +227,8 @@ public class Director : MonoBehaviour
                 }
 
                 //Do Fade
-                if (fadeObj != null)
-                    fadeObj.GetComponent<Image>().color = Color.Lerp(startCol, endCol, percProgress);
+                /*if (fadeObj != null)
+                    fadeObj.GetComponent<Image>().color = Color.Lerp(startCol, endCol, percProgress);*/
 
 
             }

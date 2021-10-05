@@ -1,0 +1,66 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+
+public class UI_FXController : MonoBehaviour
+{
+    public Image Fader;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Fader = transform.Find("Fader").GetComponent<Image>();
+        Fader.gameObject.SetActive(false);
+
+        // fade out
+        FadeBlack(0.5f, 0, 1);
+        // fade in
+        //FadeInBlack(0.5f, 1, 1);
+        //StartCoroutine(FadeBlack(0f, 1, 1));
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+
+    public void FadeBlack(float delay, int value, float time)
+    {
+        Fader.gameObject.SetActive(true);
+
+
+
+        Color col = Color.black;
+
+        if (value == 0)
+        {
+            col.a = 1;
+        }
+        else if (value == 1)
+        {
+            col.a = 0;
+        }
+
+        Fader.GetComponent<Image>().color = col;
+
+        Fader.CrossFadeAlpha(value, time, false);
+    }
+
+    public void FadeInBlack(float delay, int value, float time)
+    {
+        Fader.gameObject.SetActive(true);
+
+        Color col = Color.black;
+        col.a = 1;
+
+        Fader.GetComponent<Image>().color = col;
+
+        Fader.CrossFadeAlpha(0f , 0f, false);
+        Fader.CrossFadeAlpha(value, time, false);
+    }
+
+}
