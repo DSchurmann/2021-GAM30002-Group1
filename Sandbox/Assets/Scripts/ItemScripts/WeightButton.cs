@@ -83,8 +83,8 @@ public class WeightButton : MonoBehaviour, ITrigger
         {
             if(triggered)
             {
-                triggered = false;
-                SendTriggerReset();
+               /* triggered = false;
+                SendTriggerReset();*/
             }
         }
     }
@@ -112,6 +112,6 @@ public class WeightButton : MonoBehaviour, ITrigger
 
     private void Shake()
     {
-        camera.Shake(5, 5);
+        camera.Shake(2, 2);
     }
 }
