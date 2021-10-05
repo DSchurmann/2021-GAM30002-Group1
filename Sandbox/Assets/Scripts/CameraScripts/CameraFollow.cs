@@ -14,7 +14,7 @@ public class CameraFollow : MonoBehaviour
     public Vector3 minFollowDistance;
     public Vector3 panTarget;
     [SerializeField] private float MaxRotateAngle = 25f;
-    [SerializeField] private float RotateSpeed = 100f;
+    [SerializeField] private float RotateSpeed = 4f;
 
     public enum FollowMode { FOLLOWTARGET, CURRENTPLAYER, LOOKATPAN, LOOKATROTATE }
     public FollowMode followMode;
@@ -69,7 +69,7 @@ public class CameraFollow : MonoBehaviour
         //Vector3 curRotation = transform.rotation.eulerAngles;
         //Vector3 newRotation = new Vector3(0f, Mathf.Lerp(curRotation.y, MaxRotateAngle * dir, 0.5f * Time.deltaTime), 0f);
         Quaternion targetRotaion = Quaternion.Euler(transform.rotation.x, transform.rotation.y + (MaxRotateAngle * dir), transform.rotation.z);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotaion, RotateSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotaion, RotateSpeed * Time.deltaTime);
     }
 
     // enable cinemachine components
