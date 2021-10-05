@@ -7,6 +7,7 @@ public class GameController : MonoBehaviour
     //Parameters -- Core
     public static GameController GH;
     public PlayerSave SaveSystem;
+    public bool GamePaused;
     
     public PlayerControllerRB childObj;
     public Vector3 childAudioPos;

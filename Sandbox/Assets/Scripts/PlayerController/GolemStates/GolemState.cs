@@ -58,7 +58,7 @@ public abstract class GolemState: PlayerState
                     {
                         if(!(player.Other as ChildControllerRB).CheckGapAhead())
                         {
-                            Debug.Log("Child Following");
+                            //Debug.Log("Child Following");
                             player.Other.ChangeState((player.Other as ChildControllerRB).AIFollowState);
                             player.Other.Following = true;
                             player.Other.Waiting = false;
@@ -68,7 +68,7 @@ public abstract class GolemState: PlayerState
                     }
                     else if (player.Other.Following)
                     {
-                        Debug.Log("Child Waiting");
+                        //Debug.Log("Child Waiting");
 
                         player.Other.ChangeState((player.Other as ChildControllerRB).AIWaitState);
                         player.Other.Following = false;
@@ -76,7 +76,7 @@ public abstract class GolemState: PlayerState
 
                     }
 
-                    Debug.Log("Child Following " + player.Other.Following.ToString());
+                    //Debug.Log("Child Following " + player.Other.Following.ToString());
                 }
 
                 if(!isPoseLocked)

@@ -40,8 +40,9 @@ public abstract class PlayerState: State
     {
         isAnimationComplete = AnimationComplete();
 
-        //get input
+        // get input 
         InputSwitchPlayer = player.InputHandler.InputSwitch;
+
 
         // switch players
         if (InputSwitchPlayer && player.ControllerEnabled)
