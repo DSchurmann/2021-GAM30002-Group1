@@ -13,6 +13,7 @@ public class WeightButton : MonoBehaviour, ITrigger
     // platform idle position
     private Vector3 idlePos;
     private float idlePosY;
+    [SerializeField] private CameraFollow camera;
    
     // triggered object positions positions
     [Header("Triggered Object")]
@@ -65,12 +66,14 @@ public class WeightButton : MonoBehaviour, ITrigger
                     if (!triggered)
                     {
                         triggered = true;
+                        Shake();
                         SendTrigger();
                     }
                     break;
 
                 case TriggerMode.HOLD:
                     triggered = true;
+                    Shake();
                     SendTrigger();
                     break;
             }
@@ -104,5 +107,10 @@ public class WeightButton : MonoBehaviour, ITrigger
             if(item != null)
                 item.GetComponent<ITriggeredObject>()?.Trigger(false);
         }
+    }
+
+    private void Shake()
+    {
+        camera.Shake(5, 5);
     }
 }

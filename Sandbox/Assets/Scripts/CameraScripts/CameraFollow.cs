@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class CameraFollow : MonoBehaviour
     public Vector3 panTarget;
     [SerializeField] private float MaxRotateAngle = 25f;
     [SerializeField] private float RotateSpeed = 4f;
+
+    private bool IsShaking = false;
 
     public Cinemachine.CinemachineVirtualCamera child_cam;
     public Cinemachine.CinemachineVirtualCamera golem_cam;
@@ -180,4 +183,34 @@ public class CameraFollow : MonoBehaviour
     {
         SetCinemachineTargetFollow(targPos);
     }
+
+    public void Shake(float intesity, float time)
+    {
+        if (IsShaking)
+        {
+            CancelInvoke("StopShake");
+        }
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlinChild = child_cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        Debug.Log(cinemachineBasicMultiChannelPerlinChild);
+        cinemachineBasicMultiChannelPerlinChild.m_AmplitudeGain = intesity;
+        //CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlinGolem = golem_cam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        //cinemachineBasicMultiChannelPerlinGolem.m_AmplitudeGain = intesity;
+        //CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlinTarget = target_cam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        //cinemachineBasicMultiChannelPerlinTarget.m_AmplitudeGain = intesity;
+        IsShaking = true;
+
+        Invoke("StopShake", time);
+    }
+
+    private void StopShake()
+    {
+        CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlinChild = child_cam.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        cinemachineBasicMultiChannelPerlinChild.m_AmplitudeGain = 0f;
+        //CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlinGolem = golem_cam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        //cinemachineBasicMultiChannelPerlinGolem.m_AmplitudeGain = 0f;
+        //CinemachineBasicMultiChannelPerlin cinemachineBasicMultiChannelPerlinTarget = target_cam.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        //cinemachineBasicMultiChannelPerlinTarget.m_AmplitudeGain = 0f;
+        IsShaking = false;
+    }
 }
+
