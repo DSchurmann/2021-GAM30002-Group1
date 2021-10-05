@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnableSwitchingTrigger : MonoBehaviour
+public class EnableSwitchingTrigger : MonoBehaviour, ITriggeredObject
 {
     // Update is called once per frame
     void Update()
@@ -15,7 +15,7 @@ public class EnableSwitchingTrigger : MonoBehaviour
         GameController.GH.CanSwitch = !GameController.GH.CanSwitch;
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void Trigger(bool value)
     {
         ToggleSwitching();
         Debug.Log("Enable switching");
