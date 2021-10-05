@@ -464,13 +464,21 @@
             ]
         },
         {
-            "name": "Paused",
+            "name": "Menu",
             "id": "06a7b31b-0b94-4815-9533-ce54d6983818",
             "actions": [
                 {
                     "name": "Unpause",
                     "type": "Button",
                     "id": "99d35eee-7a65-486d-979a-61934d05f835",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "2e041cab-ffb0-4c0e-9d81-136e69199fcb",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -507,6 +515,39 @@
                     "processors": "",
                     "groups": "",
                     "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9150f630-d82e-48eb-a228-09a80bf80d8b",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ab1a8c48-572d-429f-9d60-c318e6f9ea4e",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dcf78dfc-10a3-45bf-89f3-ff8e3eaed98c",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

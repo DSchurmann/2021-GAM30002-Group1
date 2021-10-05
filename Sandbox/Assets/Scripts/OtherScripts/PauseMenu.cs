@@ -21,11 +21,10 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(GameIsPaused);
 
 
-      
-        
 
-       /* GetComponent<PlayerInput>().SwitchCurrentActionMap("Paused");
-        GetComponent<PlayerInput>().actions.FindActionMap("Paused").FindAction("Unpause").performed += Unpause;
+        /*GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
+        GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Unpause").performed += Unpause;
+        GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Interact").performed += Unpause;
         GetComponent<PlayerInput>().currentActionMap.Enable();*/
 
 
@@ -33,10 +32,13 @@ public class PauseMenu : MonoBehaviour
         GameController.GH.GamePaused = GameIsPaused;
     }
 
-    void Unpause(InputAction.CallbackContext ctx)
+    public void Unpause(InputAction.CallbackContext ctx)
     {
         Debug.Log("UNPAUSE PRESSED");
+        GetComponent<PlayerInput>().SwitchCurrentActionMap("Gameplay");
+        Resume();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -50,19 +52,19 @@ public class PauseMenu : MonoBehaviour
             }
             else
             {
-                Pause();
+                Pause(true);
             }
            
         }
 
-        if (InputHandler.InputUnpause)// TODO change with pause input
+        if (InputHandler.InputInteract)// TODO change with pause input
         {
-            Debug.Log("UNPAUSE");
+            //Debug.Log("UNPAUSE");
 
         }
     }
 
-    void Resume()
+    public void Resume()
     {
         PauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
@@ -73,9 +75,10 @@ public class PauseMenu : MonoBehaviour
         GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Enable();
         GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Enable();
     }
-    void Pause()
+    public void Pause(bool showUI)
     {
-        PauseMenuUI.SetActive(true);
+        if(showUI)
+            PauseMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
         GameIsPaused = true;
         GameController.GH.GamePaused = true;

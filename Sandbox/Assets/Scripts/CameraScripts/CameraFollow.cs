@@ -16,6 +16,10 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float MaxRotateAngle = 25f;
     [SerializeField] private float RotateSpeed = 100f;
 
+    public Cinemachine.CinemachineVirtualCamera child_cam;
+    public Cinemachine.CinemachineVirtualCamera golem_cam;
+    public Cinemachine.CinemachineVirtualCamera target_cam;
+
     public enum FollowMode { FOLLOWTARGET, CURRENTPLAYER, LOOKATPAN, LOOKATROTATE }
     public FollowMode followMode;
 
@@ -25,6 +29,16 @@ public class CameraFollow : MonoBehaviour
     private void Start()
     {
         followMode = FollowMode.CURRENTPLAYER;
+
+        // find cameras 
+        if (child_cam == null)
+            child_cam = transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+
+        if (golem_cam == null)
+            golem_cam = transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>();
+
+        if (target_cam == null)
+            target_cam = transform.Find("Camera_target").GetComponent<Cinemachine.CinemachineVirtualCamera>();
 
     }
 
@@ -76,26 +90,25 @@ public class CameraFollow : MonoBehaviour
     public void EnableCinemachine()
     {
         cinemachineEnabled = true;
-        transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().enabled = true;
-        transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().enabled = true;
+        child_cam.enabled = true;
+        golem_cam.enabled = true;
     }
     // disable cinemachine componenets
     public void DisableCinemachine()
     {
         cinemachineEnabled = false;
-        transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().enabled = false;
-        transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().enabled = false;
+        child_cam.enabled = false;
+        golem_cam.enabled = false;
     }
 
     public void SetCinemachineTargetFollow(Vector3 targetPosition)
     {
-        transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
-        transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
-        transform.Find("Camera_target").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 1;
+        child_cam.Priority = 0;
+        golem_cam.Priority = 0;
+        target_cam.Priority = 1;
         
-        Transform target = transform.Find("Camera_target").GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow;
+        Transform target = target_cam.Follow;
         target.position = targetPosition;
-        //transform.Find("Camera_target").GetComponent<Cinemachine.CinemachineVirtualCamera>().Follow;
     }
 
 
@@ -124,10 +137,7 @@ public class CameraFollow : MonoBehaviour
                 transform.Find("Camera_child").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 0;
                 transform.Find("Camera_golem").GetComponent<Cinemachine.CinemachineVirtualCamera>().Priority = 1;
             }
-
         }
-         
-            //FollowTarget(GameController.GH.CurrentPlayer().transform);
     }
 
     // follow currently controlled player
@@ -163,71 +173,11 @@ public class CameraFollow : MonoBehaviour
         {
             SetCinemachineTargetFollow(target.position);
         }
-
-        /* Vector3 angle = targetPlayer.position - transform.position;
-         float distX = Mathf.Abs(angle.x);
-         float distY = Mathf.Abs(angle.y);
-         float distZ = Mathf.Abs(angle.z);
-
-         Vector3 targetPos = targetPlayer.transform.position;
-         targetPos += targetOffset;
-
-         // follow x axis
-         if (distX <= minFollowDistance.x && distX >= 0.01f)
-         {
-             //Go go go
-             transform.position = Vector3.MoveTowards(transform.position, targetPos, (followSpeed / 2) * Time.deltaTime);
-         }
-         else if (distX > minFollowDistance.x)
-         {
-             //Go go go
-             transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
-         }
-         // follow y axis
-         if (distY <= minFollowDistance.y && distY >= 0.1f)
-         {
-             //Go go go
-             transform.position = Vector3.MoveTowards(transform.position, targetPos, (followSpeed / 4) * Time.deltaTime);
-         }
-         else if (distY > minFollowDistance.y)
-         {
-             //Go go go
-             transform.position = Vector3.MoveTowards(transform.position, targetPos, followSpeed * Time.deltaTime);
-         }*/
     }
 
     //pan to location
     private void PanLook(Vector3 targPos)
     {
-        //DisableCinemachine();
         SetCinemachineTargetFollow(targPos);
-
-        /*Vector3 angle = targPos - transform.position;
-        float distX = Mathf.Abs(angle.x);
-        float distY = Mathf.Abs(angle.y);
-        float distZ = Mathf.Abs(angle.z);
-
-        // follow x axis
-        if (distX <= minFollowDistance.x && distX >= 0.01f)
-        {
-            //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targPos, (followSpeed / 2) * Time.deltaTime);
-        }
-        else if (distX > minFollowDistance.x)
-        {
-            //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targPos, followSpeed * Time.deltaTime);
-        }
-        // follow y axis
-        if (distY <= minFollowDistance.y && distY >= 0.1f)
-        {
-            //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targPos, (followSpeed / 4) * Time.deltaTime);
-        }
-        else if (distY > minFollowDistance.y)
-        {
-            //Go go go
-            transform.position = Vector3.MoveTowards(transform.position, targPos, followSpeed * Time.deltaTime);
-        }*/
     }
 }

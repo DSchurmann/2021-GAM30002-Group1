@@ -28,6 +28,8 @@ public class ChildControllerRB : PlayerControllerRB
     #endregion
 
     private bool interactGrab;
+    public bool interacting;
+
     // Awake and Start functions
     #region Start Functions
     public override void Awake()
@@ -81,6 +83,7 @@ public class ChildControllerRB : PlayerControllerRB
         _CurrentState = CurrentState.GetType().Name;
         isTouchingWall = CheckTouchingWall();
 
+        //Debug.Log("INTERACTING: " + interacting);
         //isTouchingWall = GetComponent<ClimbingController>()
     }
 
@@ -133,10 +136,12 @@ public class ChildControllerRB : PlayerControllerRB
         bool canInteract = interactStates.Contains(CurrentState.GetType().Name);
         interactGrab = InputHandler.InputInteract;
 
+
         if (item != null && interactGrab && canInteract)
         {
             item.Interact();
             InputHandler.SetInteractFalse();
+            //GameController.GH.uiHandler.GetComponentInChildren<PauseMenu>().Pause(false);
         }
         else if (item != null && !ControllerEnabled)
         {
@@ -150,12 +155,24 @@ public class ChildControllerRB : PlayerControllerRB
         else if(item!= null && item.IsOpen)
         {
             item.HideUI();
+            interacting = true;
+            MovementSpeed = 0;
+            //GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
+            //GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Interact").performed += GameController.GH.uiHandler.GetComponentInChildren<PauseMenu>().Unpause;
+            //DisableControls();
+            //GetComponent<PlayerInput>().currentActionMap.Disable();
         }
         else if(item!= null && !item.isTextActive)
         {
             item.DisplayUI();
+            interacting = false;
+            //EnableControls();
+            //GetComponent<PlayerInput>().currentActionMap.Enable();
         }
+
+       
     }
+
 
     public void OnTriggerExit(Collider other)
     {
