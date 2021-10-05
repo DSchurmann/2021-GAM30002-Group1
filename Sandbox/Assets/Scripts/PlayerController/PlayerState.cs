@@ -52,7 +52,7 @@ public abstract class PlayerState: State
             player.InputHandler.SetSwitchFalse();
             player.Other.InputHandler.SetSwitchFalse();
 
-            if (player.CanSwitch)
+            if (player.CanSwitch && GameController.GH.CanSwitch)
             {
                 player.DisableControls();
                 player.Other.Following = false;
