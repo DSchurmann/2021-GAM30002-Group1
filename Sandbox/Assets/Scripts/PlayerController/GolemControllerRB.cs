@@ -55,7 +55,7 @@ public class GolemControllerRB : PlayerControllerRB
         }
         else
         {   // set initial AI state
-           InitialState(AIWaitState);
+           InitialState(CrouchAbility);
         }
     }
     #endregion
