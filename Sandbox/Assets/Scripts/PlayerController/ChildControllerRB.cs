@@ -141,6 +141,7 @@ public class ChildControllerRB : PlayerControllerRB
         {
             item.Interact();
             InputHandler.SetInteractFalse();
+            ChangeState(IdleState);
             //GameController.GH.uiHandler.GetComponentInChildren<PauseMenu>().Pause(false);
         }
         else if (item != null && !ControllerEnabled)
@@ -156,7 +157,6 @@ public class ChildControllerRB : PlayerControllerRB
         {
             item.HideUI();
             interacting = true;
-            MovementSpeed = 0;
             //GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
             //GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Interact").performed += GameController.GH.uiHandler.GetComponentInChildren<PauseMenu>().Unpause;
             //DisableControls();

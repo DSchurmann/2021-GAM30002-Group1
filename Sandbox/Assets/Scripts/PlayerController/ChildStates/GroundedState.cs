@@ -57,7 +57,7 @@ public class GroundedState : ChildState
 
 
             // get jump input
-            if (inputJump && player.JumpState.CanJump())
+            if (inputJump && player.JumpState.CanJump() && !player.interacting)
             {
                 // set jump false
                 player.InputHandler.SetJumpFalse();

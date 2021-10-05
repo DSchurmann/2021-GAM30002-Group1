@@ -46,7 +46,7 @@ public class IdleState: GroundedState
             //movement input
             if (inputX != 0)
             {
-                if (player.ControllerEnabled)
+                if (player.ControllerEnabled && !player.interacting)
                 {
                     if (player.GetComponent<ClimbingController>().groundAngle.x < player.GetComponent<ClimbingController>().maxSlopeAngle)
                         player.ChangeState(player.MoveState);
