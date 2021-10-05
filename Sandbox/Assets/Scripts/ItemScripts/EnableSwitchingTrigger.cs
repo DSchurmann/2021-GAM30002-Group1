@@ -12,7 +12,7 @@ public class EnableSwitchingTrigger : MonoBehaviour, ITriggeredObject
 
     private void ToggleSwitching()
     {
-        GameController.GH.CanSwitch = !GameController.GH.CanSwitch;
+        GameController.GH.IsFriend = !GameController.GH.IsFriend;
     }
 
     public void Trigger(bool value)

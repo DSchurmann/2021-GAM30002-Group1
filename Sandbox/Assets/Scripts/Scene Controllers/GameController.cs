@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public PlayerControllerRB golemObj;
     public Vector3 golemAudioPos;
 
-    public bool CanSwitch = true;
+    public bool IsFriend = true;
 
     public UIHandler UH;
 
