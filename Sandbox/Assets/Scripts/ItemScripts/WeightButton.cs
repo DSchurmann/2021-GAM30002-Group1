@@ -13,7 +13,7 @@ public class WeightButton : MonoBehaviour, ITrigger
     // platform idle position
     private Vector3 idlePos;
     private float idlePosY;
-    [SerializeField] private CameraFollow camera;
+    private CameraFollow camera;
    
     // triggered object positions positions
     [Header("Triggered Object")]
@@ -33,6 +33,7 @@ public class WeightButton : MonoBehaviour, ITrigger
         idlePos = transform.position;
         idlePosY = transform.position.y;
         //objectIdlePos = triggeredObject.position.y;
+        camera = GameObject.Find("CameraFollow").GetComponent<CameraFollow>();
     }
 
     // Update is called once per frame
