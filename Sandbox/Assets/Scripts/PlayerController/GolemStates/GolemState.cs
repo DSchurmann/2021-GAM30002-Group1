@@ -51,7 +51,7 @@ public abstract class GolemState: PlayerState
             // enabled player controls
             if (player.ControllerEnabled)
             {
-                if (inputWait)
+                if (inputWait && GameController.GH.IsFriend)
                 {
                     player.InputHandler.SetWaitFalse();
                     if (player.Other.Waiting)

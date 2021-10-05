@@ -39,7 +39,7 @@ public abstract class ChildState: PlayerState
             if (player.ControllerEnabled)
             {
                 // call wait to other player
-                if (inputWait)
+                if (inputWait && GameController.GH.IsFriend)
                 {
                    
                     /*if (player.Other.Waiting)
