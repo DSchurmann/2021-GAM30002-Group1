@@ -12,6 +12,10 @@ public class IdleState: GroundedState
     public override void Enter()
     {
         base.Enter();
+
+        if(player.isGrounded)
+            player.JumpState.ResetJumpsAllowed();
+
         player.SetVelocityX(0f);
         player.Anim.CrossFade(animation, 0.05f);
         if (player.ControllerEnabled)

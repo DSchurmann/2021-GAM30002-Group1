@@ -24822,6 +24822,7 @@ MonoBehaviour:
   childAudioPos: {x: 0, y: 0, z: 0}
   golemObj: {fileID: 1133594904}
   golemAudioPos: {x: 0, y: 0, z: 0}
+  CanSwitch: 0
   UH: {fileID: 0}
 --- !u!114 &1041749280
 MonoBehaviour:
@@ -24926,6 +24927,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 7e685b8f-ef81-4653-b9ab-f15399953be8
     m_ActionName: Gameplay/Pause[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d35eee-7a65-486d-979a-61934d05f835
+    m_ActionName: Menu/Unpause[/Keyboard/escape,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e041cab-ffb0-4c0e-9d81-136e69199fcb
+    m_ActionName: Menu/Interact[/Keyboard/e,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
