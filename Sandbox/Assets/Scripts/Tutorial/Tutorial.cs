@@ -1,7 +1,8 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 [RequireComponent(typeof(BoxCollider))]
 public class Tutorial : MonoBehaviour
@@ -12,13 +13,12 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private string controllerMessage;
     
     //UI components
-    //[Tooltip("This is where the message will be shown")]
-    private Text text;
-    private Image controllerImage;
+    private TextMeshProUGUI controllerText;
+    [SerializeField] private TMP_SpriteAsset xInput;
+    [SerializeField] private TMP_SpriteAsset dualshock;
 
-    [Tooltip("This is the UI image object")]
-    [SerializeField] private Sprite dualshockInputSprite;
-    [SerializeField] private Sprite xboxInputSprite;
+    [SerializeField] private InputButtonMapping.InputButton button;
+    private InputButtonMapping ibm;
 
     //Type of triggerable collider
     [SerializeField] private RailType triggerableBy;
@@ -32,8 +32,8 @@ public class Tutorial : MonoBehaviour
 
     private void Start()
     {
-        text = GameObject.Find("UI/Tutorial/Text").GetComponent<Text>();
-        controllerImage = GameObject.Find("UI/Tutorial/ControllerInput").GetComponent<Image>();
+        controllerText = GameObject.Find("UI/Tutorial/text").GetComponent<TextMeshProUGUI>();
+        ibm = GameObject.Find("UI").GetComponent<InputButtonMapping>();
     }
 
     private void Update()
@@ -115,7 +115,7 @@ public class Tutorial : MonoBehaviour
         PlayerControllerRB c = other.GetComponent<PlayerControllerRB>();
         if (c != null)
         {
-            if (triggerableBy == RailType.Child && c is ChildControllerRB) //if only triggerable by child and child is 
+            if (triggerableBy == RailType.Child && c is ChildControllerRB) //if only triggerable by child
             {
                 HideTutorial();
             }
@@ -139,21 +139,24 @@ public class Tutorial : MonoBehaviour
             switch (UIHandler.controllerType)
             {
                 case UIHandler.ControllerType.mkb:
-                    text.text = mkbMessage;
-                    text.gameObject.SetActive(true);
-                    controllerImage.gameObject.SetActive(false);
+                    controllerText.text = mkbMessage;
+                    controllerText.gameObject.SetActive(true);
                     break;
-                case UIHandler.ControllerType.ds:
-                    text.text = controllerMessage;
-                    text.gameObject.SetActive(true);
-                    controllerImage.sprite = dualshockInputSprite;
-                    controllerImage.gameObject.SetActive(true);
-                    break;
-                case UIHandler.ControllerType.xbox:
-                    text.text = controllerMessage;
-                    text.gameObject.SetActive(true);
-                    controllerImage.sprite = xboxInputSprite;
-                    controllerImage.gameObject.SetActive(true);
+                default:
+                    controllerText.gameObject.SetActive(true);
+                    string spriteName = ibm.GetButtonName(button, UIHandler.controllerType);
+                    //set sprite sheet for textmesh depending in controller type
+                    if(UIHandler.controllerType == UIHandler.ControllerType.ds)
+                    {
+                        controllerText.spriteAsset = dualshock;
+                    }
+                    else if(UIHandler.controllerType == UIHandler.ControllerType.xbox)
+                    {
+                        controllerText.spriteAsset = xInput;
+                    }
+                    //prepare message to contain controller button
+                    string message = String.Format(controllerMessage, "<sprite name=" + spriteName + ">");
+                    controllerText.text = message;
                     break;
             }
 
@@ -169,8 +172,7 @@ public class Tutorial : MonoBehaviour
     private void HideTutorial()
     {
         //hide everything
-        text.gameObject.SetActive(false);
-        controllerImage.gameObject.SetActive(false);
+        controllerText.gameObject.SetActive(false);
         displaying = false;
     }
 }

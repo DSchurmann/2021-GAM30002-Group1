@@ -49,6 +49,7 @@ public class UIHandler : MonoBehaviour
 
             //Set State
             childMain = (GameController.GH.CurrentPlayer() == GameController.GH.childObj);
+            waiting = GameController.GH.CurrentPlayer().GetComponent<PlayerControllerRB>().Other.Waiting;
 
             //change UI elements
             ChangeIcons(childMain, waiting, GetCurrentUI(controllerType));
@@ -99,10 +100,10 @@ public class UIHandler : MonoBehaviour
         else
         {
             //Child Colour = Less Full
-            ui.transform.Find("ChildPort").GetComponent<Image>().color = mainCol;
+            ui.transform.Find("ChildPort").GetComponent<Image>().color = subCol;
 
             //Golem Colour = Full
-            ui.transform.Find("GolPort").GetComponent<Image>().color = subCol;
+            ui.transform.Find("GolPort").GetComponent<Image>().color = mainCol;
         }
 
         //Set Wait Mode Indicator
