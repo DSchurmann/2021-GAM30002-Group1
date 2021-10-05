@@ -14,7 +14,6 @@ public class GameController : MonoBehaviour
     public PlayerControllerRB golemObj;
     public Vector3 golemAudioPos;
 
-    public GameObject uiHandler;
     public UIHandler UH;
 
     // checkpoint save
@@ -44,8 +43,9 @@ public class GameController : MonoBehaviour
             SaveGame();
 
         //Set UIHandler
-        //uiHandler = GameObject.Find("UI");
-        UH = uiHandler.GetComponent<UIHandler>();
+        if(UH == null)
+            UH = GameObject.Find("UI").GetComponent<UIHandler>();
+
     }
 
     // Update is called once per frame
