@@ -12,10 +12,11 @@ public class Tutorial : MonoBehaviour
     [SerializeField] private string controllerMessage;
     
     //UI components
-    [Tooltip("This is where the message will be shown")]
-    [SerializeField] private Text text;
+    //[Tooltip("This is where the message will be shown")]
+    private Text text;
+    private Image controllerImage;
+
     [Tooltip("This is the UI image object")]
-    [SerializeField] private Image controllerImage;
     [SerializeField] private Sprite dualshockInputSprite;
     [SerializeField] private Sprite xboxInputSprite;
 
@@ -28,6 +29,12 @@ public class Tutorial : MonoBehaviour
     private bool displaying = false;
     //List containing PlayerControllerRB objects currently in the trigger
     private List<GameObject> inTrigger = new List<GameObject>();
+
+    private void Start()
+    {
+        text = GameObject.Find("UI/Tutorial/Text").GetComponent<Text>();
+        controllerImage = GameObject.Find("UI/Tutorial/ControllerInput").GetComponent<Image>();
+    }
 
     private void Update()
     {
