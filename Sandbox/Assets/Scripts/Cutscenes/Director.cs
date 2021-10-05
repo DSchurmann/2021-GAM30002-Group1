@@ -61,20 +61,17 @@ public class Director : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fadeObj != null)
+        if (!inCutscene)
         {
-            if (!inCutscene)
-            {
-                //fadeObj.SetActive(false);
-                if (widescreenBars != null)
-                    widescreenBars.SetActive(false);
-            }
-            else
-            {
-                //fadeObj.SetActive(true);
-                if (widescreenBars != null)
-                    widescreenBars.SetActive(true);
-            }
+            //fadeObj.SetActive(false);
+            if (widescreenBars != null)
+                widescreenBars.SetActive(false);
+        }
+        else
+        {
+            //fadeObj.SetActive(true);
+            if (widescreenBars != null)
+                widescreenBars.SetActive(true);
         }
     }
 
