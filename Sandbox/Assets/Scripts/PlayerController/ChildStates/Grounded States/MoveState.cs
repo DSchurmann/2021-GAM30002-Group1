@@ -25,30 +25,29 @@ public class MoveState : GroundedState
     {
         base.Update();
 
-        //Debug.Log(isAnimationComplete);
-        if(player.isTouchingWall)
+        if (!isExitingState)
         {
-            //player.ChangeState(player.IdleState);
-        }
+            //Debug.Log(isAnimationComplete);
+            if (player.isTouchingWall)
+            {
+                //player.ChangeState(player.IdleState);
+            }
 
-        if(player.ControllerEnabled)
-        {
-            Move(inputX);
+            if (player.ControllerEnabled)
+            {
+                Move(inputX);
+            }
+            else
+            {
+
+            }
         }
-        else
-        {
-           
-        }
+       
     }
 
     public override void Perform()
     {
         base.Perform();
-    }
-
-    public void AIMove(float input)
-    {
-
     }
 
     public void Move(int input)

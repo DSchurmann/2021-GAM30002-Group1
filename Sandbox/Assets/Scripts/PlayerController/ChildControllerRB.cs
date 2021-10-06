@@ -95,7 +95,7 @@ public class ChildControllerRB : PlayerControllerRB
     public override void EnableControls()
     {
         base.EnableControls();
-        QueueState(AIWaitState);
+        //QueueState(AIWaitState);
         //ChangeState(IdleState);
     }
     public override void DisableControls()

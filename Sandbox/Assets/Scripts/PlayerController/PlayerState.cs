@@ -58,6 +58,7 @@ public abstract class PlayerState: State
                 player.Other.Following = false;
                 player.Other.Waiting = false;
                 player.Other.EnableControls();
+
             }
         }
         //Debug.Log(this.GetType().Name + " state updating by delta time");

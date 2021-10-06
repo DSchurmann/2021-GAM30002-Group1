@@ -28,7 +28,7 @@ public class UIHandler : MonoBehaviour
 
     public static bool DisableUI = false;
     //used for Unity editor because static variables do no show up
-    [SerializeField] private bool disableUI = false;
+    [SerializeField] public bool disableUI = false;
 
     public static ControllerType controllerType;
 
@@ -39,6 +39,9 @@ public class UIHandler : MonoBehaviour
 
     void Update()
     {
+        // enable  & disble UI at runtime
+        DisableUI = disableUI;
+
         //get which controller type is being used
         controllerType = GetInputType(controllerType);
 

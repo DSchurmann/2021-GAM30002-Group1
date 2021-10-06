@@ -223,7 +223,7 @@ Transform:
   - {fileID: 1395439849}
   - {fileID: 2103784017}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6097435
 GameObject:
@@ -711,7 +711,7 @@ Transform:
   - {fileID: 1367922587}
   - {fileID: 1454569298}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &24713022
 GameObject:
@@ -3111,8 +3111,8 @@ Transform:
   m_LocalPosition: {x: 382.06705, y: 36.64, z: -6.9000006}
   m_LocalScale: {x: 7.952719, y: 9.0564575, z: 11.230594}
   m_Children: []
-  m_Father: {fileID: 1845842052}
-  m_RootOrder: 7
+  m_Father: {fileID: 708954219}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &110352538
 MonoBehaviour:
@@ -5518,6 +5518,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
+      propertyPath: button
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: mkbMessage
       value: Press [Q] to ask to follow
       objectReference: {fileID: 0}
@@ -5531,7 +5535,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 57d7c56d44b99b34bbb5aecb84a119c9, type: 3}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: controllerMessage
-      value: Press         to ask to follow
+      value: Press {0} to ask to follow
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: dualshockInputSprite
@@ -6352,7 +6356,7 @@ Transform:
   - {fileID: 786636816}
   - {fileID: 1610909305}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229970496
 GameObject:
@@ -9153,7 +9157,7 @@ Transform:
   - {fileID: 1137117516}
   - {fileID: 1778147505}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &343855373 stripped
 Transform:
@@ -13339,7 +13343,7 @@ Transform:
   - {fileID: 143153081}
   - {fileID: 1344137668}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &475792465 stripped
 Transform:
@@ -14207,7 +14211,7 @@ Transform:
   - {fileID: 548794245}
   - {fileID: 531370951}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &510144526
 GameObject:
@@ -17991,7 +17995,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh2286706
+  m_Name: pb_Mesh21760
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -19659,6 +19663,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6457358272977859797, guid: a74d984408dc82e4eaf5994966328926, type: 3}
   m_PrefabInstance: {fileID: 1696137997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &708954218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 708954219}
+  m_Layer: 0
+  m_Name: Game Triggers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &708954219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708954218}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 878954020}
+  - {fileID: 110352537}
+  m_Father: {fileID: 1845842052}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &709015972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25602,7 +25638,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 16
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &754451574
 GameObject:
@@ -31783,7 +31819,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &800440194
 GameObject:
@@ -33247,12 +33283,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878954019}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1845842052}
-  m_RootOrder: 3
+  m_Father: {fileID: 708954219}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &878954021
 MonoBehaviour:
@@ -33266,6 +33302,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cdbd22cde29eb5b42a1d29c37c0c48bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 8.5
 --- !u!1 &879761038
 GameObject:
   m_ObjectHideFlags: 0
@@ -36633,7 +36670,7 @@ Transform:
   - {fileID: 1317070528}
   - {fileID: 510144527}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1013481395
 PrefabInstance:
@@ -40267,7 +40304,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh2290270
+  m_Name: pb_Mesh25346
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -49919,7 +49956,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh2286646
+  m_Name: pb_Mesh21700
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -50433,7 +50470,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: da86884f0d0ddfa4990370636ad0fcf6, type: 3}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: controllerMessage
-      value: Hold          to move up and down a path
+      value: Hold {0} to move up and down a path
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: dualshockInputSprite
@@ -51154,7 +51191,7 @@ Transform:
   - {fileID: 1365237874}
   - {fileID: 1098604124}
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1486713863
 GameObject:
@@ -56745,7 +56782,7 @@ Transform:
   m_LocalScale: {x: 9.756914, y: 8.239704, z: 1.2988536}
   m_Children: []
   m_Father: {fileID: 1845842052}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: -54.732, z: 0}
 --- !u!65 &1659443435
 BoxCollider:
@@ -59415,7 +59452,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh2290060
+  m_Name: pb_Mesh25136
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -62218,11 +62255,10 @@ Transform:
   - {fileID: 661957782}
   - {fileID: 1788925660}
   - {fileID: 728216669}
-  - {fileID: 878954020}
+  - {fileID: 708954219}
   - {fileID: 902783266}
   - {fileID: 1649476409}
   - {fileID: 1894574854}
-  - {fileID: 110352537}
   - {fileID: 22323332}
   - {fileID: 339242830}
   - {fileID: 1486455270}
@@ -62667,12 +62703,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605db6f08ff08cb4d8fa179f8cf44797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutsceneName: LookAtObject
+  cutsceneName: IntroGolem
   cutsceneEvents:
   - {fileID: 239935925}
   - {fileID: 1143652075}
   - {fileID: 881425168}
-  - {fileID: 1687718247}
+  - {fileID: 239935925}
 --- !u!4 &1858808414 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b1f1816d43bfdab48b56438ed5c4bd74, type: 3}
@@ -65687,7 +65723,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 9c29c1d7dcbd3474082f225e3ba1b9fb, type: 3}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: controllerMessage
-      value: Use          to pose as the Golem
+      value: Use {0} to pose as the Golem
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: dualshockInputSprite
@@ -67382,7 +67418,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh2287896
+  m_Name: pb_Mesh22950
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -67731,7 +67767,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1702289070, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6811352630019855346, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -67849,9 +67885,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6811352631653667306, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
+      propertyPath: disableUI
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6811352631965661715, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8334117184405747114, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
@@ -71572,6 +71616,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
+      propertyPath: button
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: mkbMessage
       value: Press [TAB] to swap characters
       objectReference: {fileID: 0}
@@ -71585,7 +71633,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 6b0450450a1195749abffc6cb57b9910, type: 3}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: controllerMessage
-      value: Press          to swap characters
+      value: Press {0} to swap characters
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: dualshockInputSprite
