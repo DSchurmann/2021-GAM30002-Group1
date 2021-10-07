@@ -98,6 +98,7 @@ public class PauseMenu : MonoBehaviour
         Debug.Log("Menu");
         Time.timeScale = 1.0f;
         SceneManager.LoadScene(MenuSceneIndex);
+        Destroy(GameController.GH.gameObject);
     }
 
     public void QuitButton()
