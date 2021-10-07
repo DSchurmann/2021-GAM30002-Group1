@@ -83,8 +83,8 @@ public class WeightButton : MonoBehaviour, ITrigger
         {
             if(triggered)
             {
-               /* triggered = false;
-                SendTriggerReset();*/
+                triggered = false;
+                SendTriggerReset();
             }
         }
     }
