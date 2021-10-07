@@ -81,7 +81,7 @@ public class WeightButton : MonoBehaviour, ITrigger
         }
         else
         {
-            if(triggered)
+            if(triggered && triggerMode == TriggerMode.HOLD)
             {
                 triggered = false;
                 SendTriggerReset();
@@ -94,6 +94,7 @@ public class WeightButton : MonoBehaviour, ITrigger
         if(cutsceneToTrigger != null && !triggeredCutscene)
         {
             GameController.GH.GetComponent<Director>().StartCutscene(cutsceneToTrigger);
+            triggeredCutscene = true;
         }
         foreach (GameObject item in triggeredObjects)
         {
