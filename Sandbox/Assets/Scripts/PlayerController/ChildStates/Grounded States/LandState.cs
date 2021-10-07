@@ -31,7 +31,11 @@ public class LandState : GroundedState
                 }
                 else*/ if (isAnimationComplete || player.isGrounded)
                 {
-                    player.ChangeState(player.IdleState);
+                    player.JumpState.ResetJumpsAllowed();
+                    if (inputX != 0)
+                        player.ChangeState(player.MoveState);
+                    else
+                        player.ChangeState(player.IdleState);
 
                     //Play Landing Sound
                     FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
