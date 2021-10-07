@@ -33,6 +33,7 @@ public class PlayerSave : MonoBehaviour, ISave
         Debug.Log(name);
         Debug.Log(health);
         Debug.Log(position);
+
     }
 }
 

@@ -9,9 +9,9 @@ public class GameController : MonoBehaviour
     public PlayerSave SaveSystem;
     public bool GamePaused;
     
-    public PlayerControllerRB childObj;
+    public ChildControllerRB childObj;
     public Vector3 childAudioPos;
-    public PlayerControllerRB golemObj;
+    public GolemControllerRB golemObj;
     public Vector3 golemAudioPos;
 
     public bool IsFriend = true;
@@ -90,9 +90,15 @@ public class GameController : MonoBehaviour
         checkpoint = SaveSystem.Save();
     }
 
+    
+
     // load the game
-    public void LoadGame()
+    public IEnumerator LoadGame(float delay = 0)
     {
+       
+        yield return new WaitForSeconds(delay);
+
+        childObj.ChangeState(childObj.IdleState);
         SaveSystem.Load(checkpoint);
     }
 

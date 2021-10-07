@@ -25,10 +25,12 @@ public class ChildControllerRB : PlayerControllerRB
     // player AI states
     public AIFollowState AIFollowState { get; private set; }
     public AIWaitState AIWaitState { get; private set; }
+    public DeathState DeathState { get; private set; }
     #endregion
 
     private bool interactGrab;
     public bool interacting;
+    public bool alive = true;
 
     // Awake and Start functions
     #region Start Functions
@@ -50,6 +52,9 @@ public class ChildControllerRB : PlayerControllerRB
 
         WallClimbLedgeState = new WallClimbLedgeState(this, "LedgeClimb");
         WallGrabLedgeState = new WallGrabLedgeState(this, "LedgeHang");
+
+
+        DeathState = new DeathState(this, "Death");
 
 
     }

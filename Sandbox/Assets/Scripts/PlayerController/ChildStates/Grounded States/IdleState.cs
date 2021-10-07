@@ -13,6 +13,13 @@ public class IdleState: GroundedState
     {
         base.Enter();
 
+        if (!player.alive)
+        {
+            player.StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeBlack(0.5f, 0, 1));
+            player.alive = true;
+        }
+           
+
         if(player.isGrounded)
             player.JumpState.ResetJumpsAllowed();
 

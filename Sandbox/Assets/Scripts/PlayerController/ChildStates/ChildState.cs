@@ -26,7 +26,7 @@ public abstract class ChildState: PlayerState
     {
         base.Update();
 
-        if(player.ControllerEnabled)
+        if(player.ControllerEnabled && player.alive)
         {
             //get input
             //inputAttack = player.InputHandler.InputInteract;
@@ -36,7 +36,7 @@ public abstract class ChildState: PlayerState
         
         if(!isExitingState)
         {
-            if (player.ControllerEnabled)
+            if (player.ControllerEnabled && player.alive)
             {
                 // call wait to other player
                 if (inputWait && GameController.GH.IsFriend)
@@ -82,20 +82,26 @@ public abstract class ChildState: PlayerState
             }
         }
 
-        // auto climbing
-        if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing && player.GetComponent<ClimbingController>().ledgeDetector.ledgePosition != Vector3.zero)
+        if(player.alive)
         {
-            //player.GetComponent<ClimbingController>().Climb();
-            player.ChangeState(player.WallClimbLedgeState);
+            // auto climbing
+            if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing && player.GetComponent<ClimbingController>().ledgeDetector.ledgePosition != Vector3.zero)
+            {
+                //player.GetComponent<ClimbingController>().Climb();
+                player.ChangeState(player.WallClimbLedgeState);
+            }
+
+            if (player.GetComponent<ClimbingController>().canJumpClimb)
+            {
+                //player.ChangeState(player.JumpState);
+            }
+
+            Perform();
         }
-
-        if (player.GetComponent<ClimbingController>().canJumpClimb)
-        {
-            //player.ChangeState(player.JumpState);
-        }
+       
 
 
-        Perform();
+      
         //Debug.Log(this.GetType().Name + " state updating by delta time");
     }
  

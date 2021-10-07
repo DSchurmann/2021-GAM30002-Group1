@@ -17,10 +17,10 @@ public class DeathBox : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        PlayerControllerRB child = other.gameObject.GetComponent<ChildControllerRB>();
+        ChildControllerRB child = other.gameObject.GetComponent<ChildControllerRB>();
         if (child != null)
         {
-            GameController.GH.LoadGame();
+            child.ChangeState(child.DeathState);
         }
     }
 }

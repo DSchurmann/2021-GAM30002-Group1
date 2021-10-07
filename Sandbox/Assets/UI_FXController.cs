@@ -15,7 +15,7 @@ public class UI_FXController : MonoBehaviour
         Fader.gameObject.SetActive(false);
 
         // fade out
-        FadeBlack(0.5f, 0, 1);
+        StartCoroutine(FadeBlack(0.5f, 0, 1));
         // fade in
         //FadeInBlack(0.5f, 1, 1);
         //StartCoroutine(FadeBlack(0f, 1, 1));
@@ -28,11 +28,11 @@ public class UI_FXController : MonoBehaviour
     }
 
 
-    public void FadeBlack(float delay, int value, float time)
+    public IEnumerator FadeBlack(float delay, int value, float time)
     {
         Fader.gameObject.SetActive(true);
 
-
+        yield return new WaitForSeconds(delay);
 
         Color col = Color.black;
 
@@ -50,8 +50,10 @@ public class UI_FXController : MonoBehaviour
         Fader.CrossFadeAlpha(value, time, false);
     }
 
-    public void FadeInBlack(float delay, int value, float time)
+    public IEnumerator FadeInBlack(float delay, int value, float time)
     {
+        yield return new WaitForSeconds(delay);
+
         Fader.gameObject.SetActive(true);
 
         Color col = Color.black;
