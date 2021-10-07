@@ -48,6 +48,10 @@ public class GameController : MonoBehaviour
         if(UH == null)
             UH = GameObject.Find("UI").GetComponent<UIHandler>();
 
+        if (GamePaused)
+        {
+            GameObject.Find("UI").GetComponentInChildren<PauseMenu>().Resume();
+        }
     }
 
     // Update is called once per frame
