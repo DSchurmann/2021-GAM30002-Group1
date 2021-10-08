@@ -12,7 +12,7 @@ public class SceneSwitcherCol : MonoBehaviour
     {
         if (other.gameObject.GetComponent<PlayerControllerRB>() != null)
         {
-            GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(0.5f, 1, 1);
+            StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(0.5f, 1, 1));
             StartCoroutine(SwitchSceneDelay(1));
         }
     }
