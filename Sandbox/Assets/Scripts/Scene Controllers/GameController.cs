@@ -74,7 +74,7 @@ public class GameController : MonoBehaviour
     // Get current player
     public PlayerControllerRB CurrentPlayer()
     {
-        if (golemObj.ControllerEnabled) { return golemObj; }
+        if (golemObj != null && golemObj.ControllerEnabled) { return golemObj; }
         else
         if (childObj.ControllerEnabled) { return childObj; }
         else
