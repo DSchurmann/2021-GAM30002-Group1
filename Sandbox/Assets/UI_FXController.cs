@@ -52,9 +52,9 @@ public class UI_FXController : MonoBehaviour
 
     public IEnumerator FadeInBlack(float delay, int value, float time)
     {
-        yield return new WaitForSeconds(delay);
-
         Fader.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(delay);
 
         Color col = Color.black;
         col.a = 1;
