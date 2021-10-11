@@ -52,6 +52,9 @@ public class GameController : MonoBehaviour
         {
             GameObject.Find("UI").GetComponentInChildren<PauseMenu>().Resume();
         }
+
+
+        ShowMouse(false);
     }
 
     // Update is called once per frame
@@ -69,6 +72,23 @@ public class GameController : MonoBehaviour
             childAudioPos = childObj.transform.position;
         if (golemObj != null)
             golemAudioPos = golemObj.transform.position;
+    }
+
+    public void ShowMouse(bool state)
+    {
+        if(state == true)
+        {
+            // show the mouse
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            // hide the mouse
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+       
     }
 
     // Get current player
@@ -90,7 +110,6 @@ public class GameController : MonoBehaviour
         checkpoint = SaveSystem.Save();
     }
 
-    
 
     // load the game
     public IEnumerator LoadGame(float delay = 0)
@@ -102,6 +121,7 @@ public class GameController : MonoBehaviour
         SaveSystem.Load(checkpoint);
     }
 
+    // quit the game
     public void Quit()
     {
         Debug.Log("QUIT");

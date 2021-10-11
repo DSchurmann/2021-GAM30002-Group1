@@ -26,13 +26,6 @@ public class PauseMenu : MonoBehaviour
 
 
     }
-        /*GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
-        GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Unpause").performed += Unpause;
-        GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Interact").performed += Unpause;
-        GetComponent<PlayerInput>().currentActionMap.Enable();*/
-
-
-        // set pause in Game Conrroller
        
 
     public void Unpause(InputAction.CallbackContext ctx)
@@ -73,6 +66,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1.0f;
         GameIsPaused = false;
         GameController.GH.GamePaused = false;
+        GameController.GH.ShowMouse(false);
 
         // enable controls
         GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Enable();
@@ -85,7 +79,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0.0f;
         GameIsPaused = true;
         GameController.GH.GamePaused = true;
-
+        GameController.GH.ShowMouse(true);
         // disable controls
         GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Disable();
         GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Disable();
