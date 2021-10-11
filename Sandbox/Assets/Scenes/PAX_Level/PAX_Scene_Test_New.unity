@@ -5863,6 +5863,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
+      propertyPath: oneTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: mkbMessage
       value: Press [Q] to ask to follow
       objectReference: {fileID: 0}
@@ -11450,6 +11454,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 408442135}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &408717722 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6811352630020885592, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
+  m_PrefabInstance: {fileID: 2051058019}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &409209218
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12791,7 +12806,7 @@ PrefabInstance:
     - target: {fileID: 4488550187003162326, guid: 586ce85de05e85f4fb61f69456d54a41, type: 3}
       propertyPath: bookUIText
       value: 
-      objectReference: {fileID: 1141334406}
+      objectReference: {fileID: 408717722}
     - target: {fileID: 4488550187003162326, guid: 586ce85de05e85f4fb61f69456d54a41, type: 3}
       propertyPath: closeInput
       value: 
@@ -20286,7 +20301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 682991362}
   m_LocalRotation: {x: -0, y: 0.69140947, z: -0, w: 0.7224632}
-  m_LocalPosition: {x: 19.044, y: -2.25, z: 2.114}
+  m_LocalPosition: {x: 19.044, y: -2.27, z: 2.114}
   m_LocalScale: {x: 0.43100306, y: 2.0543408, z: 1.3137112}
   m_Children: []
   m_Father: {fileID: 1649476409}
@@ -41570,7 +41585,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088047130}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.5, y: 0, z: 0}
+  m_LocalPosition: {x: 21.13, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1429345082}
@@ -43115,17 +43130,6 @@ Transform:
   m_Father: {fileID: 339242830}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 32.749, z: 0}
---- !u!114 &1141334406 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6811352630069246731, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-  m_PrefabInstance: {fileID: 2051058019}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1143265691
 GameObject:
   m_ObjectHideFlags: 0
@@ -52158,6 +52162,10 @@ PrefabInstance:
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: text
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
+      propertyPath: oneTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: mkbMessage
@@ -72402,6 +72410,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
+      propertyPath: oneTime
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: mkbMessage
       value: Use [Arrow Keys] to pose as the Golem
       objectReference: {fileID: 0}
@@ -78422,7 +78434,7 @@ PrefabInstance:
     - target: {fileID: 4488550187003162326, guid: 586ce85de05e85f4fb61f69456d54a41, type: 3}
       propertyPath: bookUIText
       value: 
-      objectReference: {fileID: 1141334406}
+      objectReference: {fileID: 408717722}
     - target: {fileID: 4488550187003162326, guid: 586ce85de05e85f4fb61f69456d54a41, type: 3}
       propertyPath: closeInput
       value: 
@@ -78487,6 +78499,10 @@ PrefabInstance:
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: button
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
+      propertyPath: oneTime
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8819634023935689811, guid: 75a4c35d43308e343995e3dcd2f3efd2, type: 3}
       propertyPath: mkbMessage
