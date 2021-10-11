@@ -12,16 +12,20 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject PauseMenuUI;
     [SerializeField] private int MenuSceneIndex = 0;
 
-    
-    
+
+
     private void Start()
     {
+        GameIsPaused = false;
+        GameController.GH.GamePaused = GameIsPaused;
+
+
         InputHandler = GetComponent<PlayerInputHandler>();
-        
+
         PauseMenuUI.SetActive(GameIsPaused);
 
 
-
+    }
         /*GetComponent<PlayerInput>().SwitchCurrentActionMap("Menu");
         GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Unpause").performed += Unpause;
         GetComponent<PlayerInput>().actions.FindActionMap("Menu").FindAction("Interact").performed += Unpause;
@@ -29,8 +33,7 @@ public class PauseMenu : MonoBehaviour
 
 
         // set pause in Game Conrroller
-        GameController.GH.GamePaused = GameIsPaused;
-    }
+       
 
     public void Unpause(InputAction.CallbackContext ctx)
     {
