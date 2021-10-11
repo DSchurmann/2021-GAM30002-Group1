@@ -69,8 +69,11 @@ public class PauseMenu : MonoBehaviour
         GameController.GH.ShowMouse(false);
 
         // enable controls
-        GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Enable();
-        GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Enable();
+        if (GameController.GH.childObj != null)
+            GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Enable();
+
+        if (GameController.GH.golemObj != null)
+            GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Enable();
     }
     public void Pause(bool showUI)
     {
@@ -81,8 +84,12 @@ public class PauseMenu : MonoBehaviour
         GameController.GH.GamePaused = true;
         GameController.GH.ShowMouse(true);
         // disable controls
-        GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Disable();
-        GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Disable();
+
+        if (GameController.GH.childObj != null)
+            GameController.GH.childObj.GetComponent<PlayerInput>().currentActionMap.Disable();
+        
+        if (GameController.GH.golemObj != null)
+            GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Disable();
     }
 
     public void ResumeButton()
