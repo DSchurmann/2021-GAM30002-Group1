@@ -12,6 +12,9 @@ public class LandState : GroundedState
     public override void Enter()
     {
         base.Enter();
+
+        //Play Landing Sound
+        player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomLandSound());
     }
 
     public override void Update()
@@ -44,9 +47,8 @@ public class LandState : GroundedState
                 {
                     player.ChangeState(player.IdleState);
                 }
-                       
-                    //Play Landing Sound
-                    //FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
+
+               
 
             }
            /* }

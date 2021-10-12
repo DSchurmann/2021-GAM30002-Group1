@@ -20,6 +20,9 @@ public class JumpState: AbilityState
         jumpsLeft--;
 
         player.InAirState.SetJumping();
+
+        // play jump sound
+        player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomJumpSound());
     }
 
     public bool CanJump()
