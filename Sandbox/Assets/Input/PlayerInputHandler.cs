@@ -37,6 +37,8 @@ public class PlayerInputHandler : MonoBehaviour
     // Unpause Button
     public bool InputUnpause { get; private set; }
 
+    public bool InputMenuAccept { get; private set; }
+
     [SerializeField]
     private float inputDelay = 1f;
     [SerializeField]
@@ -268,4 +270,23 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     public void SetUnpauseFalse() => InputUnpause = false;
+
+    public void GetMenuInput(InputAction.CallbackContext ctx)
+    {
+        RawMovementInput = ctx.ReadValue<Vector2>();
+        InputXNormal = (int)(RawMovementInput * Vector2.right).normalized.x;
+        InputYNormal = (int)(RawMovementInput * Vector2.up).normalized.y;
+    }
+
+    public void SetMenuInputFalse() => InputXNormal = InputYNormal = 0;
+
+    public void GetMenuAccept(InputAction.CallbackContext ctx)
+    {
+        if(ctx.started)
+        {
+            InputMenuAccept = true;
+        }
+    }
+
+    public void SetMenuAcceptFalse() => InputMenuAccept = false;
 }

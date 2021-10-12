@@ -5,20 +5,23 @@ using System.Collections.Generic;
 public class Book : InteractableItem
 {
     [SerializeField][TextArea] private List<string> content;
-    [SerializeField] private GameObject bookUI;
-    [SerializeField] private Text bookUIText;
-    [SerializeField] private Image closeInput;
+    private GameObject bookUI;
+    private Text bookUIText;
+    private Image closeInput;
 
-    [SerializeField] private Button next;
-    [SerializeField] private Button previous;
+    private Button next;
+    private Button previous;
 
     private int page = 0;
 
-    private void Start()
+    private void Awake()
     {
-        //add listerners to the buttons so they do the right thing
-        next.onClick.AddListener(NextPage);
-        previous.onClick.AddListener(PreviousPage);
+        SetBookUIObjects();
+    }
+
+    protected override void Start()
+    {
+        base.Start();
     }
 
     private void Update()
@@ -26,38 +29,29 @@ public class Book : InteractableItem
         if(isDisplay)
         {
             //change whether mkb or controller inputs are shown for open book prompt
-            switch (UIHandler.controllerType)
+            if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
             {
-                case UIHandler.ControllerType.mkb:
-                    image.gameObject.SetActive(false);
-                    closeInput.gameObject.SetActive(false);
-                    break;
-                case UIHandler.ControllerType.ds:
-                    image.sprite = dsInteract;
-                    image.gameObject.SetActive(true);
-                    break;
-                case UIHandler.ControllerType.xbox:
-                    image.sprite = xboxInteract;
-                    image.gameObject.SetActive(true);
-                    break;
+                image.gameObject.SetActive(false);
+                closeInput.gameObject.SetActive(false);
+            }
+            else
+            {
+                image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
+                image.gameObject.SetActive(true);
             }
         }
-        else
+        else if(IsOpen)
         {
             //change whether mkb or controller inputs are shown for close book prompt
-            switch (UIHandler.controllerType)
+            if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
             {
-                case UIHandler.ControllerType.mkb:
-                    closeInput.gameObject.SetActive(false);
-                    break;
-                case UIHandler.ControllerType.ds:
-                    closeInput.sprite = dsInteract;
-                    closeInput.gameObject.SetActive(true);
-                    break;
-                case UIHandler.ControllerType.xbox:
-                    closeInput.sprite = xboxInteract;
-                    closeInput.gameObject.SetActive(true);
-                    break;
+                image.gameObject.SetActive(false);
+                closeInput.gameObject.SetActive(false);
+            }
+            else
+            {
+                closeInput.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
+                closeInput.gameObject.SetActive(true);
             }
         }
     }
@@ -76,6 +70,7 @@ public class Book : InteractableItem
         }
         else //disable book interface and show game UI again
         {
+            SetBookUIObjects();
             bookUI.SetActive(false);
             UIHandler.DisableUI = false;
             page = 0;
@@ -88,19 +83,15 @@ public class Book : InteractableItem
 
         //set text to appear above book and use controller button if required
         interactText = "Press [E] to read";
-        switch(UIHandler.controllerType)
+        if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
         {
-            case UIHandler.ControllerType.mkb:
-                image.gameObject.SetActive(false);
-                break;
-            case UIHandler.ControllerType.ds:
-                image.sprite = dsInteract;
-                image.gameObject.SetActive(true);
-                break;
-            case UIHandler.ControllerType.xbox:
-                image.sprite = xboxInteract;
-                image.gameObject.SetActive(true);
-                break;
+            image.gameObject.SetActive(false);
+            closeInput.gameObject.SetActive(false);
+        }
+        else
+        {
+            image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
+            image.gameObject.SetActive(true);
         }
 
         //set and display text
@@ -156,5 +147,35 @@ public class Book : InteractableItem
         {
             previous.gameObject.SetActive(false);
         }
+    }
+
+    private void SetBookUIObjects()
+    {
+        //set UI component fields
+        if (bookUI == null)
+        {
+            bookUI = GameObject.Find("UI/Book");
+        }
+        if (bookUIText == null)
+        {
+            bookUIText = GameObject.Find("UI/Book/BookContent").GetComponent<Text>();
+        }
+        if (next == null)
+        {
+            next = GameObject.Find("UI/Book/Next").GetComponent<Button>();
+        }
+        if (previous == null)
+        {
+            previous = GameObject.Find("UI/Book/Previous").GetComponent<Button>();
+        }
+        if (closeInput == null)
+        {
+            closeInput = GameObject.Find("UI/Book/CloseInput").GetComponent<Image>();
+        }
+
+        //add listerners to the buttons so they do the right thing
+        next.onClick.AddListener(NextPage);
+        previous.onClick.AddListener(PreviousPage);
+
     }
 }

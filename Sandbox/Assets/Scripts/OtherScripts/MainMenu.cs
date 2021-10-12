@@ -10,6 +10,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Slider loadProgress;
     [SerializeField] private Button play;
     [SerializeField] private Button quit;
+    [SerializeField] private List<Button> options;
+    private int selection = 0;
+    [SerializeField] private Image cursor;
+
+    [SerializeField] private PlayerInputHandler InputHandler;
 
     private float targetProgress = 0.0f;
     private float progress = 0.0f;
@@ -18,6 +23,7 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         loadProgress.gameObject.SetActive(false);
+        cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
     }
 
     public void Play()
@@ -38,6 +44,35 @@ public class MainMenu : MonoBehaviour
     {
         progress = Mathf.Lerp(targetProgress, progress, Speed * Time.deltaTime);
         loadProgress.value = progress;
+
+        if (InputHandler.InputYNormal < 0)
+        {
+            InputHandler.SetMenuInputFalse();
+            selection++;
+            if (selection >= options.Count)
+            {
+                selection = 0;
+            }
+            cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+        }
+        else if (InputHandler.InputYNormal > 0)
+        {
+            InputHandler.SetMenuInputFalse();
+            selection--;
+            if (selection < 0)
+            {
+                selection = options.Count - 1;
+            }
+
+            cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+        }
+
+        if (InputHandler.InputMenuAccept)
+        {
+            InputHandler.SetMenuAcceptFalse();
+            options[selection].onClick.Invoke();
+        }
+
     }
 
     IEnumerator LoadAsyncOperation()

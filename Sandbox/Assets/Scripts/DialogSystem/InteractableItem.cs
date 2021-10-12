@@ -6,13 +6,20 @@ using UnityEngine.UI;
 public class InteractableItem : MonoBehaviour
 {
     protected string interactText = "Press 'e' to interact";
-    [SerializeField] protected Text text;
-    [SerializeField] protected Sprite dsInteract;
-    [SerializeField] protected Sprite xboxInteract;
-    [SerializeField] protected Image image;
+    protected Text text;
+    protected Sprite interactSprite;
+    protected Image image;
     protected bool isOpen = false;
     protected bool isDisplay = false;
 
+    protected virtual void Start()
+    {
+        image = gameObject.GetComponentInChildren<Image>();
+        text = gameObject.GetComponentInChildren<Text>();
+
+        image.gameObject.SetActive(false);
+        text.gameObject.SetActive(false);
+    }
 
     public virtual void Interact() { }
 

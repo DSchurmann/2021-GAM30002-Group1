@@ -37,6 +37,11 @@ public class UIHandler : MonoBehaviour
         DisableUI = disableUI;
     }
 
+    private void Start()
+    {
+        GameObject.Find("UI/Book").SetActive(false);
+    }
+
     void Update()
     {
         // enable  & disble UI at runtime
