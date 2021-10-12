@@ -95,9 +95,9 @@ public class AIFollowState : AIState
             /*holdPosition.x = player.transform.position.x;
             HoldPosition(true, false);
             player.Anim.Play("Idle");*/
-            player.Following = false;
-            player.ChangeState(player.AIWaitState);
-            GameController.GH.UH.waiting = (true);
+            //player.Following = false;
+            //player.ChangeState(player.AIWaitState);
+            //GameController.GH.UH.waiting = (true);
 
         }
         else

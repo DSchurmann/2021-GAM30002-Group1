@@ -29,17 +29,26 @@ public class LandState : GroundedState
                     //Play Landing Sound
                     FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
                 }
-                else*/ if (isAnimationComplete || player.isGrounded)
+                else*/ 
+            if (isAnimationComplete || player.isGrounded)
+            {
+                player.JumpState.ResetJumpsAllowed();
+                if (inputX != 0)
                 {
-                    player.JumpState.ResetJumpsAllowed();
-                    if (inputX != 0)
+                    if(player.ControllerEnabled)
                         player.ChangeState(player.MoveState);
                     else
-                        player.ChangeState(player.IdleState);
-
+                        player.ChangeState(player.AIFollowState);
+                }
+                else
+                {
+                    player.ChangeState(player.IdleState);
+                }
+                       
                     //Play Landing Sound
                     FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
-                }
+
+            }
            /* }
             else
             {
