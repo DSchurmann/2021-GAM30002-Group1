@@ -8,6 +8,6 @@ public class EnviroEmitter : MonoBehaviour
     public void Start()
     {
         //Play the thing!
-        FMODUnity.RuntimeManager.PlayOneShot(path, gameObject.transform.position);
+        //FMODUnity.RuntimeManager.PlayOneShot(path, gameObject.transform.position);
     }
 }

@@ -46,7 +46,7 @@ public class LandState : GroundedState
                 }
                        
                     //Play Landing Sound
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
 
             }
            /* }

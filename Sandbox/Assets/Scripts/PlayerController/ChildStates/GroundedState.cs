@@ -63,8 +63,11 @@ public class GroundedState : ChildState
                 player.InputHandler.SetJumpFalse();
                 // change player to jump state
                 player.ChangeState(player.JumpState);
+               
                 //Play Jump Sound
-                FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/TestSound", GameController.GH.childAudioPos);
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/TestSound", GameController.GH.childAudioPos);
+
+
             } // check in air state
             else if (!isGrounded)
             {

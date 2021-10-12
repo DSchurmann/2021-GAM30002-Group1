@@ -7,6 +7,6 @@ public class SoundEmitter : MonoBehaviour
     public void PlayOneShot(string path)
     {
         //Play the thing!
-        FMODUnity.RuntimeManager.PlayOneShot(path, transform.position);
+        //FMODUnity.RuntimeManager.PlayOneShot(path, transform.position);
     }
 }

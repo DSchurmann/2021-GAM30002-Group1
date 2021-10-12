@@ -15,7 +15,7 @@ public class GolemRaiseState : GolemAbilityState
     public override void Enter()
     {
         base.Enter();
-        FMODUnity.RuntimeManager.PlayOneShot("event:/Golem/GolemPose", GameController.GH.golemAudioPos);
+        //FMODUnity.RuntimeManager.PlayOneShot("event:/Golem/GolemPose", GameController.GH.golemAudioPos);
     }
 
     public override void Exit()
