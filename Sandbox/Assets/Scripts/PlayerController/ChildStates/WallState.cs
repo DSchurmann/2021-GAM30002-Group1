@@ -48,19 +48,21 @@ public class WallState : ChildState
         inputGrab = player.InputHandler.InputInteract;
         inputJump = player.InputHandler.InputJump;
 
-        if(!player.GetComponent<ClimbingController>().isClimbing)
+        if(!isExitingState)
         {
-            if (isGrounded && !inputGrab)
-            {   // change to idle state if grounded
-                player.ChangeState(player.IdleState);
-            }
-            else if (!isTouchingWall || (inputX != player.FacingDirection && !inputGrab))
+            if (!player.GetComponent<ClimbingController>().isClimbing)
             {
-                // change to in air state if not grounded
-                player.ChangeState(player.InAirState);
+                if (isGrounded && !inputGrab)
+                {   // change to idle state if grounded
+                    player.ChangeState(player.IdleState);
+                }
+                else if (!isTouchingWall || (inputX != player.FacingDirection && !inputGrab))
+                {
+                    // change to in air state if not grounded
+                    player.ChangeState(player.InAirState);
+                }
             }
         }
-       
     }
 
     public override void FixedUpdate()

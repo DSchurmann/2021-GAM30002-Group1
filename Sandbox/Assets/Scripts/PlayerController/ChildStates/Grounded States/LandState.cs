@@ -13,8 +13,15 @@ public class LandState : GroundedState
     {
         base.Enter();
 
-        //Play Landing Sound
-        player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomLandSound());
+        Debug.Log("PLAYER LANDED");
+
+        if (player.isGrounded)
+        {
+            // play landing sound
+            player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomLandSound());
+            // reset jumps allowed
+            player.JumpState.ResetJumpsAllowed();
+        }
     }
 
     public override void Update()
@@ -29,28 +36,22 @@ public class LandState : GroundedState
                 {
                     player.ChangeState(player.MoveState);
 
-                    //Play Landing Sound
-                    FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/ChildLand", GameController.GH.childAudioPos);
                 }
                 else*/ 
-            if (isAnimationComplete || player.isGrounded)
+       
+
+            if (inputX != 0)
             {
-                player.JumpState.ResetJumpsAllowed();
-                if (inputX != 0)
-                {
-                    if(player.ControllerEnabled)
-                        player.ChangeState(player.MoveState);
-                    else
-                        player.ChangeState(player.AIFollowState);
-                }
+                if(player.ControllerEnabled)
+                    player.ChangeState(player.MoveState);
                 else
-                {
-                    player.ChangeState(player.IdleState);
-                }
-
-               
-
+                    player.ChangeState(player.AIFollowState);
             }
+            else
+            {
+                player.ChangeState(player.IdleState);
+            }
+
            /* }
             else
             {

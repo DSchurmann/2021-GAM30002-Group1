@@ -85,7 +85,7 @@ public class ClimbingController : MonoBehaviour
        
         if(groundAngle.x != 0)
         {
-            Debug.Log("Ground angle: " + groundAngle);
+            //Debug.Log("Ground angle: " + groundAngle);
         }
 
 

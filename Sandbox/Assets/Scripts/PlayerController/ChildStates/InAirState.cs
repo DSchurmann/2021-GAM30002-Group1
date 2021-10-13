@@ -24,6 +24,8 @@ public class InAirState: ChildState
     public override void Enter()
     {
         base.Enter();
+        player.Anim.CrossFade(animation, 0.05f);
+
         Velx = player.CurrentVelocity.x;
         StartJumpTimeBuff();
 
@@ -32,23 +34,27 @@ public class InAirState: ChildState
             // check if touch wall in air
             player.ChangeState(player.WallClimbLedgeState);
         }
+
+        Debug.Log("PLAYER IN AIR");
     }
 
     public override void Update()
     {
         base.Update();
 
-        // check for controller or ai
-
-        if(player.ControllerEnabled)
+        
+        if (!isExitingState)
         {
-            ControllerMode();
+            // check for controller or ai
+            if (player.ControllerEnabled)
+            {
+                ControllerMode();
+            }
+            else
+            {
+                AIMode();
+            }
         }
-        else
-        {
-            AIMode();
-        }
-       
     }
 
     public override void FixedUpdate()
@@ -66,7 +72,6 @@ public class InAirState: ChildState
     {
         if (player.CheckIfGrounded() && player.CurrentVelocity.y < 0.1f)
         {
-            Debug.Log("PLAYER IN AIR");
             // land if ground detected while in air
             player.ChangeState(player.LandState);
         }
@@ -75,6 +80,7 @@ public class InAirState: ChildState
     // contorller in air mode
     public void ControllerMode()
     {
+       
         // get x input 
         inputX = player.InputHandler.InputXNormal;
         inputJump = player.InputHandler.InputJump;

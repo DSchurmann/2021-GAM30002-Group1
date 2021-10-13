@@ -95,7 +95,7 @@ public class GroundedState : ChildState
     {
         base.Perform();
 
-        isGrounded = player.CheckIfGrounded();
+        isGrounded = player.isGrounded;
         isTouchingWall = player.CheckTouchingWall();
     }
 

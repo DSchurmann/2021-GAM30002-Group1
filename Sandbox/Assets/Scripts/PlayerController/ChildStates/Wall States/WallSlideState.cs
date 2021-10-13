@@ -9,6 +9,13 @@ public class WallSlideState : WallState
 
     }
 
+    public override void Enter()
+    {
+        base.Enter();
+
+        player.Anim.CrossFade(animation, 0.05f);
+    }
+
     public override void Update()
     {
         base.Update();
