@@ -94,9 +94,17 @@
                     "interactions": ""
                 },
                 {
-                    "name": "MenuInteract",
+                    "name": "MenuAccept",
                     "type": "Button",
                     "id": "9d65b366-8d01-4bfc-a3c6-b5f95dd9d872",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "MenuDecline",
+                    "type": "Button",
+                    "id": "aecf32b5-6d41-46be-9d6c-23be42c054a3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -616,7 +624,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
-                    "action": "MenuInteract",
+                    "action": "MenuAccept",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -627,7 +635,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
-                    "action": "MenuInteract",
+                    "action": "MenuAccept",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -638,7 +646,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
-                    "action": "MenuInteract",
+                    "action": "MenuAccept",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -649,7 +657,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Default",
-                    "action": "MenuInteract",
+                    "action": "MenuAccept",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d4fabf0a-f02b-4178-b571-1537d90c4926",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuDecline",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b51924d1-2205-4c9e-b3d1-2585793cfca8",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuDecline",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "25bb3a69-b5f3-4c6f-9f3b-47054e3f929f",
+                    "path": "<XInputController>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuDecline",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c66c1668-8cfd-41fa-b5dd-1680cde4c6d1",
+                    "path": "<DualShockGamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Default",
+                    "action": "MenuDecline",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

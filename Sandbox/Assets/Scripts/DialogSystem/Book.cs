@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Book : InteractableItem
 {
     [SerializeField][TextArea] private List<string> content;
+    [SerializeField] private PlayerInputHandler inputHandler;
+
     private GameObject bookUI;
     private Text bookUIText;
     private Image closeInput;
@@ -52,6 +54,19 @@ public class Book : InteractableItem
             {
                 closeInput.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
                 closeInput.gameObject.SetActive(true);
+                next.image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.RuneE, UIHandler.controllerType);
+                previous.image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.RuneW, UIHandler.controllerType);
+            }
+
+            if(inputHandler.InputXNormal < 0)
+            {
+                inputHandler.SetMenuInputFalse();
+                PreviousPage();
+            }
+            else if(inputHandler.InputXNormal > 0)
+            {
+                inputHandler.SetMenuInputFalse();
+                NextPage();
             }
         }
     }

@@ -193,6 +193,8 @@ GameObject:
   - component: {fileID: 2993518523534162532}
   - component: {fileID: 4488550187003162326}
   - component: {fileID: 4488550187003162327}
+  - component: {fileID: 777273993440245931}
+  - component: {fileID: 1737134943716766725}
   m_Layer: 0
   m_Name: bookInteractive
   m_TagString: Untagged
@@ -277,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   content: []
+  inputHandler: {fileID: 777273993440245931}
 --- !u!65 &4488550187003162327
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -290,6 +293,122 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.011201821, y: 0.012857753, z: 0.003635701}
   m_Center: {x: -0.00000023841858, y: 0, z: 0}
+--- !u!114 &777273993440245931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642252443034688433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d36316bc9032bc499e94b829b189702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputDelay: 1
+  inputHoldTime: 0.1
+--- !u!114 &1737134943716766725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642252443034688433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a41b38adf301b4042a14ed7531fe622e, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 931b07b6-3e8d-4fd7-943b-5a7d880e27ce
+    m_ActionName: Gameplay/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick,/XInputControllerWindows/leftStick]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5b79b5d8-3cc4-4efc-a887-dd1305e4263a
+    m_ActionName: Gameplay/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e442fcec-e923-414f-afa2-6c73e7f40562
+    m_ActionName: Gameplay/RuneN[/Keyboard/upArrow,/XInputControllerWindows/dpad/up,/XInputControllerWindows/dpad/up]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 306c20c3-167a-4350-a00c-2d9896745e45
+    m_ActionName: Gameplay/RuneS[/Keyboard/downArrow,/XInputControllerWindows/dpad/down,/XInputControllerWindows/dpad/down]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 50d1a261-25a7-4527-9ba6-3497834357f8
+    m_ActionName: Gameplay/RuneW[/Keyboard/leftArrow,/XInputControllerWindows/dpad/left,/XInputControllerWindows/dpad/left]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1a18b23d-fa19-4033-8493-82d1426ac502
+    m_ActionName: Gameplay/RuneE[/Keyboard/rightArrow,/XInputControllerWindows/dpad/right,/XInputControllerWindows/dpad/right]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbcac880-e6e0-436a-9b5b-27e8837b6ab9
+    m_ActionName: Gameplay/Interact[/Keyboard/e,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 27d95c98-f8db-4344-9d2c-066526068c27
+    m_ActionName: Gameplay/Wait[/Keyboard/q,/XInputControllerWindows/buttonNorth,/XInputControllerWindows/buttonNorth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a072aa89-dbb2-43cf-ba89-e2b09a3576be
+    m_ActionName: Gameplay/Switch[/Keyboard/tab,/XInputControllerWindows/buttonWest,/XInputControllerWindows/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7e685b8f-ef81-4653-b9ab-f15399953be8
+    m_ActionName: Gameplay/Pause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 777273993440245931}
+        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
+        m_MethodName: GetMenuInput
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 852f6339-22b3-48d8-8c09-878f50055ff2
+    m_ActionName: Gameplay/MenuInput[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9d65b366-8d01-4bfc-a3c6-b5f95dd9d872
+    m_ActionName: Gameplay/MenuInteract[/Keyboard/enter,/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 99d35eee-7a65-486d-979a-61934d05f835
+    m_ActionName: Menu/Unpause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e041cab-ffb0-4c0e-9d81-136e69199fcb
+    m_ActionName: Menu/Interact[/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e9d1488e-7d54-45a5-a03d-394b86d2c602
+    m_ActionName: Menu/Selection[/Keyboard/w,/Keyboard/s,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/d,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Gameplay
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &5188674486416235165
 GameObject:
   m_ObjectHideFlags: 0
