@@ -9,10 +9,14 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] JumpSounds;
     public AudioClip[] LandSounds;
 
+
+    public bool canPlayLandSound = true;
+    public float delaySound_land = 0.25f;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        canPlayLandSound = true;
     }
 
     // Update is called once per frame
@@ -21,6 +25,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
+    // play a random jump sound from the list
     public AudioClip RandomJumpSound()
     {
         int index = Random.Range(0, JumpSounds.Length);
@@ -28,10 +33,26 @@ public class AudioManager : MonoBehaviour
         return clip;
     }
 
+    // play a random landing sound from the list
     public AudioClip RandomLandSound()
     {
-        int index = Random.Range(0, LandSounds.Length);
-        AudioClip clip = LandSounds[index];
-        return clip;
+        if(canPlayLandSound)
+        {
+            int index = Random.Range(0, LandSounds.Length);
+            AudioClip clip = LandSounds[index];
+            return clip;
+        }
+
+        return null;
+        
+    }
+
+
+    // enable land sound after a delay
+    public IEnumerator EnableLandSound(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        canPlayLandSound = true;
     }
 }

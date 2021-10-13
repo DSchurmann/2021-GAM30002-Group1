@@ -17,8 +17,14 @@ public class LandState : GroundedState
 
         if (player.isGrounded)
         {
-            // play landing sound
-            player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomLandSound());
+            // play landing sound if can
+            if(GameController.GH.GetComponent<AudioManager>().RandomLandSound() != null)
+            {
+                player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomLandSound());
+                GameController.GH.GetComponent<AudioManager>().canPlayLandSound = false;
+                player.StartCoroutine(GameController.GH.GetComponent<AudioManager>().EnableLandSound(GameController.GH.GetComponent<AudioManager>().delaySound_land));
+            }
+              
             // reset jumps allowed
             player.JumpState.ResetJumpsAllowed();
         }
