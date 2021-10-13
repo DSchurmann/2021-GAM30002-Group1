@@ -25,6 +25,8 @@ public class GolemAbilityState:GolemState
         isPosing = true;
         isPoseLocked = true;
         player.StartCoroutine(ResetPoseLock(player.PoseLockTime));
+
+        player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomGolemPoseSound());
     }
 
     public override void Exit()
