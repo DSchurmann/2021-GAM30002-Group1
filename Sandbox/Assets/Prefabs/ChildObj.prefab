@@ -41199,6 +41199,7 @@ GameObject:
   - component: {fileID: 7768186053678144341}
   - component: {fileID: 7426239931107175142}
   - component: {fileID: 7426239931107175140}
+  - component: {fileID: 8746875083209509087}
   - component: {fileID: 7516409695587371889}
   m_Layer: 8
   m_Name: ChildObj
@@ -41550,7 +41551,7 @@ MonoBehaviour:
   origins_down:
   - 1.8
   isTouchingWall: 0
-  isGapAhead: 1
+  isGapAhead: 0
   isGapJumpable: 0
   minDistanceToGap: 0.5
   gapCheckHeight: 0.5
@@ -41587,6 +41588,18 @@ MonoBehaviour:
   railSeekRange: 1
   type: 1
   DeadZone: 0.925
+--- !u!114 &8746875083209509087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426239931107175143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffd309efe52b9654cb363d555c43c7f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &7516409695587371889
 AudioSource:
   m_ObjectHideFlags: 0

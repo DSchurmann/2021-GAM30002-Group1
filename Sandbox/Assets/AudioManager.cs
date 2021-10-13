@@ -5,15 +5,16 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     [Header("Child Sounds")]
-    public AudioClip[] JumpSounds;
-    public AudioClip[] LandSounds;
+    public AudioClip[] ChildJumpSounds;
+    public AudioClip[] ChildLandSounds;
+    public AudioClip[] ChildStepSounds;
     [Header("Child Sound Properties")]
     public bool canPlayLandSound = true;
     public float delaySound_land = 0.25f;
 
     [Header("Golem Sounds")]
     public AudioClip[] GolemPoseSounds;
-    public AudioClip[] GolemWalkSounds;
+    public AudioClip[] GolemStepSounds;
     //[Header("Golem Sound Properties")]
     //public bool canPlayLandSound = true;
     //public float delaySound_land = 0.25f;
@@ -33,8 +34,8 @@ public class AudioManager : MonoBehaviour
     // play a random jump sound from the list
     public AudioClip RandomJumpSound()
     {
-        int index = Random.Range(0, JumpSounds.Length);
-        AudioClip clip = JumpSounds[index];
+        int index = Random.Range(0, ChildJumpSounds.Length);
+        AudioClip clip = ChildJumpSounds[index];
         return clip;
     }
 
@@ -43,19 +44,27 @@ public class AudioManager : MonoBehaviour
     {
         if(canPlayLandSound)
         {
-            int index = Random.Range(0, LandSounds.Length);
-            AudioClip clip = LandSounds[index];
+            int index = Random.Range(0, ChildLandSounds.Length);
+            AudioClip clip = ChildLandSounds[index];
             return clip;
         }
 
         return null;
     }
 
+    // play a random Child Step sound from the list
+    public AudioClip RandomChildStepSound()
+    {
+        int index = Random.Range(0, ChildStepSounds.Length);
+        AudioClip clip = ChildStepSounds[index];
+        return clip;
+    }
+
     // play a random Golem Walk sound from the list
     public AudioClip RandomGolemWalkSound()
     {
-        int index = Random.Range(0, GolemWalkSounds.Length);
-        AudioClip clip = GolemWalkSounds[index];
+        int index = Random.Range(0, GolemStepSounds.Length);
+        AudioClip clip = GolemStepSounds[index];
         return clip;
     }
 
