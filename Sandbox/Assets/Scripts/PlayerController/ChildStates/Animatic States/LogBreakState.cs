@@ -13,7 +13,7 @@ public class LogBreakState : AnimaticState
     public override void Enter()
     {
         base.Enter();
-
+        player.GetComponent<ClimbingController>().isEnabled = false;
     }
 
     public override void Exit()
