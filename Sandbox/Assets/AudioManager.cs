@@ -9,6 +9,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] ChildLandSounds;
     public AudioClip[] ChildStepSounds;
     [Header("Child Sound Properties")]
+    public float childFootstepVolume = 0.1f;
     public bool canPlayLandSound = true;
     public float delaySound_land = 0.25f;
 

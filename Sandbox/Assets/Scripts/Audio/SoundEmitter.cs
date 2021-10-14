@@ -15,8 +15,7 @@ public class SoundEmitter : MonoBehaviour
                 break;
 
             case "childStep":
-                GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomChildStepSound());
-
+                GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomChildStepSound(), GameController.GH.GetComponent<AudioManager>().childFootstepVolume);
                 break;
         }
 
