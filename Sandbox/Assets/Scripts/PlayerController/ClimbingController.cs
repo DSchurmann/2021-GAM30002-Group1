@@ -43,6 +43,7 @@ public class ClimbingController : MonoBehaviour
 
     // ground properties
     public Vector3 groundAngle;
+    public GameObject groundObject;
     public float maxSlopeAngle;
 
 
@@ -69,6 +70,8 @@ public class ClimbingController : MonoBehaviour
     {
        
         inputInteract = InputHandler.InputInteract;
+        if(ledgeDetector != null)
+            groundObject = ledgeDetector.GroundBelow(transform.position + Vector3.up * 0.2f, gapCheckDepth);
 
         if (ledgeDetector != null && isEnabled)
         {

@@ -95,6 +95,20 @@ public class LedgeDetector
 
     }
 
+    public GameObject GroundBelow(Vector3 origin, float depth)
+    {
+        RaycastHit depthHit;
+        if (Physics.Raycast(origin, Vector3.down, out depthHit, depth))
+        {
+            Debug.DrawLine(origin, depthHit.point, Color.yellow);
+            //Debug.Log(heightHit.collider.gameObject.name);
+            return depthHit.collider.gameObject;
+        }
+        Debug.DrawLine(origin, origin + Vector3.down * depth, Color.cyan);
+        return null;
+
+    }
+
 
     public bool[] TouchingWall()
     {

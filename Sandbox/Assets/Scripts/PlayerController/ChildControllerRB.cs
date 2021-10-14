@@ -25,6 +25,7 @@ public class ChildControllerRB : PlayerControllerRB
     // player AI states
     public AIFollowState AIFollowState { get; private set; }
     public AIWaitState AIWaitState { get; private set; }
+    public LogBreakState FallState { get; private set; }
     public DeathState DeathState { get; private set; }
     #endregion
 
@@ -53,7 +54,7 @@ public class ChildControllerRB : PlayerControllerRB
         WallClimbLedgeState = new WallClimbLedgeState(this, "LedgeClimb");
         WallGrabLedgeState = new WallGrabLedgeState(this, "LedgeHang");
 
-
+        FallState = new LogBreakState(this, "Fall01");
         DeathState = new DeathState(this, "Death");
 
 

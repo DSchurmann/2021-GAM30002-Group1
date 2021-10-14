@@ -33,6 +33,16 @@ public class GroundedState : ChildState
 
         if (!isExitingState)
         {
+            // check for breakable ground below
+            if(GroundBelow() != null)
+            {
+                Debug.Log("Ground Below: " + GroundBelow());
+                if(GroundBelow().GetComponent<FallOnContact>() != null)
+                {
+                    player.ChangeState(player.FallState);
+                }
+            }
+
             // get input for x 
             if (player.ControllerEnabled && !player.GetComponent<ClimbingController>().isClimbing)
             {
@@ -90,6 +100,8 @@ public class GroundedState : ChildState
         base.FixedUpdate();
       
     }
+
+    public GameObject GroundBelow() => player.GetComponent<ClimbingController>().groundObject;
 
     public override void Perform()
     {
