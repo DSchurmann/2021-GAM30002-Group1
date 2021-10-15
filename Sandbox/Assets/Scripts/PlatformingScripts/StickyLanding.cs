@@ -59,9 +59,9 @@ public class StickyLanding : MonoBehaviour
 
     void OnCollisionStay(Collision collisionInfo)
     {
-        //Debug.Log("WTF");
 
-        if (collisionInfo.gameObject == GameController.GH.childObj)
+        //if (collisionInfo.gameObject == GameController.GH.childObj)
+        if (collisionInfo.gameObject.GetComponent<ChildControllerRB>() != null)
         {
             //Debug.Log("PLAYER ON PLATFORM");
             if (Physics.Raycast(collisionInfo.gameObject.transform.position, Vector3.down, out RaycastHit hit, 2))
