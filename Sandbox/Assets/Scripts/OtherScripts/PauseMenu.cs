@@ -10,9 +10,11 @@ public class PauseMenu : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; }
 
     public static bool GameIsPaused = false;
+    private bool done = true;
     [SerializeField] private List<Button> options;
     private int selection = 0;
     [SerializeField] private GameObject PauseMenuUI;
+    [SerializeField] private GameObject settingsMenuUI;
     [SerializeField] private int MenuSceneIndex = 0;
 
     [SerializeField] private GameObject cursor;
@@ -27,29 +29,48 @@ public class PauseMenu : MonoBehaviour
         PauseMenuUI.SetActive(GameIsPaused);
     }
 
-
-
-
-
     // Update is called once per frame
     void Update()
     {
-        if (InputHandler.InputPause)// TODO change with pause input
+        if (!GameIsPaused)// TODO change with pause input
         {
-            InputHandler.SetPauseFalse();
-            if (GameIsPaused)
+            if (InputHandler.InputPause)
             {
+                InputHandler.SetPauseFalse();
+                Pause(true);
+            } 
+        }
+        else if (GameIsPaused && PauseMenuUI.activeInHierarchy)
+        {
+
+            if (!done)
+            {
+                //disable multiple inputs between menus
+                if (InputHandler.InputMenuAccept)
+                {
+                    InputHandler.SetMenuAcceptFalse();
+                }
+                if (InputHandler.InputMenuDecline)
+                {
+                    InputHandler.SetMenuDeclineFalse();
+                }
+                if (InputHandler.InputPause)
+                {
+                    InputHandler.SetPauseFalse();
+                }
+                done = !done;
+                Vector2 pos = options[selection].GetComponent<Transform>().localPosition;
+                Vector2 newpos = new Vector2(pos.x - (pos.x / 2) - 250, pos.y);
+                cursor.GetComponent<Transform>().localPosition = newpos;
+            }
+            
+            if(InputHandler.InputPause)
+            {
+                InputHandler.SetPauseFalse();
                 Resume();
             }
-            else
-            {
-                Pause(true);
-            }  
-        }
 
-        if (GameIsPaused)
-        {
-            if (InputHandler.InputYNormal < 0)
+            if (InputHandler.menuY < 0)
             {
                 InputHandler.SetMenuInputFalse();
                 selection++;
@@ -57,9 +78,11 @@ public class PauseMenu : MonoBehaviour
                 {
                     selection = 0;
                 }
-                cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+                Vector2 pos = options[selection].GetComponent<Transform>().localPosition;
+                Vector2 newpos = new Vector2(pos.x - (pos.x / 2) - 250, pos.y);
+                cursor.GetComponent<Transform>().localPosition = newpos;
             }
-            else if (InputHandler.InputYNormal > 0)
+            else if (InputHandler.menuY > 0)
             {
                 InputHandler.SetMenuInputFalse();
                 selection--;
@@ -68,13 +91,22 @@ public class PauseMenu : MonoBehaviour
                     selection = options.Count - 1;
                 }
 
-                cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+                Vector2 pos = options[selection].GetComponent<Transform>().localPosition;
+                Vector2 newpos = new Vector2(pos.x - (pos.x / 2) - 250, pos.y);
+                cursor.GetComponent<Transform>().localPosition = newpos;
             }
 
             if (InputHandler.InputMenuAccept)
             {
                 InputHandler.SetMenuAcceptFalse();
                 options[selection].onClick.Invoke();
+                selection = 0;
+            }
+
+            if(InputHandler.InputMenuDecline)
+            {
+                InputHandler.SetMenuDeclineFalse();
+                Resume();
             }
         }
     }
@@ -105,7 +137,11 @@ public class PauseMenu : MonoBehaviour
         }
         Time.timeScale = 0.0f;
         GameIsPaused = true;
-        cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+        //set cursor position
+        Vector2 pos = options[selection].GetComponent<Transform>().localPosition;
+        Vector2 newpos = new Vector2(pos.x - (pos.x / 2) - 250, pos.y);
+        cursor.GetComponent<Transform>().localPosition = newpos;
+
         GameController.GH.GamePaused = true;
         GameController.GH.ShowMouse(true);
         // disable controls
@@ -114,6 +150,12 @@ public class PauseMenu : MonoBehaviour
         
         if (GameController.GH.golemObj != null)
             GameController.GH.golemObj.GetComponent<PlayerInput>().currentActionMap.Disable();
+    }
+
+    public void Show()
+    {
+        PauseMenuUI.SetActive(true);
+        done = false;
     }
 
     public void ResumeButton()
@@ -133,5 +175,11 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quit");
         Application.Quit();
+    }
+
+    public void SettingsButton()
+    {
+        PauseMenuUI.SetActive(false);
+        settingsMenuUI.SetActive(true);
     }
 }

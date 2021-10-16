@@ -9,10 +9,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private int nextScene;
     [SerializeField] private Slider loadProgress;
     [SerializeField] private Button play;
+    [SerializeField] private Button settings;
+    [SerializeField] private GameObject settingsUI;
+    private bool inSettings = false;
     [SerializeField] private Button quit;
     [SerializeField] private List<Button> options;
     private int selection = 0;
-    [SerializeField] private Image cursor;
+    [SerializeField] private GameObject cursor;
 
     [SerializeField] private PlayerInputHandler InputHandler;
 
@@ -23,15 +26,26 @@ public class MainMenu : MonoBehaviour
     private void Awake()
     {
         loadProgress.gameObject.SetActive(false);
-        cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+        cursor.GetComponent<Transform>().localPosition = new Vector3(-275, options[selection].GetComponent<Transform>().localPosition.y);
     }
 
     public void Play()
     {
         play.gameObject.SetActive(false);
+        settings.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
         loadProgress.gameObject.SetActive(true);
         StartCoroutine(LoadAsyncOperation());
+    }
+
+    public void Settings()
+    {
+        play.gameObject.SetActive(false);
+        settings.gameObject.SetActive(false);
+        quit.gameObject.SetActive(false);
+
+        inSettings = true;
+        settingsUI.SetActive(true);
     }
 
     public void Quit()
@@ -40,39 +54,66 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    public void Show()
+    {
+        play.gameObject.SetActive(true);
+        settings.gameObject.SetActive(true);
+        quit.gameObject.SetActive(true);
+
+        if (InputHandler.InputMenuAccept)
+        {
+            InputHandler.SetMenuAcceptFalse();
+        }
+        if (InputHandler.InputMenuDecline)
+        {
+            InputHandler.SetMenuDeclineFalse();
+        }
+        if (InputHandler.InputPause)
+        {
+            InputHandler.SetPauseFalse();
+        }
+        inSettings = false;
+        cursor.GetComponent<Transform>().localPosition = new Vector3(-275, options[selection].GetComponent<Transform>().localPosition.y);
+    }
+
     public void Update()
     {
         progress = Mathf.Lerp(targetProgress, progress, Speed * Time.deltaTime);
         loadProgress.value = progress;
 
-        if (InputHandler.InputYNormal < 0)
+        if (!inSettings)
         {
-            InputHandler.SetMenuInputFalse();
-            selection++;
-            if (selection >= options.Count)
+            if (InputHandler.menuY < 0)
             {
-                selection = 0;
+                InputHandler.SetMenuInputFalse();
+                selection++;
+                if (selection >= options.Count)
+                {
+                    selection = options.Count - 1;
+                }
             }
-            cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
-        }
-        else if (InputHandler.InputYNormal > 0)
-        {
-            InputHandler.SetMenuInputFalse();
-            selection--;
-            if (selection < 0)
+            else if (InputHandler.menuY > 0)
             {
-                selection = options.Count - 1;
+                InputHandler.SetMenuInputFalse();
+                selection--;
+                if (selection < 0)
+                {
+                    selection++;
+                }
             }
+            //move cursor
+            cursor.GetComponent<Transform>().localPosition = new Vector3(-275, options[selection].GetComponent<Transform>().localPosition.y);
 
-            cursor.GetComponent<Transform>().localPosition = new Vector3(cursor.GetComponent<Transform>().localPosition.x, options[selection].GetComponent<Transform>().localPosition.y);
+            if (InputHandler.InputMenuAccept)
+            {
+                InputHandler.SetMenuAcceptFalse();
+                options[selection].onClick.Invoke();
+                if (selection == 0)
+                {
+                    cursor.SetActive(false);
+                }
+            }
         }
-
-        if (InputHandler.InputMenuAccept)
-        {
-            InputHandler.SetMenuAcceptFalse();
-            options[selection].onClick.Invoke();
-        }
-
     }
 
     IEnumerator LoadAsyncOperation()
