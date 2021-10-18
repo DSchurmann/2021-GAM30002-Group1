@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System;
-using System.Collections.Generic;
+using UnityEngine.Audio;
 
 public class SettingsSlider : MonoBehaviour
 {
@@ -26,6 +25,11 @@ public class SettingsSlider : MonoBehaviour
     public void SaveValue()
     {
         PlayerPrefs.SetFloat(prefName, slider.value);
+    }
+
+    public void ChangeMixer(AudioMixer m)
+    {
+        m.SetFloat(prefName, Mathf.Log10(slider.value) * 20);
     }
 
     public Slider GetSlider

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class SettingsHandler : MonoBehaviour
@@ -9,6 +10,7 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField] private GameObject previousMenu;
     [SerializeField] private GameObject cursor;
     private bool done = false;
+    [SerializeField] private AudioMixer mixer;
 
     [SerializeField] private PlayerInputHandler inputHandler;
     [SerializeField] private List<GameObject> options;
@@ -22,13 +24,14 @@ public class SettingsHandler : MonoBehaviour
     {
         resolutions = Screen.resolutions;
         fullscreen.isOn = Screen.fullScreen;
+        InitilizeSettings();
     }
 
     private void Update()
     {
         if (settingsUI.activeInHierarchy)
         {
-            if(!done) //make sure this is only run once when the menu is activated
+            if (!done) //make sure this is only run once when the menu is activated
             {
                 //set the options for resolution dropdown
                 if (resDropdown.options.Count == 0)
@@ -60,7 +63,7 @@ public class SettingsHandler : MonoBehaviour
                 done = true;
                 selection = 0;
 
-                if(inputHandler.InputPause)
+                if (inputHandler.InputPause)
                 {
                     inputHandler.SetPauseFalse();
                 }
@@ -83,7 +86,7 @@ public class SettingsHandler : MonoBehaviour
                 s.GetSlider.value += inputHandler.menuX * 0.005f;
             }
 
-            if(options[selection].GetComponentInChildren<Dropdown>())
+            if (options[selection].GetComponentInChildren<Dropdown>())
             {
 
             }
@@ -136,11 +139,12 @@ public class SettingsHandler : MonoBehaviour
     public void SaveAndExit()
     {
         selection = 0;
-        foreach(GameObject g in options)
+        foreach (GameObject g in options)
         {
             if (g.GetComponent<SettingsSlider>()) //save all sliders
             {
                 g.GetComponent<SettingsSlider>().SaveValue();
+                g.GetComponent<SettingsSlider>().ChangeMixer(mixer);
             }
             else if (g.GetComponentInChildren<Toggle>()) //toggle fullscreen if required
             {
@@ -161,7 +165,7 @@ public class SettingsHandler : MonoBehaviour
                     PlayerPrefs.SetInt("Fullscreen", i);
                 }
             }
-            else if(g.GetComponentInChildren<Dropdown>()) //change resolution
+            else if (g.GetComponentInChildren<Dropdown>()) //change resolution
             {
                 Resolution r = resolutions[g.GetComponentInChildren<Dropdown>().value];
                 Screen.SetResolution(r.width, r.height, Screen.fullScreen);
@@ -179,5 +183,79 @@ public class SettingsHandler : MonoBehaviour
             previousMenu.GetComponentInParent<PauseMenu>().Show();
         }
         settingsUI.SetActive(false);
+    }
+
+    private void InitilizeSettings()
+    {
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", 1);
+        }
+        else
+        {
+            mixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("Volume")) * 20);
+        }
+
+        if (!PlayerPrefs.HasKey("SFXVolume"))
+        {
+            PlayerPrefs.SetFloat("SFXVolume", 1);
+        }
+        else
+        {
+            mixer.SetFloat("SFXVolume", Mathf.Log10(PlayerPrefs.GetFloat("SFXVolume")) * 20);
+        }
+
+        if (!PlayerPrefs.HasKey("MusicVolume"))
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 1);
+        }
+        else
+        {
+            mixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20);
+        }
+
+        if (!PlayerPrefs.HasKey("Fullscreen"))
+        {
+            bool b = Screen.fullScreen;
+            int i;
+            if (b)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+            PlayerPrefs.SetInt("Fullscreen", i);
+        }
+        else
+        {
+            int i = PlayerPrefs.GetInt("Fullscreen");
+            if (i == 1)
+            {
+                Screen.fullScreen = true;
+            }
+            else
+            {
+                Screen.fullScreen = false;
+            }
+        }
+        if (!PlayerPrefs.HasKey("Resolution"))
+        {
+            for (int i = 0; i < Screen.resolutions.Length; i++)
+            {
+                if (Screen.currentResolution.width == Screen.resolutions[i].width && Screen.currentResolution.height == Screen.resolutions[i].height)
+                {
+                    PlayerPrefs.SetInt("Resolution", i);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Resolution r = Screen.resolutions[PlayerPrefs.GetInt("Resolution")];
+            Screen.SetResolution(r.width, r.height, Screen.fullScreen);
+        }
+        PlayerPrefs.Save();
     }
 }

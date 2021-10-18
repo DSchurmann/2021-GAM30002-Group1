@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class GameController : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class GameController : MonoBehaviour
     public bool IsFriend = true;
 
     public UIHandler UH;
+    public AudioMixer mixer;
 
     // checkpoint save
     private SerializablePlayerSave checkpoint = new SerializablePlayerSave();
@@ -42,19 +44,34 @@ public class GameController : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Volume", 1);
         }
-        if(!PlayerPrefs.HasKey("SFXVolume"))
+        else
+        {
+            mixer.SetFloat("Volume", Mathf.Log10(PlayerPrefs.GetFloat("Volume")) * 20);
+        }
+
+        if (!PlayerPrefs.HasKey("SFXVolume"))
         {
             PlayerPrefs.SetFloat("SFXVolume", 1);
         }
-        if(!PlayerPrefs.HasKey("MusicVolume"))
+        else
+        {
+            mixer.SetFloat("SFXVolume", Mathf.Log10(PlayerPrefs.GetFloat("SFXVolume")) * 20);
+        }
+
+        if (!PlayerPrefs.HasKey("MusicVolume"))
         {
             PlayerPrefs.SetFloat("MusicVolume", 1);
         }
-        if(!PlayerPrefs.HasKey("Fullscreen"))
+        else
+        {
+            mixer.SetFloat("MusicVolume", Mathf.Log10(PlayerPrefs.GetFloat("MusicVolume")) * 20);
+        }
+
+        if (!PlayerPrefs.HasKey("Fullscreen"))
         {
             bool b = Screen.fullScreen;
             int i;
-            if(b)
+            if (b)
             {
                 i = 1;
             }
@@ -67,7 +84,7 @@ public class GameController : MonoBehaviour
         else
         {
             int i = PlayerPrefs.GetInt("Fullscreen");
-            if(i == 1)
+            if (i == 1)
             {
                 Screen.fullScreen = true;
             }
@@ -76,11 +93,11 @@ public class GameController : MonoBehaviour
                 Screen.fullScreen = false;
             }
         }
-        if(!PlayerPrefs.HasKey("Resolution"))
+        if (!PlayerPrefs.HasKey("Resolution"))
         {
-            for( int i = 0; i < Screen.resolutions.Length; i++)
+            for (int i = 0; i < Screen.resolutions.Length; i++)
             {
-                if(Screen.currentResolution.width == Screen.resolutions[i].width && Screen.currentResolution.height == Screen.resolutions[i].height)
+                if (Screen.currentResolution.width == Screen.resolutions[i].width && Screen.currentResolution.height == Screen.resolutions[i].height)
                 {
                     PlayerPrefs.SetInt("Resolution", i);
                     break;
