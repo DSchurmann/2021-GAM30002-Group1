@@ -41479,12 +41479,16 @@ MonoBehaviour:
     m_ActionName: Gameplay/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 99d35eee-7a65-486d-979a-61934d05f835
-    m_ActionName: Menu/Unpause[/Keyboard/escape,/XInputControllerWindows/start]
+    m_ActionId: 852f6339-22b3-48d8-8c09-878f50055ff2
+    m_ActionName: Gameplay/MenuInput[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/XInputControllerWindows/dpad]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 2e041cab-ffb0-4c0e-9d81-136e69199fcb
-    m_ActionName: Menu/Interact[/Keyboard/e,/XInputControllerWindows/buttonEast]
+    m_ActionId: 9d65b366-8d01-4bfc-a3c6-b5f95dd9d872
+    m_ActionName: Gameplay/MenuAccept[/Keyboard/enter,/Keyboard/e,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: aecf32b5-6d41-46be-9d6c-23be42c054a3
+    m_ActionName: Gameplay/MenuDecline[/Keyboard/q,/Keyboard/backspace,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -41569,6 +41573,7 @@ MonoBehaviour:
   maxLedgeJumpHeight: 2.2
   climbForwardAmount: 0.4
   groundAngle: {x: 0, y: 0, z: 0}
+  groundObject: {fileID: 0}
   maxSlopeAngle: 30
   _rb: {fileID: 7768186053678144342}
 --- !u!114 &7426239931107175140
@@ -41609,7 +41614,7 @@ AudioSource:
   m_GameObject: {fileID: 7426239931107175143}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
+  OutputAudioMixerGroup: {fileID: 7942975663697551554, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
