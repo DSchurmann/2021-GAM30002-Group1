@@ -35,9 +35,11 @@ public class PlayerInputHandler : MonoBehaviour
     public bool InputPause { get; private set; }
     
     // Unpause Button
-    public bool InputUnpause { get; private set; }
-
+    public Vector2 rawMenuInput { get; private set; }
+    public float menuX { get; private set; }
+    public float menuY { get; private set; }
     public bool InputMenuAccept { get; private set; }
+    public bool InputMenuDecline { get; private set; }
 
     [SerializeField]
     private float inputDelay = 1f;
@@ -260,25 +262,14 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void SetPauseFalse() => InputPause = false;
 
-    // get unpause input
-    public void GetUnpauseInput(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started)
-        {
-            InputUnpause = true;
-        }
-    }
-
-    public void SetUnpauseFalse() => InputUnpause = false;
-
     public void GetMenuInput(InputAction.CallbackContext ctx)
     {
-        RawMovementInput = ctx.ReadValue<Vector2>();
-        InputXNormal = (int)(RawMovementInput * Vector2.right).normalized.x;
-        InputYNormal = (int)(RawMovementInput * Vector2.up).normalized.y;
+            rawMenuInput = ctx.ReadValue<Vector2>();
+            menuX = (int)(rawMenuInput* Vector2.right).normalized.x;
+            menuY = (int)(rawMenuInput * Vector2.up).normalized.y;
     }
 
-    public void SetMenuInputFalse() => InputXNormal = InputYNormal = 0;
+    public void SetMenuInputFalse() => menuX = menuY = 0;
 
     public void GetMenuAccept(InputAction.CallbackContext ctx)
     {
@@ -289,4 +280,14 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
     public void SetMenuAcceptFalse() => InputMenuAccept = false;
+    
+    public void GetMenuDecline(InputAction.CallbackContext ctx)
+    {
+        if(ctx.started)
+        {
+            InputMenuDecline = true;
+        }
+    }
+
+    public void SetMenuDeclineFalse() => InputMenuDecline = false;
 }

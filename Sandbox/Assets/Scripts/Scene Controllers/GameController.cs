@@ -22,7 +22,6 @@ public class GameController : MonoBehaviour
     private SerializablePlayerSave checkpoint = new SerializablePlayerSave();
     private bool saved;
 
-
     //AWAKE: Set Singleton
     private void Awake()
     {
@@ -35,6 +34,65 @@ public class GameController : MonoBehaviour
         //Don't Destroy
         DontDestroyOnLoad(this.gameObject);
 
+        //uncomment to delete player prefs
+        //PlayerPrefs.DeleteAll();
+
+        //check for player prefs and set those that don't exist
+        if (!PlayerPrefs.HasKey("Volume"))
+        {
+            PlayerPrefs.SetFloat("Volume", 1);
+        }
+        if(!PlayerPrefs.HasKey("SFXVolume"))
+        {
+            PlayerPrefs.SetFloat("SFXVolume", 1);
+        }
+        if(!PlayerPrefs.HasKey("MusicVolume"))
+        {
+            PlayerPrefs.SetFloat("MusicVolume", 1);
+        }
+        if(!PlayerPrefs.HasKey("Fullscreen"))
+        {
+            bool b = Screen.fullScreen;
+            int i;
+            if(b)
+            {
+                i = 1;
+            }
+            else
+            {
+                i = 0;
+            }
+            PlayerPrefs.SetInt("Fullscreen", i);
+        }
+        else
+        {
+            int i = PlayerPrefs.GetInt("Fullscreen");
+            if(i == 1)
+            {
+                Screen.fullScreen = true;
+            }
+            else
+            {
+                Screen.fullScreen = false;
+            }
+        }
+        if(!PlayerPrefs.HasKey("Resolution"))
+        {
+            for( int i = 0; i < Screen.resolutions.Length; i++)
+            {
+                if(Screen.currentResolution.width == Screen.resolutions[i].width && Screen.currentResolution.height == Screen.resolutions[i].height)
+                {
+                    PlayerPrefs.SetInt("Resolution", i);
+                    break;
+                }
+            }
+        }
+        else
+        {
+            Resolution r = Screen.resolutions[PlayerPrefs.GetInt("Resolution")];
+            Screen.SetResolution(r.width, r.height, Screen.fullScreen);
+        }
+        PlayerPrefs.Save();
     }
 
     // Start is called before the first frame update
@@ -52,7 +110,6 @@ public class GameController : MonoBehaviour
         {
             GameObject.Find("UI").GetComponentInChildren<PauseMenu>().Resume();
         }
-
 
         ShowMouse(false);
     }
