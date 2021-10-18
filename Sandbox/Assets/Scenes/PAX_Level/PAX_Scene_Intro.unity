@@ -29070,6 +29070,7 @@ MonoBehaviour:
   golemAudioPos: {x: 0, y: 0, z: 0}
   IsFriend: 0
   UH: {fileID: 0}
+  mixer: {fileID: 24100000, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
 --- !u!114 &1041749280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31954,54 +31955,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: 7b617150-07d0-4eeb-850c-5e7a16c18e20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionId
-      value: 852f6339-22b3-48d8-8c09-878f50055ff2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_ActionId
-      value: 9d65b366-8d01-4bfc-a3c6-b5f95dd9d872
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_ActionId
-      value: aecf32b5-6d41-46be-9d6c-23be42c054a3
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_ActionName
-      value: Gameplay/MenuInput[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_ActionName
-      value: Gameplay/MenuInteract[/Keyboard/enter,/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_ActionName
-      value: Gameplay/MenuDecline[/Keyboard/q,/Keyboard/escape,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[10].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetMenuInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[11].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetMenuAccept
-      objectReference: {fileID: 0}
-    - target: {fileID: 2487832545742969079, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.data[12].m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: GetMenuDecline
-      objectReference: {fileID: 0}
-    - target: {fileID: 6811352630803394505, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6811352631653667222, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -32090,25 +32043,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 7486713530557695266, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_DefaultActionMap
-      value: 7b617150-07d0-4eeb-850c-5e7a16c18e20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7486713530557695266, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: m_ActionEvents.Array.size
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 7486713530557695267, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-      propertyPath: previousMenu
-      value: 
-      objectReference: {fileID: 1186429417}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
---- !u!1 &1186429417 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 944956494965228000, guid: ecfcbb4667022b84f84766c655de1d0d, type: 3}
-  m_PrefabInstance: {fileID: 1186429416}
-  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1187591028
 Mesh:
   m_ObjectHideFlags: 0

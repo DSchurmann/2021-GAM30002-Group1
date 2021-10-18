@@ -82,22 +82,22 @@ public abstract class GolemState: PlayerState
                 if(!isPoseLocked)
                 {
                     // simple posing
-                    if (inputPoseRaise)
+                    if (inputPoseRaise && player.CurrentState != player.RaiseAbility)
                     {
                         player.ChangeState(player.RaiseAbility);
                         player.InputHandler.SetNorthFalse();
                     }
-                    if (inputPoseStep)
+                    if (inputPoseStep && player.CurrentState != player.StepAbility)
                     {
                         player.ChangeState(player.StepAbility);
                         player.InputHandler.SetWestFalse();
                     }
-                    if (inputPoseT)
+                    if (inputPoseT && player.CurrentState != player.TPoseAbility)
                     {
                         player.ChangeState(player.TPoseAbility);
                         player.InputHandler.SetEastFalse();
                     }
-                    if (inputPoseC)
+                    if (inputPoseC && player.CurrentState != player.CrouchAbility)
                     {
                         player.ChangeState(player.CrouchAbility);
                         player.InputHandler.SetSouthFalse();

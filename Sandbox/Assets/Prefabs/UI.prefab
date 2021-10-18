@@ -4887,13 +4887,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 7486713531570753715}
   m_HandleRect: {fileID: 7486713530107549237}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.000001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7486713531966813168}
+        m_TargetAssemblyTypeName: SettingsSlider, Assembly-CSharp
+        m_MethodName: ChangeMixer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 24100000, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Audio.AudioMixer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7486713530243043022
 GameObject:
   m_ObjectHideFlags: 0
@@ -5196,13 +5208,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 7486713529852127212}
   m_HandleRect: {fileID: 7486713530311985998}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.000001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7486713530131845250}
+        m_TargetAssemblyTypeName: SettingsSlider, Assembly-CSharp
+        m_MethodName: ChangeMixer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 24100000, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Audio.AudioMixer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7486713530311985999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5560,8 +5584,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsUI: {fileID: 7486713531281822144}
-  previousMenu: {fileID: 0}
+  previousMenu: {fileID: 944956494965228000}
   cursor: {fileID: 8680501794200219566}
+  mixer: {fileID: 24100000, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
   inputHandler: {fileID: 7486713530557695261}
   options:
   - {fileID: 7486713531430029425}
@@ -6875,13 +6900,25 @@ MonoBehaviour:
   m_FillRect: {fileID: 7486713530733817316}
   m_HandleRect: {fileID: 7486713531437731529}
   m_Direction: 0
-  m_MinValue: 0
+  m_MinValue: 0.000001
   m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7486713530888253928}
+        m_TargetAssemblyTypeName: SettingsSlider, Assembly-CSharp
+        m_MethodName: ChangeMixer
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 24100000, guid: c1f5ccf2d5a9b0543b2d4844b227d9dc, type: 2}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Audio.AudioMixer, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7486713531357018583
 GameObject:
   m_ObjectHideFlags: 0
