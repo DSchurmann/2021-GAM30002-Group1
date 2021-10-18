@@ -343,18 +343,6 @@ MonoBehaviour:
     m_ActionId: 9d65b366-8d01-4bfc-a3c6-b5f95dd9d872
     m_ActionName: Gameplay/MenuInteract[/Keyboard/enter,/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 99d35eee-7a65-486d-979a-61934d05f835
-    m_ActionName: Menu/Unpause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows/start]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2e041cab-ffb0-4c0e-9d81-136e69199fcb
-    m_ActionName: Menu/Interact[/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e9d1488e-7d54-45a5-a03d-394b86d2c602
-    m_ActionName: Menu/Selection[/Keyboard/w,/Keyboard/s,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/d,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
-  - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 195924480}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
@@ -372,7 +360,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/MenuDecline[/Keyboard/q,/Keyboard/backspace,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: 7b617150-07d0-4eeb-850c-5e7a16c18e20
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &195924479
@@ -1909,6 +1897,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 195924477}
     m_Modifications:
+    - target: {fileID: 5791758861588439916, guid: 4b98af05e5d9f12409fa20737c8c622a, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: 7b617150-07d0-4eeb-850c-5e7a16c18e20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5791758861588439916, guid: 4b98af05e5d9f12409fa20737c8c622a, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 13
+      objectReference: {fileID: 0}
     - target: {fileID: 5791758861588439917, guid: 4b98af05e5d9f12409fa20737c8c622a, type: 3}
       propertyPath: cursor
       value: 

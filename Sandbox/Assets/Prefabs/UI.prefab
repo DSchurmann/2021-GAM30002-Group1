@@ -1271,54 +1271,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1357408772205492179}
         m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetPauseInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 99d35eee-7a65-486d-979a-61934d05f835
-    m_ActionName: Menu/Unpause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows/start]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1357408772205492179}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetInteractInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 2e041cab-ffb0-4c0e-9d81-136e69199fcb
-    m_ActionName: Menu/Interact[/Keyboard/e,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1357408772205492179}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
-        m_MethodName: GetMenuInput
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: e9d1488e-7d54-45a5-a03d-394b86d2c602
-    m_ActionName: Menu/Selection[/Keyboard/w,/Keyboard/s,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/d,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1357408772205492179}
-        m_TargetAssemblyTypeName: PlayerInputHandler, Assembly-CSharp
         m_MethodName: GetMenuInput
         m_Mode: 0
         m_Arguments:
@@ -1365,7 +1317,7 @@ MonoBehaviour:
     m_ActionName: Gameplay/MenuDecline[/Keyboard/q,/Keyboard/escape,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: 7b617150-07d0-4eeb-850c-5e7a16c18e20
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &2806199151011361654
@@ -5608,7 +5560,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsUI: {fileID: 7486713531281822144}
-  pauseMenu: {fileID: 7708771296953646599}
+  previousMenu: {fileID: 0}
   cursor: {fileID: 8680501794200219566}
   inputHandler: {fileID: 7486713530557695261}
   options:
@@ -5759,21 +5711,9 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: aecf32b5-6d41-46be-9d6c-23be42c054a3
     m_ActionName: Gameplay/MenuDecline[/Keyboard/q,/Keyboard/backspace,/XInputControllerWindows/buttonEast,/XInputControllerWindows/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 99d35eee-7a65-486d-979a-61934d05f835
-    m_ActionName: Menu/Unpause[/Keyboard/escape,/XInputControllerWindows/start,/XInputControllerWindows/start]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 2e041cab-ffb0-4c0e-9d81-136e69199fcb
-    m_ActionName: Menu/Interact[/Keyboard/e,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e9d1488e-7d54-45a5-a03d-394b86d2c602
-    m_ActionName: Menu/Selection[/Keyboard/w,/Keyboard/s,/XInputControllerWindows/buttonSouth,/XInputControllerWindows/buttonSouth,/Keyboard/d,/XInputControllerWindows/dpad,/XInputControllerWindows/dpad]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: 7b617150-07d0-4eeb-850c-5e7a16c18e20
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!1 &7486713530634128350
