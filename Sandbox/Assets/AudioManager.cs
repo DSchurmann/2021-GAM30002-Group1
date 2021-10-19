@@ -21,6 +21,9 @@ public class AudioManager : MonoBehaviour
     //public bool canPlayLandSound = true;
     //public float delaySound_land = 0.25f;
 
+    [Header("Water Splashes")]
+    public AudioClip[] waterSplashes;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +34,13 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    // play a water splash sound by choice
+    public AudioClip PlayWaterSplash(int option)
+    {
+        AudioClip clip = waterSplashes[option];
+        return clip;
     }
 
     // play a random jump sound from the list
