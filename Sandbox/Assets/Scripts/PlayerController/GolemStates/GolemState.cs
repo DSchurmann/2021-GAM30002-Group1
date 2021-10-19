@@ -154,6 +154,7 @@ public abstract class GolemState: PlayerState
     {
         base.Exit();
         //Debug.Log(this.GetType().Name + " state exited");
+        player.initialState = false;
     }
     
     // state function

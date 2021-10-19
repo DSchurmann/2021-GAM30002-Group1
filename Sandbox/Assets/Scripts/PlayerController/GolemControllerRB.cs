@@ -22,6 +22,8 @@ public class GolemControllerRB : PlayerControllerRB
 
     public bool posing;
     public string _CurrentState = "none";
+
+    public bool initialState = true;
     #endregion
     // Awake and Start functions
     #region Start Functions
@@ -45,6 +47,8 @@ public class GolemControllerRB : PlayerControllerRB
     public override void Start()
     {
         base.Start();
+
+        initialState = true;
 
         // set initial controlled state
         ControllerEnabled = false;
