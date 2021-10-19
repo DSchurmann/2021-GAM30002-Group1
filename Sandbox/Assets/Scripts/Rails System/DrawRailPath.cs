@@ -24,8 +24,18 @@ public class DrawRailPath : MonoBehaviour
                 if (t != transform)
                 {
                     nodes.Add(t.gameObject);
+                    if (t.gameObject.GetComponent<Node>() == null)
+                    {
+                        t.gameObject.AddComponent<Node>();
+                    }
+                    Node node = t.gameObject.GetComponent<Node>();
+                    node.rail = GetComponent<Rail>();
                 }
             }
+        }
+        foreach (GameObject node in nodes)
+        {
+            node.GetComponent<Node>().UpdateConnectingNodes();
         }
 #endif
     }
@@ -43,12 +53,17 @@ public class DrawRailPath : MonoBehaviour
                 {
                     Debug.Log("Added node: " + t.name + " to rail: " + name);
                     nodes.Add(t.gameObject);
-                    //if (g.GetComponent<Node>() == null)
-                    //{
-                    //    g.AddComponent<Node>();
-                    //}
-                    //Node node = g.GetComponent<Node>();
-                    //node.rail = this;
+                    nodes.Add(t.gameObject);
+                    if (t.gameObject.GetComponent<Node>() == null)
+                    {
+                        t.gameObject.AddComponent<Node>();
+                    }
+                    Node node = t.gameObject.GetComponent<Node>();
+                    node.rail = GetComponent<Rail>();
+                    foreach (GameObject n in nodes)
+                    {
+                        n.GetComponent<Node>().UpdateConnectingNodes();
+                    }
                 }
 
             }

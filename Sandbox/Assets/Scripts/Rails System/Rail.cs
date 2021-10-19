@@ -51,20 +51,20 @@ public class Rail : MonoBehaviour
             foreach (GameObject g in GetComponent<DrawRailPath>().Nodes)
             {
                 nodes.Add(g.transform);
-                if (g.GetComponent<Node>() == null)
-                {
-                    g.AddComponent<Node>();
-                }
-                Node node = g.GetComponent<Node>();
-                node.rail = this;
+                //if (g.GetComponent<Node>() == null)
+                //{
+                //    g.AddComponent<Node>();
+                //}
+                //Node node = g.GetComponent<Node>();
+                //node.rail = this;
             }
         }
 
         // update the connecting node of all nodes
-        foreach (Transform node in nodes)
-        {
-            node.GetComponent<Node>().UpdateConnectingNodes();
-        }
+        //foreach (Transform node in nodes)
+        //{
+        //    node.GetComponent<Node>().UpdateConnectingNodes();
+        //}
 
     }
 
