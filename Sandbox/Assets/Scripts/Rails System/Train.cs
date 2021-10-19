@@ -184,8 +184,8 @@ public class Train : MonoBehaviour
     {
         if (GetComponent<PlayerControllerRB>() != null)
         {
-            float inputY = GetComponent<PlayerControllerRB>().InputHandler.RawMovementInput.y;
-            if (Mathf.Abs(inputY) >= DeadZone)
+            float inputY =  GetComponent<PlayerControllerRB>().InputHandler.RawMovementInput.y;
+            if (Mathf.Abs(inputY) >= DeadZone && GetComponent<PlayerControllerRB>().ControllerEnabled)
             {
                 dirInput = (int)Mathf.Sign(inputY);
             }
