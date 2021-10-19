@@ -76,12 +76,12 @@ public class LedgeDetector
             //Debug.Log(heightHit.collider.gameObject.name);
             if(depthHit.collider.gameObject.GetComponent<DeathBox>() != null)
             {
-                Debug.Log("DEPTH HIT: " + depthHit.collider.gameObject.name);
+                //Debug.Log("DEPTH HIT: " + depthHit.collider.gameObject.name);
                 return true;
             }
             else
             {
-                Debug.Log("DEPTH HIT: " + depthHit.collider.gameObject.name);
+                //Debug.Log("DEPTH HIT: " + depthHit.collider.gameObject.name);
                 return false;
             }
             //return false;

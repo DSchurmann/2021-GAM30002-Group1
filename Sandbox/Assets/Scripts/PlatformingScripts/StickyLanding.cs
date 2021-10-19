@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class StickyLanding : MonoBehaviour
 {
-
+    private MovingPlatform platform = null;
     private Transform parent;
-    private GameObject player = null;
 
     // Start is called before the first frame update
     void Start()
@@ -31,28 +30,42 @@ public class StickyLanding : MonoBehaviour
 
     private void FixedUpdate()
     {
-    
-
-        if(player != null)
+        if(platform != null)
         {
             if (parent != null)
             {
-                player.transform.parent = parent;
+                transform.parent = parent;
             }
             else
             {
-                player.transform.parent = null;
+                // default; no parent
+                transform.parent = null;
             }
-            player = null;
+            platform = null;
+        }
+
+        if (Physics.Raycast(transform.position + Vector3.up * 1f, Vector3.down, out RaycastHit hit, 2))
+        {
+            if (hit.collider.gameObject.GetComponent<MovingPlatform>() != null)
+            {
+                if (platform == null)
+                {
+                    Debug.Log("GOLEM ON PLATFORM");
+
+                    platform = hit.collider.GetComponent<MovingPlatform>();
+                    parent = transform.parent;
+                    transform.parent = platform.transform;
+                }
+            }
         }
     }
 
-    void AddPlayer()
+    void AddPlatform()
     {
 
     }
 
-    void RemovePlayer()
+    void RemovePlatform()
     {
 
     }
@@ -61,22 +74,9 @@ public class StickyLanding : MonoBehaviour
     {
 
         //if (collisionInfo.gameObject == GameController.GH.childObj)
-        if (collisionInfo.gameObject.GetComponent<ChildControllerRB>() != null)
+        if (collisionInfo.gameObject.GetComponent<MovingPlatform>() != null)
         {
-            //Debug.Log("PLAYER ON PLATFORM");
-            if (Physics.Raycast(collisionInfo.gameObject.transform.position, Vector3.down, out RaycastHit hit, 2))
-            {
-                if (hit.collider.gameObject == this.gameObject)
-                {
-                    if(player == null)
-                    {
-                        Debug.Log("PLAYER ON PLATFORM");
-                        parent = collisionInfo.gameObject.transform.parent;
-                        collisionInfo.gameObject.transform.parent = this.transform;
-                        player = collisionInfo.gameObject;
-                    }
-                }
-            }
+            
         }
     }
 }

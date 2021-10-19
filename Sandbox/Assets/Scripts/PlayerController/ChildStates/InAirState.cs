@@ -35,7 +35,7 @@ public class InAirState: ChildState
             player.ChangeState(player.WallClimbLedgeState);
         }
 
-        Debug.Log("PLAYER IN AIR");
+        //Debug.Log("PLAYER IN AIR");
     }
 
     public override void Update()

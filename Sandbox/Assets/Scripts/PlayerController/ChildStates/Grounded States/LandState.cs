@@ -13,7 +13,7 @@ public class LandState : GroundedState
     {
         base.Enter();
 
-        Debug.Log("PLAYER LANDED");
+        //Debug.Log("PLAYER LANDED");
 
         if (player.isGrounded)
         {
