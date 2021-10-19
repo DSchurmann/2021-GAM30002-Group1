@@ -258,6 +258,11 @@ public class PlayerControllerRB : StateMachine
             //Debug.Log("switch with: " + Vector3.Distance(new Vector3(targetNode.transform.position.x, 0f, targetNode.transform.position.z), new Vector3(transform.position.x, 0f, transform.position.z)));
             Train.rail = targetNode.rail;
             Train.segment = targetNode.GetNodeIndex();
+            // ensure segment is within range
+            if (Train.segment <= targetNode.rail.Nodes.Count - 1)
+            {
+                Train.segment = targetNode.rail.Nodes.Count - 2;
+            }
         }
 
     }
