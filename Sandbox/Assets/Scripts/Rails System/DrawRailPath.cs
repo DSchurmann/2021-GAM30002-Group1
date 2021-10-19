@@ -7,7 +7,7 @@ using System.Collections.Generic;
 public class DrawRailPath : MonoBehaviour
 {
     [SerializeField] private Color colour;
-    [SerializeField] private List<GameObject> nodes = new List<GameObject>();
+    public List<GameObject> nodes = new List<GameObject>();
     [SerializeField] private float radius = 0.25f;
 
     private void Awake()
@@ -29,6 +29,33 @@ public class DrawRailPath : MonoBehaviour
         }
 #endif
     }
+
+#if UNITY_EDITOR
+    private void Update()
+    {
+        Transform[] child = GetComponentsInChildren<Transform>();
+        //if there are nodes, add game object to list
+        if (child != null)
+        {
+            foreach (Transform t in child)
+            {
+                if (!nodes.Contains(t.gameObject) && t != transform)
+                {
+                    Debug.Log("Added node: " + t.name + " to rail: " + name);
+                    nodes.Add(t.gameObject);
+                    //if (g.GetComponent<Node>() == null)
+                    //{
+                    //    g.AddComponent<Node>();
+                    //}
+                    //Node node = g.GetComponent<Node>();
+                    //node.rail = this;
+                }
+
+            }
+        }
+    }
+#endif
+
 
 #if UNITY_EDITOR
     private void OnDrawGizmos()

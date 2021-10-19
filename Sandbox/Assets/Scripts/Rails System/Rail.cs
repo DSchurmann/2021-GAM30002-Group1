@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+//[ExecuteInEditMode]
 public class Rail : MonoBehaviour
 {
     [SerializeField] private int priority = 0;
@@ -16,13 +16,25 @@ public class Rail : MonoBehaviour
     {
         nodes = new List<Transform>();
 
-
+        // get a reference to all the nodes and add a node script
         if (GetComponent<DrawRailPath>() != null)
         {
             foreach (GameObject g in GetComponent<DrawRailPath>().Nodes)
             {
                 nodes.Add(g.transform);
+                if (g.GetComponent<Node>() == null)
+                {
+                    g.AddComponent<Node>();
+                }
+                Node node = g.GetComponent<Node>();
+                node.rail = this;
             }
+        }
+
+        // update the connecting node of all nodes
+        foreach (Transform node in nodes)
+        {
+            node.GetComponent<Node>().UpdateConnectingNodes();
         }
 
     }
