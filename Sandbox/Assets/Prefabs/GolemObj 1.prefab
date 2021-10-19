@@ -1954,6 +1954,7 @@ MonoBehaviour:
   PoseLockTime: 0.6
   posing: 0
   _CurrentState: none
+  initialState: 1
 --- !u!114 &2979943131630858027
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2206,11 +2207,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a5c49d2ecdf598418715e6ff77d9807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  segment: -1
   rail: {fileID: 0}
   isConnectedtoRail: 0
   railSeekRange: 2
   type: 2
-  DeadZone: 0.7
+  DeadZone: 0.6
 --- !u!82 &7671933440530064416
 AudioSource:
   m_ObjectHideFlags: 0

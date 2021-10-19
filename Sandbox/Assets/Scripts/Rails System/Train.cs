@@ -7,13 +7,15 @@ public class Train : MonoBehaviour
     // the distance to move along the rail in each step
     private const float TRAIN_INCREMENT_DIST = 0.6f;
 
-    private int segment = -1;
-    [SerializeField] private Rail rail;
+    public int segment = -1;
+    public Rail rail;
     [SerializeField] private bool isConnectedtoRail = false;
     private Vector2 dir;
 
     [SerializeField] private float railSeekRange = 2f;
     [SerializeField] private RailType type;
+
+    public float RailSeekRange { get { return railSeekRange; } }
 
 
     private float percentage;
@@ -225,7 +227,7 @@ public class Train : MonoBehaviour
                     float dot = Vector3.Dot(Vector3.forward * dirInput, r.ClosestPointOnCatmullRom(playerPosition) - playerPosition);
                     //Debug.Log("DOT: " + dot);
                     //Debug.Log("DIR INPUT: " + dirInput);
-                    float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;//Use arc cosine to get the radian of the angle and convert it into an angle
+                    //float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;//Use arc cosine to get the radian of the angle and convert it into an angle
                     //Debug.Log(string.Format("Angle:{0}", angle));
 
                     if (dot > 0)

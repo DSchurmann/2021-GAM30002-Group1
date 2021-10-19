@@ -11,6 +11,11 @@ public class Node : MonoBehaviour
 
     public List<Node> linkToConnectingNodes = new List<Node>();
 
+    public int GetNodeIndex()
+    {
+        return rail.Nodes.IndexOf(this);
+    }
+
     public void UpdateConnectingNodes()
     {
         linkToConnectingNodes.Clear();

@@ -215,6 +215,52 @@ public class PlayerControllerRB : StateMachine
         RB.velocity = tempVelocity;
         CurrentVelocity = tempVelocity;
     }
+
+    // set position of target to move towards
+    public void MoveTowardsTarget(Vector3 target, float speed, Rail targetRail)
+    {
+        // look for the closest node to the player 
+        Node startNode = Train.rail.Nodes[Train.rail.GetSegmentOfClosestPoint(transform.position)];
+        //Debug.Log("start " + startNode.name + " rail " + Train.rail.name);
+
+        // look for the closest node to the target
+        Node endNode = targetRail.Nodes[targetRail.GetSegmentOfClosestPoint(target)];
+        //Debug.Log("end " + endNode.name + " rail " + targetRail.name);
+
+        // calculate the path though graph search
+        Node targetNode = Rail.CalulateNextNodeinPathThroughRails(startNode, endNode);
+        //if (targetNode) Debug.Log("next " + targetNode.name + " rail " + targetNode.rail.name);
+
+        // move player based on calculated path
+        // test if both characters are on the same segment
+        if (!targetNode)
+        {
+            // both characters on the same segment move towards player
+            Vector3 angle = (target - transform.position).normalized;
+            SetVelocityX(speed * angle.x);
+        }
+        // test if target node on the same rail as player
+        else if (targetNode.rail == Train.rail)
+        {
+            // compare the index's of the rail to get the direction
+            int direction = targetNode.GetNodeIndex() - startNode.GetNodeIndex();
+            SetVelocityX(speed * direction);
+        }
+        // test if close enough to switch rails
+        else if (Vector3.Distance(new Vector3(targetNode.transform.position.x, 0f, targetNode.transform.position.z), new Vector3(transform.position.x, 0f, transform.position.z)) > Train.RailSeekRange)
+        {
+            // keep moving the player closer to the junction
+            SetVelocityX(-speed);
+        }
+        //move player to the next rail
+        else
+        {
+            //Debug.Log("switch with: " + Vector3.Distance(new Vector3(targetNode.transform.position.x, 0f, targetNode.transform.position.z), new Vector3(transform.position.x, 0f, transform.position.z)));
+            Train.rail = targetNode.rail;
+            Train.segment = targetNode.GetNodeIndex();
+        }
+
+    }
     #endregion
     // functions that check
     #region Check Functions

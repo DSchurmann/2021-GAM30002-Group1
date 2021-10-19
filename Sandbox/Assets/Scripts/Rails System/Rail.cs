@@ -12,6 +12,35 @@ public class Rail : MonoBehaviour
     private List<Transform> nodes;
     [SerializeField] private RailType type;
 
+    public List<Node> Nodes
+    {
+        get {
+            List<Node> nodesTemp = new List<Node>();
+            foreach (Transform t in nodes)
+            {
+                nodesTemp.Add(t.GetComponent<Node>());
+            }
+            return nodesTemp; 
+        }
+    }
+
+    public int NodeLength
+    {
+        get { return nodes.Count; }
+    }
+
+    public int Priority
+    {
+        get { return priority; }
+        set { priority = value; }
+    }
+
+    public RailType Type
+    {
+        get { return type; }
+        set { type = value; }
+    }
+
     private void Awake()
     {
         nodes = new List<Transform>();
@@ -37,6 +66,80 @@ public class Rail : MonoBehaviour
             node.GetComponent<Node>().UpdateConnectingNodes();
         }
 
+    }
+
+    private class PathNode
+    { 
+        public Node node { get; private set; }
+        public PathNode previous { get; set; }
+
+        public PathNode(Node node, PathNode previous)
+        {
+            this.node = node;
+            this.previous = previous;
+        }
+
+        public List<Node> Path()
+        {
+            List<Node> path = new List<Node>();
+            path.Add(node);
+            if (previous is PathNode)
+            {
+                foreach (Node n in previous.Path())
+                {
+                    path.Add(n);
+                }
+            }
+
+            return path;
+        }
+    }
+
+    static public Node CalulateNextNodeinPathThroughRails(Node startingNode, Node endingNode)
+    {
+        if (startingNode == endingNode)
+            return null;
+        return BFSpath(startingNode, endingNode).previous.node;
+    }
+
+    static public List<Node> CalulatePathThroughRails(Node startingNode, Node endingNode)
+    {
+        return BFSpath(startingNode, endingNode).Path();
+    }
+
+    static private PathNode BFSpath(Node startingNode, Node endingNode)
+    {
+        List<PathNode> frontier = new List<PathNode>();
+        List<Node> checkedNodes = new List<Node>();
+        frontier.Add(new PathNode(endingNode, null));
+        checkedNodes.Add(frontier[0].node);
+        while (frontier.Count != 0)
+        {
+            //Debug.Log("Selected node: " + frontier[0].node.name + " rail " + frontier[0].node.rail.name + "search count" + checkedNodes.Count);
+            // checks if node is at the goal
+            if (frontier[0].node == startingNode)
+            {
+                //Debug.Log("done");
+                return frontier[0];
+
+            }
+
+            // gets the children of the current node
+            List<Node> children = frontier[0].node.linkToConnectingNodes;
+            foreach (Node child in children)
+            {
+                if (!checkedNodes.Contains(child))
+                {
+                    checkedNodes.Add(child);
+                    frontier.Add(new PathNode(child, frontier[0]));
+                }
+            }
+
+            // removes the node from the frontier
+            frontier.RemoveAt(0);
+        }
+
+        return null;
     }
 
     public Vector3 Rotate(int seg, float d)
@@ -261,20 +364,5 @@ public class Rail : MonoBehaviour
         return t != this.transform;
     }
 
-    public int NodeLength
-    {
-        get { return nodes.Count; }
-    }
-
-    public int Priority
-    {
-        get { return priority; }
-        set { priority = value; }
-    }
-
-    public RailType Type
-    { 
-        get { return type; }
-        set { type = value; }
-    }
+    
 }
