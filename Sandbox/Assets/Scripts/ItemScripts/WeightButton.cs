@@ -14,6 +14,10 @@ public class WeightButton : MonoBehaviour, ITrigger
     private Vector3 idlePos;
     private float idlePosY;
     private CameraFollow camera;
+
+    public float cameraShakeIntestity = 2f;
+    public float cameraShakeTime = 2f;
+    public bool cameraShakeOnRelease = true;
    
     // triggered object positions positions
     [Header("Triggered Object")]
@@ -72,10 +76,11 @@ public class WeightButton : MonoBehaviour, ITrigger
                     }
                     break;
 
-                case TriggerMode.HOLD:
-                    triggered = true;
-                    Shake();
+                case TriggerMode.HOLD:              
+                    if (!triggered)
+                        Shake();
                     SendTrigger();
+                    triggered = true;
                     break;
             }
         }
@@ -85,6 +90,10 @@ public class WeightButton : MonoBehaviour, ITrigger
             {
                 triggered = false;
                 SendTriggerReset();
+                if (cameraShakeOnRelease)
+                {
+                    Shake();
+                }
             }
         }
     }
@@ -113,6 +122,6 @@ public class WeightButton : MonoBehaviour, ITrigger
 
     private void Shake()
     {
-        camera.Shake(2, 2);
+        camera.Shake(cameraShakeIntestity, cameraShakeTime);
     }
 }
