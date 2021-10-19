@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip[] ChildJumpSounds;
     public AudioClip[] ChildLandSounds;
     public AudioClip[] ChildStepSounds;
+    public AudioClip ChildDangerAhead;
     [Header("Child Sound Properties")]
     public float childFootstepVolume = 0.1f;
     public bool canPlayLandSound = true;

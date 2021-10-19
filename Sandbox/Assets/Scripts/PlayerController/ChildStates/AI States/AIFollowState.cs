@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AIFollowState : AIState
 {
+    public bool isDangerAhead;
 
     public AIFollowState(ChildControllerRB player, string animation) : base(player, animation)
     {
@@ -91,10 +92,17 @@ public class AIFollowState : AIState
         if (player.GetComponent<ClimbingController>().isGapAhead)
         {
             //Debug.Log("Stop");
+            if(!isDangerAhead)
+            {
+                isDangerAhead = true;
+                player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().ChildDangerAhead);
 
-            holdPosition.x = player.transform.position.x;
-            HoldPosition(true, false);
-            player.Anim.Play("Idle");
+                holdPosition.x = player.transform.position.x;
+                HoldPosition(true, false);
+                player.Anim.Play("Idle");
+               
+            }
+           
             //player.Following = false;
             //player.ChangeState(player.AIWaitState);
             //GameController.GH.UH.waiting = (true);
@@ -102,11 +110,14 @@ public class AIFollowState : AIState
         }
         else
         {
+            isDangerAhead = false;
             //Move Towards Golem
             Vector3 angle = (targPos - pos).normalized;
             player.SetVelocityX(followSpeed * angle.x);
             //flip the player
             if ((player.FacingDirection != 1 && angle.x > 0) || (player.FacingDirection != -1 && angle.x < 0)) { player.Flip(); }
+
+           
 
             ////set jump
             //if (isTouchingWall && player.CheckgWallClimbAbility())
