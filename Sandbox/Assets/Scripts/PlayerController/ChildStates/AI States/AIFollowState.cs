@@ -91,10 +91,10 @@ public class AIFollowState : AIState
         if (player.GetComponent<ClimbingController>().isGapAhead)
         {
             //Debug.Log("Stop");
-        
-            /*holdPosition.x = player.transform.position.x;
+
+            holdPosition.x = player.transform.position.x;
             HoldPosition(true, false);
-            player.Anim.Play("Idle");*/
+            player.Anim.Play("Idle");
             //player.Following = false;
             //player.ChangeState(player.AIWaitState);
             //GameController.GH.UH.waiting = (true);

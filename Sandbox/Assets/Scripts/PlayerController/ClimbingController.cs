@@ -51,7 +51,7 @@ public class ClimbingController : MonoBehaviour
     public Rigidbody _rb;
     public PlayerInputHandler InputHandler { get; protected set; }
 
-    protected bool inputInteract;
+    //protected bool inputInteract;
 
   
     // Start is called before the first frame update
@@ -68,13 +68,11 @@ public class ClimbingController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        inputInteract = InputHandler.InputInteract;
-        if(ledgeDetector != null)
-            groundObject = ledgeDetector.GroundBelow(transform.position + Vector3.up * 0.2f, gapCheckDepth);
+        //inputInteract = InputHandler.InputInteract;
 
         if (ledgeDetector != null && isEnabled)
         {
+            groundObject = ledgeDetector.GroundBelow(transform.position + Vector3.up * 0.2f, gapCheckDepth);
             isTouchingWall = ledgeDetector.TouchingWall().Any(w => w == true);
             isGapAhead = ledgeDetector.GapCheck(transform.position + Vector3.up * gapCheckHeight + (transform.forward * minDistanceToGap), gapCheckDepth);
             groundAngle = ledgeDetector.GroundCheck(transform.position + Vector3.up * 0.2f , gapCheckDepth);
@@ -86,11 +84,6 @@ public class ClimbingController : MonoBehaviour
             isTouchingWall = false;
         }
        
-        if(groundAngle.x != 0)
-        {
-            //Debug.Log("Ground angle: " + groundAngle);
-        }
-
 
         if(isTouchingWall)
         {
@@ -118,9 +111,6 @@ public class ClimbingController : MonoBehaviour
                     canClimb = false;
                     canJumpClimb = false;
                 }
-
-              
-
 
                 //Debug.Log(ColourConsoleText(canVault, "VAULT") + "    " + ColourConsoleText(canClimb, "CLIMB") + "    " + ColourConsoleText(canJumpClimb, "JUMP"));
 

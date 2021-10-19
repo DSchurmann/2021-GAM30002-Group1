@@ -36,7 +36,7 @@ public class GroundedState : ChildState
             // check for breakable ground below
             if(GroundBelow() != null)
             {
-                Debug.Log("Ground Below: " + GroundBelow());
+                //Debug.Log("Ground Below: " + GroundBelow());
                 if(GroundBelow().GetComponent<FallOnContact>() != null)
                 {
                     player.ChangeState(player.FallState);

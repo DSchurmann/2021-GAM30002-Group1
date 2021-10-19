@@ -70,16 +70,27 @@ public class LedgeDetector
     public bool GapCheck(Vector3 origin, float depth)
     {
         RaycastHit depthHit;
-        if (Physics.Raycast(origin, Vector3.down, out depthHit, depth))
+        if (Physics.Raycast(origin, Vector3.down, out depthHit, depth, Physics.AllLayers, QueryTriggerInteraction.Collide))
         {
             Debug.DrawLine(origin, depthHit.point, Color.yellow);
             //Debug.Log(heightHit.collider.gameObject.name);
-            return false;
+            if(depthHit.collider.gameObject.GetComponent<DeathBox>() != null)
+            {
+                Debug.Log("DEPTH HIT: " + depthHit.collider.gameObject.name);
+                return true;
+            }
+            else
+            {
+                Debug.Log("DEPTH HIT: " + depthHit.collider.gameObject.name);
+                return false;
+            }
+            //return false;
         }
         Debug.DrawLine(origin, origin + Vector3.down * depth, Color.cyan);
         return true;
 
     }
+
 
     public Vector3 GroundCheck(Vector3 origin, float depth)
     {
