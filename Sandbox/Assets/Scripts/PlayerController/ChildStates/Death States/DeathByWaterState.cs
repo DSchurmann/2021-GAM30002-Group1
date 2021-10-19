@@ -21,6 +21,7 @@ public class DeathByWaterState : DeathState
             player.Anim.Play(animation);
             // play splash sound
             player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().PlayWaterSplash(1));
+            player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().ChildHurtSound);
             player.StartCoroutine(GameController.GH.LoadGame(2));
         }
     }
