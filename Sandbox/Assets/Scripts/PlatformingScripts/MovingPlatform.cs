@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,10 +10,13 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private bool loop = true;
     private bool triggeredEnabled = false;
     private bool triggered = false;
-    private bool hold;
+    public bool hold;
     private bool held;
     private int clicks;
     private bool colliding;
+
+    public bool isMoving;
+    public bool isFalling;
     // platform modes
     public enum PlatFormMode { NONE, PINGPONG, ONCE, HOLDOPEN}
     public PlatFormMode platformMode = PlatFormMode.NONE;
@@ -40,16 +44,16 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private Vector3 TemptargetPos;
 
     // raycast variables
+    /* private Collider collider;
+     private bool hitDetect;
+     private  RaycastHit hit;
+     public Transform hitTransform;
+     public Vector3 hitPosition;*/
 
-    private Collider collider;
-    private bool hitDetect;
-    private  RaycastHit hit;
-    public Transform hitTransform;
-    public Vector3 hitPosition;
     // Start is called before the first frame update
     void Start()
     {
-        collider = GetComponent<Collider>();
+        //collider = GetComponent<Collider>();
 
         // check if start position exists, if not, get platform position
         if (startPos == Vector3.zero)
@@ -67,6 +71,11 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
 
     private void FixedUpdate()
     {
+
+        if(transform.position == startPos || transform.position == endPos)
+        {
+            isMoving = false;
+        }
 
         if (enabled)
         {
@@ -90,22 +99,23 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             }
         }
 
-        /*hitDetect = Physics.BoxCast(collider.bounds.center + (Vector3.down * transform.localScale.y / 2), new Vector3(transform.localScale.x / 2, 0.2f, transform.localScale.z / 2), -transform.up, out hit, transform.rotation, 0f);
-        if(hitDetect)
-        {
-            hitTransform = hit.collider.transform;
-            hitPosition = hit.point;
 
-            Debug.Log("HIT: " + hitTransform.gameObject.name);
+        /* hitDetect = Physics.BoxCast(collider.bounds.center + (Vector3.down * transform.localScale.y / 2), new Vector3(transform.localScale.x / 2, 0.2f, transform.localScale.z / 2), -transform.up, out hit, transform.rotation, 0f);
+         if (hitDetect)
+         {
+             hitTransform = hit.collider.transform;
+             hitPosition = hit.point;
 
-            Debug.DrawLine(transform.position, hit.point, Color.cyan);
-        }
-        else
-        {
-            Debug.DrawLine(collider.bounds.center, Vector3.down * 20, Color.cyan);
+             Debug.Log("HIT: " + hitTransform.gameObject.name);
 
-            ExtDebug.DrawBoxCastBox(collider.bounds.center + (Vector3.down* transform.localScale.y/2), new Vector3(transform.localScale.x/2, 0.2f, transform.localScale.z/2), transform.rotation, -transform.up, 0f, Color.cyan);
-        }*/
+             Debug.DrawLine(transform.position, hit.point, Color.cyan);
+         }
+         else
+         {
+             Debug.DrawLine(collider.bounds.center, Vector3.down * 20, Color.cyan);
+
+             ExtDebug.DrawBoxCastBox(collider.bounds.center + (Vector3.down * transform.localScale.y / 2), new Vector3(transform.localScale.x / 2, 0.2f, transform.localScale.z / 2), transform.rotation, -transform.up, 0f, Color.cyan);
+         }*/
     }
 
     // platform modes
@@ -119,6 +129,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             case TriggerMode.HOLD:
                 if (triggered)
                 {
+                    isFalling = false;
                     targetPos = endPos;
                     MovePlatform(moveSpeed);
                 }
@@ -129,6 +140,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                         Vector3 temp = startPos;
                         targetPos = startPos;
                         MovePlatform(fallSpeed);
+                        isFalling = true;
                         triggered = false;
                     }
 
@@ -244,10 +256,11 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         MovePlatform(speed);
     }
     // stop platform
-    private void StopPlatform()
+    public void StopPlatform()
     {
-        transform.position = transform.position;
+        MoveToPosition(transform, transform.position, 0);
     }
+
     #endregion
     // move platform
     private void MovePlatform(float speed)
@@ -310,8 +323,13 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
 
     public void MoveToPosition(Transform transform, Vector3 position, float timeToMove)
     {
-        if(!hold || !colliding)
-            transform.position = Vector3.MoveTowards(transform.position, position, timeToMove * Time.deltaTime);
+
+        if(!colliding)
+        {
+            isMoving = true;
+            transform.position = Vector3.MoveTowards(transform.position, position, timeToMove * Time.deltaTime *  Convert.ToInt32(!hold));
+        }
+           
     }
 
 
@@ -348,4 +366,6 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         targetPos = TemptargetPos;*/
         //MovePlatform(moveSpeed);
     }
+
+   
 }

@@ -26,7 +26,8 @@ public class ChildControllerRB : PlayerControllerRB
     public AIFollowState AIFollowState { get; private set; }
     public AIWaitState AIWaitState { get; private set; }
     public LogBreakState FallState { get; private set; }
-    public DeathState DeathState { get; private set; }
+    public DeathByWaterState DeathByWaterState { get; private set; }
+    public DeathInstantState InstantDeathState { get; private set; }
     #endregion
 
     private bool interactGrab;
@@ -55,7 +56,8 @@ public class ChildControllerRB : PlayerControllerRB
         WallGrabLedgeState = new WallGrabLedgeState(this, "LedgeHang");
 
         FallState = new LogBreakState(this, "Fall01");
-        DeathState = new DeathState(this, "Death");
+        DeathByWaterState = new DeathByWaterState(this, "DeathByWater");
+        InstantDeathState = new DeathInstantState(this, "Idle");
 
 
     }

@@ -20,7 +20,7 @@ public class DeathBox : MonoBehaviour
         ChildControllerRB child = other.gameObject.GetComponent<ChildControllerRB>();
         if (child != null)
         {
-            child.ChangeState(child.DeathState);
+            child.ChangeState(child.DeathByWaterState);
         }
     }
 }

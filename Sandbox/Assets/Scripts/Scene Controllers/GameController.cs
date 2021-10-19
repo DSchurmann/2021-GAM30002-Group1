@@ -17,6 +17,10 @@ public class GameController : MonoBehaviour
 
     public bool IsFriend = true;
 
+    // player variables
+    // child scale
+    protected Vector3 childScaleCopy;
+
     public UIHandler UH;
     public AudioMixer mixer;
 
@@ -110,6 +114,8 @@ public class GameController : MonoBehaviour
             Screen.SetResolution(r.width, r.height, Screen.fullScreen);
         }
         PlayerPrefs.Save();
+
+       
     }
 
     // Start is called before the first frame update
@@ -129,6 +135,10 @@ public class GameController : MonoBehaviour
         }
 
         ShowMouse(false);
+
+        // save child object scale
+        childScaleCopy = childObj.transform.GetChild(0).localScale;
+        Debug.Log("SCALE: " + childScaleCopy);
     }
 
     // Update is called once per frame
@@ -190,7 +200,8 @@ public class GameController : MonoBehaviour
     {
        
         yield return new WaitForSeconds(delay);
-
+        // normalise child scale
+        childObj.transform.GetChild(0).localScale = childScaleCopy;
         childObj.ChangeState(childObj.IdleState);
         SaveSystem.Load(checkpoint);
     }

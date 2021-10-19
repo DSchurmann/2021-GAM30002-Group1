@@ -2,15 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeathState : ChildState
+public class DeathByWaterState : DeathState
 {
-    protected int inputX;
-    protected bool  inputJump;
-    protected bool inputGrab;
-    protected bool  isGrounded;
-    protected bool isTouchingWall;
 
-    public DeathState(ChildControllerRB player, string animation) : base(player, animation)
+
+    public DeathByWaterState(ChildControllerRB player, string animation) : base(player, animation)
     {
 
     }
@@ -18,7 +14,12 @@ public class DeathState : ChildState
     {
         base.Enter();
 
-
+        if(player.alive)
+        {
+            player.StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(1f, 1, 1));
+            player.alive = false;
+            player.Anim.Play(animation);
+        }
     }
 
     public override void Exit()
@@ -31,20 +32,7 @@ public class DeathState : ChildState
     {
         base.Update();
 
-        if (isAnimationComplete)
-        {
-            player.StartCoroutine(GameController.GH.LoadGame(1));
-            
-        }
-
-
     }
-
-    public void HidePlayerByScale()
-    {
-        player.transform.GetChild(0).localScale = Vector3.zero;
-    }
-
     public override void FixedUpdate()
     {
         base.FixedUpdate();
