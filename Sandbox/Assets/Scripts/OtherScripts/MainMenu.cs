@@ -34,6 +34,7 @@ public class MainMenu : MonoBehaviour
         play.gameObject.SetActive(false);
         settings.gameObject.SetActive(false);
         quit.gameObject.SetActive(false);
+        cursor.SetActive(false);
         loadProgress.gameObject.SetActive(true);
         StartCoroutine(LoadAsyncOperation());
     }
@@ -108,10 +109,6 @@ public class MainMenu : MonoBehaviour
             {
                 InputHandler.SetMenuAcceptFalse();
                 options[selection].onClick.Invoke();
-                if (selection == 0)
-                {
-                    cursor.SetActive(false);
-                }
             }
         }
     }

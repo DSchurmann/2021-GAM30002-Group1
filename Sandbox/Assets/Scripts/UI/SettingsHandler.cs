@@ -3,6 +3,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
+using TMPro;
 
 public class SettingsHandler : MonoBehaviour
 {
@@ -17,7 +19,9 @@ public class SettingsHandler : MonoBehaviour
     private int selection = 0;
 
     Resolution[] resolutions;
-    [SerializeField] private Dropdown resDropdown;
+    [SerializeField] private TMP_Dropdown resDropdown;
+    private bool dropdownOpen = false;
+    private int value;
     [SerializeField] private Toggle fullscreen;
 
     private void Start()
@@ -25,6 +29,7 @@ public class SettingsHandler : MonoBehaviour
         resolutions = Screen.resolutions;
         fullscreen.isOn = Screen.fullScreen;
         InitilizeSettings();
+        fullscreen.interactable = false;
     }
 
     private void Update()
@@ -33,9 +38,11 @@ public class SettingsHandler : MonoBehaviour
         {
             if (!done) //make sure this is only run once when the menu is activated
             {
+                EventSystem.current.SetSelectedGameObject(null);
                 //set the options for resolution dropdown
                 if (resDropdown.options.Count == 0)
                 {
+                    resDropdown.ClearOptions();
                     List<string> res = new List<string>();
                     int resI = 0;
                     for (int i = 0; i < resolutions.Length; i++)
@@ -69,26 +76,38 @@ public class SettingsHandler : MonoBehaviour
                 }
             }
 
+            TMP_Dropdown d = options[selection].GetComponentInChildren<TMP_Dropdown>();
             if (inputHandler.InputMenuDecline)
             {
                 inputHandler.SetMenuDeclineFalse();
-                SaveAndExit();
+                if (d && dropdownOpen)
+                {
+                    d.Hide();
+                    dropdownOpen = false;
+                }
+                else
+                {
+                    SaveAndExit();
+                }
             }
             if (inputHandler.InputPause)
             {
                 inputHandler.SetPauseFalse();
-                SaveAndExit();
+                if (d && dropdownOpen)
+                {
+                    d.Hide();
+                    dropdownOpen = false;
+                }
+                else
+                {
+                    SaveAndExit();
+                }
             }
 
             SettingsSlider s = options[selection].GetComponent<SettingsSlider>();
             if (s)
             {
                 s.GetSlider.value += inputHandler.menuX * 0.005f;
-            }
-
-            if (options[selection].GetComponentInChildren<Dropdown>())
-            {
-
             }
 
             if (inputHandler.InputMenuAccept)
@@ -106,25 +125,63 @@ public class SettingsHandler : MonoBehaviour
                 {
                     options[selection].GetComponentInChildren<Toggle>().isOn = !options[selection].GetComponentInChildren<Toggle>().isOn;
                 }
-            }
 
-            //move selection based on player input
-            if (inputHandler.menuY < 0)
-            {
-                inputHandler.SetMenuInputFalse();
-                selection++;
-                if (selection >= options.Count)
+                if(d && !dropdownOpen)
                 {
-                    selection = options.Count - 1;
+                    print("should be down");
+                    dropdownOpen = true;
+                    d.Show();
+                    value = d.value;
+                }
+                else if(d && dropdownOpen)
+                {
+                    dropdownOpen = false;                    
+                    d.Hide();
+                    d.value = value;
                 }
             }
-            else if (inputHandler.menuY > 0)
+
+            if (!dropdownOpen)
             {
-                inputHandler.SetMenuInputFalse();
-                selection--;
-                if (selection < 0)
+                //move selection based on player input
+                if (inputHandler.menuY < 0)
                 {
+                    inputHandler.SetMenuInputFalse();
                     selection++;
+                    if (selection >= options.Count)
+                    {
+                        selection = options.Count - 1;
+                    }
+                }
+                else if (inputHandler.menuY > 0)
+                {
+                    inputHandler.SetMenuInputFalse();
+                    selection--;
+                    if (selection < 0)
+                    {
+                        selection++;
+                    }
+                }
+            }
+            else
+            {
+                if(inputHandler.menuY < 0)
+                {
+                    inputHandler.SetMenuInputFalse();
+                   value++;
+                    if (value >= d.options.Count)
+                    {
+                        value = d.options.Count - 1;
+                    }
+                }
+                else if(inputHandler.menuY < 0)
+                {
+                    inputHandler.SetMenuInputFalse();
+                    value--;
+                    if(value < 0)
+                    {
+                        value++;
+                    }
                 }
             }
             //move cursor
