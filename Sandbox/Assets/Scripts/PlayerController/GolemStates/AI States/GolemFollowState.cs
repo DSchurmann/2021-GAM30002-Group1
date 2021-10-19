@@ -84,7 +84,7 @@ public class GolemFollowState:GolemAIState
 
         diff.y = 0;
 
-        if(Mathf.Abs(diff.magnitude) > player.closeDistance)
+        if(Vector3.Distance(new Vector3(pos.x, 0f, pos.z), new Vector3(targPos.x, 0f, targPos.z)) > player.closeDistance)
         {
             //Move Towards Child
             //Vector3 angle = (targPos - pos).normalized;

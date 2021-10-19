@@ -40,7 +40,7 @@ public class AIFollowState : AIState
                 player.ChangeState(player.InAirState);
             }
             // change state to wait if close
-            if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) <= player.closeDistance)
+            if (Vector3.Distance(new Vector3(player.transform.position.x, 0f, player.transform.position.z), new Vector3(player.Other.transform.position.x, 0f, player.Other.transform.position.z)) <= player.closeDistance)
             {
                 Debug.Log("Child Close stop Following");
 
@@ -113,7 +113,7 @@ public class AIFollowState : AIState
             isDangerAhead = false;
             //Move Towards Golem
             Vector3 angle = (targPos - pos).normalized;
-            player.SetVelocityX(followSpeed * angle.x);
+            player.MoveTowardsTarget(targPos, followSpeed, player.Other.Train.rail);
             //flip the player
             if ((player.FacingDirection != 1 && angle.x > 0) || (player.FacingDirection != -1 && angle.x < 0)) { player.Flip(); }
 

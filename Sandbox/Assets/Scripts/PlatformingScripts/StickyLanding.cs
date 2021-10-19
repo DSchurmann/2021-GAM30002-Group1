@@ -50,7 +50,7 @@ public class StickyLanding : MonoBehaviour
             {
                 if (platform == null)
                 {
-                    Debug.Log("GOLEM ON PLATFORM");
+                    //Debug.Log("GOLEM ON PLATFORM");
 
                     platform = hit.collider.GetComponent<MovingPlatform>();
                     parent = transform.parent;
