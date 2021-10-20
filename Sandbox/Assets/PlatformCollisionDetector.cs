@@ -50,7 +50,7 @@ public class PlatformCollisionDetector : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(platform.isFalling)
+        if(platform.isFalling || platform.isMoving)
         {
             if (other.GetComponent<PlayerControllerRB>() != null || other.GetComponentInParent<PlayerControllerRB>() != null)
                 DetectCharacterHit(other);
@@ -59,7 +59,7 @@ public class PlatformCollisionDetector : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (platform.isFalling)
+        if (platform.isFalling || platform.isMoving)
         {
             if (other.GetComponent<PlayerControllerRB>() != null || other.GetComponentInParent<PlayerControllerRB>() != null)
                 DetectCharacterGone(other);

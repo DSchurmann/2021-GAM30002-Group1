@@ -17,6 +17,7 @@ public class DeathInstantState : DeathState
         if(player.alive)
         {
             player.StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(0f, 1, 0.5f));
+            player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().ChildHurtSound);
             player.alive = false;
             player.StartCoroutine(GameController.GH.LoadGame(1));
             HidePlayerByScale();
