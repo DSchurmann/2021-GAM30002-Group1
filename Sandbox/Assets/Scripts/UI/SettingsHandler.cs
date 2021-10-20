@@ -20,8 +20,12 @@ public class SettingsHandler : MonoBehaviour
 
     Resolution[] resolutions;
     [SerializeField] private TMP_Dropdown resDropdown;
-    private bool dropdownOpen = false;
+    private UIMouseOver mo;
     private int value;
+    private GameObject handle;
+    private List<GameObject> resOptions = new List<GameObject>();
+    [SerializeField] private Color defaultColour;
+    [SerializeField] private Color selectedColour;
     [SerializeField] private Toggle fullscreen;
 
     private void Start()
@@ -36,9 +40,9 @@ public class SettingsHandler : MonoBehaviour
     {
         if (settingsUI.activeInHierarchy)
         {
+            EventSystem.current.SetSelectedGameObject(null);
             if (!done) //make sure this is only run once when the menu is activated
             {
-                EventSystem.current.SetSelectedGameObject(null);
                 //set the options for resolution dropdown
                 if (resDropdown.options.Count == 0)
                 {
@@ -59,6 +63,7 @@ public class SettingsHandler : MonoBehaviour
                     resDropdown.AddOptions(res);
                     //change initial value
                     resDropdown.value = resI;
+                    mo = resDropdown.GetComponent<UIMouseOver>();
                 }
                 else
                 {
@@ -74,16 +79,20 @@ public class SettingsHandler : MonoBehaviour
                 {
                     inputHandler.SetPauseFalse();
                 }
+
+                if(inputHandler.InputMenuAccept)
+                {
+                    inputHandler.SetMenuAcceptFalse();
+                }
             }
 
             TMP_Dropdown d = options[selection].GetComponentInChildren<TMP_Dropdown>();
             if (inputHandler.InputMenuDecline)
             {
                 inputHandler.SetMenuDeclineFalse();
-                if (d && dropdownOpen)
+                if (d && d.IsExpanded)
                 {
                     d.Hide();
-                    dropdownOpen = false;
                 }
                 else
                 {
@@ -93,10 +102,9 @@ public class SettingsHandler : MonoBehaviour
             if (inputHandler.InputPause)
             {
                 inputHandler.SetPauseFalse();
-                if (d && dropdownOpen)
+                if (d && d.IsExpanded)
                 {
                     d.Hide();
-                    dropdownOpen = false;
                 }
                 else
                 {
@@ -126,22 +134,69 @@ public class SettingsHandler : MonoBehaviour
                     options[selection].GetComponentInChildren<Toggle>().isOn = !options[selection].GetComponentInChildren<Toggle>().isOn;
                 }
 
-                if(d && !dropdownOpen)
+                if(d && !d.IsExpanded)
                 {
-                    print("should be down");
-                    dropdownOpen = true;
                     d.Show();
                     value = d.value;
+                    handle = GameObject.Find("UI/SettingsMenu/SettingsPanel/Resolution/Dropdown/Dropdown List/Scrollbar");
+                    resOptions = new List<GameObject>();
+                    foreach(Transform t in GameObject.Find("UI/SettingsMenu/SettingsPanel/Resolution/Dropdown/Dropdown List/Viewport/Content").transform)
+                    {
+                        if(t.name != "Item")
+                        {
+                            resOptions.Add(t.gameObject);
+                        }
+                    }
                 }
-                else if(d && dropdownOpen)
+                else if(d && d.IsExpanded)
                 {
-                    dropdownOpen = false;                    
                     d.Hide();
                     d.value = value;
+                    d.RefreshShownValue();
                 }
             }
 
-            if (!dropdownOpen)
+            if(d && d.IsExpanded)
+            {
+                if(inputHandler.menuY > 0)
+                {
+                    inputHandler.SetMenuInputFalse();
+                    value--;
+                    if (value < 0)
+                    {
+                        value++;
+                    }
+                }
+                else if(inputHandler.menuY < 0)
+                {
+                    inputHandler.SetMenuInputFalse();
+                    value++;
+                    if (value >= d.options.Count)
+                    {
+                        value = d.options.Count - 1;
+                    }
+                }
+
+                if (!mo.MouseOver)
+                {
+                    handle.GetComponent<Scrollbar>().value = 1 - (value / ((float)d.options.Count - 1));
+                    for (int i = 0; i < resOptions.Count; i++)
+                    {
+                        ColorBlock c = resOptions[value].GetComponent<Toggle>().colors;
+                        if (i == value)
+                        {
+                            c.normalColor = selectedColour;
+                            resOptions[value].GetComponent<Toggle>().colors = c;
+                        }
+                        else
+                        {
+                            c.normalColor = defaultColour;
+                            resOptions[value].GetComponent<Toggle>().colors = c;
+                        }
+                    }
+                }
+            }
+            else
             {
                 //move selection based on player input
                 if (inputHandler.menuY < 0)
@@ -160,27 +215,6 @@ public class SettingsHandler : MonoBehaviour
                     if (selection < 0)
                     {
                         selection++;
-                    }
-                }
-            }
-            else
-            {
-                if(inputHandler.menuY < 0)
-                {
-                    inputHandler.SetMenuInputFalse();
-                   value++;
-                    if (value >= d.options.Count)
-                    {
-                        value = d.options.Count - 1;
-                    }
-                }
-                else if(inputHandler.menuY < 0)
-                {
-                    inputHandler.SetMenuInputFalse();
-                    value--;
-                    if(value < 0)
-                    {
-                        value++;
                     }
                 }
             }
