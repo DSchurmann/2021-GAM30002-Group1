@@ -14,6 +14,7 @@ public class DrawRailPath : MonoBehaviour
     {
 #if UNITY_EDITOR
         runInEditMode = true;
+#endif
         nodes.Clear();
         Transform[] child = GetComponentsInChildren<Transform>();
         //if there are nodes, add game object to list
@@ -37,7 +38,7 @@ public class DrawRailPath : MonoBehaviour
         {
             node.GetComponent<Node>().UpdateConnectingNodes();
         }
-#endif
+//#endif
     }
 
 #if UNITY_EDITOR

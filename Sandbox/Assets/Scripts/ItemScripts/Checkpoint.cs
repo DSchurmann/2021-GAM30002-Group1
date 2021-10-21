@@ -32,6 +32,8 @@ public class Checkpoint : MonoBehaviour
         GameController.GH.SaveGame();
         particleSystem.Play();
         crystal.GetComponent<MeshRenderer>().material = savedMaterial;
+        CameraFollow camera = FindObjectOfType<CameraFollow>();
+        if (camera) camera.Shake(3f, 0.3f);
     }
 
     private void OnTriggerEnter(Collider other)
