@@ -7,14 +7,14 @@ using TMPro;
 public class Tutorial : MonoBehaviour
 {
     //message for mkb and controller is separate because the current setup requires the controller message to have a gap for the image
-    [SerializeField] private string mkbMessage;
-    [Tooltip("This message will display when the controller is the input option, leave space for the control image")]
-    [SerializeField] private string controllerMessage;
+    [SerializeField] private string tutorialMessage;
+    private string message;
     
     //UI components
     private TextMeshProUGUI controllerText;
     [SerializeField] private TMP_SpriteAsset xInput;
     [SerializeField] private TMP_SpriteAsset dualshock;
+    [SerializeField] private TMP_SpriteAsset keyboard;
 
     [SerializeField] private InputButtonMapping.InputButton button;
     private InputButtonMapping ibm;
@@ -135,36 +135,51 @@ public class Tutorial : MonoBehaviour
         //if tutorial can be triggered (isn't a one time) show the relevant tutorial message (mkb or controller)
         if (!triggered)
         {
+            string spriteName = ibm.GetButtonName(button, UIHandler.controllerType);
+
+            //set sprite sheet for textmesh depending in controller type
+            if (UIHandler.controllerType == UIHandler.ControllerType.ds)
+            {
+                controllerText.spriteAsset = dualshock;
+            }
+            else if (UIHandler.controllerType == UIHandler.ControllerType.xbox)
+            {
+                controllerText.spriteAsset = xInput;
+            }
+            else if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
+            {
+                controllerText.spriteAsset = keyboard;
+            }
+
+            controllerText.gameObject.SetActive(true);
+
             switch (UIHandler.controllerType)
             {
                 case UIHandler.ControllerType.mkb:
-                    controllerText.text = mkbMessage;
-                    controllerText.gameObject.SetActive(true);
+                    //cheat for displaying arrow keys
+                    if (button == InputButtonMapping.InputButton.DPad)
+                    {
+                        message = String.Format(tutorialMessage, "<sprite name=upArrow><sprite name=leftArrow><sprite name=downArrow><sprite name=rightArrow>");
+                    }
+                    //cheat for displaying "WASD"
+                    else if (button == InputButtonMapping.InputButton.Movement)
+                    {
+                        message = String.Format(tutorialMessage, "<sprite name=w><sprite name=a><sprite name=s><sprite name=d>");
+                    }
+                    else
+                    {
+                        message = String.Format(tutorialMessage, "<sprite name=" + spriteName + ">");
+                    }
+                    controllerText.text = message; 
                     break;
                 default:
-                    controllerText.gameObject.SetActive(true);
-                    string spriteName = ibm.GetButtonName(button, UIHandler.controllerType);
-                    //set sprite sheet for textmesh depending in controller type
-                    if(UIHandler.controllerType == UIHandler.ControllerType.ds)
-                    {
-                        controllerText.spriteAsset = dualshock;
-                    }
-                    else if(UIHandler.controllerType == UIHandler.ControllerType.xbox)
-                    {
-                        controllerText.spriteAsset = xInput;
-                    }
                     //prepare message to contain controller button
-                    string message = String.Format(controllerMessage, "<sprite name=" + spriteName + ">");
+                    message = String.Format(tutorialMessage, "<sprite name=" + spriteName + ">");
                     controllerText.text = message;
                     break;
             }
 
             displaying = true;
-            //if the tutorial is a one-time, change triggered and the tutorial will never display again... or until next playthrough or load or something
-            if (oneTime)
-            {
-                triggered = true;
-            }
         }
     }
 
@@ -173,5 +188,10 @@ public class Tutorial : MonoBehaviour
         //hide everything
         controllerText.gameObject.SetActive(false);
         displaying = false;
+        //if the tutorial is a one-time, change triggered and the tutorial will never display again... or until next playthrough or load or something
+        if (oneTime)
+        {
+            triggered = true;
+        }
     }
 }

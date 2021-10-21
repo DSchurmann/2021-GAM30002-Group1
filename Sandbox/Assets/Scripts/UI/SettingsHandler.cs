@@ -33,7 +33,6 @@ public class SettingsHandler : MonoBehaviour
         resolutions = Screen.resolutions;
         fullscreen.isOn = Screen.fullScreen;
         InitilizeSettings();
-        fullscreen.interactable = false;
     }
 
     private void Update()
@@ -48,29 +47,17 @@ public class SettingsHandler : MonoBehaviour
                 {
                     resDropdown.ClearOptions();
                     List<string> res = new List<string>();
-                    int resI = 0;
                     for (int i = 0; i < resolutions.Length; i++)
                     {
                         string option = resolutions[i].width + " x " + resolutions[i].height;
                         res.Add(option);
-
-                        //check for current resolution to use to set initial value
-                        if (Screen.currentResolution.width == Screen.resolutions[i].width && Screen.currentResolution.height == Screen.resolutions[i].height)
-                        {
-                            resI = i;
-                        }
                     }
                     resDropdown.AddOptions(res);
                     //change initial value
-                    resDropdown.value = resI;
                     mo = resDropdown.GetComponent<UIMouseOver>();
                 }
-                else
-                {
-                    //get current resolution index
-                    resDropdown.value = PlayerPrefs.GetInt("Resolution");
-                }
-                //refresh shown value
+                //get current resolution index then refesh value
+                resDropdown.value = PlayerPrefs.GetInt("Resolution");
                 resDropdown.RefreshShownValue();
                 done = true;
                 selection = 0;
@@ -179,7 +166,10 @@ public class SettingsHandler : MonoBehaviour
 
                 if (!mo.MouseOver)
                 {
-                    handle.GetComponent<Scrollbar>().value = 1 - (value / ((float)d.options.Count - 1));
+                    if (handle)
+                    {
+                        handle.GetComponent<Scrollbar>().value = 1 - (value / ((float)d.options.Count - 1));
+                    }
                     for (int i = 0; i < resOptions.Count; i++)
                     {
                         ColorBlock c = resOptions[value].GetComponent<Toggle>().colors;
@@ -256,11 +246,12 @@ public class SettingsHandler : MonoBehaviour
                     PlayerPrefs.SetInt("Fullscreen", i);
                 }
             }
-            else if (g.GetComponentInChildren<Dropdown>()) //change resolution
+            else if (g.GetComponentInChildren<TMP_Dropdown>()) //change resolution
             {
-                Resolution r = resolutions[g.GetComponentInChildren<Dropdown>().value];
+                print(g.GetComponentInChildren<TMP_Dropdown>().value);
+                Resolution r = resolutions[g.GetComponentInChildren<TMP_Dropdown>().value];
                 Screen.SetResolution(r.width, r.height, Screen.fullScreen);
-                PlayerPrefs.SetInt("Resolution", g.GetComponentInChildren<Dropdown>().value);
+                PlayerPrefs.SetInt("Resolution", g.GetComponentInChildren<TMP_Dropdown>().value);
             }
         }
         //save player prefs and drop down to pause menu
@@ -333,9 +324,9 @@ public class SettingsHandler : MonoBehaviour
         }
         if (!PlayerPrefs.HasKey("Resolution"))
         {
-            for (int i = 0; i < Screen.resolutions.Length; i++)
+            for (int i = 0; i < resolutions.Length; i++)
             {
-                if (Screen.currentResolution.width == Screen.resolutions[i].width && Screen.currentResolution.height == Screen.resolutions[i].height)
+                if (Screen.currentResolution.width == resolutions[i].width && Screen.currentResolution.height == resolutions[i].height)
                 {
                     PlayerPrefs.SetInt("Resolution", i);
                     break;
@@ -344,7 +335,7 @@ public class SettingsHandler : MonoBehaviour
         }
         else
         {
-            Resolution r = Screen.resolutions[PlayerPrefs.GetInt("Resolution")];
+            Resolution r = resolutions[PlayerPrefs.GetInt("Resolution")];
             Screen.SetResolution(r.width, r.height, Screen.fullScreen);
         }
         PlayerPrefs.Save();

@@ -8,11 +8,13 @@ public class InputButtonMapping : MonoBehaviour
     //dictionary for mapping enum to InputAction
     private Dictionary<InputButton, InputAction> inputConversion = new Dictionary<InputButton, InputAction>();
     //dictionary mapping input actions to the string for the button
-    private Dictionary<InputAction, string> inputActions = new Dictionary<InputAction, string>();
+    private Dictionary<InputAction, string> gamepadActions = new Dictionary<InputAction, string>();
+    private Dictionary<InputAction, string> keyboardActions = new Dictionary<InputAction, string>();
 
     //lists for mapping string for buttons to the sprite of the button
     [SerializeField] private List<InputMapping> xInputSprites;
     [SerializeField] private List<InputMapping> dsSprites;
+    [SerializeField] private List<InputMapping> keyboardSprites;
 
     [SerializeField] private InputActionAsset input;
 
@@ -24,24 +26,33 @@ public class InputButtonMapping : MonoBehaviour
     public void UpdateBindings()
     {
         InputActionMap map = input.FindActionMap("Gameplay");
-        foreach (InputAction a in map)
+        foreach (InputAction action in map)
         {
-            foreach (InputControl c in a.controls)
+            foreach (InputControl control in action.controls)
             {
-                if (c.device is Gamepad)
+                if (control.device is Keyboard)
                 {
-                    if (!inputActions.ContainsKey(a))
+                    if (!keyboardActions.ContainsKey(action))
                     {
-                        inputActions.Add(a, c.name);
-                        foreach (InputButton b in (InputButton[])Enum.GetValues(typeof(InputButton)))
-                        {
-                            if (a.name == b.ToString() && !inputConversion.ContainsKey(b))
-                            {
-                                inputConversion.Add(b, a);
-                            }
-                        }
+                        keyboardActions.Add(action, control.name);
                     }
                 }
+                else if (control.device is Gamepad)
+                {
+                    if (!gamepadActions.ContainsKey(action))
+                    {
+                        gamepadActions.Add(action, control.name);
+                    }
+                }
+ 
+                foreach (InputButton b in (InputButton[])Enum.GetValues(typeof(InputButton)))
+                {
+                    if (action.name == b.ToString() && !inputConversion.ContainsKey(b))
+                    {
+                        inputConversion.Add(b, action);
+                        break;
+                    }
+                }      
             }
         }
     }
@@ -51,17 +62,35 @@ public class InputButtonMapping : MonoBehaviour
         Sprite result = null;
         string s;
 
-        if (b == InputButton.DPad)
+        if (b == InputButton.DPad && c != UIHandler.ControllerType.mkb)
         {
             s = "dpad";
         }
         else
         {
             InputAction action = inputConversion[b];
-            s = inputActions[action];
+            if (c == UIHandler.ControllerType.mkb)
+            {
+                s = keyboardActions[action];
+            }
+            else
+            {
+                s = gamepadActions[action];
+            }
         }
 
-        if (c == UIHandler.ControllerType.ds)
+        if(c == UIHandler.ControllerType.mkb)
+        {
+            foreach (InputMapping ib in keyboardSprites)
+            {
+                if (ib.name == s)
+                {
+                    result = ib.sprite;
+                    break;
+                }
+            }
+        }
+        else if (c == UIHandler.ControllerType.ds)
         {
             foreach (InputMapping ib in dsSprites)
             {
@@ -91,14 +120,22 @@ public class InputButtonMapping : MonoBehaviour
     {
         string result = "";
 
-        if(b == InputButton.DPad)
+        if(b == InputButton.DPad && c != UIHandler.ControllerType.mkb)
         {
             result = "dpad";
         }
         else
         {
             InputAction a = inputConversion[b];
-            result = inputActions[a];
+
+            if (c == UIHandler.ControllerType.mkb)
+            {
+                result = keyboardActions[a];
+            }
+            else
+            {
+                result = gamepadActions[a];
+            }
         }
 
         return result;

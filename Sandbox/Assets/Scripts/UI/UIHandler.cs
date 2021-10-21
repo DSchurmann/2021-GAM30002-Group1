@@ -14,6 +14,7 @@ public class UIHandler : MonoBehaviour
     public Sprite followSprite;
     public Sprite waitSprite;
 
+
     //Parameters -- Other
     public Color mainCol;
     public Color subCol;
@@ -22,9 +23,15 @@ public class UIHandler : MonoBehaviour
     public bool childMain;
     public bool waiting;
 
-    public GameObject mkbUI;
-    public GameObject xboxUI;
-    public GameObject dsUI;
+    public Image switchPrompt;
+    public Image followPrompt;
+    public Image golemNorth;
+    public Image golemSouth;
+    public Image golemEast;
+    public Image golemWest;
+
+    public GameObject gameplayUI;
+    public InputButtonMapping bm;
 
     public static bool DisableUI = false;
     //used for Unity editor because static variables do no show up
@@ -52,15 +59,13 @@ public class UIHandler : MonoBehaviour
 
         if (!DisableUI)
         {
-            //change UI based on controller type
-            ChangeUI(controllerType);
-
+            gameplayUI.SetActive(true);
             //Set State
             childMain = (GameController.GH.CurrentPlayer() == GameController.GH.childObj);
             waiting = GameController.GH.CurrentPlayer().GetComponent<PlayerControllerRB>().Other.Waiting;
 
             //change UI elements
-            ChangeIcons(childMain, waiting, GetCurrentUI(controllerType));
+            ChangeIcons(childMain, waiting, followPrompt, switchPrompt, golemNorth, golemSouth, golemEast, golemWest);
 
             //Based on State, Set Thing
             if (childMain)
@@ -89,36 +94,41 @@ public class UIHandler : MonoBehaviour
         else
         {
             //disable all UI
-            xboxUI.SetActive(false);
-            mkbUI.SetActive(false);
-            dsUI.SetActive(false);
+            gameplayUI.SetActive(false);
         }
     }
 
-    private void ChangeIcons(bool child, bool wait, GameObject ui)
+    private void ChangeIcons(bool child, bool wait, Image follow, Image swap, Image n, Image s, Image e, Image w)
     {
         if (child)
         {
             //Child Colour = Full
-            ui.transform.Find("ChildPort").GetComponent<Image>().color = mainCol;
+            childPort.GetComponent<Image>().color = mainCol;
 
             //Golem Colour = Less Full
-            ui.transform.Find("GolPort").GetComponent<Image>().color = subCol;
+            golPort.GetComponent<Image>().color = subCol;
         }
         else
         {
             //Child Colour = Less Full
-            ui.transform.Find("ChildPort").GetComponent<Image>().color = subCol;
+            childPort.GetComponent<Image>().color = subCol;
 
             //Golem Colour = Full
-            ui.transform.Find("GolPort").GetComponent<Image>().color = mainCol;
+            golPort.GetComponent<Image>().color = mainCol;
         }
 
         //Set Wait Mode Indicator
         if (wait)
-            ui.transform.Find("WaitIndicator").GetComponent<Image>().sprite = waitSprite;
+            waitState.GetComponent<Image>().sprite = waitSprite;
         else
-            ui.transform.Find("WaitIndicator").GetComponent<Image>().sprite = followSprite;
+            waitState.GetComponent<Image>().sprite = followSprite;
+
+        follow.sprite = bm.GetButton(InputButtonMapping.InputButton.Wait, controllerType);
+        swap.sprite = bm.GetButton(InputButtonMapping.InputButton.Switch, controllerType);
+        n.sprite = bm.GetButton(InputButtonMapping.InputButton.RuneN, controllerType);
+        s.sprite = bm.GetButton(InputButtonMapping.InputButton.RuneS, controllerType);
+        e.sprite = bm.GetButton(InputButtonMapping.InputButton.RuneE, controllerType);
+        w.sprite = bm.GetButton(InputButtonMapping.InputButton.RuneW, controllerType);
     }
 
     private ControllerType GetInputType(ControllerType t)
@@ -155,46 +165,6 @@ public class UIHandler : MonoBehaviour
         }
 
         return result;
-    }
-
-    private void ChangeUI(ControllerType t)
-    {
-        //change displayed UI
-        if(t == ControllerType.mkb && !mkbUI.activeSelf)
-        {
-            mkbUI.SetActive(true);
-            dsUI.SetActive(false);
-            xboxUI.SetActive(false);
-
-        }
-        else if(t == ControllerType.ds && !dsUI.activeSelf)
-        {
-            dsUI.SetActive(true);
-            mkbUI.SetActive(false);
-            xboxUI.SetActive(false);
-        }
-        else if(t == ControllerType.xbox && !xboxUI.activeSelf)
-        {
-            xboxUI.SetActive(true);
-            mkbUI.SetActive(false);
-            dsUI.SetActive(false);
-        }
-    }
-
-    private GameObject GetCurrentUI(ControllerType c)
-    {
-        switch(c)
-        {
-            case ControllerType.mkb:
-                return mkbUI;
-            case ControllerType.ds:
-                return dsUI;
-            case ControllerType.xbox:
-                return xboxUI;
-            default:
-                Debug.LogError("Something wrong getting current UI");
-                return null;
-        }
     }
     
     public enum ControllerType
