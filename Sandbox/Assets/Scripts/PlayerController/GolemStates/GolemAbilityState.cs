@@ -27,7 +27,13 @@ public class GolemAbilityState:GolemState
         player.StartCoroutine(ResetPoseLock(player.PoseLockTime));
 
         if(!player.initialState)
+        {
+            float pitchCopy = player.GetComponent<AudioSource>().pitch;
+            player.GetComponent<AudioSource>().pitch = (Random.Range(0.6f, 1f));
             player.GetComponent<AudioSource>().PlayOneShot(GameController.GH.GetComponent<AudioManager>().RandomGolemPoseSound());
+            player.GetComponent<AudioSource>().pitch = pitchCopy;
+        }
+            
 
     }
 
