@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface ITriggeredObject
 {
-    void Trigger(bool value);
+    void Trigger(bool value, int item = 0);
 }

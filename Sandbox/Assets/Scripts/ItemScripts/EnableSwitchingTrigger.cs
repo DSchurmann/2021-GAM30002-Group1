@@ -22,7 +22,7 @@ public class EnableSwitchingTrigger : MonoBehaviour, ITriggeredObject
         Destroy(gameObject);
     }
 
-    public void Trigger(bool value)
+    public void Trigger(bool value, int item)
     {
         Invoke(nameof(ToggleSwitching), delay);
     }

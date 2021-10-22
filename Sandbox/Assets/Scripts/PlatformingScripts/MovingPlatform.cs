@@ -15,17 +15,20 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private int clicks;
     private bool colliding;
 
+    private Queue<int> targetIndexes = new Queue<int>();
+
     public bool isMoving;
     public bool isFalling;
     // platform modes
-    public enum PlatFormMode { NONE, PINGPONG, ONCE, HOLDOPEN}
+    public enum PlatFormMode { NONE, PINGPONG, ONCE, HOLDOPEN, MULTIPLE }
     public PlatFormMode platformMode = PlatFormMode.NONE;
     // trigger modes
-    public enum TriggerMode { NONE, ONCE, HOLD, TOGGLE }
+    public enum TriggerMode { NONE, ONCE, HOLD, TOGGLE, MULTIPLE }
     public TriggerMode triggerMode = TriggerMode.NONE;
 
     // start and end positions
     public Vector3 startPos = Vector3.zero;
+    public List<Vector3> platformPositions = new List<Vector3>();
     public Vector3 endPos = Vector3.zero;
 
     [Header("Movement")]
@@ -53,15 +56,24 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     // Start is called before the first frame update
     void Start()
     {
-        //collider = GetComponent<Collider>();
+        if (Application.IsPlaying(gameObject))
+        {
+            //collider = GetComponent<Collider>();
 
-        // check if start position exists, if not, get platform position
-        if (startPos == Vector3.zero)
-            startPos = transform.position;
+            // check if start position exists, if not, get platform position
+            if (startPos == Vector3.zero)
+                startPos = transform.position;
 
-        // set platform position to start position
-        transform.position = startPos;
-        Loop();
+            // set platform position to start position
+            transform.position = startPos;
+            Loop();
+
+            if (platformMode == PlatFormMode.MULTIPLE)
+            {
+                platformPositions.Insert(0, startPos);
+                platformPositions.Add(endPos);
+            }
+        }
     }
 
     // Update is called once per frame
@@ -75,6 +87,17 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         if(transform.position == startPos || transform.position == endPos)
         {
             isMoving = false;
+        }
+        else if(platformMode == PlatFormMode.MULTIPLE)
+        {
+            foreach (Vector3 pos in platformPositions)
+            {
+                if (transform.position == pos)
+                {
+                    isMoving = false;
+                    break;
+                }
+            }
         }
 
         if (enabled)
@@ -95,6 +118,9 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
 
                 case PlatFormMode.HOLDOPEN:
                     HoldOpen();
+                    break;
+                case PlatFormMode.MULTIPLE:
+                    Multiple();
                     break;
             }
         }
@@ -189,6 +215,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                     MovePlatform(0);
                 }
                 break;
+            case TriggerMode.MULTIPLE:
             case TriggerMode.TOGGLE:
 
                 bool started = false;
@@ -262,6 +289,44 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     }
 
     #endregion
+
+    #region MULTIPLE
+
+    public void Multiple()
+    {
+        loop = false;
+        switch (triggerMode)
+        {
+            case TriggerMode.MULTIPLE:
+
+                // start movement
+                if (triggered && !triggeredEnabled && targetIndexes.Count > 0)
+                {
+                    // start movement
+                    triggered = false;
+                    triggeredEnabled = true;
+                    targetPos = platformPositions[targetIndexes.Dequeue()];
+                }
+
+                if (triggeredEnabled)
+                {
+                    if (transform.position != targetPos)
+                        MovePlatform(moveSpeed);
+                    else if (targetIndexes.Count > 0)
+                    {
+                        triggered = false;
+                        targetPos = platformPositions[targetIndexes.Dequeue()];
+                    }
+                    else
+                        triggeredEnabled = false;
+                }
+                break;
+        }
+    }
+
+    #endregion
+
+
     // move platform
     private void MovePlatform(float speed)
     {
@@ -341,10 +406,22 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     {
         endPos = transform.position;
     }
+    public void setPlatformPosition()
+    {
+        platformPositions.Add(transform.position);
+    }
 
-    public void Trigger(bool value)
+    public void resetPosition()
+    {
+        transform.position = startPos;
+    }
+
+    public void Trigger(bool value, int item)
     {
         triggered = value;
+
+        if (platformMode == PlatFormMode.MULTIPLE)
+            targetIndexes.Enqueue(item);
        /* if(triggered)
             Debug.Log("Triggered to open: " + this.GetType().Name);*/
     }

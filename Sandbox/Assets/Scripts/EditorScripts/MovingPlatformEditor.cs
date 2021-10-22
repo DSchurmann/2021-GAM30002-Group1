@@ -17,9 +17,14 @@ public class MovingObjectEditor : Editor
         if (GUILayout.Button("Set Start Position"))
             obj.SetStartPosition();
 
+        if (GUILayout.Button("Set Between Position"))
+            obj.setPlatformPosition();
+
         if (GUILayout.Button("Set End Position"))
             obj.SetEndPosition();
 
+        if (GUILayout.Button("Reset Position"))
+            obj.resetPosition();
     }
 }
 #endif

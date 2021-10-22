@@ -22,12 +22,14 @@ public class WeightButton : MonoBehaviour, ITrigger
     // triggered object positions positions
     [Header("Triggered Object")]
     public GameObject[] triggeredObjects;
+
+    public int positionIndex = 0;
     //private ITriggeredObject toTrigger;
     //private float buttonIdlePos;
     //private float buttonTriggeredPos;
     // button mode
     public Cutscene cutsceneToTrigger;
-    public enum TriggerMode { ONCE, HOLD}
+    public enum TriggerMode { ONCE, HOLD, MULTIPLE }
     public TriggerMode triggerMode;
     
     // Start is called before the first frame update
@@ -67,6 +69,7 @@ public class WeightButton : MonoBehaviour, ITrigger
             // check switch mode
             switch(triggerMode)
             {
+                case TriggerMode.MULTIPLE:
                 case TriggerMode.ONCE:
                     if (!triggered)
                     {
@@ -82,17 +85,29 @@ public class WeightButton : MonoBehaviour, ITrigger
                     SendTrigger();
                     triggered = true;
                     break;
+
             }
         }
         else
         {
-            if(triggered && triggerMode == TriggerMode.HOLD)
+            if(triggered)
             {
-                triggered = false;
-                SendTriggerReset();
-                if (cameraShakeOnRelease)
+                switch (triggerMode)
                 {
-                    Shake();
+                    case TriggerMode.MULTIPLE:
+                        triggered = false;
+                        break;
+                    case TriggerMode.ONCE:
+                        break;
+
+                    case TriggerMode.HOLD:
+                        triggered = false;
+                        SendTriggerReset();
+                        if (cameraShakeOnRelease)
+                        {
+                            Shake();
+                        }
+                        break;
                 }
             }
         }
@@ -108,7 +123,7 @@ public class WeightButton : MonoBehaviour, ITrigger
         foreach (GameObject item in triggeredObjects)
         {
             if (item != null)
-                item.GetComponent<ITriggeredObject>()?.Trigger(true);
+                item.GetComponent<ITriggeredObject>()?.Trigger(true, positionIndex);
         }
     }
     public void SendTriggerReset()
