@@ -88,7 +88,7 @@ public class GolemFollowState:GolemAIState
         {
             //Move Towards Child
             //Vector3 angle = (targPos - pos).normalized;
-            player.MoveTowardsTarget(targPos, followSpeed, player.Other.Train.rail);
+            player.MoveTowardsTarget(targPos, followSpeed, player.Other.Train.rail, RailType.Golem);
         }
         else
         {

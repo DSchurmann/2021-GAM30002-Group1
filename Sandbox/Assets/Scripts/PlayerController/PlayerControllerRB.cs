@@ -217,18 +217,50 @@ public class PlayerControllerRB : StateMachine
     }
 
     // set position of target to move towards
-    public void MoveTowardsTarget(Vector3 target, float speed, Rail targetRail)
+    public void MoveTowardsTarget(Vector3 target, float speed, Rail targetRail, RailType railType)
     {
         // look for the closest node to the player 
         Node startNode = Train.rail.Nodes[Train.rail.GetSegmentOfClosestPoint(transform.position)];
         //Debug.Log("start " + startNode.name + " rail " + Train.rail.name);
 
-        // look for the closest node to the target
-        Node endNode = targetRail.Nodes[targetRail.GetSegmentOfClosestPoint(target)];
-        //Debug.Log("end " + endNode.name + " rail " + targetRail.name);
+        Node endNode;
+
+        // ensure end node is a compadible railtype
+        if (targetRail.RailType != RailType.Both)
+        {
+            GameObject[] railObjects = GameObject.FindGameObjectsWithTag("Rail");
+            // find search for clostest rail to target
+
+            float bestDistance = float.PositiveInfinity;
+            Rail closestRail = Train.rail; // set the rail to the current rail as default
+
+            foreach (GameObject railObject in railObjects)
+            {
+                Rail r = railObject.GetComponent<Rail>();
+
+                if (r.RailType != RailType.Both && r.RailType != railType)
+                    continue;
+
+                float dist = r.DistanceToClosestPoint(target);
+                if (dist < bestDistance)
+                {
+                    bestDistance = dist;
+                    closestRail = r;
+                }
+            }
+
+            // get the node of the closest rail
+            endNode = closestRail.Nodes[closestRail.GetSegmentOfClosestPoint(target)];
+        }
+        else
+        {
+            // look for the closest node to the target
+            endNode = targetRail.Nodes[targetRail.GetSegmentOfClosestPoint(target)];
+        }       
+        Debug.Log("end " + endNode.name + " rail " + targetRail.name);
 
         // calculate the path though graph search
-        Node targetNode = Rail.CalulateNextNodeinPathThroughRails(startNode, endNode);
+        Node targetNode = Rail.CalulateNextNodeinPathThroughRails(startNode, endNode, railType);
         //if (targetNode) Debug.Log("next " + targetNode.name + " rail " + targetNode.rail.name);
 
         // move player based on calculated path

@@ -120,7 +120,7 @@ public class InputButtonMapping : MonoBehaviour
     {
         string result = "";
 
-        if(b == InputButton.DPad && c != UIHandler.ControllerType.mkb)
+        if(b == InputButton.DPad)
         {
             result = "dpad";
         }

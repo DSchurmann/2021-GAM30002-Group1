@@ -113,7 +113,7 @@ public class AIFollowState : AIState
             isDangerAhead = false;
             //Move Towards Golem
             Vector3 angle = (targPos - pos).normalized;
-            player.MoveTowardsTarget(targPos, followSpeed, player.Other.Train.rail);
+            player.MoveTowardsTarget(targPos, followSpeed, player.Other.Train.rail, RailType.Child);
             //flip the player
             if ((player.FacingDirection != 1 && angle.x > 0) || (player.FacingDirection != -1 && angle.x < 0)) { player.Flip(); }
 
