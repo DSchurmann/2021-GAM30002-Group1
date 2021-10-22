@@ -24,6 +24,14 @@ public class Rail : MonoBehaviour
         }
     }
 
+    public RailType RailType
+    {
+        get
+        {
+            return type;
+        }
+    }
+
     public int NodeLength
     {
         get { return nodes.Count; }
@@ -95,19 +103,19 @@ public class Rail : MonoBehaviour
         }
     }
 
-    static public Node CalulateNextNodeinPathThroughRails(Node startingNode, Node endingNode)
+    static public Node CalulateNextNodeinPathThroughRails(Node startingNode, Node endingNode, RailType railType)
     {
         if (startingNode == endingNode)
             return null;
-        return BFSpath(startingNode, endingNode).previous.node;
+        return BFSpath(startingNode, endingNode, railType).previous.node;
     }
 
-    static public List<Node> CalulatePathThroughRails(Node startingNode, Node endingNode)
+    static public List<Node> CalulatePathThroughRails(Node startingNode, Node endingNode, RailType railType)
     {
-        return BFSpath(startingNode, endingNode).Path();
+        return BFSpath(startingNode, endingNode, railType).Path();
     }
 
-    static private PathNode BFSpath(Node startingNode, Node endingNode)
+    static private PathNode BFSpath(Node startingNode, Node endingNode, RailType railType)
     {
         List<PathNode> frontier = new List<PathNode>();
         List<Node> checkedNodes = new List<Node>();
@@ -131,7 +139,8 @@ public class Rail : MonoBehaviour
                 if (!checkedNodes.Contains(child))
                 {
                     checkedNodes.Add(child);
-                    frontier.Add(new PathNode(child, frontier[0]));
+                    if (child.rail.RailType == RailType.Both || child.rail.RailType == railType)
+                        frontier.Add(new PathNode(child, frontier[0]));
                 }
             }
 
@@ -282,6 +291,31 @@ public class Rail : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public float DistanceToClosestPoint(Vector3 pt, float accuracy = 0.5f)
+    {
+        float bestDistance = float.PositiveInfinity;
+
+        for (int seg = 0; seg < nodes.Count - 1; seg++)
+        {
+            float aproxSegmentDist = GetSegmentLength(seg);
+
+            int ndivs = Mathf.Max((int)(aproxSegmentDist / accuracy), 5); // the min is to account for the linear distance if the distance to to close the player.
+
+            for (int i = 0; i <= ndivs; i++)
+            {
+                float t = (float)i / (float)ndivs;
+                Vector3 checkedPoint = CatmullMove(seg, t);
+                float dist = Vector3.Distance(checkedPoint, pt);
+                if (dist < bestDistance)
+                {
+                    bestDistance = dist;
+                }
+            }
+        }
+
+        return bestDistance;
     }
 
     public float ClosestPointOnCatmullRomAsPercent(Vector3 pt, int seg, float accuracy = 0.5f)
