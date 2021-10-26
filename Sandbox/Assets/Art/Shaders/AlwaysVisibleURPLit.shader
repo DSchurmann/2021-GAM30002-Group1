@@ -9,6 +9,7 @@ Shader "Universal Render Pipeline/AV Lit"
         [MainColor] _BaseColor("Color", Color) = (1,1,1,1)
 
         _AVColor("Always visible color", color) = (0.31,0.31,0.31,1)
+        _IsAVActive("Is Always Visible Active", Float) = 1
 
         _Cutoff("Alpha Cutoff", Range(0.0, 1.0)) = 0.5
 
@@ -131,7 +132,7 @@ Shader "Universal Render Pipeline/AV Lit"
         // Universal Pipeline tag is required. If Universal render pipeline is not set in the graphics settings
         // this Subshader will fail. One can add a subshader below or fallback to Standard built-in to make this
         // material work with both Universal Render Pipeline and Builtin Unity Pipeline
-        Tags{"RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "UniversalMaterialType" = "Lit" "IgnoreProjector" = "True" "ShaderModel" = "4.5" "Queue" = "Transparent"}
+        Tags{"RenderType" = "Transparent" "RenderPipeline" = "UniversalPipeline" "UniversalMaterialType" = "Lit" "IgnoreProjector" = "True" "ShaderModel" = "4.5" "Queue" = "Transparent"}
         LOD 300
 
         Pass {
@@ -139,15 +140,14 @@ Shader "Universal Render Pipeline/AV Lit"
             Tags {
             }
 
-            Cull Off
             ZWrite Off
+            Blend SrcAlpha OneMinusSrcAlpha
+            Cull front
             ZTest Always
 
             CGPROGRAM
             #pragma vertex vert
             #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
 
             #include "UnityCG.cginc"
 
@@ -162,6 +162,7 @@ Shader "Universal Render Pipeline/AV Lit"
             };
 
             float4 _AVColor;
+            float _IsAVActive;
 
             v2f vert(appdata v)
             {
@@ -173,7 +174,14 @@ Shader "Universal Render Pipeline/AV Lit"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                return _AVColor;
+                if (_IsAVActive == 1)
+                {
+                    return _AVColor;
+                }
+                else
+                {
+                    return (0,0,0,0);
+                }
             }
             ENDCG
         }
@@ -275,18 +283,18 @@ Shader "Universal Render Pipeline/AV Lit"
 
         Pass
         {
-                // Lightmode matches the ShaderPassName set in UniversalRenderPipeline.cs. SRPDefaultUnlit and passes with
-                // no LightMode tag are also rendered by Universal Render Pipeline
-                Name "GBuffer"
-                Tags{"LightMode" = "UniversalGBuffer"}
+            // Lightmode matches the ShaderPassName set in UniversalRenderPipeline.cs. SRPDefaultUnlit and passes with
+            // no LightMode tag are also rendered by Universal Render Pipeline
+            Name "GBuffer"
+            Tags{"LightMode" = "UniversalGBuffer"}
 
-                ZWrite[_ZWrite]
-                ZTest LEqual
-                Cull[_Cull]
+            ZWrite[_ZWrite]
+            ZTest LEqual
+            Cull[_Cull]
 
-                HLSLPROGRAM
-                #pragma exclude_renderers gles gles3 glcore
-                #pragma target 4.5
+            HLSLPROGRAM
+            #pragma exclude_renderers gles gles3 glcore
+            #pragma target 4.5
 
             // -------------------------------------
             // Material Keywords
@@ -597,20 +605,20 @@ Shader "Universal Render Pipeline/AV Lit"
             #pragma vertex DepthNormalsVertex
             #pragma fragment DepthNormalsFragment
 
-        // -------------------------------------
-        // Material Keywords
-        #pragma shader_feature_local _NORMALMAP
-        #pragma shader_feature_local_fragment _ALPHATEST_ON
-        #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+            // -------------------------------------
+            // Material Keywords
+            #pragma shader_feature_local _NORMALMAP
+            #pragma shader_feature_local_fragment _ALPHATEST_ON
+            #pragma shader_feature_local_fragment _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
 
-        //--------------------------------------
-        // GPU Instancing
-        #pragma multi_compile_instancing
+            //--------------------------------------
+            // GPU Instancing
+            #pragma multi_compile_instancing
 
-        #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
-        #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthNormalsPass.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/LitInput.hlsl"
+            #include "Packages/com.unity.render-pipelines.universal/Shaders/DepthNormalsPass.hlsl"
         ENDHLSL
-    }
+        }
 
         // This pass it not used during regular rendering, only for lightmap baking.
         Pass

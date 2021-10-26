@@ -13,7 +13,9 @@ Shader "Universal Render Pipeline/RealToon/Version 5/Default/AV"
         [Toggle(NOKEWO)] _TexturePatternStyle ("Texture Pattern Style", Float ) = 0
         [HDR] _MainColor ("Main Color", Color) = (0.2156863,0.2156863,0.2156863,1)
 
-		[HDR] _AVColor ("Always visible color", color) = (0.31,0.31,0.31,1)
+		_AVColor ("Always visible color", color) = (0.31,0.31,0.31,1)
+		_IsAVActive("Is Always Visible Active", Float) = 1
+
 
 		[Toggle(NOKEWO)] _MVCOL ("Mix Vertex Color", Float ) = 0
 
@@ -202,7 +204,7 @@ Shader "Universal Render Pipeline/RealToon/Version 5/Default/AV"
     SubShader
     {
 
-        Tags{"RenderType" = "Opaque" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True" "Queue"="Transparent"}
+        Tags{"RenderType" = "Transparent" "RenderPipeline" = "UniversalPipeline" "IgnoreProjector" = "True" "Queue"="Transparent"}
         LOD 300
 
 		Pass {
@@ -210,8 +212,9 @@ Shader "Universal Render Pipeline/RealToon/Version 5/Default/AV"
 			Tags {
 			}
 
-			Cull[_DoubleSidedOutline]
+			Cull front
 			ZWrite Off
+			Blend SrcAlpha OneMinusSrcAlpha
 			ZTest Always
 
 			CGPROGRAM
@@ -232,6 +235,7 @@ Shader "Universal Render Pipeline/RealToon/Version 5/Default/AV"
 				float4 vertex : SV_POSITION;
 			};
 
+			float _IsAVActive;
 			float4 _AVColor;
 
 			v2f vert(appdata v)
@@ -244,7 +248,14 @@ Shader "Universal Render Pipeline/RealToon/Version 5/Default/AV"
 
 			fixed4 frag(v2f i) : SV_Target
 			{
-				return _AVColor;
+				if (_IsAVActive == 1)
+				{
+					return _AVColor;
+				}
+				else
+				{
+					return (0,0,0,0);
+				}
 			}
 			ENDCG
 		}
