@@ -34,7 +34,6 @@ public class GolemAbilityState:GolemState
             player.GetComponent<AudioSource>().pitch = pitchCopy;
         }
             
-
     }
 
     public override void Exit()
