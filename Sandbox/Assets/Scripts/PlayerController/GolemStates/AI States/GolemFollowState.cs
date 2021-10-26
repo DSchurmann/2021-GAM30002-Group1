@@ -34,19 +34,9 @@ public class GolemFollowState:GolemAIState
     {
         base.Update();
 
-        if(isAnimationComplete)
+        if(!isExitingState)
         {
-            // change state to wait if close
-            //if (Mathf.Abs(player.transform.position.x - player.Other.transform.position.x) <= player.closeDistance)
-            //{
-            //    Debug.Log("Golem Close stop Following");
-            //    player.ChangeState(player.AIWaitState);
-            //}
-            //else
-            {
-                // follow other player
-                FollowProcedure();
-            }
+            FollowProcedure();
         }
     }
 
