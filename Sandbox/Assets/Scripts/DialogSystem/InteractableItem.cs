@@ -2,22 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class InteractableItem : MonoBehaviour
 {
     protected string interactText = "Press 'e' to interact";
-    protected Text text;
-    protected Sprite interactSprite;
-    protected Image image;
+    protected TextMeshProUGUI text;
     protected bool isOpen = false;
     protected bool isDisplay = false;
 
     protected virtual void Start()
     {
-        image = gameObject.GetComponentInChildren<Image>();
-        text = gameObject.GetComponentInChildren<Text>();
+        text = gameObject.GetComponentInChildren<TextMeshProUGUI>();
 
-        image.gameObject.SetActive(false);
         text.gameObject.SetActive(false);
     }
 
@@ -29,7 +26,6 @@ public class InteractableItem : MonoBehaviour
     {
         //hide relevant text for object
         text.gameObject.SetActive(false);
-        image.gameObject.SetActive(false);
         isDisplay = false;
     }
 

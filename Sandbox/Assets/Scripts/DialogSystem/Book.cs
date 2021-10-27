@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using TMPro;
 
 public class Book : InteractableItem
 {
@@ -9,7 +10,11 @@ public class Book : InteractableItem
 
     private GameObject bookUI;
     private Text bookUIText;
-    private Image closeInput;
+    private TextMeshProUGUI closePrompt;
+
+    [SerializeField] private TMP_SpriteAsset xInput;
+    [SerializeField] private TMP_SpriteAsset dualshock;
+    [SerializeField] private TMP_SpriteAsset keyboard;
 
     private Button next;
     private Button previous;
@@ -28,35 +33,21 @@ public class Book : InteractableItem
 
     private void Update()
     {
+        ChangeSpriteset();
         if(isDisplay)
         {
             //change whether mkb or controller inputs are shown for open book prompt
-            if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
-            {
-                image.gameObject.SetActive(false);
-                closeInput.gameObject.SetActive(false);
-            }
-            else
-            {
-                image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
-                image.gameObject.SetActive(true);
-            }
+            interactText = "Press <sprite name=" + GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButtonName(InputButtonMapping.InputButton.Interact, UIHandler.controllerType) + "> to read";
+            text.text = interactText;
         }
         else if(IsOpen)
         {
             //change whether mkb or controller inputs are shown for close book prompt
-            if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
-            {
-                image.gameObject.SetActive(false);
-                closeInput.gameObject.SetActive(false);
-            }
-            else
-            {
-                closeInput.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
-                closeInput.gameObject.SetActive(true);
-                next.image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.RuneE, UIHandler.controllerType);
-                previous.image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.RuneW, UIHandler.controllerType);
-            }
+
+            next.image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.RuneE, UIHandler.controllerType);
+            previous.image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.RuneW, UIHandler.controllerType);
+
+            closePrompt.text = "Press <sprite name=" + GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButtonName(InputButtonMapping.InputButton.Interact, UIHandler.controllerType) + "> to close";
 
             if(inputHandler.InputXNormal < 0)
             {
@@ -97,18 +88,7 @@ public class Book : InteractableItem
         isDisplay = true;
 
         //set text to appear above book and use controller button if required
-        interactText = "Press [E] to read";
-        if (UIHandler.controllerType == UIHandler.ControllerType.mkb)
-        {
-            image.gameObject.SetActive(false);
-            closeInput.gameObject.SetActive(false);
-        }
-        else
-        {
-            image.sprite = GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButton(InputButtonMapping.InputButton.Interact, UIHandler.controllerType);
-            image.gameObject.SetActive(true);
-        }
-
+        interactText = "Press <sprite name=" + GameObject.Find("UI").GetComponent<InputButtonMapping>().GetButtonName(InputButtonMapping.InputButton.Interact, UIHandler.controllerType) + "> to read";
         //set and display text
         text.text = interactText;
         text.gameObject.SetActive(true);
@@ -183,14 +163,33 @@ public class Book : InteractableItem
         {
             previous = GameObject.Find("UI/Book/Previous").GetComponent<Button>();
         }
-        if (closeInput == null)
+        if (closePrompt == null)
         {
-            closeInput = GameObject.Find("UI/Book/CloseInput").GetComponent<Image>();
+            closePrompt = GameObject.Find("UI/Book/ClosePrompt").GetComponent<TextMeshProUGUI>();
         }
 
         //add listerners to the buttons so they do the right thing
         next.onClick.AddListener(NextPage);
         previous.onClick.AddListener(PreviousPage);
 
+    }
+
+    private void ChangeSpriteset()
+    {
+        if(UIHandler.controllerType == UIHandler.ControllerType.ds)
+        {
+            closePrompt.spriteAsset = dualshock;
+            text.spriteAsset = dualshock;
+        }
+        else if(UIHandler.controllerType == UIHandler.ControllerType.mkb)
+        {
+            closePrompt.spriteAsset = keyboard;
+            text.spriteAsset = keyboard;
+        }
+        else if(UIHandler.controllerType == UIHandler.ControllerType.xbox)
+        {
+            closePrompt.spriteAsset = xInput;
+            text.spriteAsset = xInput;
+        }
     }
 }
