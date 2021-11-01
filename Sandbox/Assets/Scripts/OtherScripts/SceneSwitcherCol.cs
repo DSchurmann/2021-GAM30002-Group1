@@ -6,14 +6,18 @@ using UnityEngine.SceneManagement;
 public class SceneSwitcherCol : MonoBehaviour
 {
 
+    public float fadeDelay = 0.5f;
+    public float fadeTime = 1f;
+    public float sceneSwitchDelay = 1.6f;
+
 
     //On Trigger Enter
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerControllerRB>() != null)
         {
-            StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(0.5f, 1, 1));
-            StartCoroutine(SwitchSceneDelay(1.6f));
+            StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(fadeDelay, 1, fadeTime));
+            StartCoroutine(SwitchSceneDelay(sceneSwitchDelay));
         }
     }
 
