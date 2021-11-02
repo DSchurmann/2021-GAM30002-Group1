@@ -13,6 +13,8 @@ public class Checkpoint : MonoBehaviour
     public bool Activated { get; set;}
     public bool GameSaved{ get; set;}
 
+    public AudioClip activateSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +45,8 @@ public class Checkpoint : MonoBehaviour
             // save at the checkpoint
             if(!GameSaved)
             {
+                other.gameObject.GetComponent<AudioSource>().pitch = 1f;
+                other.gameObject.GetComponent<AudioSource>().PlayOneShot(activateSound);
                 SaveGame();
                 GameSaved = true;
             }
