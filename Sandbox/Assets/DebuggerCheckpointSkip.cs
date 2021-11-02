@@ -24,12 +24,12 @@ public class DebuggerCheckpointSkip : MonoBehaviour
 
     private void Update()
     {
-        if(Keyboard.current.equalsKey.IsPressed())
+        if(Keyboard.current.equalsKey.wasPressedThisFrame)
         {
             NextCheckpoint();
         }
 
-        if (Keyboard.current.minusKey.IsPressed())
+        if (Keyboard.current.minusKey.wasPressedThisFrame)
         {
             PreviousCheckpoint();
         }
