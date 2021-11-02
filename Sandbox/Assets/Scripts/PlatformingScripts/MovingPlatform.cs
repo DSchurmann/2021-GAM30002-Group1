@@ -46,6 +46,8 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private Vector3 targetPos;
     private Vector3 TemptargetPos;
 
+    private bool soundPlayed;
+
     // raycast variables
     /* private Collider collider;
      private bool hitDetect;
@@ -87,6 +89,8 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
         if(transform.position == startPos || transform.position == endPos)
         {
             isMoving = false;
+            isFalling = false;
+            soundPlayed = false;
         }
         else if(platformMode == PlatFormMode.MULTIPLE)
         {
@@ -163,11 +167,14 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                 {
                     if(Vector3.Distance(transform.position, startPos) > 0.01f)
                     {
+                        if(!isFalling)
+                            soundPlayed = false;
                         Vector3 temp = startPos;
                         targetPos = startPos;
                         MovePlatform(fallSpeed);
                         isFalling = true;
                         triggered = false;
+                        
                     }
 
                     /*if (transform.position != startPos)
@@ -388,9 +395,16 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
 
     public void MoveToPosition(Transform transform, Vector3 position, float timeToMove)
     {
-
-        if(!colliding)
+        
+            
+        if (!colliding)
         {
+            if (!soundPlayed)
+            {
+                PlaySound();
+                soundPlayed = true;
+            }
+
             isMoving = true;
             transform.position = Vector3.MoveTowards(transform.position, position, timeToMove * Time.deltaTime *  Convert.ToInt32(!hold));
         }
@@ -424,6 +438,12 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
             targetIndexes.Enqueue(item);
        /* if(triggered)
             Debug.Log("Triggered to open: " + this.GetType().Name);*/
+    }
+
+    public void PlaySound()
+    {
+        if(GetComponent<AudioSource>() != null)
+            GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
     }
 
 

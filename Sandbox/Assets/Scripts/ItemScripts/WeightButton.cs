@@ -102,7 +102,7 @@ public class WeightButton : MonoBehaviour, ITrigger
                     case TriggerMode.MULTIPLE:
                         if(triggered)
                         { 
-                            PlayPressSound();
+                            //PlayPressSound();
                             triggered = false;
                         }
                         
@@ -115,7 +115,7 @@ public class WeightButton : MonoBehaviour, ITrigger
                     case TriggerMode.HOLD:
                         if (triggered)
                         {
-                            PlayPressSound();
+                            //PlayPressSound();
                             triggered = false;
                         }
                         SendTriggerReset();

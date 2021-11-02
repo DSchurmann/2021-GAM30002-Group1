@@ -50,8 +50,18 @@ public class WallClimbLedgeState : AbilityState
         }*/
        if(isAnimationComplete)
         {
-            //player.GetComponent<ClimbingController>().isClimbing = false;
-            isAbilityFinished = true;
+            player.GetComponent<ClimbingController>().isClimbing = false;
+
+            if (player.GetComponent<ClimbingController>().canClimb && !player.GetComponent<ClimbingController>().isClimbing && player.GetComponent<ClimbingController>().ledgeDetector.ledgePosition != Vector3.zero)
+            {
+                //player.GetComponent<ClimbingController>().Climb();
+                player.ChangeState(player.WallClimbLedgeState);
+            }
+            else
+            {
+                isAbilityFinished = true;
+            }
+           
         }
     }
 }
