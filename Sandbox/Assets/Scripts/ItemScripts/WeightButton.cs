@@ -147,7 +147,7 @@ public class WeightButton : MonoBehaviour, ITrigger
         foreach (GameObject item in triggeredObjects)
         {
             if(item != null)
-                item.GetComponent<ITriggeredObject>()?.Trigger(false);
+                item.GetComponent<ITriggeredObject>()?.Trigger(false, positionIndex);
         }
     }
 

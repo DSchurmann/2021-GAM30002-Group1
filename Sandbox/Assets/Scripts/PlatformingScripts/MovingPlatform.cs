@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [ExecuteAlways]
 public class MovingPlatform : MonoBehaviour, ITriggeredObject
@@ -14,6 +15,8 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private bool held;
     private int clicks;
     private bool colliding;
+    private bool CombinedTrigger0;
+    private bool CombinedTrigger1;
 
     private Queue<int> targetIndexes = new Queue<int>();
 
@@ -23,7 +26,7 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     public enum PlatFormMode { NONE, PINGPONG, ONCE, HOLDOPEN, MULTIPLE }
     public PlatFormMode platformMode = PlatFormMode.NONE;
     // trigger modes
-    public enum TriggerMode { NONE, ONCE, HOLD, TOGGLE, MULTIPLE }
+    public enum TriggerMode { NONE, ONCE, HOLD, TOGGLE, MULTIPLE, COMBINED }
     public TriggerMode triggerMode = TriggerMode.NONE;
 
     // start and end positions
@@ -47,6 +50,8 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     private Vector3 TemptargetPos;
 
     private bool soundPlayed;
+
+    [SerializeField] private bool endGameOnTrigger;
 
     // raycast variables
     /* private Collider collider;
@@ -187,6 +192,44 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                         //Loop();
 
                     }*/
+                }
+
+                break;
+
+            case TriggerMode.COMBINED:
+                if (CombinedTrigger0 && CombinedTrigger1)
+                {
+                    if (endGameOnTrigger)
+                    {
+                        if (GetComponent<SceneSwitcher>())
+                            GetComponent<SceneSwitcher>().SwitchSceneWithFade(SceneManager.GetActiveScene().buildIndex + 1);
+                    }
+                    else
+                    {
+                        isFalling = false;
+                        targetPos = endPos;
+                        MovePlatform(moveSpeed);
+                    }
+                }
+                else if (platformPositions.Count > 0 && (CombinedTrigger0 || CombinedTrigger1))
+                {
+                    isFalling = false;
+                    targetPos = platformPositions[0];
+                    MovePlatform(moveSpeed);
+                }
+                else
+                {
+                    if (Vector3.Distance(transform.position, startPos) > 0.01f)
+                    {
+                        if (!isFalling)
+                            soundPlayed = false;
+                        Vector3 temp = startPos;
+                        targetPos = startPos;
+                        MovePlatform(fallSpeed);
+                        isFalling = true;
+                        triggered = false;
+
+                    }
                 }
 
                 break;
@@ -434,8 +477,20 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
     {
         triggered = value;
 
-        if (platformMode == PlatFormMode.MULTIPLE)
+        if (platformMode == PlatFormMode.MULTIPLE && value)
             targetIndexes.Enqueue(item);
+        
+        if (triggerMode == TriggerMode.COMBINED)
+        {
+            if (item == 1)
+            {
+                CombinedTrigger1 = value;
+            }
+            else
+            {
+                CombinedTrigger0 = value;
+            }
+        }
        /* if(triggered)
             Debug.Log("Triggered to open: " + this.GetType().Name);*/
     }
