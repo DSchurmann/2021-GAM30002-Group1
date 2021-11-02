@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class DebuggerCheckpointSkip : MonoBehaviour
 {
@@ -14,11 +15,24 @@ public class DebuggerCheckpointSkip : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         enabled = true;
-#else
+/*#else
         enabled = false;
-#endif
+#endif*/
+    }
+
+    private void Update()
+    {
+        if(Keyboard.current.equalsKey.IsPressed())
+        {
+            NextCheckpoint();
+        }
+
+        if (Keyboard.current.minusKey.IsPressed())
+        {
+            PreviousCheckpoint();
+        }
     }
 
     void Start()
