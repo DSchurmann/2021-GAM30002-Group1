@@ -75,13 +75,18 @@ public class WeightButton : MonoBehaviour, ITrigger
                     {
                         triggered = true;
                         Shake();
+                        PlayPressSound();
                         SendTrigger();
                     }
                     break;
 
                 case TriggerMode.HOLD:              
                     if (!triggered)
+                    {
+                        PlayPressSound();
                         Shake();
+                    }
+                       
                     SendTrigger();
                     triggered = true;
                     break;
@@ -95,13 +100,24 @@ public class WeightButton : MonoBehaviour, ITrigger
                 switch (triggerMode)
                 {
                     case TriggerMode.MULTIPLE:
-                        triggered = false;
+                        if(triggered)
+                        { 
+                            PlayPressSound();
+                            triggered = false;
+                        }
+                        
+                       
                         break;
                     case TriggerMode.ONCE:
+                        //PlayPressSound();
                         break;
 
                     case TriggerMode.HOLD:
-                        triggered = false;
+                        if (triggered)
+                        {
+                            PlayPressSound();
+                            triggered = false;
+                        }
                         SendTriggerReset();
                         if (cameraShakeOnRelease)
                         {
@@ -138,5 +154,10 @@ public class WeightButton : MonoBehaviour, ITrigger
     private void Shake()
     {
         camera.Shake(cameraShakeIntestity, cameraShakeTime);
+    }
+
+    public void PlayPressSound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip);
     }
 }
