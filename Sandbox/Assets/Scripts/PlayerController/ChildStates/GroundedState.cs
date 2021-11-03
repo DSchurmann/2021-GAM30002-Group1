@@ -26,74 +26,80 @@ public class GroundedState : ChildState
 
     public override void Update()
     {
-        base.Update();
-
-        //player.HandlePlatformLanding();
-
-
-        if (!isExitingState)
+        if (player.interacting)
         {
-            // check for breakable ground below
-            if(GroundBelow() != null)
-            {
-                //Debug.Log("Ground Below: " + GroundBelow());
-                if(GroundBelow().GetComponent<FallOnContact>() != null)
-                {
-                    player.ChangeState(player.FallState);
-                }
-            }
+            inputX = 0;
+        }
+        else
+        {
+            base.Update();
 
-            // get input for x 
-            if (player.ControllerEnabled && !player.GetComponent<ClimbingController>().isClimbing)
+            //player.HandlePlatformLanding();
+
+
+            if (!isExitingState)
             {
-                inputX = player.InputHandler.InputXNormal;
-            }
-            else
-            {
-                if(player.Following)
+                // check for breakable ground below
+                if (GroundBelow() != null)
                 {
-                    inputX = 1;
+                    //Debug.Log("Ground Below: " + GroundBelow());
+                    if (GroundBelow().GetComponent<FallOnContact>() != null)
+                    {
+                        player.ChangeState(player.FallState);
+                    }
+                }
+
+                // get input for x 
+                if (player.ControllerEnabled && !player.GetComponent<ClimbingController>().isClimbing)
+                {
+                    inputX = player.InputHandler.InputXNormal;
                 }
                 else
                 {
-                    inputX = 0;
+                    if (player.Following)
+                    {
+                        inputX = 1;
+                    }
+                    else
+                    {
+                        inputX = 0;
+                    }
                 }
+
+
+                // get input for jump
+                inputJump = player.InputHandler.InputJump;
+                inputGrab = player.InputHandler.InputInteract;
+
+
+                // get jump input
+                if (inputJump && player.JumpState.CanJump() && !player.interacting)
+                {
+                    // set jump false
+                    player.InputHandler.SetJumpFalse();
+                    // change player to jump state
+                    player.ChangeState(player.JumpState);
+
+                    //Play Jump Sound
+                    //FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/TestSound", GameController.GH.childAudioPos);
+
+
+                } // check in air state
+                else if (!isGrounded)
+                {
+                    // check for jump input time buff not grounded
+                    player.InAirState.StartJumpTimeBuff();
+                    // change to in air state if not grounded
+                    player.ChangeState(player.InAirState);
+                }
+                // check for wall grab input
+                /* else if (isTouchingWall && inputGrab)
+                {
+                    // change to wall grab state if grab wall
+                    player.ChangeState(player.WallGrabState);
+                }*/
             }
-                
-
-            // get input for jump
-            inputJump = player.InputHandler.InputJump;
-            inputGrab = player.InputHandler.InputInteract;
-
-
-            // get jump input
-            if (inputJump && player.JumpState.CanJump() && !player.interacting)
-            {
-                // set jump false
-                player.InputHandler.SetJumpFalse();
-                // change player to jump state
-                player.ChangeState(player.JumpState);
-               
-                //Play Jump Sound
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/TestFolder/TestSound", GameController.GH.childAudioPos);
-
-
-            } // check in air state
-            else if (!isGrounded)
-            {
-                // check for jump input time buff not grounded
-                player.InAirState.StartJumpTimeBuff();
-                // change to in air state if not grounded
-                player.ChangeState(player.InAirState);
-            }
-            // check for wall grab input
-            /* else if (isTouchingWall && inputGrab)
-            {
-                // change to wall grab state if grab wall
-                player.ChangeState(player.WallGrabState);
-            }*/
         }
-
     }
     public override void FixedUpdate()
     {

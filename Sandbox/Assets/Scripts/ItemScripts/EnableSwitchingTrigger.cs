@@ -15,7 +15,7 @@ public class EnableSwitchingTrigger : MonoBehaviour, ITriggeredObject
 
     private void ToggleSwitching()
     {
-        GameController.GH.IsFriend = !GameController.GH.IsFriend;
+        GameController.GH.IsFriend = true;
         GameController.GH.UH.disableUI = false;
 
         Debug.Log("Enable switching");

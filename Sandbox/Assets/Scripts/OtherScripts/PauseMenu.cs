@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     public PlayerInputHandler InputHandler { get; private set; }
 
     public static bool GameIsPaused = false;
-    private bool done = true;
+    private bool done = false;
     [SerializeField] private List<Button> options;
     private int selection = 0;
     [SerializeField] private GameObject PauseMenuUI;
