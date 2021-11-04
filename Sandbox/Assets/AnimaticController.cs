@@ -22,11 +22,9 @@ public class AnimaticController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        long playerCurrentFrame = VideoPlayer.frame;
-        long playerFrameCount = Convert.ToInt64(VideoPlayer.frameCount);
 
 
-        if (playerCurrentFrame >= playerFrameCount)
+        if (VideoPlayer.frame == (long)VideoPlayer.frameCount-1)
         {
             Debug.Log("VIDEO ENDED");
             SkipVideo();
