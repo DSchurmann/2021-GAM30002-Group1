@@ -51,6 +51,8 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
 
     private bool soundPlayed;
 
+    private bool triggered2 = false;
+
     [SerializeField] private bool endGameOnTrigger;
 
     // raycast variables
@@ -201,8 +203,12 @@ public class MovingPlatform : MonoBehaviour, ITriggeredObject
                 {
                     if (endGameOnTrigger)
                     {
-                        if (GetComponent<SceneSwitcher>())
+                        if (GetComponent<SceneSwitcher>() && !triggered2)
+                        {
+                            triggered2 = true;
                             GetComponent<SceneSwitcher>().SwitchSceneWithFade(SceneManager.GetActiveScene().buildIndex + 1);
+                        }
+                            
                     }
                     else
                     {

@@ -65,4 +65,19 @@ public class UI_FXController : MonoBehaviour
         Fader.CrossFadeAlpha(value, time, false);
     }
 
+    public IEnumerator FadeInWhite(float delay, int value, float time)
+    {
+        Fader.gameObject.SetActive(true);
+
+        yield return new WaitForSeconds(delay);
+
+        Color col = Color.white;
+        col.a = 1;
+
+        Fader.GetComponent<Image>().color = col;
+
+        Fader.CrossFadeAlpha(0f, 0f, false);
+        Fader.CrossFadeAlpha(value, time, false);
+    }
+
 }

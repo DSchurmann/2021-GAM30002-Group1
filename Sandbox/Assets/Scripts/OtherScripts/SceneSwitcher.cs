@@ -11,7 +11,8 @@ public class SceneSwitcher : MonoBehaviour
 
     public void SwitchSceneWithFade(int index)
     {
-        StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(fadeDelay, 1, fadeTime));
+        //StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInBlack(fadeDelay, 1, fadeTime));
+        StartCoroutine(GameController.GH.UH.GetComponent<UI_FXController>().FadeInWhite(fadeDelay, 1, fadeTime));
         StartCoroutine(SwitchSceneDelay(sceneSwitchDelay, index));
     }
 
