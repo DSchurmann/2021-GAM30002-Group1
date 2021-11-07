@@ -11,6 +11,7 @@ public class AnimaticUIController : MonoBehaviour
     private float hideTimer = 0f;
     [SerializeField] private float hideTime;
     [SerializeField] private bool hideOnStart = true;
+    private bool canSkip = false;
 
     private int selection;
 
@@ -61,7 +62,7 @@ public class AnimaticUIController : MonoBehaviour
             button.gameObject.SetActive(true);
             //start timer
             hideTimer = hideTime;
-
+            canSkip = true;
         }
         //run timer
         if (hideTimer <= 0)
@@ -72,6 +73,7 @@ public class AnimaticUIController : MonoBehaviour
             //hide cursor and button
             button.gameObject.SetActive(false);
             cursor.SetActive(false);
+            canSkip = false;
         }
         else
         {
@@ -80,7 +82,7 @@ public class AnimaticUIController : MonoBehaviour
         }
 
         //Skip if button pressed
-        if (inputHandler.InputMenuAccept)
+        if (inputHandler.InputMenuAccept && canSkip)
         {
             inputHandler.SetMenuAcceptFalse();
             button.onClick.Invoke();
