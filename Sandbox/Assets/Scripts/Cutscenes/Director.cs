@@ -112,12 +112,12 @@ public class Director : MonoBehaviour
         {
             case CutEvent.EventType.animChild:
                 //Get Child to Play Animation
-                GameController.GH.childObj.GetComponent<ChildControllerRB>().GetComponent<Animator>().Play(cur.animName);
+                GameController.GH.childObj.GetComponent<ChildControllerRB>().GetComponent<Animator>().CrossFade(cur.animName, cur.animBlendTime);
                 break;
 
             case CutEvent.EventType.animGolem:
                 //GameController.GH.golemObj.GetComponent<GolemControllerRB>().ChangeState(GameController.GH.golemObj.GetComponent<GolemControllerRB>().RaiseAbility);
-                GameController.GH.golemObj.GetComponent<GolemControllerRB>().GetComponent<Animator>().Play(cur.animName);
+                GameController.GH.golemObj.GetComponent<GolemControllerRB>().GetComponent<Animator>().CrossFade(cur.animName, cur.animBlendTime);
                 //GameController.GH.golemObj.GetComponent<GolemControllerRB>().ChangeState(GameController.GH.golemObj.GetComponent<GolemControllerRB>().RaiseAbility);
                 break;
 

@@ -18,6 +18,7 @@ public class CutEvent: MonoBehaviour
 
     //Parameters -- Animation to play
     public string animName;
+    public float animBlendTime = 0;
 
     //Parameters -- Camera / Other Rotation Change
     public Vector3 newRotation;
