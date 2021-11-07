@@ -42,23 +42,13 @@ public class PauseMenu : MonoBehaviour
         }
         else if (GameIsPaused && PauseMenuUI.activeInHierarchy)
         {
-
             if (!done)
             {
                 //disable multiple inputs between menus
-                if (InputHandler.InputMenuAccept)
-                {
-                    InputHandler.SetMenuAcceptFalse();
-                }
-                if (InputHandler.InputMenuDecline)
-                {
-                    InputHandler.SetMenuDeclineFalse();
-                }
-                if (InputHandler.InputPause)
-                {
-                    InputHandler.SetPauseFalse();
-                }
-                done = !done;
+                InputHandler.SetMenuAcceptFalse();
+                InputHandler.SetMenuDeclineFalse();
+                InputHandler.SetPauseFalse();
+                done = true;
                 Vector2 pos = options[selection].GetComponent<Transform>().localPosition;
                 Vector2 newpos = new Vector2(pos.x - (pos.x / 2) - 250, pos.y);
                 cursor.GetComponent<Transform>().localPosition = newpos;
@@ -117,6 +107,7 @@ public class PauseMenu : MonoBehaviour
         cursor.SetActive(false);
         Time.timeScale = 1.0f;
         GameIsPaused = false;
+        done = false;
         GameController.GH.GamePaused = false;
         GameController.GH.ShowMouse(false);
         // enable controls

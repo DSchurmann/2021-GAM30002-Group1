@@ -248,7 +248,6 @@ public class SettingsHandler : MonoBehaviour
             }
             else if (g.GetComponentInChildren<TMP_Dropdown>()) //change resolution
             {
-                print(g.GetComponentInChildren<TMP_Dropdown>().value);
                 Resolution r = resolutions[g.GetComponentInChildren<TMP_Dropdown>().value];
                 Screen.SetResolution(r.width, r.height, Screen.fullScreen);
                 PlayerPrefs.SetInt("Resolution", g.GetComponentInChildren<TMP_Dropdown>().value);
